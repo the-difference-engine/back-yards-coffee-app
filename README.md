@@ -17,8 +17,7 @@ Back of the Yards Coffee Co. is a specialty coffee roaster located in Chicago's 
 * `rspec`
 * `rails s`
 
-## Deployment instructions:
+## Review the wiki for project details:
 
-* QA Server (DEV): `git push demo demo:master` branch is continuously deployed using Codeship
-* Demo Server (STAGING): `git push demo demo:master`
-* Prod Server (PRODUCTION): `git push prod master`
+* [Workflow](https://github.com/the-difference-engine/back-yards-coffee-app/wiki/Workflow)
+* [Heroku](https://github.com/the-difference-engine/back-yards-coffee-app/wiki/Heroku)
