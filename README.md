@@ -4,7 +4,7 @@ Back of the Yards Coffee Co. is a specialty coffee roaster located in Chicago's 
 
 ## Application details:
 
-* Ruby version: _____
+* Ruby version: 2.3.0
 * Rails version: 5.0.3
 * This is a Postgres database
 * [ ![Codeship Status for the-difference-engine/back-yards-coffee-app](https://app.codeship.com/projects/9d8702b0-2d3b-0135-0f9b-361784b30fbb/status?branch=qa)](https://app.codeship.com/projects/224635)
