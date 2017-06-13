@@ -9,4 +9,11 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "GET pages#about" do
+    it "should render the about page" do
+      get :about
+      expect(response).to render_template :about
+    end
+  end
+
 end
