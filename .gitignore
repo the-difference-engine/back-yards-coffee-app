@@ -17,4 +17,7 @@
 .byebug_history
 
 # Ignore local environment variables
-.envsendgrid.env
+.env
+
+# Ignore all DS_store files
+.DS_Store

@@ -16,4 +16,11 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "GET pages#coffee_house" do 
+    it "should render the coffee_house page" do 
+      get :coffee_house
+      expect(response).to render_template :coffee_house
+    end
+  end
+
 end
