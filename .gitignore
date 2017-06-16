@@ -15,3 +15,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore local environment variables
+.env
+
+# Ignore all DS_store files
+.DS_Store
