@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Lobster";
+  src: url('/assets/lobster.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
@@ -26,6 +33,15 @@ video#bgvid {
     transform: translateX(-50%) translateY(-50%);
 }
 
-li a img {
-  height: 50px;
+.lobster-font {
+  font-family: 'Lobster', cursive;
+}
+
+.title {
+  font-family: 'Garamond';
+  
+}
+
+.caps {
+  font-size: 1.3em;
 }
