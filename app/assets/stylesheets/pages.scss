@@ -45,3 +45,15 @@ video#bgvid {
 .caps {
   font-size: 1.3em;
 }
+
+.disabled {
+   pointer-events: none;
+   cursor: default;
+   color: grey;
+}
+
+.active {
+  pointer-events: default;
+  cursor: hand;
+  color: white;
+}
