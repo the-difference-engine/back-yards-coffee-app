@@ -14,7 +14,11 @@
       <div class="nav-wrapper black">
         <a href="#" class="brand-logo"><img src="/assets/logo_beige_transparent.png" style="width:219px;height:65px;"></a>
         <ul id="nav-mobile black" class="right hide-on-med-and-down">
-          <li><a href="customers/sign_in">Login</a></li>
+          <% if current_customer %>
+            <li><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+          <% else %>
+            <li><a href="/customers/sign_in">Login</a></li>
+          <% end %>
           <li><a href="/about">Who we are</a></li>
           <li><a href="/coffee_club">Coffee Club</a></li>
           <li><a href="/coffee_house">Coffee House</a></li>
