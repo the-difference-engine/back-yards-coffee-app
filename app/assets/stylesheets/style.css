@@ -55,3 +55,8 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+.social-media-logo {
+  height:50px;
+  width:50px;
+}
