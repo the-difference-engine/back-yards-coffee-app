@@ -4,8 +4,8 @@
     <title>BackYardsCoffeeApp</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lobster" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -16,10 +16,12 @@
   <body>
     <nav>
       <div class="nav-wrapper black">
-        <a href="#" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
+        <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
         <ul id="nav-mobile black" class="right hide-on-med-and-down">
           <% if current_customer %>
             <li><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+          <% elsif current_employee %>
+            <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
           <% else %>
             <li><a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a></li>
           <% end %>

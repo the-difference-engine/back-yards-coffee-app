@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :employees
   devise_for :customers
-  get "/" => "pages#index"
+  root "pages#index"
 
   get "/about" => "pages#about"
   get "/coffee_club" => "pages#coffee_club"
