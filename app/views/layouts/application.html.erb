@@ -22,7 +22,7 @@
           <li><a href="/coffee_house">Coffee House</a></li>
           <li><a href="/about">Who we are</a></li>
           <% if current_customer || current_employee %>
-            <li><a class='dropdown-button' href='#' data-activates='dropdown1'><i class="material-icons">perm_identity</i></a></li>
+            <li><a class='dropdown-button' href='#' data-activates='account-dropdown'><i class="material-icons">perm_identity</i></a></li>
           <% else %>
             <li><a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a></li>
           <% end %>
@@ -61,7 +61,7 @@
     </div>
   </footer>
   <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
+  <ul id='account-dropdown' class='dropdown-content'>
     <li><a href="#!">My Account</a></li>
     <li><a href="#!">My Subscriptions</a></li>
     <li class="divider"></li>
