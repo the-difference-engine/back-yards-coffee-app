@@ -14,7 +14,6 @@
   </head>
 
   <body>
-<<<<<<< HEAD
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper black">
@@ -33,24 +32,6 @@
         </div>
       </nav>
     </div>
-=======
-    <nav>
-      <div class="nav-wrapper black">
-        <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
-        <ul id="nav-mobile black" class="right hide-on-med-and-down">
-          <li><a href="/coffee_club">Coffee Club</a></li>
-          <li><a href="/coffee_house">Coffee House</a></li>
-          <li><a href="/about">Who we are</a></li>
-          <% if current_customer || current_employee %>
-            <li><a class='dropdown-button' href='#' data-activates='account-dropdown'><i class="material-icons">perm_identity</i></a></li>
-          <% else %>
-            <li><a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a></li>
-          <% end %>
-          <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
-        </ul>
-      </div>
-    </nav>
->>>>>>> 5374d9be41e5c25e4a7bd6b1a0a7f56ebe1b683c
     <%= yield %>
     <footer class="page-footer teal">
     <div class="container">
@@ -82,15 +63,9 @@
     </div>
   </footer>
   <!-- Dropdown Structure -->
-<<<<<<< HEAD
   <ul style="margin-top:64px;min-width:160px;" id='account-dropdown' class='dropdown-content'>
     <li style="text-align: center;"><a href="#!">My Account</a></li>
     <li style="text-align: center;"><a href="#!">My Subscriptions</a></li>
-=======
-  <ul id='account-dropdown' class='dropdown-content'>
-    <li><a href="#!">My Account</a></li>
-    <li><a href="#!">My Subscriptions</a></li>
->>>>>>> 5374d9be41e5c25e4a7bd6b1a0a7f56ebe1b683c
     <li class="divider"></li>
     <% if current_customer %>
       <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
