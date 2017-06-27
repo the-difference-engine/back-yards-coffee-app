@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @products=Stripe::Product.list 
   end
   def about
   end
