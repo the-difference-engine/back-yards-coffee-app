@@ -47,6 +47,9 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5.0'
   gem 'rails-controller-testing'
+  gem 'factory_girl_rails'
+  gem 'webmock'
+  gem 'database_cleaner'
   gem 'dotenv-rails'
 end
 
