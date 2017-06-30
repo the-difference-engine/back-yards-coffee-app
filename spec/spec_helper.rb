@@ -34,6 +34,9 @@ RSpec.configure do |config|
         {"id":"prod_AuxRSpec01234","object":"product"},
         {"id":"prod_AuxRSpec56789","object":"product"}]
       }))
+    # Stub for Stripe::Plan.list
+    stub_request(:get, "https://api.stripe.com/v1/plans").
+      to_return(:body => %Q({ "data": [{"id":"test","object":"plan"}]}))
     # Stub for Stripe::Customer.create(email: email) 
     stub_request(:post, "https://api.stripe.com/v1/customers").
       to_return(:body => %Q({"id":"cus_rSpecXxXxrSpec","object":"customer"}))
