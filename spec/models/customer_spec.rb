@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  describe "assign_customer_id" do 
+    it "creates a stripe customer" do
+      customer = create(:customer)
+      expect(customer.stripe_customer_id).to be == "cus_rSpecXxXxrSpec"
+    end 
+  end
+  
 end

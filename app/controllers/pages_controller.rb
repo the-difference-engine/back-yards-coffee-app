@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     @products = Stripe::Product.list 
-    @subscriptions=Stripe::Plan.list
+    @subscriptions = Stripe::Plan.list
   end
   def about
   end
