@@ -15,7 +15,7 @@
 
   <body>
     <div class="navbar-fixed">
-      <nav>
+      <nav class=<%= request.url.include?("dashboard") ? "nav-extended" : "" %>>
         <div class="nav-wrapper black">
           <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
           <ul id="nav-mobile black" class="right hide-on-med-and-down">
@@ -30,7 +30,18 @@
             <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
           </ul>
         </div>
+        
+        <% if request.url.include?("dashboard") %> 
+          <div class="nav-content black">
+            <ul class="tabs tabs-transparent">
+              <li class="tab"><a class="active" href="#">My Account</a></li>
+              <li class="tab"><a href="#test2">Subscriptions</a></li>
+            </ul>
+          </div>
+        <% end %> 
       </nav>
+        <div id="my_account" class="col s12">My Account</div>
+        <div id="subscriptions" class="col s12">Subscriptions</div>
     </div>
     <%= yield %>
     <footer class="page-footer teal">
