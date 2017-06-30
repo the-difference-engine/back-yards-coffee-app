@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @products = Stripe::Product.retrieve(id: params[:id])
   end
 
 end
