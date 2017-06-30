@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  #Overrides the default method for redirecting to home page given with devise. Simply returns the url/path.
   def after_sign_in_path_for(resource_or_scope)
     '/customers/dashboard'
   end
