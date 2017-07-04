@@ -43,6 +43,10 @@
       </nav>
     </div>
     <%= yield %>
+    <!-- Extended Nav-bar content -->
+    <div id="subscriptions" class="col s12"><%= render "/customers/subscriptions" %></div>
+    <div id="account-info" class="col s12"><%= render "/customers/account-info" %></div>
+    <div id="test3" class="col s12">Test 3</div>
     <footer class="page-footer teal">
     <div class="container">
       <div class="row">
@@ -82,9 +86,5 @@
       <li style="text-align: center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
     <% end %>
   </ul>
-  <!-- Extended Nav-bar content -->
-  <div id="subscriptions" class="col s12">Subscriptions</div>
-  <div id="account-info" class="col s12">Account Details</div>
-  <div id="test3" class="col s12">Test 3</div>
   </body>
 </html>
