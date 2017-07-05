@@ -14,8 +14,9 @@
   </head>
 
   <body>
+
     <div class="navbar-fixed">
-      <nav>
+      <nav class=<%= 'nav-extended' if @dashboard %>>
         <div class="nav-wrapper black">
           <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
           <ul id="nav-mobile black" class="right hide-on-med-and-down">
@@ -30,9 +31,22 @@
             <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
           </ul>
         </div>
+        <% if @dashboard %>
+        <div class="nav-content black">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#subscriptions">Subscriptions</a></li>
+            <li class="tab"><a href="#account-info">Account Info</a></li>
+            <li class="tab"><a href="#test3">Test 3</a></li>
+          </ul>
+        </div>
+        <% end %>
       </nav>
     </div>
     <%= yield %>
+    <!-- Extended Nav-bar content -->
+    <div id="subscriptions" class="col s12"><%= render "/customers/subscriptions" %></div>
+    <div id="account-info" class="col s12"><%= render "/customers/account-info" %></div>
+    <div id="test3" class="col s12">Test 3</div>
     <footer class="page-footer teal">
     <div class="container">
       <div class="row">
@@ -64,8 +78,7 @@
   </footer>
   <!-- Dropdown Structure -->
   <ul style="margin-top:64px;min-width:160px;" id='account-dropdown' class='dropdown-content'>
-    <li style="text-align: center;"><a href="#!">My Account</a></li>
-    <li style="text-align: center;"><a href="#!">My Subscriptions</a></li>
+    <li style="text-align: center;"><a href="/customers/dashboard">My Account</a></li>
     <li class="divider"></li>
     <% if current_customer %>
       <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
