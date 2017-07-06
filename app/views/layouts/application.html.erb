@@ -42,6 +42,9 @@
         <% end %>
       </nav>
     </div>
+
+    <%= render "layouts/alerts" %> 
+    
     <%= yield %>
     <!-- Extended Nav-bar content -->
     <div id="subscriptions" class="col s12"><%= render "/customers/subscriptions" %></div>
