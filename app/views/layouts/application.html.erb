@@ -43,11 +43,15 @@
         <% end %>
       </nav>
     </div>
+
+    <%= render "layouts/alerts" %> 
+    
     <%= yield %>
     <!-- Extended Nav-bar content -->
-    <div id="subscriptions" class="col s12"><%= render "/customers/subscriptions" %></div>
-    <div id="account-info" class="col s12"><%= render "/customers/account-info" %></div>
-    <div id="test3" class="col s12">Test 3</div>
+    <% if @dashboard %>
+      <div id="subscriptions" class="col s12"><%= render "/customers/subscriptions" %></div>
+      <div id="account-info" class="col s12"><%= render "/customers/account-info" %></div>
+    <% end %>
     <footer class="page-footer teal">
     <div class="container">
       <div class="row">
