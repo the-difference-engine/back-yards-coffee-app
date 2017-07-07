@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <%= stylesheet_link_tag   'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 </head>
 <body class="login_logout">
   <div class="form_box">
+    <%= render "layouts/alerts" %> 
     <%= yield %>
   </div>
 </body>

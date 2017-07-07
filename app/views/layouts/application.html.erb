@@ -21,6 +21,7 @@
           <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
           <ul id="nav-mobile black" class="right hide-on-med-and-down">
             <li class="selected"><a href="/coffee_club">Coffee Club</a></li>
+            <li><a href="/products">Products</a></li>
             <li><a href="/coffee_house">Coffee House</a></li>
             <li><a href="/about">Who we are</a></li>
             <% if current_customer || current_employee %>
@@ -42,6 +43,9 @@
         <% end %>
       </nav>
     </div>
+
+    <%= render "layouts/alerts" %> 
+    
     <%= yield %>
     <!-- Extended Nav-bar content -->
     <% if @dashboard %>
