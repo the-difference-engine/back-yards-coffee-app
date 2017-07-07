@@ -1,18 +1,63 @@
+
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
     <br><br>
-      <h1 class="header center text-lighten-2 title"><span class="garamond-font"><%= @products.name %></span></h1>
+      <h1 class="header center text-lighten-2 title"><span class="garamond-font"><%= @product.name %></span></h1>
     </div>
   </div>
-  <div class="parallax"><img class="activator" src="<%= @products.images[1]%>"></div>
+  <div class="parallax"><img class="activator" src="<%= @product.images[1]%>"></div>
 </div>
+
+<%= form_tag "/carted_products", method: :post do%> 
+  <div class="container">
+    <div class="section">
+      <div calss="row">
+        <div class="input-field">
+          <div class="col s4">
+            <select>
+              <%= @product.skus.data.each do |data| %>
+                <option value="<%= data.id %>"><%= data.id %></option>
+              <% end %> 
+            </select>
+            <label>Bean Style</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_tag "/carted_products", method: :post do%> 
+  <div class="container">
+    <div class="section">
+      <div calss="row">
+        <div class="input-field">
+          <div class="col s4">
+            <select>
+              <% 100.times do |x| %>
+                <option value=<%= x %>><%= x %></option>
+                <% x += 1 %> 
+              <% end %>
+            </select>
+            <label>Quantity</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> 
 
 <div class="container">
   <div class="section">
     <div class="row">
-      <span class="garamond-font"><%= @products.description %></span>
+      <span class="garamond-font"><%= @product.description %></span>
     </div>
   </div>
 </div>
   
+<script>  
+$(document).ready(function() {
+  $('select').material_select();
+});material_select
+</script>
