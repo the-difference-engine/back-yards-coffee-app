@@ -4,6 +4,6 @@ class CustomersController < ApplicationController
 
   def show
     @dashboard = true
-    @customer = Customer.find_by(id: current_customer.id)
+    @customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id).subscriptions
   end
 end
