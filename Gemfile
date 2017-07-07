@@ -51,6 +51,7 @@ group :development, :test do
   gem 'webmock'
   gem 'database_cleaner'
   gem 'dotenv-rails'
+  gem 'capybara'
 end
 
 group :development do
@@ -69,4 +70,4 @@ gem 'materialize-sass'
 
 gem 'stripe'
 
-gem 'capybara'
+

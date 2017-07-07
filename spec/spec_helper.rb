@@ -1,8 +1,8 @@
 require_relative 'support/controller_helpers'
 require 'devise'
 require 'factory_girl_rails'
-require 'capybara/rails'
 require 'webmock/rspec'
+require 'capybara/rspec'
 
 
 WebMock.disable_net_connect!(allow_localhost: true)
