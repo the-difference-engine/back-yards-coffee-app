@@ -51,6 +51,7 @@ group :development, :test do
   gem 'webmock'
   gem 'database_cleaner'
   gem 'dotenv-rails'
+  gem 'capybara'
 end
 
 group :development do
@@ -68,3 +69,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'materialize-sass'
 
 gem 'stripe'
+
+
