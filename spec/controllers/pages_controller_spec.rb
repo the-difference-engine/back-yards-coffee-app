@@ -15,7 +15,6 @@ RSpec.describe PagesController, type: :controller do
       before :each do
         customer = create(:customer)
         sign_in customer
-        p customer
       end
       it "should render the front page/index page" do
         get :index

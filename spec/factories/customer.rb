@@ -3,5 +3,6 @@ FactoryGirl.define do
     sequence(:email){ |n| "janedoe#{n}@example.com" }
     password '12345678'
     password_confirmation '12345678'
+    stripe_customer_id 'cus_XxXxXxXxrSpec'
   end
 end

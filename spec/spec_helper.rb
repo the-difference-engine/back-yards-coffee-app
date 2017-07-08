@@ -43,6 +43,28 @@ RSpec.configure do |config|
     # Stub for Stripe::Customer.create(email: email) 
     stub_request(:post, "https://api.stripe.com/v1/customers").
       to_return(:body => %Q({"id":"cus_rSpecXxXxrSpec","object":"customer"}))
+    # Stub for Stripe::Customer.retrieve(:stripe_customer_id)  
+    stub_request(:get, "https://api.stripe.com/v1/customers/cus_XxXxXxXxrSpec").
+      to_return(:body => %Q({ "subscriptions": 
+          {
+            "data": [
+              {
+                "id":"sub_YyYyYyYyYyYyYy",
+                "object":"subscription",
+                "current_period_end":1502070503,
+                "items":{"data":[
+                  {"plan":
+                    {
+                      "amount":1399,
+                      "name":"Sample Plan 1"
+                    }
+                  }]
+                }
+              }
+            ],
+            "total_count": 2
+          }
+      }))
   end
 
   config.before(:all) do
@@ -50,17 +72,6 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
 
   FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
   config.include ControllerHelpers, type: :controller
