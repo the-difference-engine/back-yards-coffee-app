@@ -2,7 +2,7 @@
   <div>
     
   </div>
-  <% if @customer.total_count != 0 %>
+  <% if @customer.subscriptions.total_count != 0 %>
     <table class="bordered">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-      <% @customer.data.each do |subscription| %>
+      <% @customer.subscriptions.data.each do |subscription| %>
         <tr>
           <td><%= subscription.items.data[0].plan.name %></td>
           <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
