@@ -9,7 +9,7 @@
   <div class="parallax"><img class="activator" src="<%= @product.images[1]%>"></div>
 </div>
 
-<%= form_tag "/carted_products", method: :post do%> 
+<%= form_tag "/cart", method: :post do%> 
   <div class="container">
     <div class="section">
       <div calss="row">
@@ -26,18 +26,14 @@
       </div>
     </div>
   </div>
-<% end %>
-
-<%= form_tag "/carted_products", method: :post do%> 
   <div class="container">
     <div class="section">
       <div calss="row">
         <div class="input-field">
           <div class="col s4">
             <select>
-              <% 100.times do |x| %>
-                <option value=<%= x %>><%= x %></option>
-                <% x += 1 %> 
+              <% StripeTool.product_quantity(@product).times do |n| %>   <!-- uses stripe_tool.rb concern --> 
+                <option value=<%= n %>><%= n %></option>
               <% end %>
             </select>
             <label>Quantity</label>
@@ -45,6 +41,7 @@
         </div>
       </div>
     </div>
+    <button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
   </div>
 <% end %> 
 
