@@ -8,5 +8,6 @@ RSpec.describe Customer, type: :model do
       expect(customer.stripe_customer_id).to be == "cus_rSpecXxXxrSpec"
     end 
   end
-  
 end
+
+
