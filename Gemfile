@@ -52,6 +52,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'capybara'
+  gem 'simplecov', :require => false, :group => :test
 end
 
 group :development do
