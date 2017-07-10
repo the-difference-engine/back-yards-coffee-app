@@ -3,6 +3,8 @@ require 'devise'
 require 'factory_girl_rails'
 require 'webmock/rspec'
 require 'capybara/rspec'
+require 'simplecov'
+SimpleCov.start
 
 
 WebMock.disable_net_connect!(allow_localhost: true)
