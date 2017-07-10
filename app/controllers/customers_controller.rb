@@ -1,8 +1,8 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :current_customer
 
   def show
-    @customer = Customer.find_by(id: current_customer.id)
+    @dashboard = true
+    @customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
   end
 end
