@@ -1,22 +1,24 @@
 require 'rails_helper'
 
-RSpec.describe "the signin process", :type => :feature do
+RSpec.describe "The Customer Signin Process", :type => :feature do
   before :each do
     customer = create(:customer)
   end
 
-  context "user signs in" do 
-    it "sign me in with valid credentials" do
+  context "with valid credentials" do 
+    it "logs into the customer dashboard" do
       visit '/customers/sign_in'
       within("#new_customer") do
         fill_in 'Email', with: 'janedoe1@example.com'
         fill_in 'Password', with: '12345678'
       end
       click_button 'Log in'
-      expect(page).to have_content 'Back of the Yards'
-    end 
-
-    it "doesn't sign me in with invalid credentials" do
+      expect(page).to have_content 'Customer Dashboard'
+    end
+  end
+  
+  context "with invalid credentials" do 
+    it "stays on the log-in page" do
       visit '/customers/sign_in'
       within("#new_customer") do
         fill_in 'Email', with: 'janedoe1@example.com'
@@ -26,4 +28,5 @@ RSpec.describe "the signin process", :type => :feature do
       expect(page).to have_content 'Log in'
     end
   end
+
 end

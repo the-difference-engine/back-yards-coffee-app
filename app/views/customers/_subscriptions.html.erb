@@ -1,8 +1,5 @@
 <div style="color:black;">
-  <div>
-    
-  </div>
-  <% if @customer.total_count != 0 %>
+  <% if @customer.subscriptions.total_count != 0 %>
     <table class="bordered">
       <thead>
         <tr>
@@ -12,13 +9,13 @@
         </tr>
       </thead>
       <tbody>
-      <% @customer.data.each do |subscription| %>
-        <tr>
-          <td><%= subscription.items.data[0].plan.name %></td>
-          <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
-          <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
-        </tr>
-      <% end %>
+        <% @customer.subscriptions.data.each do |subscription| %>
+          <tr>
+            <td><%= subscription.items.data[0].plan.name %></td>
+            <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
+            <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   <% else %>
