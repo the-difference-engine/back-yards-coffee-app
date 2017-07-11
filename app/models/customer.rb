@@ -1,5 +1,7 @@
 class Customer < ApplicationRecord
+
   has_many :carted_products
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
