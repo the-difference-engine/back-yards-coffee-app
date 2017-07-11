@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   def index
-    @products = Stripe::Product.list 
     @products = Stripe::Product.list.select{|product| product.attributes.include?('featured')}
     @subscriptions = Stripe::Plan.list
   end
