@@ -24,11 +24,7 @@
       <div calss="row">
         <div class="input-field">
           <div class="col s4">
-            <select>
-              <%= @product.skus.data.each do |data| %>
-                <option value="<%= data.id %>"><%= data.id %></option>
-              <% end %> 
-            </select>
+            <%= select_tag :sku, options_for_select(@product.skus.data.collect{ |u| [u.id.humanize, u.id] }), prompt: " - Select Bean Style - " %>
             <label>Bean Style</label>
           </div>
         </div>
@@ -40,11 +36,7 @@
       <div calss="row">
         <div class="input-field">
           <div class="col s4">
-            <select>
-              <% StripeTool.product_quantity(@product).times do |n| %>   <!-- uses stripe_tool.rb concern --> 
-                <option value=<%= n %>><%= n %></option>
-              <% end %>
-            </select>
+            <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
             <label>Quantity</label>
           </div>
         </div>
@@ -52,10 +44,11 @@
     </div>
     <button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
   </div>
+  <%= hidden_field_tag :product_id, @product.id %>
 <% end %> 
 
 <script>  
-$(document).ready(function() {
-  $('select').material_select();
-});material_select
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 </script>

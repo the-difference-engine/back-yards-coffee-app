@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get "/coffee_club" => "pages#coffee_club"
   get "/coffee_house" => "pages#coffee_house"
 
-  post "/cart" => "carted_products#cart"
+  post "/cart" => "carted_products#create"
+  get "/cart" => "carted_products#index"
   
   resources :products
 end

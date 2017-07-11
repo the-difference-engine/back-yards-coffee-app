@@ -1,0 +1,26 @@
+<h1> Your Cart </h1>
+
+<table class="table">
+  <tr>
+    <td> ID </td>
+    <td> PRODUCT ID </td>
+    <td> PRODUCT NAME </td>
+    <td> UNIT PRICE </td>
+    <td> QUANTITY </td>
+    <td> SKU </td>
+    <td> TOTAL PRICE </td>
+  </tr>
+  <% @carted_products.each_with_index do |carted_product, index| %>
+    <tr>
+      <td><%= carted_product.id %></td>
+      <td><%= carted_product.product_id %></td>
+      <td><%= carted_product.product_name %></td>
+      <td><%= number_to_currency(carted_product.price * 0.01) %></td>
+      <td><%= carted_product.quantity %></td>
+      <td><%= carted_product.sku %></td>
+      <td><%= number_to_currency(carted_product.total_price * 0.01) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3> Total Sale: <%= number_to_currency(@carted_products.sum(&:total_price) * 0.01) %> </h3>

@@ -1,26 +1,28 @@
 class CartedProductsController < ApplicationController
-  def create 
-    carted_product = CartedProduct.new(
-    quantity: params[:quantity].to_i,
-    product_id: params[:product_id],
-    user_id: current_user.id,
-    grind_id: params[:grind_id],
-    order_id: params[:order_id], #this will most likely need updating with Stripe specific info 
-    status: "carted"
-    ) 
-    carted_product.save
-    flash[:success] = "Order Created!"
-    redirect_to "/cart"
+  def create
+    customer_id = customer_signed_in? ? current_customer.id : session['session_id'] 
+    @carted_product = CartedProduct.new(quantity: params[:quantity],
+                                        product_id: params[:product_id],
+                                        sku: params[:sku],
+                                        user_id: customer_id,
+                                        status: 'carted')
+    if @carted_product.save
+      flash[:success] = 'Order Created!'
+      redirect_to '/cart'
+    else
+      flash[:error] = @carted_product.errors.full_messages.join(', ').gsub(/[']/,"\\\\\'")
+      redirect_to "/products/#{params[:product_id]}"
+    end
   end 
 
   def index
-    @carted_products = CartedProduct.where(status: "carted", user_id: current_user.id)
-    if @carted_products.length > 0 
-      render "index.html.erb"
-    else 
-      flash[:warning] = "You have nothing in your cart."
-      redirect_to "/"
+    customer_id = customer_signed_in? ? current_customer.id : session['session_id'] 
+    @carted_products = CartedProduct.where(status: 'carted', user_id: customer_id)
+    if @carted_products.empty?
+      flash[:warning] = 'You have nothing in your cart.'
+      redirect_to '/'
     end
+    @carted_products.each{ |c| c.stripe_attributes }
   end 
 
   def destroy 
