@@ -9,6 +9,15 @@
   <div class="parallax"><img class="activator" src="<%= @product.images[1]%>"></div>
 </div>
 
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <span class="garamond-font"><%= @product.description %></span>
+    </div>
+  </div>
+</div>
+  
 <%= form_tag "/cart", method: :post do%> 
   <div class="container">
     <div class="section">
@@ -45,14 +54,6 @@
   </div>
 <% end %> 
 
-<div class="container">
-  <div class="section">
-    <div class="row">
-      <span class="garamond-font"><%= @product.description %></span>
-    </div>
-  </div>
-</div>
-  
 <script>  
 $(document).ready(function() {
   $('select').material_select();
