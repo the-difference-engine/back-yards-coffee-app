@@ -29,7 +29,7 @@
             <% else %>
               <li><a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a></li>
             <% end %>
-            <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
+            <li><a href="/cart"><i class="material-icons">shopping_cart</i></a></li>
           </ul>
         </div>
         <% if @dashboard %>
