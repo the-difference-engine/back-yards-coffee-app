@@ -58,7 +58,7 @@ RSpec.configure do |config|
                       "amount":1399,
                       "name":"Sample Plan 1"
                     },
-                    "quantity":0
+                    "quantity":1
                   }]
                 }
               }
