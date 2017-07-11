@@ -1,7 +1,7 @@
 class CartedProductsController < ApplicationController
   def create
     customer_id = customer_signed_in? ? current_customer.id : session['session_id'] 
-    @carted_product = CartedProduct.new(quantity: params[:quantity].to_i,
+    @carted_product = CartedProduct.new(quantity: params[:quantity],
                                         product_id: params[:product_id],
                                         sku: params[:sku],
                                         user_id: customer_id,
@@ -10,7 +10,7 @@ class CartedProductsController < ApplicationController
       flash[:success] = 'Order Created!'
       redirect_to '/cart'
     else
-      flash[:warning] = @carted_product.errors.full_messages
+      flash[:error] = @carted_product.errors.full_messages.join(', ').gsub(/[']/,"\\\\\'")
       redirect_to "/products/#{params[:product_id]}"
     end
   end 
