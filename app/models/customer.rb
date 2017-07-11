@@ -10,4 +10,13 @@ class Customer < ApplicationRecord
     customer = Stripe::Customer.create(email: email)
     self.stripe_customer_id = customer.id
   end
+
+  def subscriptions_total(id)
+    @customer = Stripe::Customer.retrieve(id)
+    @subscriptions_total = 0 
+      @customer.subscriptions.data.each do |subscription|
+        @subscriptions_total += (subscription.items.data[0].quantity * (subscription.items.data[0].plan.amount * 0.01))
+    end
+    @subscriptions_total
+  end
 end
