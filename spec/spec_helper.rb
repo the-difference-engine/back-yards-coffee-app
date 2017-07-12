@@ -34,15 +34,21 @@ RSpec.configure do |config|
     # Stub for Stripe::Product.list
     stub_request(:get, "https://api.stripe.com/v1/products").
       to_return(:body => %Q({ "data": [
-        {"id":"prod_AuxRSpec01234","object":"product","attributes":"featured"},
-        {"id":"prod_AuxRSpec56789","object":"product","attributes":"special"}]
+        {"id":"prod_AuxRSpec01234","object":"product","attributes":"featured",
+          "skus":{"data":[{"id":"whole_bean","object":"product","attributes":"featured", "price":999}]}
+        },
+        {"id":"prod_AuxRSpec56789","object":"product","attributes":"special",
+          "skus":{"data":[{"id":"whole_bean","object":"product","attributes":"featured", "price":999}]}
+        }]
       }))
     # Stub for Stripe::Product.retrieve(id: product_id)
     stub_request(:get, "https://api.stripe.com/v1/products/prod_AuxRSpec01234").
-      to_return(:body => %Q({"id":"prod_AuxRSpec01234","object":"product","attributes":"featured", "name":"PRODUCT NAME"}))
-      # Stub for Stripe::Product.retrieve(id: product_id)
+      to_return(:body => %Q({"id":"prod_AuxRSpec01234","object":"product","attributes":"featured", "name":"PRODUCT NAME",
+        "skus":{"data":[{"id":"whole_bean","object":"product","attributes":"featured", "price":999}]}
+      }))
+      # Stub for Stripe::SKU.retrieve(id: sku)
     stub_request(:get, "https://api.stripe.com/v1/skus/whole_bean").
-      to_return(:body => %Q({"id":"prod_AuxRSpec01234","object":"product","attributes":"featured", "price":999}))
+      to_return(:body => %Q({"id":"whole_bean","object":"product","attributes":"featured", "price":999}))
     # Stub for Stripe::Plan.list
     stub_request(:get, "https://api.stripe.com/v1/plans").
       to_return(:body => %Q({ "data": [{"id":"test","object":"plan"}]}))

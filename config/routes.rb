@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get "/cart" => "carted_products#index"
   
   resources :products
+  resources :charges
 end
