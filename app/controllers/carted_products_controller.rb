@@ -1,10 +1,9 @@
 class CartedProductsController < ApplicationController
-  def create
-    customer_id = customer_signed_in? ? current_customer.id : session['session_id'] 
+  def create 
     @carted_product = CartedProduct.new(quantity: params[:quantity],
                                         product_id: params[:product_id],
                                         sku: params[:sku],
-                                        user_id: customer_id,
+                                        user_id: guest_or_customer_id,
                                         status: 'carted')
     if @carted_product.save
       flash[:success] = 'Order Created!'
@@ -15,14 +14,12 @@ class CartedProductsController < ApplicationController
     end
   end 
 
-  def index
-    customer_id = customer_signed_in? ? current_customer.id : session['session_id'] 
-    @carted_products = CartedProduct.where(status: 'carted', user_id: customer_id)
+  def index 
+    @carted_products = CartedProduct.my_carted(guest_or_customer_id)
     if @carted_products.empty?
-      flash[:warning] = 'You have nothing in your cart.'
+      flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
     end
-    @carted_products.each{ |c| c.stripe_attributes }
   end 
 
   def destroy 

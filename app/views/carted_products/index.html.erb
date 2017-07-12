@@ -22,5 +22,26 @@
     </tr>
   <% end %>
 </table>
-
-<h3> Total Sale: <%= number_to_currency(@carted_products.sum(&:total_price) * 0.01) %> </h3>
+<div class="row">
+  <div class="col s6"></div>
+  <div class="col s6 right-align">
+    <h4> Total Sale: <%= number_to_currency(@carted_products.sum(&:total_price) * 0.01) %> </h4>
+    <%= form_tag charges_path do %>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Back of the Yards Coffee"
+              data-email="<%= current_customer.email if customer_signed_in? %>"
+              data-amount="<%= @carted_products.sum(&:total_price) %>"
+              data-locale="auto"
+              data-label="Buy Now"
+              data-shipping-address="true"></script>
+    <% end %>
+  </div>
+</div>

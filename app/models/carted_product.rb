@@ -5,9 +5,24 @@ class CartedProduct < ApplicationRecord
 
   def stripe_attributes
     product = Stripe::Product.retrieve(id: product_id)
-    product_sku = Stripe::SKU.retrieve(id: sku)
+    product_sku = product.skus.data.detect{|o| o.id == sku}
     self.price = product_sku.price
     self.product_name = product.name
     self.total_price = price * quantity
+  end
+
+  def stripe_attr(stripe_product)
+    product_sku = stripe_product.skus.data.detect{|o| o.id == sku}
+    self.price = product_sku.price
+    self.product_name = stripe_product.name
+    self.total_price = price * quantity
+  end
+
+  def self.my_carted(customer_id)
+    carted_products = where(status: 'carted', user_id: customer_id)
+    return [] if carted_products.empty?
+    products = Stripe::Product.list
+    carted_products.each{|o| o.stripe_attr(products.retrieve(o.product_id))}
+    carted_products
   end
 end
