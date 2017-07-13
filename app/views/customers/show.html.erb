@@ -1,3 +1,51 @@
-<div style="margin-top: 48px;">
-  <h1 style="text-align: center;">Customer Dashboard</h1>
+<div style="margin-top: 48px;margin-left:50px;margin-right:50px;">
+
+  <h2 class="center">My Subscriptions</h2>
+  <% if @customer.subscriptions.total_count != 0 %>
+    <table class="bordered">
+      <thead>
+        <tr>
+          <td>Product</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Total Price</td>
+          <td>Last Payment</td>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td><b>Total: </b></td>
+          <td></td>
+          <td></td>
+          <td><%= number_to_currency(current_customer.subscriptions_total(current_customer.stripe_customer_id)) %>/mo</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% @customer.subscriptions.data.each do |subscription| %>
+          <tr>
+            <td><%= subscription.items.data[0].plan.name %></td>
+            <td><%= subscription.items.data[0].quantity %></td>
+            <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
+            <td><%= number_to_currency(subscription.items.data[0].plan.amount * subscription.items.data[0].quantity * 0.01) %>/mo</td>
+            <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="center">You have no subscriptions! <a href="/products">Subscribe to some products!</a><p>
+  <% end %>
+
+  <h2 class="center">Account Information</h2>
+  <div class="row" style="height:200px;">
+    <div class="col s6">
+      <h5 class="center">Contact Info</h5>
+      <p class="center"><b style="padding-right:1em">Email:</b><%= current_customer.email %></p>
+    </div>
+    <div class="col s6">
+      <h5 class="center">Other Info</h5>
+      <p class="center">More info..</p>
+    </div>
+  </div>
+
 </div>
