@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start 'rails'
 require_relative 'support/controller_helpers'
 require 'devise'
 require 'factory_girl_rails'
