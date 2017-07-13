@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
     '/customers/dashboard'
   end
 
+  def guest_or_customer_id
+    customer_signed_in? ? current_customer.id : session['session_id']
+  end
 
   def layout_by_resource
     if devise_controller? && !(current_employee || current_customer)
