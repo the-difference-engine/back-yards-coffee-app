@@ -3,7 +3,7 @@ class CartedProductsController < ApplicationController
     @carted_product = CartedProduct.new(quantity: params[:quantity],
                                         product_id: params[:product_id],
                                         sku: params[:sku],
-                                        user_id: guest_or_customer_id,
+                                        customer_id: guest_or_customer_id,
                                         status: 'carted')
     if @carted_product.save
       flash[:success] = 'Order Created!'
