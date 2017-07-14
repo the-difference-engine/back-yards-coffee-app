@@ -3,7 +3,7 @@ FactoryGirl.define do
     quantity 2
     product_id 'prod_AuxRSpec01234'
     sku 'whole_bean'
-    user_id 1
+    customer_id 1
     status 'carted'
   end
 end
