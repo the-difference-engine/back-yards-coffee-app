@@ -31,8 +31,6 @@
 
       <!--   Icon Section   -->
 
-      
-
       <div class = "row">
 
         <%@products.each do |product|%>
@@ -60,7 +58,6 @@
     </div>
   </div>
 
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -79,19 +76,12 @@
           <h4>Fresh beans in your mailbox!</h4>
           <h5 class="center">Fresh Back of the Yards, every month, delivered right to your doorstep. You don't have to do a thing!</h5> 
           <h5 class="center">Never run out of coffee again. Starting at $__ per shipment.</h5>
-          <br>
         </div>
       </div>
-    </div>
-  </div>
-
-  
-  <div class="container">
-    <div class="section">    
-
+    
       <div class = "row" >
         <%@subscriptions.each do |subscription|%>
-        <div class ="col s12 m4">
+        <div class ="col s12 m3 offset-m2">
           <div class="card medium">
             <div class= "card-image">
               <p class="center"> <%=image_tag("coffeesubscription.png", alt: "Unsplashed background img 3")%></p>
@@ -100,7 +90,7 @@
               <span class="card-title activator grey-text text-darken-4"><%=subscription.name%><i class="material-icons right">more_vert</i></span>
             </div>
             <div class="card-action">
-              <a href="#">buy now</a>
+              <a href="/products/subscription">Subscribe Now</a>
             </div>
           </div>
         </div>
