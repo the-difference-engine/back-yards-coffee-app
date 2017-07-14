@@ -17,14 +17,14 @@
     </div>
   </div>
 </div>
-  
+
 <%= form_tag "/cart", method: :post do%> 
   <div class="container">
     <div class="section">
       <div calss="row">
         <div class="input-field">
           <div class="col s4">
-            <%= select_tag :sku, options_for_select(@product.skus.data.collect{ |u| [u.id.humanize, u.id] }), prompt: " - Select Bean Style - " %>
+            <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| x.attributes.bean_style}), prompt: " - Select Bean Style - " %>
             <label>Bean Style</label>
           </div>
         </div>
@@ -42,10 +42,12 @@
         </div>
       </div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button>
+    <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
   </div>
   <%= hidden_field_tag :product_id, @product.id %>
 <% end %> 
+<br>
+<br>
 
 <script>  
   $(document).ready(function() {
