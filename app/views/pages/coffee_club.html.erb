@@ -1,24 +1,21 @@
-<h1>Coffee Club</h1>
-
-<div class = "row center">
-<%@subscriptions.each do |subscription|%>
-    <div class ="col s3">
-      <div class="card medium">
-        <div class= "card-image">
-          <p class="center"><%=image_tag("coffeesubscription.png", alt: "Unsplashed background img 3")%></p>
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><%=subscription.name%><i class="material-icons right">more_vert</i></span>
-        </div>
-      <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-    </div>
-        <div class="card-action">
-          <a href="#">buy now</a>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h2 class="center">COFFEE CLUB</h2>
+        <br>
+        <div class="row center">
+          <h5 class="header col s12 light">Back of the Yards Coffee delivered right to your doorstep. <br>Never run out of coffee again.</h5>
         </div>
       </div>
+      <div class="row">
+        <div class="col s12 m4 offset-m5">
+          <a href="/products/subscriptions" button class="btn waves-effect waves-light red " type="submit" name="action">Subscribe!
+    <i class="material-icons right">send</i>
+  </button></a>
     </div>
   </div>
-  <%end%>
-</div>
+    </div>
+    <div class="parallax"><%=image_tag("coffee-subscription2.jpg", alt: "Unsplashed background img 1")%></div>
+  </div>
+  
