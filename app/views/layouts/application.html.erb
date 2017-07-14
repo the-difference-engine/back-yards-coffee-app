@@ -27,7 +27,7 @@
             <% if current_customer || current_employee %>
               <li><a class='dropdown-button' href='#' data-activates='account-dropdown'><i class="material-icons">perm_identity</i></a></li>
             <% else %>
-              <li><a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a></li>
+              <li><a href="/customers/sign_in">Login</a></li>
             <% end %>
             <li><a href="/cart"><i class="material-icons">shopping_cart</i></a></li>
           </ul>
@@ -68,14 +68,14 @@
       </div>
     </div>
   </footer>
-  <!-- Dropdown Structure -->
+  <!-- Account Dropdown Structure -->
   <ul style="margin-top:64px;min-width:160px;" id='account-dropdown' class='dropdown-content'>
-    <li style="text-align: center;"><a href="/customers/dashboard">My Account</a></li>
+    <li style="text-align:center;"><a href="/<%= (current_customer || current_employee).class.name.downcase.pluralize %>/dashboard">My Account</a></li>
     <li class="divider"></li>
     <% if current_customer %>
-      <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+      <li style="text-align:center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
     <% elsif current_employee %>
-      <li style="text-align: center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
+      <li style="text-align:center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
     <% end %>
   </ul>
   </body>

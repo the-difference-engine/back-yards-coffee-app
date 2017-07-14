@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   get "/customers/dashboard" => "customers#show"
+  get "/employees/dashboard" => "employees#show"
 
   get "/about" => "pages#about"
   get "/coffee_club" => "pages#coffee_club"
@@ -14,4 +15,8 @@ Rails.application.routes.draw do
   
   resources :products
   resources :charges
+
+  namespace :api do
+    get "/customers" => "customers#index"
+  end
 end

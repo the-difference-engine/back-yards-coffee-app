@@ -1,0 +1,31 @@
+<h1 class="center">Employee Dashboard</h1>
+<div id="customer_search" class="row">
+  <div class="col s12">
+    <div class="input-field col s6">
+      <input id="last_name" type="text" v-model="filterCustomerEmail" autocomplete="off">
+      <label for="last_name">Search customer by email</label>
+    </div>
+  </div>
+  <div class="col s6">
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Email</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="customer in filteredNames">
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr>
+<div>
+  <% if current_employee.admin %>
+    <h1 class="center">Admin Tools</h1>
+  <% end %>
+</div>

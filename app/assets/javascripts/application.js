@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require vue
 //= require materialize-sprockets
 //= require_tree .
 
