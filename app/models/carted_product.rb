@@ -1,7 +1,7 @@
 class CartedProduct < ApplicationRecord
   belongs_to :customer, optional: true
   attr_accessor :price, :product_name, :total_price
-  validates_presence_of :quantity, :product_id, :sku, :user_id, :status
+  validates_presence_of :quantity, :product_id, :sku, :customer_id, :status
 
   def stripe_attributes
     product = Stripe::Product.retrieve(id: product_id)
@@ -19,7 +19,7 @@ class CartedProduct < ApplicationRecord
   end
 
   def self.my_carted(customer_id)
-    carted_products = where(status: 'carted', user_id: customer_id)
+    carted_products = where(status: 'carted', customer_id: customer_id)
     return [] if carted_products.empty?
     products = Stripe::Product.list
     carted_products.each{|o| o.stripe_attr(products.retrieve(o.product_id))}
