@@ -24,7 +24,7 @@
       <div calss="row">
         <div class="input-field">
           <div class="col s4">
-            <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| x.attributes.bean_style}), prompt: " - Select Bean Style - " %>
+            <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
             <label>Bean Style</label>
           </div>
         </div>
