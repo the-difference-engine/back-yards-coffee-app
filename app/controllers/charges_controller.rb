@@ -23,6 +23,9 @@ class ChargesController < ApplicationController
       flash[:error] = e.message
       redirect_to '/cart'
     else
+      carted_products.each do |carted_product| carted_product.status = "product ordered"
+        carted_product.save
+      end
       flash[:success] = "Charge created!"
       redirect_to '/' #order/:id ?
   end
