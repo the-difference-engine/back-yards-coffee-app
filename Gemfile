@@ -43,6 +43,7 @@ gem 'materialize-sass'
 gem 'stripe'
 gem 'pry'
 gem 'simplecov', :require => false, :group => :test
+gem 'react-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
