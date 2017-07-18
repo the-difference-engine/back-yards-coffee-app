@@ -15,4 +15,12 @@ Rails.application.routes.draw do
   resources :products
   get "/products/subscription" =>"products#subscription"
   resources :charges
+
+  namespace :api do
+    get "/customers" => "customers#index"
+
+    get "/employees" => "employees#index"
+
+    get "/products" => "products#index"
+  end
 end
