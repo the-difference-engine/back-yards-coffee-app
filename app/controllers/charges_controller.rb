@@ -5,6 +5,7 @@ class ChargesController < ApplicationController
 
     if customer_signed_in?
       customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
+      customer.sources.create({source: params[:stripeToken]})
     else
       customer = Stripe::Customer.create(
         :email  => params[:stripeEmail],
