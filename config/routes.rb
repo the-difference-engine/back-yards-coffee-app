@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get "/cart" => "carted_products#index"
   
   resources :products
-  get "/products/subscription" =>"products#subscription"
+  get "/subscriptions" =>"products#subscriptions"
   resources :charges
 
   namespace :api do
