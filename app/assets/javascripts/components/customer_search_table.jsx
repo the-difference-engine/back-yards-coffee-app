@@ -9,7 +9,7 @@ var Table = React.createClass({
             <td key="email" className="col s6 center">Email</td>
           </tr>
         </thead>
-        <CSTableRow data={this.props.items} />
+        <CSTableBody data={this.props.items} />
       </table>
     );
   }

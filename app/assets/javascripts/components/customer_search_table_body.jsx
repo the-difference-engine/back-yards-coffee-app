@@ -1,4 +1,4 @@
-var CSTableRow = React.createClass({
+var CSTableBody = React.createClass({
   render() {
     const{data} = this.props;
     const row = data.map((data) =>
