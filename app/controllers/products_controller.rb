@@ -8,4 +8,9 @@ class ProductsController < ApplicationController
     @product = Stripe::Product.retrieve(id: params[:id])
   end
 
+  def subscriptions
+    @subscriptions=Stripe::Plan.list
+  end 
+
+
 end
