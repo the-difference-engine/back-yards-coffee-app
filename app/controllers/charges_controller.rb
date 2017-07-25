@@ -12,18 +12,22 @@ class ChargesController < ApplicationController
       )
     end
 
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
+    # charge = Stripe::Charge.create(
+    #   :customer    => customer.id,
+    #   :amount      => @amount,
+    #   :description => 'Rails Stripe customer',
+    #   :currency    => 'usd'
+    # )
+
+    order = Order::Stripe.create(
+      )
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to '/cart'
     else
       flash[:success] = "Charge created!"
+      # order = Order.new(charge_id: charge.id, customer_id: charge.customer, total_price:)
       redirect_to '/' #order/:id ?
   end
 end
