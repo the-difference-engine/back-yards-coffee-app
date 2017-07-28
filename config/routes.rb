@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   post "/cart" => "carted_products#create"
   get "/cart" => "carted_products#index"
+
+  get "/order" => "orders#create"
   
   resources :products
   get "/subscriptions" =>"products#subscriptions"
