@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   patch "/cart" => "carted_products#update"
 
   resources :products
-  get "/products/subscription" =>"products#subscription"
+  get "/subscriptions" =>"products#subscriptions"
   resources :charges
+
+  namespace :api do
+    get "/customers" => "customers#index"
+
+    get "/employees" => "employees#index"
+
+    get "/products" => "products#index"
+  end
 end

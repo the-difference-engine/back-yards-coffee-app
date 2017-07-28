@@ -25,3 +25,8 @@ var ListSearch = React.createClass({
     );
   }
 });
+<<<<<<< HEAD
+=======
+
+// React.render(<ListSearch/>, document.getElementById('mount-point'));
+>>>>>>> b61c3e55dd3139fd46dde40f53802f0d251dfc88
