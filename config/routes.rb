@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   get "/customers/dashboard" => "customers#show"
+  get "/employees/dashboard" => "employees#show"
 
   get "/about" => "pages#about"
   get "/coffee_club" => "pages#coffee_club"
@@ -12,9 +13,17 @@ Rails.application.routes.draw do
   post "/cart" => "carted_products#create"
   get "/cart" => "carted_products#index"
 
-  get "/order" => "orders#create"
+  get "/order" => "orders#show"
   
   resources :products
-  get "/products/subscription" =>"products#subscription"
+  get "/subscriptions" =>"products#subscriptions"
   resources :charges
+
+  namespace :api do
+    get "/customers" => "customers#index"
+
+    get "/employees" => "employees#index"
+
+    get "/products" => "products#index"
+  end
 end

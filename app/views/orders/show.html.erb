@@ -1,2 +1,8 @@
 <h1>Order Overview</h1>
-<h3> <%=id%> </h3>
+
+<h3><% @order.items.each do |order| %></h3>
+<h3>Blend of Blends: <%= order.amount %></h3>
+<h3>Volcan: <%= order.amount %></h3>
+<% end %>
+
+

@@ -33,6 +33,9 @@
             <p><%= flash[:error] %></p>
           </div>
         <% end %>
+        <%= link_to "Review Order", "/order", class: "pull-left" %>
+
+
       </article>
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
