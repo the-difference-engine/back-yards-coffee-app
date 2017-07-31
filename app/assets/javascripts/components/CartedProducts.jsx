@@ -10,20 +10,11 @@ var CartedProducts = React.createClass({
   getInitialState: function(){
      return {
        initialItems: this.props.carted_products,
-       carted_products: [],
-       editing: false
+       carted_products: []
      }
   },
   componentWillMount: function(){
     this.setState({carted_products: this.state.initialItems})
-  },
-  _edit: function(e){
-    this.setState({editing: true});
-    console.log("editing!!!");
-  },
-  _save: function(e){
-    this.setState({editing: false});
-    console.log("save!!");
   },
   render() {
 
@@ -42,17 +33,13 @@ var CartedProducts = React.createClass({
             </tr>
           </thead>
           <tbody>
-            {this.state.carted_products.map((carted_product) =>
+            {this.state.carted_products.map((carted_product, index) =>
               <tr key={carted_product.id}>
                 <td>{ carted_product.id }</td>
                 <td>{ carted_product.product_id }</td>
                 <td>{ carted_product.name }</td>
                 <td>{ (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
-                { this.state.editing ? (
-                  <td><div> {carted_product.quantity } </div><button onClick={this._save}>save</button></td>
-                ) : (
-                  <td><div> {carted_product.quantity } </div><button onClick={this._edit}>edit</button></td>
-                )}
+                <QntyBtn key={index} item={carted_product} />
                 <td>{ carted_product.sku }</td>
                 <td>{ ((carted_product.price * carted_product.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
               </tr>
