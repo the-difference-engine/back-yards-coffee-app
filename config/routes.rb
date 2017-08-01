@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     get "/employees" => "employees#index"
 
     get "/products" => "products#index"
+
+    patch "/carted_products/:id/:qnty" => "carted_products#update"
   end
 end

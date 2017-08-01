@@ -2,18 +2,22 @@ var QntyBtn = React.createClass({
     getInitialState: function() {
         return { editing: false };
     },
-    handleClick: function(event) {
+    handleEditing: function(){
+        this.setState({editing: !this.state.editing});
+    },
+    handleClick: function(qnty, id, event) {
+        this.props.handler(qnty, id);
         this.setState({editing: !this.state.editing});
     },
     render: function() {
         return (
                 this.state.editing ? (
-                    <td> 
-                        <input type="text" name={this.props.item.id} defaultValue={this.props.item.quantity} />
-                        <button type="button" onClick={this.handleClick}>Save</button> 
+                    <td>
+                        <input id={this.props.item.id} type="text" name={this.props.item.id} defaultValue={this.props.item.quantity} />
+                        <button type="button" onClick={() => this.handleClick(document.getElementById(this.props.item.id).value, this.props.item.id)}>Save</button> 
                     </td>
                 ) : (
-                    <td>{this.props.item.quantity}<button type="button" onClick={this.handleClick}>Edit</button></td>
+                    <td>{this.props.item.quantity}<button type="button" onClick={this.handleEditing}>Edit</button></td>
                 )
         );
     }
