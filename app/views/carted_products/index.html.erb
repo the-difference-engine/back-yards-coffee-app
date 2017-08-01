@@ -1,6 +1,9 @@
 <h1> Your Cart </h1>
 
-<table class="table">
+<%= react_component('CartedProducts', carted_products: @carted_products) %>
+
+
+<!-- <table class="table">
   <tr>
     <td> ID </td>
     <td> PRODUCT ID </td>
@@ -44,4 +47,4 @@
               data-shipping-address="true"></script>
     <% end %>
   </div>
-</div>
+</div> -->

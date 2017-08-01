@@ -1,0 +1,9 @@
+json.array! @carted_products.each do |carted_product|
+  json.id carted_product.id
+  json.product_id carted_product.product_id
+  json.product_name carted_product.product_name
+  json.quantity carted_product.quantity
+  json.price carted_product.price
+  json.total_price carted_product.total_price
+  json.sku carted_product.sku
+end
