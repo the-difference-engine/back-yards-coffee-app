@@ -28,6 +28,21 @@ var CartedProducts = React.createClass({
     });
     this.setState({carted_products: this.state.carted_products});
   },
+  deleteItem: function(id){
+    this.state.carted_products = this.state.carted_products.filter((carted_product) =>
+      carted_product.id !== id 
+    );
+    $.ajax({
+      type: "DELETE",
+      url: "/api/carted_products/" + id,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(result){
+        console.log(result);
+      }
+    });
+    this.setState({carted_products: this.state.carted_products});
+  },
   render() {
 
     return (
@@ -54,6 +69,7 @@ var CartedProducts = React.createClass({
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_product} />
                 <td>{ carted_product.sku }</td>
                 <td>{ ((carted_product.price * carted_product.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
+                <DltBtn handler={this.deleteItem} key={carted_product.id} item={carted_product} />
               </tr>
             )}
           </tbody>
