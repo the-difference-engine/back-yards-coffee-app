@@ -4695,6 +4695,11 @@ small {
 
 .card .card-title.activator {
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 275;
+  color: #ac2b1a;
+  text-align: center;
+  font-variant: small-caps;
 }
 
 .card.small, .card.medium, .card.large {
@@ -4810,6 +4815,7 @@ small {
   left: 0;
   max-width: 100%;
   padding: 24px;
+  text-align: center;
 }
 
 .card .card-content {
