@@ -21,7 +21,7 @@ def store_location
 
   #Overrides the default method for redirecting to home page given with devise. Simply returns the url/path.
   def after_sign_in_path_for(resource_or_scope)
-     session[:previous_url] || "/#{resource_or_scope.class.name.downcase.pluralize}/dashboard"
+      session[:previous_url] || "/#{resource_or_scope.class.name.downcase.pluralize}/dashboard"
   end
 
   def guest_or_customer_id
