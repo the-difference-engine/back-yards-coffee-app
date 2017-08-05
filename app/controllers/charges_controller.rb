@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
   def create
     carted_products = CartedProduct.my_carted(guest_or_customer_id)
-    @amount = carted_products.sum(&:total_price)
+    @amount = carted_products.sum{|s| s.price * s.quantity}
 
     if customer_signed_in?
       customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)

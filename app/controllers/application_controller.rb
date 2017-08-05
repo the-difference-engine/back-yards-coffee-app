@@ -25,7 +25,7 @@ def store_location
   end
 
   def guest_or_customer_id
-    customer_signed_in? ? current_customer.id : session['session_id']
+    customer_signed_in? ? current_customer.id : session['session_id'].gsub(/\D/, '').to_i / 10000000000
   end
 
   def layout_by_resource
