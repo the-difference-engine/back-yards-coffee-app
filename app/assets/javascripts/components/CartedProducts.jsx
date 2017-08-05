@@ -2,11 +2,22 @@ var CartedProducts = React.createClass({
   getInitialState: function(){
      return {
        initialItems: this.props.carted_products,
-       carted_products: []
+       carted_products: [],
+       initialCartTotal: this.props.cart_total
      }
   },
   componentWillMount: function(){
-    this.setState({carted_products: this.state.initialItems})
+    this.setState({carted_products: this.state.initialItems, cart_total: this.state.initialCartTotal})
+  },
+  calcTotal: function() {
+    console.log("calculating total" + this.state.cart_total);
+    var total = 0;
+    this.state.carted_products.forEach(function(carted_product) {
+      console.log(carted_product);
+      total += (carted_product.price * carted_product.quantity);
+    });
+    console.log("FINISHED CALCULATING.." + total);
+    this.setState({cart_total: total});
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
@@ -22,13 +33,14 @@ var CartedProducts = React.createClass({
         } else {
           that.state.carted_products.map((el) =>
             (el.id == id) ? (
-              el.quantity = val
+              el.quantity = parseInt(val)
             ) : (
               el
             )
           );
           console.log("update success");
-          that.setState({carted_products: that.state.carted_products});
+          that.calcTotal();
+          that.setState({carted_products: that.state.carted_products, cart_total: that.state.cart_total});
         }
       }
     });
@@ -79,7 +91,9 @@ var CartedProducts = React.createClass({
             )}
           </tbody>
         </table>
+        <hr/>
         <div>
+          <p><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
         </div>
       </div>
     )}

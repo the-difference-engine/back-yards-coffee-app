@@ -37,6 +37,11 @@ class CartedProductsController < ApplicationController
 
   def index
     @carted_products = CartedProduct.my_carted(guest_or_customer_id)
+    total = 0
+    @carted_products.each do |cp|
+      total += cp.stripe_attributes
+    end
+    @cart_total = total
     if @carted_products.empty?
       flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
