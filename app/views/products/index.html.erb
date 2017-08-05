@@ -2,27 +2,21 @@
   <div class="row">
     <%@products.each do |product|%>
       <div class ="col s12 m4">
-        <div class="card medium">
-          <a href="/products/<%= product.id %>">
+        <div class="card medium"> 
           <div class="card-image">
-            <img src="<%=product.images[0]%>" >
+            <img class="activator" img src="<%=product.images[0]%>" >
           </div>
 
           <div class="card-content">
-            <span class="card-title grey-text text-darken-4"><%=product.name%>
-            </span>
+            <span class="card-title activator grey-text text-darken-4"><%=product.name%></span>
           </div></a>
 
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><%=product.name%>
-              <i class="material-icons right">close</i>
-            </span>
+              <i class="material-icons right">close</i></span>
             <p><%=product.description%></p>
             <p>Starting at <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
-          </div>
-
-          <div class="card-action">
-            <span class="card-title activator">quick look</span>
+            <a href="/products/<%= product.id %>" button class="btn waves-effect waves-light red " type="submit" name="action">Go to product</a>
           </div>
 
         </div>

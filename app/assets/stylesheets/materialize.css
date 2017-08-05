@@ -4,7 +4,7 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 .materialize-red {
-  background-color: #e51c23 !important;
+  background-color: #ac2b1a !important;
 }
 
 .materialize-red-text {
@@ -4483,6 +4483,7 @@ h4 {
   font-size: 2.28rem;
   line-height: 110%;
   margin: 1.14rem 0 0.912rem 0;
+  text-shadow: 1px 1px 1px #000;
 }
 
 h5 {
@@ -4707,7 +4708,8 @@ small {
 }
 
 .card.small .card-image, .card.medium .card-image, .card.large .card-image {
-  max-height: 60%;
+  max-height: 80%;
+  cursor: pointer;
   overflow: hidden;
 }
 
