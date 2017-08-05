@@ -16,7 +16,7 @@ var CartedProducts = React.createClass({
       url: "/api/carted_products/" + id + "/" + val,
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      success: function(result, status){
+      success: function(result){
         if (result.message) {
           console.log("update unsuccessful");
         } else {
