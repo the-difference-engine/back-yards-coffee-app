@@ -40,7 +40,7 @@ var CartedProducts = React.createClass({
           );
           console.log("update success");
           that.calcTotal();
-          that.setState({carted_products: that.state.carted_products, cart_total: that.state.cart_total});
+          that.setState({carted_products: that.state.carted_products});
         }
       }
     });
