@@ -2,6 +2,7 @@ class CartedProduct < ApplicationRecord
   belongs_to :customer, optional: true
   attr_accessor :price, :product_name, :total_price
   validates_presence_of :quantity, :product_id, :sku, :customer_id, :status
+  validates :quantity, numericality: { greater_than: 0 }
 
   def stripe_attributes
     product = Stripe::Product.retrieve(id: product_id)
