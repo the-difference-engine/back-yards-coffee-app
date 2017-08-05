@@ -10,27 +10,32 @@ var CartedProducts = React.createClass({
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
-    this.props.carted_products.map((carted_product) =>
-      (carted_product.id == id) ? (
-        carted_product.quantity = val
-      ) : (
-        carted_product
-      )
-    );
+    var that = this;
     $.ajax({
       type: "PATCH",
       url: "/api/carted_products/" + id + "/" + val,
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(result){
-        console.log(result);
+        if (result.message) {
+          console.log("update unsuccessful");
+        } else {
+          that.state.carted_products.map((el) =>
+            (el.id == id) ? (
+              el.quantity = val
+            ) : (
+              el
+            )
+          );
+          console.log("update success");
+          that.setState({carted_products: that.state.carted_products});
+        }
       }
     });
-    this.setState({carted_products: this.state.carted_products});
   },
   deleteItem: function(id){
     this.state.carted_products = this.state.carted_products.filter((carted_product) =>
-      carted_product.id !== id 
+      carted_product.id !== id
     );
     $.ajax({
       type: "DELETE",
