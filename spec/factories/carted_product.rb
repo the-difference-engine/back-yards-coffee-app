@@ -5,5 +5,6 @@ FactoryGirl.define do
     sku 'whole_bean'
     customer_id 1
     status 'carted'
+    price 1099
   end
 end

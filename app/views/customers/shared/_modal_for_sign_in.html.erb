@@ -1,36 +1,35 @@
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-
-  <ul id="tabs" class="tabs big">
-    <li class="tab col s6"><a class="active" href="#tab1">Sign in</a></li>
-    <li class="tab col s6"><a href="#tab2">Sign up</a></li>
-   
-  </ul>
-  <br>
-  <div id="tab1">
-  <h4> Sign In</h4>
-  <%= form_for(:customer, :url => session_path(:customer)) do |f| %>
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <ul id="tabs" class="tabs big">
+      <li class="tab col s6"><a class="active" href="#tab1">Sign in</a></li>
+      <li class="tab col s6"><a href="#tab2">Sign up</a></li>
+    </ul>
+    <br/>
+    <div id="tab1">
+      <h4> Sign In</h4>
+      <%= form_for(:customer, :url => session_path(:customer)) do |f| %>
         <%= f.text_field :email, placeholder: 'Email' %>
         <%= f.password_field :password, placeholder: 'Password' %>
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
         <%= f.hidden_field :redirect, value: "cart" %>
+        <br/>
         <%= f.submit 'Sign in', :class => "btn" %>
+        <br/>
         <%= link_to "Forgot your password?", new_password_path(:customer)%>
       <% end %>
-
-  </div>
-
-  <div id="tab2" >
-  <h4> Sign Up</h4>
-  <%= form_for(:customer, :url => registration_path(:customer)) do |f| %>
+    </div>
+    <div id="tab2" >
+      <h4> Sign Up</h4>
+      <%= form_for(:customer, :url => registration_path(:customer)) do |f| %>
         <%= f.text_field :email, placeholder: 'Email'  %>
         <%= f.password_field :password, placeholder: 'Password'  %>
         <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation'  %>
         <%= f.hidden_field :redirect, value: "cart" %>
         <%= f.submit 'Sign up', :class => "btn" %>
       <% end %>
-
-</div>
     </div>
+    <br/>
+    <button class="link-button" type="submit" name="submit">CONTINUE AS GUEST</button>
   </div>
+</div>
