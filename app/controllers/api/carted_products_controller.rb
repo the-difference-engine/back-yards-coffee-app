@@ -7,7 +7,7 @@ class Api::CartedProductsController < ApplicationController
       render :json => @carted_product
     else
       puts "THERE IS AN ERROR_______#{@carted_product.errors.full_messages}"
-      render :json => { message: @carted_product.errors.full_messages }
+      render :json => { error: @carted_product.errors.full_messages }
     end
   end
 

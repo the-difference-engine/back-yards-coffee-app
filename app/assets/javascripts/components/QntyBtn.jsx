@@ -14,10 +14,10 @@ var QntyBtn = React.createClass({
                 this.state.editing ? (
                     <td>
                         <input id={this.props.item.id} type="text" name={this.props.item.id} defaultValue={this.props.item.quantity} />
-                        <button type="button" className="btn" onClick={() => this.handleClick(document.getElementById(this.props.item.id).value, this.props.item.id)}>Save</button> 
+                        <button type="button" className="btn" onClick={() => this.handleClick(document.getElementById(this.props.item.id).value, this.props.item.id)}>Save</button>
                     </td>
                 ) : (
-                    <td>{this.props.item.quantity}<button type="button" className="btn" onClick={this.handleEditing}>edit</button></td>
+                    <td>{this.props.item.quantity}<button type="button" className="btn-floating" onClick={this.handleEditing}><i className="material-icons  ">edit</i></button></td>
                 )
         );
     }
