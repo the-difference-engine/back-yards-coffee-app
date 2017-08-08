@@ -17,7 +17,7 @@ var QntyBtn = React.createClass({
                         <button type="button" className="btn" onClick={() => this.handleClick(document.getElementById(this.props.item.id).value, this.props.item.id)}>Save</button>
                     </td>
                 ) : (
-                    <td>{this.props.item.quantity}<button type="button" className="btn-floating" onClick={this.handleEditing}><i className="material-icons  ">edit</i></button></td>
+                    <td>{this.props.item.quantity}<button type="button" className="btn-floating" onClick={this.handleEditing}><i className="material-icons">edit</i></button></td>
                 )
         );
     }
