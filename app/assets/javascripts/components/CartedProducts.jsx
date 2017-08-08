@@ -28,8 +28,8 @@ var CartedProducts = React.createClass({
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(result){
-        if (result.message) {
-          console.log("update unsuccessful");
+        if (result.error) {
+          alert(result.error);
         } else {
           that.state.carted_products.map((el) =>
             (el.id == id) ? (
@@ -92,8 +92,8 @@ var CartedProducts = React.createClass({
           </tbody>
         </table>
         <hr/>
-        <div>
-          <p><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+        <div id="cart-total">
+          <p className="right-align"><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
         </div>
       </div>
     )}
