@@ -12,5 +12,13 @@ class ProductsController < ApplicationController
     @subscriptions=Stripe::Plan.list
   end 
 
-
+  def plan
+    plan = Stripe::Plan.create(
+      :name => "Basic Plan",
+      :id => "basic-monthly",
+      :interval => "month",
+      :currency => "usd",
+      :amount => 0,
+    )
+  end
 end

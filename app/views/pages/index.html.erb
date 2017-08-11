@@ -73,39 +73,22 @@
       <div class="row">
         <div class="col s12 left">
           <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Subscriptions</h4>
+          <h4>Coffee Club</h4>
+        </div><br>
+        <div class="col s12 left">
+          <h5 class="left-align">Fresh beans in your mailbox! </h5>
+          <h5 class="left-aligh">Back of the Yards Coffee delivered right to your doorstep.</h5>
+          <h5 class ="left-align">Never run out of coffee again.</h5>
         </div>
       </div>
-    
-      <div class = "row" >
-        <%@subscriptions.each do |subscription|%>
-        <div class ="col s12 m4">
-          <div class="card medium">
-            <div class= "card-image">
-              <img class="activator">
-              <p class="center"> <%=image_tag("botycover.jpg", alt: "Unsplashed background img 3")%></p>
-            </div>
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4"><%=subscription.name%></span>
-              </span>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4"><%=subscription.name%>
-                <i class="material-icons right">close</i></span>
-              <p><%=number_to_currency(subscription.amount.to_f / 100)%> a month.</p>
-              <a href="/subscriptions" button class="btn waves-effect waves-light red " type="submit" name="action">Go to product</a>
-            </div>
-
-          </div>
+      <div class="row">
+        <div class="col s12 m4 offset-m5">
+          <a href="/subscriptions" button class="btn waves-effect  waves-red " type="submit" name="action">Subscribe!
+          <i class="material-icons right">send</i></button></a>
         </div>
-
-        <%end%>
       </div>
     </div>
   </div>
-
-
-
 
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
