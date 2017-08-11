@@ -3,11 +3,12 @@ var CartedProducts = React.createClass({
      return {
        initialItems: this.props.carted_products,
        carted_products: [],
-       initialCartTotal: this.props.cart_total
+       initialCartTotal: this.props.cart_total,
+       isEmpty: false
      }
   },
   componentWillMount: function(){
-    this.setState({carted_products: this.state.initialItems, cart_total: this.state.initialCartTotal})
+    this.setState({carted_products: this.state.initialItems, cart_total: this.state.initialCartTotal, isEmpty: this.state.isEmpty})
   },
   calcTotal: function() {
     console.log("calculating total" + this.state.cart_total);
@@ -49,6 +50,7 @@ var CartedProducts = React.createClass({
     this.state.carted_products = this.state.carted_products.filter((carted_product) =>
       carted_product.id !== id
     );
+    var that = this;
     $.ajax({
       type: "DELETE",
       url: "/api/carted_products/" + id,
@@ -56,9 +58,15 @@ var CartedProducts = React.createClass({
       dataType: "json",
       success: function(result){
         console.log(result);
+        that.isCartEmpty();
       }
     });
     this.setState({carted_products: this.state.carted_products});
+  },
+  isCartEmpty: function() {
+    if (this.state.carted_products.length == 0) {
+      this.setState({isEmpty: true});
+    }
   },
   render() {
 
@@ -93,7 +101,11 @@ var CartedProducts = React.createClass({
         </table>
         <hr/>
         <div id="cart-total">
-          <p className="right-align"><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+          {this.state.isEmpty ? (
+            <p className="center">Your cart is empty. Shop for more coffee <a href="/products">here</a>!</p>
+          ) : (
+            <p className="right-align"><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+          )}
         </div>
       </div>
     )}
