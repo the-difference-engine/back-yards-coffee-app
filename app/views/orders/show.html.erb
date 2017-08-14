@@ -1,0 +1,26 @@
+<div class="container"> 
+<%= react_component('Order', order: @order) %>
+<!-- <h3>Order Overview</h3>
+
+<% @order.items.each do |item| %>
+  <% if item.type == "sku" %>
+    <h6>Description: <%= item.description%></h6>
+    <p>Amount: <%= number_to_currency(item.amount*0.01) %></p>
+  <% end %>
+  <% if item.type == "tax" %>
+    <p>Description: <%= item.description%></p>
+    <p>Amount: <%= number_to_currency(item.amount*0.01) %></p>
+  <% end %>
+<% end %>
+
+<h5>Shipping:<h5>
+
+
+<ul id="dropdown2" class="dropdown-content">
+  <% @order.shipping_methods.each do |shipping_method| %>
+    <li><a href="#!"><%= shipping_method.description%><%= number_to_currency(shipping_method.amount*0.01) %></a></li>
+  <% end %>
+  </ul>
+
+<a class="btn dropdown-button" href="#!" data-activates="dropdown2">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+ -->
