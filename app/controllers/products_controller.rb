@@ -11,6 +11,4 @@ class ProductsController < ApplicationController
   def subscriptions
     @subscriptions=Stripe::Plan.list
   end 
-
-
 end
