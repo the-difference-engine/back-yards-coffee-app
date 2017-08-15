@@ -41,6 +41,7 @@ var Order = React.createClass({
               }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
           }
         </h5>
+
       </div>
     )
   }

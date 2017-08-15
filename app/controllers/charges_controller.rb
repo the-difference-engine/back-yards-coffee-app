@@ -1,24 +1,31 @@
 class ChargesController < ApplicationController
   def create
     carted_products = CartedProduct.my_carted(guest_or_customer_id)
-    @amount = carted_products.sum{|s| s.price * s.quantity}
-
-    if customer_signed_in?
-      customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
-      customer.sources.create({source: params[:stripeToken]})
+    if params[:order_id]
+      order = Stripe::Order.retrieve(params[:order_id])
+      token = params[:stripeToken]
+      order.pay(:source => token)
     else
-      customer = Stripe::Customer.create(
-        :email  => params[:stripeEmail],
-        :source => params[:stripeToken]
-      )
-    end
+      @amount = carted_products.sum{|s| s.price * s.quantity}
 
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
+      if customer_signed_in?
+        customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
+        customer.sources.create({source: params[:stripeToken]})
+      else
+        customer = Stripe::Customer.create(
+          :email  => params[:stripeEmail],
+          :source => params[:stripeToken]
+        )
+      end
+
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
+      )
+
+    end
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
