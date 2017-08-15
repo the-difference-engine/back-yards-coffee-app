@@ -1,26 +1,19 @@
 <div class="container"> 
-<%= react_component('Order', order: @order) %>
-<!-- <h3>Order Overview</h3>
-
-<% @order.items.each do |item| %>
-  <% if item.type == "sku" %>
-    <h6>Description: <%= item.description%></h6>
-    <p>Amount: <%= number_to_currency(item.amount*0.01) %></p>
+  <%= react_component('Order', order: @order) %>
+  <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+    </article>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Back of the Yards Coffee"
+            data-email="<%= current_customer.email if customer_signed_in? %>"
+            data-locale="auto"
+            data-label="Quick Checkout"
+            data-shipping-address="true"></script>
   <% end %>
-  <% if item.type == "tax" %>
-    <p>Description: <%= item.description%></p>
-    <p>Amount: <%= number_to_currency(item.amount*0.01) %></p>
-  <% end %>
-<% end %>
-
-<h5>Shipping:<h5>
-
-
-<ul id="dropdown2" class="dropdown-content">
-  <% @order.shipping_methods.each do |shipping_method| %>
-    <li><a href="#!"><%= shipping_method.description%><%= number_to_currency(shipping_method.amount*0.01) %></a></li>
-  <% end %>
-  </ul>
-
-<a class="btn dropdown-button" href="#!" data-activates="dropdown2">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
- -->
+</div>

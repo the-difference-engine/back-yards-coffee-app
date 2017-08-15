@@ -9,9 +9,11 @@ var Order = React.createClass({
     this.setState({order: this.state.order})
   },
 
- formatItem: function(){
-    var test = [];
-    // return this.state.order.items.length;
+
+
+  formatItem: function(){
+    const test = [];
+
     this.state.order.items.map((item) => {
       if (item.type === "sku") {
         test.push(<ul>{item.description}</ul>);
@@ -23,16 +25,6 @@ var Order = React.createClass({
       // }
     });
     return test;
-
-   // for (i = 0, i < this.order.items.length, i = i + 1) {
-    //   if (order.item.type === "sku") {
-    //     object =  <h2>this is a sku</h2>;
-    //   } else if {
-    //     (order.item.type === "tax") {
-    //       object =  <h2>this is tax</h2>;
-    //     }
-    //   }
-    // }
   },
 
  render: function() {
@@ -41,7 +33,14 @@ var Order = React.createClass({
       <div>
         <h3>Review your Order</h3>
         <ol>{this.formatItem()}</ol>
-        
+        <h5>
+          Total: {
+            this.state.order.items.reduce(
+              function(start, item) {
+                return start + (item.amount * 0.01);
+              }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+          }
+        </h5>
       </div>
     )
   }
