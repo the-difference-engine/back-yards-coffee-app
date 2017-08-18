@@ -22,5 +22,13 @@ RSpec.describe CartedProduct, type: :model do
         expect(customer.carted_products.count).to eq(1)
       end
     end
+    context "logged in" do
+      it 'should allow a guest to add a product to cart' do
+        session_id = 543768867556
+        create_list(:carted_product, 3, status: 'carted', customer_id: session_id)
+        build(:carted_product, status: 'ordered', customer_id: session_id)
+        expect(CartedProduct.my_carted(session_id).count).to eq(3)
+      end
+    end
   end
 end

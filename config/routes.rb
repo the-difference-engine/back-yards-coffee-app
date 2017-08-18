@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :employees
-  devise_for :customers
+  devise_for :customers, :controllers => { registrations: 'registrations' }
+
   root "pages#index"
 
   get "/customers/dashboard" => "customers#show"
