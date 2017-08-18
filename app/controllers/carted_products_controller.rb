@@ -26,6 +26,7 @@ class CartedProductsController < ApplicationController
 
   def index
     @carted_products = CartedProduct.my_carted(guest_or_customer_id)
+    @carted_subscriptions = CartedSubscription.my_carted(guest_or_customer_id)
     @cart_total = @carted_products.sum{|s| s.price * s.quantity}
     if @carted_products.empty?
       flash[:warning] = 'Your cart is currently empty.'

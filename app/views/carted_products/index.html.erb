@@ -2,6 +2,7 @@
 
 <%= react_component('CartedProducts', carted_products: @carted_products, cart_total: @cart_total) %>
 
+
     <%= form_tag charges_path do %>
       <article>
         <% if flash[:error].present? %>
@@ -18,4 +19,3 @@
               data-label="Quick Checkout"
               data-shipping-address="true"></script>
     <% end %>
-

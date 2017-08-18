@@ -27,13 +27,13 @@
     </ul>
   </div>
   <div id="subscription" class="col s12">
-    <%= form_tag "/cart", method: :post, style: () do%>
+    <%= form_tag "/carted_subscription", method: :post, style: () do%>
       <div class="container">
         <div class="section" style="height:100px;">
           <div calss="row">
             <div class="input-field">
               <div class="col s4">
-                <%= select_tag :plan, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
+                <%= select_tag :plan_id, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
                 <label>Plan</label>
               </div>
             </div>
@@ -45,6 +45,16 @@
               <div class="col s4">
                 <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
                 <label>Quantity</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section" style="height:100px;">
+          <div calss="row">
+            <div class="input-field">
+              <div class="col s4">
+                <%= select_tag :grind, options_for_select(["ground", "whole"]), prompt: " - Select Quantity - " %>
+                <label>Grind type</label>
               </div>
             </div>
           </div>
