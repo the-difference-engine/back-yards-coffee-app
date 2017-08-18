@@ -15,20 +15,16 @@ RSpec.describe CartedProduct, type: :model do
       carted_product = build(:carted_product, quantity: "dog")
       expect(carted_product).not_to be_valid
     end
-    context "logged in as customer" do
-      it 'should return the customers carted products' do
-        customer = build(:customer, id: 123)
-        carted_product = create(:carted_product, status: 'carted', customer_id: customer.id)
-        expect(customer.carted_products.count).to eq(1)
-      end
+    it 'should return the customers carted products' do
+      customer = build(:customer, id: 123)
+      carted_product = create(:carted_product, status: 'carted', customer_id: customer.id)
+      expect(customer.carted_products.count).to eq(1)
     end
-    context "logged in" do
-      it 'should allow a guest to add a product to cart' do
-        session_id = 543768867556
-        create_list(:carted_product, 3, status: 'carted', customer_id: session_id)
-        build(:carted_product, status: 'ordered', customer_id: session_id)
-        expect(CartedProduct.my_carted(session_id).count).to eq(3)
-      end
+    it 'should return my carted_products when logged in as guest' do
+      session_id = 543768867556
+      create_list(:carted_product, 3, status: 'carted', customer_id: session_id)
+      build(:carted_product, status: 'ordered', customer_id: session_id)
+      expect(CartedProduct.my_carted(session_id).count).to eq(3)
     end
   end
 end
