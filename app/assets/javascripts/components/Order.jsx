@@ -1,3 +1,24 @@
+class Address extends React.Component {
+  render() {
+    return (
+      <form>
+        <h3>Shipping Information</h3>
+        Name:<br />
+        <input type="text" name="name" /><br />
+        Address 1:<br />
+        <input type="text" name="address1" /><br />
+        Address 2:<br />
+        <input type="text" name="address2" /><br />
+        City:<br />
+        <input type="text" name="city" /><br />
+        Zip / Postal Code:<br />
+        <input type="text" name="zip" /><br />
+        <input type="submit" value="Submit" className="waves-effect btn" /><br />
+      </form>
+    )
+  }
+}
+
 var Order = React.createClass({
   getInitialState: function(){
     console.log(this.props.order)
@@ -8,8 +29,6 @@ var Order = React.createClass({
   componentWillMount: function(){
     this.setState({order: this.state.order})
   },
-
-
 
   formatItem: function(){
     const test = [];
@@ -27,8 +46,7 @@ var Order = React.createClass({
     return test;
   },
 
- render: function() {
-      
+ render: function() {  
    return (
       <div>
         <h3>Review your Order</h3>
@@ -41,7 +59,7 @@ var Order = React.createClass({
               }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
           }
         </h5>
-
+        <Address /> 
       </div>
     )
   }
