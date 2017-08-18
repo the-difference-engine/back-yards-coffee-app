@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805162934) do
+ActiveRecord::Schema.define(version: 20170818005600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20170805162934) do
     t.string   "sku"
     t.string   "name"
     t.integer  "price"
+  end
+
+  create_table "carted_subscriptions", force: :cascade do |t|
+    t.integer  "quantity"
+    t.string   "plan_id"
+    t.string   "status"
+    t.bigint   "customer_id"
+    t.string   "grind"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -60,16 +70,9 @@ ActiveRecord::Schema.define(version: 20170805162934) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "customer_id"
-    t.integer  "price"
-    t.integer  "total_price"
   end
 
 end
