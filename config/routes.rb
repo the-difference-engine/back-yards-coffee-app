@@ -32,5 +32,8 @@ Rails.application.routes.draw do
 
     patch "/carted_products/:id/:qnty" => "carted_products#update"
     delete "/carted_products/:id" => "carted_products#destroy"
+
+    patch "/carted_subscriptions/:id/:qnty" => "carted_subscriptions#update"
+    delete "/carted_subscriptions/:id" => "carted_subscriptions#destroy"
   end
 end

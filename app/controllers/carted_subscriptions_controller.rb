@@ -2,7 +2,8 @@ class CartedSubscriptionsController < ApplicationController
   def create
     carted_subscription = CartedSubscription.find_by(status: 'carted',
                                             customer_id: guest_or_customer_id,
-                                            plan_id: params[:plan_id])
+                                            plan_id: params[:plan_id],
+                                            grind: params[:grind])
     if carted_subscription
       carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
     else
