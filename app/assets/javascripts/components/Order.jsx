@@ -2,18 +2,30 @@ class Address extends React.Component {
   render() {
     return (
       <form>
-        <h3>Shipping Information</h3>
-        Name:<br />
-        <input type="text" name="name" /><br />
-        Address 1:<br />
-        <input type="text" name="address1" /><br />
-        Address 2:<br />
-        <input type="text" name="address2" /><br />
+        <h4>Shipping Information</h4>
+        First Name:
+        <input type="text" name="name" placeholder="First Name" /><br />
+        Last Name:<br />
+        <input type="text" name="name" placeholder="Last Name" /><br />
+        Address:<br />
+        <input type="text" name="address1" placeholder="Address 1"/><br />
+        <input type="text" name="address2" placeholder="(Address 2)"/><br />
         City:<br />
-        <input type="text" name="city" /><br />
-        Zip / Postal Code:<br />
-        <input type="text" name="zip" /><br />
-        <input type="submit" value="Submit" className="waves-effect btn" /><br />
+        <input type="text" name="city" placeholder="City"/><br />
+        Zip/Postal Code:<br />
+        <input type="text" name="zip" placeholder="Zip/Postal code"/><br />
+        <input type="button" value="Save Address" className="waves-effect btn" /><br />
+      </form>
+    )
+  }
+}
+
+class ShippingOptions extends React.Component {
+  render() {
+    return (
+      <form>
+        <input type="radio" name="shipping" value="option1" id="option1"/>
+        <label for="option1">Option 1</label>
       </form>
     )
   }
@@ -48,18 +60,25 @@ var Order = React.createClass({
 
  render: function() {  
    return (
-      <div>
-        <h3>Review your Order</h3>
-        <ol>{this.formatItem()}</ol>
-        <h5>
-          Total: {
-            this.state.order.items.reduce(
-              function(start, item) {
-                return start + (item.amount * 0.01);
-              }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
-          }
-        </h5>
-        <Address /> 
+      <div className="row">
+        <div className="col s5">
+          <Address />
+        </div>
+        <div className="col s2">
+        </div> 
+        <div className="col s5 test">
+          <h4>Review your Order</h4>
+          <ol>{this.formatItem()}</ol>
+          < ShippingOptions />
+          <h5>
+            Total: {
+              this.state.order.items.reduce(
+                function(start, item) {
+                  return start + (item.amount * 0.01);
+                }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+            }
+          </h5>
+        </div>
       </div>
     )
   }
