@@ -33,7 +33,7 @@
           <div calss="row">
             <div class="input-field">
               <div class="col s4">
-                <%= select_tag :plan_id, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
+                <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - " %>
                 <label>Plan</label>
               </div>
             </div>
@@ -65,9 +65,7 @@
           <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
         <%end%>
       </div>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <%= hidden_field_tag :price, @product.skus.data.first.price %>
-      <%= hidden_field_tag :name, @product.name %>
+      <input type="hidden" name="product_plans" value=<%= @product_plans %>>
 
     <br>
     <br>

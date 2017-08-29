@@ -64,7 +64,7 @@ var CartedProducts = React.createClass({
     this.setState({carted_products: this.state.carted_products});
   },
   isCartEmpty: function() {
-    if (this.state.carted_products.length == 0) {
+    if (!(this.state.carted_products.length)) {
       this.setState({isEmpty: true});
       this.props.handleEmpty();
     }

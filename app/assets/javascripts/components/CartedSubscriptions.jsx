@@ -64,7 +64,7 @@ var CartedSubscriptions = React.createClass({
     this.setState({carted_subscriptions: this.state.carted_subscriptions});
   },
   isCartEmpty: function() {
-    if (this.state.carted_subscriptions.length == 0) {
+    if (!(this.state.carted_subscriptions.length)) {
       this.setState({isEmpty: true});
       this.props.handleEmpty();
     }

@@ -22,7 +22,7 @@ var Cart = React.createClass({
     this.setState({carted_subscriptions: []});
   },
   _renderCartedProducts: function(){
-    if(this.state.carted_products.length !== 0) {
+    if(this.state.carted_products.length) {
       return (
         <div>
           <h5 className="center">One Time Purchases</h5>
@@ -33,7 +33,7 @@ var Cart = React.createClass({
   },
   _renderCartedSubscriptions: function(){
     console.log("This is the subscriptions", this.state.carted_subscriptions);
-    if(this.state.carted_subscriptions.length !== 0) {
+    if(this.state.carted_subscriptions.length) {
       return (
         <div>
           <h5 className="center">Subscriptions</h5>
@@ -43,7 +43,7 @@ var Cart = React.createClass({
     }
   },
   _renderCartTotal: function() {
-    if(this.state.carted_subscriptions.length !== 0 && this.state.carted_products.length !== 0) {
+    if((this.state.carted_subscriptions.length) && (this.state.carted_products.length)) {
       return (
         <div>{this.state.cart_total}</div>
       )
