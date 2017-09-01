@@ -19,6 +19,7 @@ var CartedProducts = React.createClass({
     });
     console.log("FINISHED CALCULATING.." + total);
     this.setState({products_total: total});
+    this.props.handleUpdate(total);
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);

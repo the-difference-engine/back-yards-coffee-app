@@ -65,7 +65,7 @@
           <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
         <%end%>
       </div>
-      <input type="hidden" name="product_plans" value=<%= @product_plans %>>
+      <%= hidden_field_tag :product_id, @product.id %>
 
     <br>
     <br>

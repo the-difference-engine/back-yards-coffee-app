@@ -7,15 +7,16 @@ class CartedSubscriptionsController < ApplicationController
     if carted_subscription
       carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
     else
-      puts "product_plans: #{params[:product_plans]}"
-      plan = JSON.parse(StripeTool.selected_plan(params[:product_plans], params[:plan_id]))
+      plans = Stripe::Plan.list
+      plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
       carted_subscription = CartedSubscription.new(quantity: params[:quantity],
                                           customer_id: guest_or_customer_id,
                                           status: 'carted',
                                           plan_id: params[:plan_id],
                                           grind: params[:grind],
-                                          amount: plan.amount,
-                                          interval: plan.interval)
+                                          amount: plan[0].amount,
+                                          interval: plan[0].interval,
+                                          interval_count: plan[0].interval_count)
     end
 
     if carted_subscription.save

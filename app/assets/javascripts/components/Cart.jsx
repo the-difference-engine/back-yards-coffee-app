@@ -4,6 +4,7 @@ var Cart = React.createClass({
        initialCP: this.props.carted_products,
        initialPT: this.props.products_total,
        initialCS: this.props.carted_subscriptions,
+       initialST: this.props.subscriptions_total,
        initialCT: this.props.cart_total
      }
   },
@@ -12,6 +13,7 @@ var Cart = React.createClass({
       carted_products: this.state.initialCP,
       products_total: this.state.initialPT,
       carted_subscriptions: this.state.initialCS,
+      subscriptions_total: this.state.initialST,
       cart_total: this.state.initialCT
     })
   },
@@ -21,12 +23,24 @@ var Cart = React.createClass({
   handleSubscriptionsEmpty: function() {
     this.setState({carted_subscriptions: []});
   },
+  handleProductsUpdate: function(productsTotal) {
+    this.setState({products_total: productsTotal});
+    this.updateTotal();
+  },
+  handleSubscriptionsUpdate: function(subscriptionsTotal) {
+    this.setState({subscriptions_total: subscriptionsTotal});
+    this.updateTotal();
+  },
+  updateTotal: function(){
+    total = (this.state.subscriptions_total + this.state.products_total);
+    this.setState({cart_total: total});
+  },
   _renderCartedProducts: function(){
     if(this.state.carted_products.length) {
       return (
         <div>
           <h5 className="center">One Time Purchases</h5>
-          <CartedProducts handleEmpty={this.handleProductsEmpty} cartedProducts={this.state.carted_products} productsTotal={this.state.products_total} />
+          <CartedProducts handleUpdate={this.handleProductsUpdate} handleEmpty={this.handleProductsEmpty} cartedProducts={this.state.carted_products} productsTotal={this.state.products_total} />
         </div>
       )
     }
@@ -37,7 +51,7 @@ var Cart = React.createClass({
       return (
         <div>
           <h5 className="center">Subscriptions</h5>
-          <CartedSubscriptions handleEmpty={this.handleSubscriptionsEmpty} cartedSubscriptions={this.state.carted_subscriptions} subscriptionsTotal={this.state.subscriptions_total}/>
+          <CartedSubscriptions handleUpdate={this.handleSubscriptionsUpdate} handleEmpty={this.handleSubscriptionsEmpty} cartedSubscriptions={this.state.carted_subscriptions} subscriptionsTotal={this.state.subscriptions_total}/>
         </div>
       )
     }
@@ -45,7 +59,7 @@ var Cart = React.createClass({
   _renderCartTotal: function() {
     if((this.state.carted_subscriptions.length) && (this.state.carted_products.length)) {
       return (
-        <div>{this.state.cart_total}</div>
+        <div><h5><b>OVERALL TOTAL:</b> {(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</h5></div>
       )
     }
   },
