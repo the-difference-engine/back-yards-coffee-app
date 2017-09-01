@@ -1,24 +1,24 @@
 var CartedProducts = React.createClass({
   getInitialState: function(){
      return {
-       initialItems: this.props.carted_products,
+       initialProducts: this.props.cartedProducts,
        carted_products: [],
-       initialCartTotal: this.props.cart_total,
+       initialProductsTotal: this.props.productsTotal,
        isEmpty: false
      }
   },
   componentWillMount: function(){
-    this.setState({carted_products: this.state.initialItems, cart_total: this.state.initialCartTotal, isEmpty: this.state.isEmpty})
+    this.setState({carted_products: this.state.initialProducts, products_total: this.state.initialProductsTotal, isEmpty: this.state.isEmpty})
   },
   calcTotal: function() {
-    console.log("calculating total" + this.state.cart_total);
+    console.log("calculating total" + this.state.products_total);
     var total = 0;
     this.state.carted_products.forEach(function(carted_product) {
       console.log(carted_product);
       total += (carted_product.price * carted_product.quantity);
     });
     console.log("FINISHED CALCULATING.." + total);
-    this.setState({cart_total: total});
+    this.setState({products_total: total});
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
@@ -66,6 +66,7 @@ var CartedProducts = React.createClass({
   isCartEmpty: function() {
     if (this.state.carted_products.length == 0) {
       this.setState({isEmpty: true});
+      this.props.handleEmpty();
     }
   },
   render() {
@@ -104,7 +105,7 @@ var CartedProducts = React.createClass({
           {this.state.isEmpty ? (
             <p className="center">Your cart is empty. Shop for more coffee <a href="/products">here</a>!</p>
           ) : (
-            <p className="right-align"><b>Total: </b>{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+            <p className="right-align"><b>Total: </b>{(this.state.products_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
           )}
         </div>
       </div>

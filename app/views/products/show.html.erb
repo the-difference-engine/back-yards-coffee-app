@@ -1,15 +1,28 @@
 <%#= react_component('ProductMessage', name: @product.name ) %>
+<script>
+  $(document).ready(function () {
+    $('#test').change(function () {
+      if (this.checked) {
+        $('#subscription').fadeIn(100) && $('#one-time-buy').fadeOut(100);
+      } else {
+        $('#subscription').fadeOut(100) && $('#one-time-buy').fadeIn(100);
+      }
+
+    });
+  });
+</script>
 
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
-    <br><br>
-      <h1 class="header center text-lighten-2 title"><span class="garamond-font"><%= @product.name %></span></h1>
+      <br><br>
+      <h1 class="header center text-lighten-2 title">
+        <span class="garamond-font"><%= @product.name %></span>
+      </h1>
     </div>
   </div>
   <div class="parallax"><img class="activator" src="<%= @product.images[1]%>"></div>
 </div>
-
 
 <div class="container">
   <div class="section">
@@ -19,98 +32,113 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col s12">
-    <ul class="tabs">
-      <li class="tab col s3"><a class="active" href="#subscription">Subscription</a></li>
-      <li class="tab col s3"><a href="#one-time-buy">One time buy</a></li>
-    </ul>
-  </div>
-  <div id="subscription" class="col s12">
-    <%= form_tag "/cart", method: :post, style: () do%>
+<div style="width: 100%;">
+  <div style="float:left; width: 50%">
+    <div id="subscription" class="col s12" style="display:none">
       <div class="container">
-        <div class="section" style="height:100px;">
-          <div calss="row">
-            <div class="input-field">
-              <div class="col s4">
-                <%= select_tag :plan, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
-                <label>Plan</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section" style="height:100px;">
-          <div calss="row">
-            <div class="input-field">
-              <div class="col s4">
-                <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
-                <label>Quantity</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <%if customer_signed_in?%>
-          <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-        <%else%>
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
-        <%end%>
-      </div>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <%= hidden_field_tag :price, @product.skus.data.first.price %>
-      <%= hidden_field_tag :name, @product.name %>
 
-    <br>
-    <br>
-    <%= render "customers/shared/modal_for_sign_in.html.erb" %>
-    <% end %>
-  </div>
-  <div id="one-time-buy" class="col s12">
-    <%= form_tag "/cart", method: :post, style: () do%>
-      <div class="container">
-        <div class="section" style="height:100px;">
-          <div calss="row">
-            <div class="input-field">
-              <div class="col s4">
-                <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
-                <label>Bean Style</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="section" style="height:100px;">
-          <div calss="row">
-            <div class="input-field">
-              <div class="col s4">
-                <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
-                <label>Quantity</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <%if customer_signed_in?%>
-          <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-        <%else%>
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
-        <%end%>
-      </div>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <%= hidden_field_tag :price, @product.skus.data.first.price %>
-      <%= hidden_field_tag :name, @product.name %>
+        <h4>Subscription</h4>
 
-    <br>
-    <br>
-    <%= render "customers/shared/modal_for_sign_in.html.erb" %>
-    <% end %>
+        <%= form_tag "/carted_subscription", method: :post, style: () do%>
+
+        <div class="section" style="height:100px;">
+          <div class="row">
+            <div class="input-field">
+              <%= select_tag :plan_id, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
+              <label>Plan</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" style="height:100px;">
+          <div class="row">
+            <div class="input-field">
+              <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
+              <label>Quantity</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" style="height:100px;">
+          <div class="row">
+            <div class="input-field">
+              <%= select_tag :grind, options_for_select(["Ground", "Whole"]), prompt: " - Select Quantity - " %>
+              <label>Grind type</label>
+            </div>
+          </div>
+        </div>
+
+        <%if customer_signed_in?%>
+        <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
+        <%else%>
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
+        <%end%>
+
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= hidden_field_tag :price, @product.skus.data.first.price %>
+        <%= hidden_field_tag :name, @product.name %>
+
+        <br>
+        <br>
+        <%= render "customers/shared/modal_for_sign_in.html.erb" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="one-time-buy">
+      <div class="container">
+        <div class="row">
+          <h4>One Time Buy</h4>
+        </div>
+
+        <%= form_tag "/cart", method: :post, style: () do%>
+        <div class="section" style="height:100px;">
+          <div class="row">
+            <div class="input-field">
+              <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
+              <label>Bean Style</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" style="height:100px;">
+          <div class="row">
+            <div class="input-field">
+              <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
+              <label>Quantity</label>
+            </div>
+          </div>
+        </div>
+
+        <%if customer_signed_in?%>
+        <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
+        <%else%>
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
+        <%end%>
+
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= hidden_field_tag :price, @product.skus.data.first.price %>
+        <%= hidden_field_tag :name, @product.name %>
+        <br>
+        <br>
+        <%= render "customers/shared/modal_for_sign_in.html.erb" %>
+        <% end %>
+
+      </div>
+    </div>
   </div>
+
+  <div style="float:left;">
+    <input type="checkbox" id="test"/>
+    <label for="test" id="test">Subscribe</label>
+  </div>
+
 </div>
 
-
+<div style="clear:both"></div>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('select').material_select();
   });
-
 </script>
