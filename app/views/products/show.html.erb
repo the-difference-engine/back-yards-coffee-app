@@ -44,10 +44,10 @@
         <div class="section" style="height:100px;">
           <div class="row">
             <div class="input-field">
-              <div class="col s4">
+              
                 <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - " %>
                 <label>Plan</label>
-              </div>
+         
             </div>
           </div>
         </div>
@@ -90,10 +90,10 @@
     <br>
     <br>
     <%= render "customers/shared/modal_for_sign_in.html.erb" %>
-    <% end %>
+
   </div>
   <div id="one-time-buy" class="col s12">
-    <%= form_tag "/cart", method: :post, style: () do%>
+
       <div class="container">
         <div class="row">
           <h4>One Time Buy</h4>
