@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 20170829010019) do
     t.string   "city"
     t.string   "state"
     t.integer  "zip_code"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "Address2"
     t.index ["email"], name: "index_customers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
   end
@@ -77,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170829010019) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.boolean  "admin"
     t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
   end

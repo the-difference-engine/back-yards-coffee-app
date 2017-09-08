@@ -33,6 +33,16 @@ RSpec.configure do |config|
 
   # API Mocks
   config.before(:each) do 
+    # Stub for Stripe::Product.list (limit: 50)
+    stub_request(:get, "https://api.stripe.com/v1/products?limit=50").
+      to_return(:body => %Q({ "data": [
+        {"id":"prod_AuxRSpec01234","object":"product","attributes":"featured",
+          "skus":{"data":[{"id":"whole_bean","object":"product","attributes":"featured", "price":999}]}
+        },
+        {"id":"prod_AuxRSpec56789","object":"product","attributes":"special",
+          "skus":{"data":[{"id":"whole_bean","object":"product","attributes":"featured", "price":999}]}
+        }]
+      }))
     # Stub for Stripe::Product.list
     stub_request(:get, "https://api.stripe.com/v1/products").
       to_return(:body => %Q({ "data": [
@@ -52,7 +62,7 @@ RSpec.configure do |config|
     stub_request(:get, "https://api.stripe.com/v1/skus/whole_bean").
       to_return(:body => %Q({"id":"whole_bean","object":"product","attributes":"featured", "price":999}))
     # Stub for Stripe::Plan.list
-    stub_request(:get, "https://api.stripe.com/v1/plans").
+    stub_request(:get, "https://api.stripe.com/v1/plans?limit=50").
       to_return(:body => %Q({ "data": [{"id":"test","object":"plan"}]}))
     # Stub for Stripe::Customer.create(email: email) 
     stub_request(:post, "https://api.stripe.com/v1/customers").

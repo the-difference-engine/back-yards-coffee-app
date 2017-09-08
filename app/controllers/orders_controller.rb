@@ -18,10 +18,10 @@ class OrdersController < ApplicationController
       :shipping => {
         :name => 'Jenny Rosen',
         :address => {
-          :line1 => '1234 Main Street',
-          :city => 'Anytown',
+          :line1 => '181 W. Madison',
+          :city => 'Chicago',
           :country => 'US',
-          :postal_code => '123456'
+          :postal_code => '60602'
         }
       },
     )
