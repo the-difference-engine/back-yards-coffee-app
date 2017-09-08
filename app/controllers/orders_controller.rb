@@ -11,21 +11,28 @@ class OrdersController < ApplicationController
       customer = Stripe::Customer.create(:email  => params[:stripeEmail])
     end
 
+    @customer = current_customer
+    first_name = @customer.first_name || 'Back of the Yards'
+    line1 = @customer.address || '2059 W. 47th St'
+    city = @customer.city || 'Chicago'
+    postal_code = @customer.zip_code || '60609'
+
+
    @order = Stripe::Order.create(
       :currency => 'usd',
       :customer => customer.id,
       :items => items,
       :shipping => {
-        :name => 'Jenny Rosen',
+        :name => first_name,
         :address => {
-          :line1 => '181 W. Madison',
-          :city => 'Chicago',
+          :line1 => line1,
+          :city => city,
           :country => 'US',
-          :postal_code => '60602'
+          :postal_code => postal_code
         }
       },
     )
-   p @order
+
 
     # p order.pay(:source => params[:stripeToken])
  end

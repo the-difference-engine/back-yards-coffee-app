@@ -6,20 +6,25 @@ class Address extends React.Component {
           <form>
             <h4>Shipping Information</h4>
             First Name:
-            <input type="text" name="name" placeholder="First Name" /><br />
+            <input type="text" defaultValue={this.props.address.first_name} onChange={this.props.handleChange} name="first_name" placeholder="First Name" /><br />
             Last Name:<br />
-            <input type="text" name="name" placeholder="Last Name" /><br />
+            <input type="text" defaultValue={this.props.address.last_name} onChange={this.props.handleChange} name="last_name" placeholder="Last Name" /><br />
             Address:<br />
-            <input type="text" name="address1" placeholder="Address 1"/><br />
-            <input type="text" name="address2" placeholder="(Address 2)"/><br />
+            <input type="text" defaultValue={this.props.address.address} onChange={this.props.handleChange}name="address" placeholder="Address 1"/><br />
+            <input type="text" defaultValue={this.props.address.Address2} onChange={this.props.handleChange}name="Address2" placeholder="Address 2"/><br />
             City:<br />
-            <input type="text" name="city" placeholder="City"/><br />
+            <input type="text" defaultValue={this.props.address.city} onChange={this.props.handleChange} name="city" placeholder="City"/><br />
+            State:<br />
+            <input type="text" defaultValue={this.props.address.state} onChange={this.props.handleChange} name="state" placeholder="State"/><br />
             Zip/Postal Code:<br />
-            <input type="text" name="zip" placeholder="Zip/Postal code"/><br />
-            <input type="button" value="Save Address" className="waves-effect btn" /><br />
+            <input type="text" defaultValue={this.props.address.zip} onChange={this.props.handleChange} name="zip_code" placeholder="Zip/Postal code"/><br />
+            <input type="button" defaultValue="Save Address" onClick={this.props.update} className="waves-effect btn" /><br />
           </form>
           ) : ( 
-            <div> Go to store </div>
+            <div> 
+              <h5> Pick up your freshly roasted coffee at Back of the Yards Coffee Co. located at <br /> 2059 W. 47th St, Chicago, IL. <br /> </h5> 
+              <p>Please contact us at 312-487-2233 with any questions. </p>
+            </div>
           )}
       </div>
     )
@@ -28,15 +33,25 @@ class Address extends React.Component {
 
 var Order = React.createClass({
   getInitialState: function(){
-    console.log(this.props.order)
     return {
        order: this.props.order,
-       initialShipping: true
+       customer: this.props.customer,
+       initialShipping: true,
+       address: {
+        first_name: this.props.customer.first_name || '',
+        last_name: this.props.customer.last_name || '',
+        address: this.props.customer.address || '',
+        Address2: this.props.customer.Address2 || '',
+        city: this.props.customer.city || '',
+        state: this.props.customer.state || '',
+        zip: this.props.customer.zip_code || '',
+      }
      }
   },
   componentWillMount: function() {
     this.setState({
-      shipping: this.state.initialShipping
+      shipping: this.state.initialShipping,
+      address: this.state.address
     })
   },
   formatItem: function(){
@@ -58,12 +73,34 @@ var Order = React.createClass({
     this.setState({shipping: !this.state.shipping });
     console.log(this.state.shipping);
   },
+  updateAddress: function() {
+    $.ajax({
+      type: "PATCH",
+      url: "/api/customers/" + this.state.customer.id, 
+      contentType: "application/json",
+      dataType: "json", 
+      data: JSON.stringify(this.state.address),
+      success: function(result){
+        console.log(result);
+      }
+    })
+  },
+  handleChange: function(event) {
+    var input = event.target.name,
+        value = event.target.value,
+        that = this;
 
- render: function() {  
-   return (
+    var updatedAddress = this.state.address;
+        updatedAddress[input] = value;
+
+    this.setState({address : updatedAddress});
+  },
+
+  render: function() {  
+    return (
       <div className="row">
         <div className="col s5">
-          <Address shipping={this.state.shipping} />
+          <Address shipping={this.state.shipping} address={this.state.address} handleChange={this.handleChange} update={this.updateAddress} />
         </div>
         <div className="col s2">
         </div> 
