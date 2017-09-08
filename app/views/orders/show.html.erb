@@ -1,5 +1,5 @@
 <div class="container"> 
-  <%= react_component('Order', order: @order) %>
+  <%= react_component('Order', order: @order, customer: @customer) %>
   <%= form_tag charges_path do %>
     <article>
       <% if flash[:error].present? %>
