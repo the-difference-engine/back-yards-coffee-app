@@ -19,6 +19,7 @@ var CartedProducts = React.createClass({
     });
     console.log("FINISHED CALCULATING.." + total);
     this.setState({products_total: total});
+    this.props.handleUpdate(total);
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
@@ -64,7 +65,7 @@ var CartedProducts = React.createClass({
     this.setState({carted_products: this.state.carted_products});
   },
   isCartEmpty: function() {
-    if (this.state.carted_products.length == 0) {
+    if (!(this.state.carted_products.length)) {
       this.setState({isEmpty: true});
       this.props.handleEmpty();
     }
