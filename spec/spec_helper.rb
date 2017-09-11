@@ -61,9 +61,12 @@ RSpec.configure do |config|
       # Stub for Stripe::SKU.retrieve(id: sku)
     stub_request(:get, "https://api.stripe.com/v1/skus/whole_bean").
       to_return(:body => %Q({"id":"whole_bean","object":"product","attributes":"featured", "price":999}))
-    # Stub for Stripe::Plan.list
+    # Stub for Stripe::Plan.list (limit: 50)
     stub_request(:get, "https://api.stripe.com/v1/plans?limit=50").
       to_return(:body => %Q({ "data": [{"id":"test","object":"plan"}]}))
+    # Stub for Stripe::Plan.list
+    stub_request(:get, "https://api.stripe.com/v1/plans").
+      to_return(:body => %Q({ "data": [{"id":"test","object":"plan", "metadata":{"prod_id":""}}]}))
     # Stub for Stripe::Customer.create(email: email) 
     stub_request(:post, "https://api.stripe.com/v1/customers").
       to_return(:body => %Q({"id":"cus_rSpecXxXxrSpec","object":"customer"}))
