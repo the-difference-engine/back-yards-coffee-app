@@ -114,11 +114,9 @@ var Order = React.createClass({
           <ol>{this.formatItem()}</ol>
           <ShippingToggle shipping={this.state.shipping} handleChange={this.handleShippingChange} />
           <h5>
-            Total: {
-              this.state.order.items.reduce(
-                function(start, item) {
-                  return start + (item.amount * 0.01);
-                }, 0).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+            Total: { this.state.shipping ? 
+              (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
+              ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
             }
           </h5>
         </div>
