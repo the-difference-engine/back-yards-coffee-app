@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+<%=@menu_item.name%>
+</div>
+<div class="row">
+<a href="/menus/<%=@menu_item.id%>/edit">Edit</a>
+</div>
+
+<%= form_tag "/menus/#{@menu_item.id}", method: :delete do %>
+<input type="submit" value="Delete Menu Item">
+<%end%>
+</div>

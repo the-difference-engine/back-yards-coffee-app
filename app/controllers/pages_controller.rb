@@ -10,5 +10,8 @@ class PagesController < ApplicationController
     @subscriptions = Stripe::Plan.list(limit: 50)
   end
   def coffee_house
+    @categories=Category.all
   end
+
+
 end

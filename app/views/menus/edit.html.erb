@@ -1,0 +1,42 @@
+<div class="container">
+  <%=form_tag "/menus/#{@menu_item.id}", method: :patch do %>
+  Name:
+  <div class="row">
+    <input type="text" name="name" value="<%=@menu_item.name%>">
+  </div>
+
+  <div class="row">
+    Description:
+    <input type="text" name="description" value="<%=@menu_item.description%>">
+  </div>
+
+  <div class="row">
+    Price:
+    <input type="text" name="price" value="<%=@menu_item.price%>">
+  </div>
+
+  <div class="row">
+    <div class="section" style="height:100px;">
+      <div class="input-field">
+        <%= select_tag :category_id, options_for_select(@categories.collect{|category| [category.name, category.id]}), prompt: " - Select Category - " %>
+        <label>Categories</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <input class="btn col s4" type="submit" name="submit">
+
+    <%end%>
+
+    <%= form_tag "/menus/#{@menu_item.id}", method: :delete do %>
+    <input class="btn col s4 offset-s1" type="submit" value="Delete Menu Item">
+    <%end%>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('select').material_select();
+  });
+</script>
