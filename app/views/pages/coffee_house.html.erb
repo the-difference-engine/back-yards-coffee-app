@@ -3,34 +3,38 @@
   <h2 class="center">Menu</h2>
 
   <% @categories.each do |cat| %>
-  <h4 style="color:red;">
-    <%= cat.name %>
-    <%if current_employee%>
-    <a class="btn-floating" href="/categories/<%=cat.id%>/edit">
-      <i class="material-icons">edit</i>
-    </a>
-    <%end%>
-  </h4>
-  <% cat.products.each do |product| %>
-  <div class="row">
-    <blockquote>
-    <h5 class="col s10"><b><%= product.name %></b>
-      <% if current_employee %>
-    <a class="btn-small" href="/menus/<%=product.id%>/edit">
-      <i class="material-icons">edit</i>
+    <h4 style="color:red;">
+      <%= cat.name %>
+      <%if current_employee%>
+        <a class="btn-floating" href="/categories/<%=cat.id%>/edit">
+          <i class="material-icons">edit</i>
+        </a>
       <%end%>
-    </a></h5>
-    <h5 class="col s2"><%= product.price%></h5>
+    </h4>
 
-    <p class="col s6"><%= product.description%></p>
-  </blockquote>
-  </div>
-  <% end %>
+    <% cat.products.each do |product| %>
+      <div class="row">
+        <blockquote>
+          <h5 class="col s10">
+            <b><%= product.name %></b>
+            <% if current_employee %>
+              <a class="btn-small" href="/menus/<%=product.id%>/edit">
+                <i class="material-icons">edit</i>
+              </a>
+            <%end%>
+          </h5>
+          <h5 class="col s2"><%= product.price%></h5>
+          <p class="col s6">
+            <%= product.description%>
+          </p>
+        </blockquote>
+      </div>
+    <% end %>
   <% end %>
 
   <% if current_employee %>
-  <a class="btn" href="/menus/new">Create new menu item</a>
-  <a class="btn" href="/categories/new">Create new category</a>
+    <a class="btn" href="/menus/new">Create new menu item</a>
+    <a class="btn" href="/categories/new">Create new category</a>
   <%end%>
 
   <h2>About the Coffee House</h2>
@@ -42,7 +46,8 @@
   <p>Thanks to your support the Back of the Yards Coffeehouse is now open! Visit our coffeehouse located at 2059 W 47th Street, Chicago IL 60609. If you can't make, order your coffee bag online and we'll gladly deliver to your home.</p>
   <h5>Drink Responsibly</h5>
   <p>Back of the Yards Coffee Co is committed to giving back. For every 12oz bag of coffee your purchase, one dollar is invested into the Social Impact Fund that benefits local initiatives with high social returns in Chicago's Back of the Yards
-    neighborhood.</p>
+    neighborhood.
+  </p>
   <h5>Address</h5>
   <p>2059 W. 47th St, Chicago, IL 60609</p>
   <p>(312) 487-2233</p>
