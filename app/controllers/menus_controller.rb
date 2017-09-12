@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_action :authenticate_employee!
+  
   def new
     @categories=Category.all
     @menu_item = Product.new
