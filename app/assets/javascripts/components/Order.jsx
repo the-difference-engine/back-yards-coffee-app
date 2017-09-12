@@ -74,14 +74,19 @@ var Order = React.createClass({
     console.log(this.state.shipping);
   },
   updateAddress: function() {
+    var obj = {};
+    obj['address'] = this.state.address;
+    obj['order_id'] = this.state.order.id;
+    var that = this;
     $.ajax({
       type: "PATCH",
       url: "/api/customers/" + this.state.customer.id, 
       contentType: "application/json",
       dataType: "json", 
-      data: JSON.stringify(this.state.address),
-      success: function(result){
-        console.log(result);
+      data: JSON.stringify(obj),
+      success: function(order){
+        console.log(order);
+        that.setState({order: order})
       }
     })
   },
