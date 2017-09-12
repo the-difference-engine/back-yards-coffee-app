@@ -1,5 +1,5 @@
 module RegistrationsHelper
-  
+
   def us_states
     [
       ['Alabama', 'AL'],
@@ -55,5 +55,5 @@ module RegistrationsHelper
       ['Wisconsin', 'WI'],
       ['Wyoming', 'WY']
     ]
-end
+  end
 end
