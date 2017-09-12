@@ -7,7 +7,7 @@ class CartedSubscriptionsController < ApplicationController
     if carted_subscription
       carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
     else
-      plans = Stripe::Plan.list
+      plans = Stripe::Plan.list(limit: 50)
       plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
       carted_subscription = CartedSubscription.new(quantity: params[:quantity],
                                           customer_id: guest_or_customer_id,

@@ -1,4 +1,3 @@
-
 class Api::CartedProductsController < ApplicationController
   def update
     @carted_product = CartedProduct.find_by(id: params[:id])
@@ -6,7 +5,6 @@ class Api::CartedProductsController < ApplicationController
     if @carted_product.save
       render :json => @carted_product
     else
-      puts "THERE IS AN ERROR_______#{@carted_product.errors.full_messages}"
       render :json => { error: @carted_product.errors.full_messages }
     end
   end
