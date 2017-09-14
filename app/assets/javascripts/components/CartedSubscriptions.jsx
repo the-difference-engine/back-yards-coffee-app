@@ -15,10 +15,11 @@ var CartedSubscriptions = React.createClass({
     var total = 0;
     this.state.carted_subscriptions.forEach(function(carted_subscription) {
       console.log(carted_subscription);
-      total += (carted_subscription.price * carted_subscription.quantity);
+      total += (carted_subscription.amount * carted_subscription.quantity);
     });
     console.log("FINISHED CALCULATING.." + total);
     this.setState({subscriptions_total: total});
+    this.props.handleUpdate(total);
   },
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
@@ -64,7 +65,7 @@ var CartedSubscriptions = React.createClass({
     this.setState({carted_subscriptions: this.state.carted_subscriptions});
   },
   isCartEmpty: function() {
-    if (this.state.carted_subscriptions.length == 0) {
+    if (!(this.state.carted_subscriptions.length)) {
       this.setState({isEmpty: true});
       this.props.handleEmpty();
     }
@@ -89,10 +90,10 @@ var CartedSubscriptions = React.createClass({
               <tr key={carted_subscription.id}>
                 <td>{ carted_subscription.id }</td>
                 <td>{ carted_subscription.plan_id }</td>
-                <td>{ (carted_subscription.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
+                <td>{ (carted_subscription.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_subscription} />
                 <td>{ carted_subscription.grind }</td>
-                <td>{ ((carted_subscription.price * carted_subscription.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
+                <td>{ ((carted_subscription.amount * carted_subscription.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <DltBtn handler={this.deleteItem} key={carted_subscription.id} item={carted_subscription} />
               </tr>
             )}

@@ -37,7 +37,10 @@
     <%= f.text_field :address, autofocus: true %>
   </div>
 
-  
+  <div class="field">
+    <%= f.label :Address2 %><br />
+    <%= f.text_field :Address2, autofocus: true %>
+  </div>
 
   <div class="field">
     <%= f.label :city %><br />
@@ -46,7 +49,7 @@
 
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.text_field :state, autofocus: true %>
+    <%= f.select :state, options_for_select(us_states) %>
   </div>
 
   <div class="field">
@@ -60,3 +63,10 @@
 <% end %>
 
 <%= render "customers/shared/links" %>
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+
+</script>

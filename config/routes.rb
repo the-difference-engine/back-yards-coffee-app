@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get "/customers" => "customers#index"
+    patch '/customers/:id' => "customers#update"
 
     get "/employees" => "employees#index"
 

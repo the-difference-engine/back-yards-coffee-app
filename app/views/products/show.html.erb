@@ -44,8 +44,10 @@
         <div class="section" style="height:100px;">
           <div class="row">
             <div class="input-field">
-              <%= select_tag :plan_id, options_for_select(StripeTool.subscriptions(@subscriptions, @product.id)), prompt: " - Select Plan - " %>
-              <label>Plan</label>
+              
+                <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - " %>
+                <label>Plan</label>
+         
             </div>
           </div>
         </div>
@@ -83,9 +85,15 @@
         <%= render "customers/shared/modal_for_sign_in.html.erb" %>
         <% end %>
       </div>
-    </div>
+      <%= hidden_field_tag :product_id, @product.id %>
 
-    <div id="one-time-buy">
+    <br>
+    <br>
+    <%= render "customers/shared/modal_for_sign_in.html.erb" %>
+
+  </div>
+  <div id="one-time-buy" class="col s12">
+
       <div class="container">
         <div class="row">
           <h4>One Time Buy</h4>

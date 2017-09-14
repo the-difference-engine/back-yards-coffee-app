@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170901012056) do
 
   # These are extensions that must be enabled in order to support this database
@@ -35,8 +36,11 @@ ActiveRecord::Schema.define(version: 20170901012056) do
     t.string   "status"
     t.bigint   "customer_id"
     t.string   "grind"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "amount"
+    t.string   "interval"
+    t.integer  "interval_count"
   end
 
   create_table "categories", force: :cascade do |t|

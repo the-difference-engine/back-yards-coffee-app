@@ -28,8 +28,8 @@ class CartedProductsController < ApplicationController
     @carted_products = CartedProduct.my_carted(guest_or_customer_id)
     @carted_subscriptions = CartedSubscription.my_carted(guest_or_customer_id)
     @products_total = @carted_products.sum{|s| s.price * s.quantity}
-    # @subscriptions_total = @carted_subscriptions.sum{|s| s.price * s.quantity}
-    @cart_total = @products_total
+    @subscriptions_total = @carted_subscriptions.sum{|s| s.amount * s.quantity}
+    @cart_total = @products_total + @subscriptions_total
     if @carted_products.empty? && @carted_subscriptions.empty?
       flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
