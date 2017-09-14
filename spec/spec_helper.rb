@@ -63,7 +63,7 @@ RSpec.configure do |config|
       to_return(:body => %Q({"id":"whole_bean","object":"product","attributes":"featured", "price":999}))
     # Stub for Stripe::Plan.list (limit: 50)
     stub_request(:get, "https://api.stripe.com/v1/plans?limit=50").
-      to_return(:body => %Q({ "data": [{"id":"test","object":"plan"}]}))
+      to_return(:body => %Q({ "data": [{"id":"test","object":"plan","metadata":{"prod_id":""}}]}))
     # Stub for Stripe::Plan.list
     stub_request(:get, "https://api.stripe.com/v1/plans").
       to_return(:body => %Q({ "data": [{"id":"test","object":"plan", "metadata":{"prod_id":""}}]}))
