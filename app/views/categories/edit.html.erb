@@ -1,0 +1,13 @@
+<div class="container">
+<%=form_tag "/categories/#{@category.id}", method: :patch do %>
+Name:
+<div class="row">
+<input type="text" name="name" value="<%=@category.name%>">
+</div>
+
+<%end%>
+
+<%= form_tag "/categories/#{@category.id}", method: :delete do %>
+<input class="btn" type="submit" value="Delete Category">
+<%end%>
+</div>

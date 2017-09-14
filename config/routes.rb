@@ -11,6 +11,19 @@ Rails.application.routes.draw do
   get "/coffee_club" => "pages#coffee_club"
   get "/coffee_house" => "pages#coffee_house"
 
+  get "/menus/new" => "menus#new"
+  post "/menus" => "menus#create"
+  get "/menus/:id/edit" => "menus#edit"
+  patch "/menus/:id" =>"menus#update"
+  delete "/menus/:id" => "menus#destroy"
+
+  get "/categories/new" => "categories#new"
+  post "/categories" => "categories#create"
+  get "/categories/:id/edit" => "categories#edit"
+  patch "/categories/:id" =>"categories#update"
+  delete "/categories/:id" => "categories#destroy"
+
+
   post "/cart" => "carted_products#create"
   get "/cart" => "carted_products#index"
   patch "/cart" => "carted_products#update"

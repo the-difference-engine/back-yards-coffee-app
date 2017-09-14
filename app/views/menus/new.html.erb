@@ -1,0 +1,36 @@
+<div class="container">
+  <%=form_tag "/menus", methond: :post do %>
+  <div class="row">
+    Name:
+    <input type="text" name="name">
+  </div>
+
+  <div class="row">
+    Description:
+    <input type="text" name="description">
+  </div>
+  <div class="row">
+    Price:
+    <input type="text" name="price">
+  </div>
+
+  <div class="row">
+    <div class="section" style="height:100px;">
+      <div class="input-field">
+        <%= select_tag :category_id, options_for_select(@categories.collect{|category| [category.name, category.id]}), prompt: " - Select Category - " %>
+        <label>Plan</label>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+  <input class="btn" type="submit" name="submit">
+</div>
+<%end%>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('select').material_select();
+});
+</script>
