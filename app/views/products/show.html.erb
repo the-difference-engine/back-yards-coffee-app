@@ -70,11 +70,7 @@
           </div>
         </div>
 
-        <%if customer_signed_in?%>
         <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-        <%else%>
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
-        <%end%>
 
         <%= hidden_field_tag :product_id, @product.id %>
         <%= hidden_field_tag :price, @product.skus.data.first.price %>
@@ -82,14 +78,12 @@
 
         <br>
         <br>
-        <%= render "customers/shared/modal_for_sign_in.html.erb" %>
         <% end %>
       </div>
       <%= hidden_field_tag :product_id, @product.id %>
 
     <br>
     <br>
-    <%= render "customers/shared/modal_for_sign_in.html.erb" %>
 
   </div>
   <div id="one-time-buy" class="col s12">
@@ -118,18 +112,13 @@
           </div>
         </div>
 
-        <%if customer_signed_in?%>
         <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-        <%else%>
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
-        <%end%>
 
         <%= hidden_field_tag :product_id, @product.id %>
         <%= hidden_field_tag :price, @product.skus.data.first.price %>
         <%= hidden_field_tag :name, @product.name %>
         <br>
         <br>
-        <%= render "customers/shared/modal_for_sign_in.html.erb" %>
         <% end %>
 
       </div>
