@@ -21,4 +21,10 @@ RSpec.describe CartedProductsController, type: :controller do
     end
   end
 
+  # describe 'GET carted_products#index' do
+  #   context 'finds customer or guest carted_products'
+  #     it 'should find the customers products'
+        
+
+
 end
