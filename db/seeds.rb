@@ -1,3 +1,15 @@
+Category.create(
+name: "Coffee"
+)
+
+Category.create(
+name:"Espresso"
+)
+
+Category.create(
+name:"Cold Brew on Tap"
+)
+
 Product.create(
   name:"47th Street Drip Coffee 12oz",
   category_id:1,
