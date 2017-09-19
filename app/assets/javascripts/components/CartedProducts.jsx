@@ -92,7 +92,7 @@ var CartedProducts = React.createClass({
                 <td>{ carted_product.id }</td>
                 <td>{ carted_product.product_id }</td>
                 <td>{ carted_product.name }</td>
-                <td>{ (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
+                <td>{ (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_product} />
                 <td>{ carted_product.sku }</td>
                 <td>{ ((carted_product.price * carted_product.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
