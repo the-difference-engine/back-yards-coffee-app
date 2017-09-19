@@ -1,26 +1,29 @@
 class OrdersController < ApplicationController
  
- def show
+  def show
     carted_products = CartedProduct.my_carted(guest_or_customer_id)
-
     items = carted_products.map{ |o| {type: 'sku', parent: o.sku, quantity: o.quantity } }
 
     if customer_signed_in?
-      customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
+      @customer = current_customer
+    elsif Customer.find_by(email: guest_or_customer_id.to_s + '@email.com')
+      @customer = Customer.find_by(email: guest_or_customer_id.to_s + '@email.com')
     else
-      customer = Stripe::Customer.create(:email  => params[:stripeEmail])
+      email = guest_or_customer_id.to_s + '@email.com'
+      @customer = Customer.new(email: email)
+      @customer.assign_customer_id
+      @customer.save(validate: false)
     end
 
-    @customer = current_customer
     first_name = @customer.first_name || 'Back of the Yards'
     line1 = @customer.address || '2059 W. 47th St'
     city = @customer.city || 'Chicago'
     postal_code = @customer.zip_code || '60609'
 
 
-   @order = Stripe::Order.create(
+    @order = Stripe::Order.create(
       :currency => 'usd',
-      :customer => customer.id,
+      :customer => @customer.stripe_customer_id,
       :items => items,
       :shipping => {
         :name => first_name,
@@ -33,9 +36,8 @@ class OrdersController < ApplicationController
       },
     )
 
-
     # p order.pay(:source => params[:stripeToken])
- end
+  end
 
 end
 # <h1>Order Overview</h1>
