@@ -84,6 +84,9 @@ var Order = React.createClass({
       contentType: "application/json",
       dataType: "json", 
       data: JSON.stringify(obj),
+      error: function(error){
+        console.log(error);
+      },
       success: function(order){
         console.log(order);
         that.setState({order: order})
