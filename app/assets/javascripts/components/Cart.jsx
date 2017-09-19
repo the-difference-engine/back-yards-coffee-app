@@ -39,7 +39,7 @@ var Cart = React.createClass({
     if(this.state.carted_products.length) {
       return (
         <div>
-          <h5 className="center">One Time Purchases</h5>
+          <h5 className="center lobster-font gray">One Time Purchases</h5>
           <CartedProducts handleUpdate={this.handleProductsUpdate} handleEmpty={this.handleProductsEmpty} cartedProducts={this.state.carted_products} productsTotal={this.state.products_total} />
         </div>
       )
