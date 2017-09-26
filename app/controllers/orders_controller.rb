@@ -20,21 +20,25 @@ class OrdersController < ApplicationController
     city = @customer.city || 'Chicago'
     postal_code = @customer.zip_code || '60609'
 
-
-    @order = Stripe::Order.create(
-      :currency => 'usd',
-      :customer => @customer.stripe_customer_id,
-      :items => items,
-      :shipping => {
-        :name => first_name,
-        :address => {
-          :line1 => line1,
-          :city => city,
-          :country => 'US',
-          :postal_code => postal_code
-        }
-      },
-    )
+    begin
+      @order = Stripe::Order.create(
+        :currency => 'usd',
+        :customer => @customer.stripe_customer_id,
+        :items => items,
+        :shipping => {
+          :name => first_name,
+          :address => {
+            :line1 => line1,
+            :city => city,
+            :country => 'US',
+            :postal_code => postal_code
+          }
+        },
+      )
+    rescue => error
+      flash[:warning] = "Invalid Shipping Address"
+      redirect_to ('/')
+    end
 
     # p order.pay(:source => params[:stripeToken])
   end

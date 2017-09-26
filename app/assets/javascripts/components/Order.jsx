@@ -6,22 +6,22 @@ class Address extends React.Component {
           <form>
             <h4>Shipping Information</h4>
             First Name:
-            <input type="text" defaultValue={this.props.address.first_name} onChange={this.props.handleChange} name="first_name" placeholder="First Name" /><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.first_name} onChange={this.props.handleChange} name="first_name" placeholder="First Name" /><br />
             Last Name:<br />
-            <input type="text" defaultValue={this.props.address.last_name} onChange={this.props.handleChange} name="last_name" placeholder="Last Name" /><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.last_name} onChange={this.props.handleChange} name="last_name" placeholder="Last Name" /><br />
             Address:<br />
-            <input type="text" defaultValue={this.props.address.address} onChange={this.props.handleChange}name="address" placeholder="Address 1"/><br />
-            <input type="text" defaultValue={this.props.address.Address2} onChange={this.props.handleChange}name="Address2" placeholder="Address 2"/><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.address} onChange={this.props.handleChange} name="address" placeholder="Address 1"/><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.Address2} onChange={this.props.handleChange}name="Address2" placeholder="Address 2"/><br />
             City:<br />
-            <input type="text" defaultValue={this.props.address.city} onChange={this.props.handleChange} name="city" placeholder="City"/><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.city} onChange={this.props.handleChange} name="city" placeholder="City"/><br />
             State:<br />
-            <input type="text" defaultValue={this.props.address.state} onChange={this.props.handleChange} name="state" placeholder="State"/><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.state} onChange={this.props.handleChange} name="state" placeholder="State"/><br />
             Zip/Postal Code:<br />
-            <input type="text" defaultValue={this.props.address.zip} onChange={this.props.handleChange} name="zip_code" placeholder="Zip/Postal code"/><br />
-            <input type="button" defaultValue="Save Address" onClick={this.props.update} className="waves-effect btn" /><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.zip} onChange={this.props.handleChange} name="zip_code" placeholder="Zip/Postal code"/><br />
+            <input type="button" className={this.props.validate} defaultValue="Save Address" onClick={this.props.update} className="waves-effect btn" /><br />
           </form>
           ) : ( 
-            <div> 
+            <div> state.first_name, this.state.last_name, this.state.address, this.state.address2, this.state.city, this.state.state, this.state.zip}
               <h5> Pick up your freshly roasted coffee at Back of the Yards Coffee Co. located at <br /> 2059 W. 47th St, Chicago, IL. <br /> </h5> 
               <p>Please contact us at 312-487-2233 with any questions. </p>
             </div>
@@ -34,10 +34,11 @@ class Address extends React.Component {
 var Order = React.createClass({
   getInitialState: function(){
     return {
-       order: this.props.order,
-       customer: this.props.customer,
-       initialShipping: true,
-       address: {
+      order: this.props.order,
+      customer: this.props.customer,
+      initialShipping: true,
+      shippingError: '',
+      address: {
         first_name: this.props.customer.first_name || '',
         last_name: this.props.customer.last_name || '',
         address: this.props.customer.address || '',
@@ -46,12 +47,13 @@ var Order = React.createClass({
         state: this.props.customer.state || '',
         zip: this.props.customer.zip_code || '',
       }
-     }
+    }
   },
   componentWillMount: function() {
     this.setState({
       shipping: this.state.initialShipping,
-      address: this.state.address
+      address: this.state.address,
+      shippingError: this.state.shippingError
     })
   },
   formatItem: function(){
@@ -86,10 +88,14 @@ var Order = React.createClass({
       data: JSON.stringify(obj),
       error: function(error){
         console.log(error);
+        Materialize.toast('Shipping Information is Incomplete', 4000);
+        that.setState({shippingError: 'inputError'});
       },
       success: function(order){
         console.log(order);
-        that.setState({order: order})
+        Materialize.toast('Shipping Information Saved', 4000);
+        that.setState({order: order,
+                        shippingError: ''});
       }
     })
   },
@@ -103,12 +109,11 @@ var Order = React.createClass({
 
     this.setState({address : updatedAddress});
   },
-
   render: function() {  
     return (
       <div className="row">
         <div className="col s5">
-          <Address shipping={this.state.shipping} address={this.state.address} handleChange={this.handleChange} update={this.updateAddress} />
+          <Address shipping={this.state.shipping} address={this.state.address} validate={this.state.shippingError} handleChange={this.handleChange} update={this.updateAddress} />
         </div>
         <div className="col s2">
         </div> 
@@ -125,7 +130,7 @@ var Order = React.createClass({
         </div>
       </div>
     )
-  }
+  },
 })
 
 class ShippingToggle extends React.Component {
