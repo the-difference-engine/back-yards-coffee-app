@@ -24,7 +24,9 @@
               </a>
             <%end%>
           </h5>
-          <h5 class="col s2"><%= number_to_currency(product.price.to_f)%></h5>
+          <h5 class="col s2">
+            <b class="title"><%= number_to_currency(product.price.to_f)%> </b>
+          </h5>
           <p class="col s6 ">
             <%= product.description%>
           </p>
