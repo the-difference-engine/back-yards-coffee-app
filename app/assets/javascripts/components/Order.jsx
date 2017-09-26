@@ -57,19 +57,17 @@ var Order = React.createClass({
     })
   },
   formatItem: function(){
-    const test = [];
-
-    this.state.order.items.map((item) => {
+    var listItems = [];
+    this.state.order.items.map((item, index) => {
       if (item.type === "sku") {
-        test.push(<ul>{item.description}</ul>);
-        test.push(<ul>{ (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</ul>);
+        listItems.push(<li key={index + '-description'}>{item.description}</li>);
+        listItems.push(<li key={index + '-quantity'}>{item.quantity}</li>);
+        listItems.push(<li key={index + '-amount'}>{ (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</li>);
       } else if (item.type === "tax") {
-        test.push(<ul>Tax: { item.amount} </ul>);
-      } // else {
-      //   test.push(<ul>is a ship</ul>);
-      // }
+        listItems.push(<li key={index + "-tax"}>Tax: { item.amount} </li>);
+      }
     });
-    return test;
+    return listItems;
   },
   handleShippingChange: function(){
     this.setState({shipping: !this.state.shipping });
