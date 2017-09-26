@@ -21,20 +21,21 @@
     </div>
     <div id="tab2" >
       <h4> Sign Up</h4>
-      <%= form_for(:customer, :url => registration_path(:customer)) do |f| %>
-      
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.text_field :email, placeholder: 'Email'  %>
-      </div>
+        <%= form_for(:customer, :url => registration_path(:customer)) do |f| %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.text_field :email,autofocus: true, placeholder: 'Email' %>
+        </div>
+
         <div class="field">
           <%= f.label :password %><br />
-        <%= f.password_field :password, placeholder: 'Password'  %>
-      </div>
+          <%= f.password_field :password, placeholder: 'Password' %>
+        </div>
 
         <div class="field">
           <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: 'Password Confirmation'%>
+          <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: 'Password Confirmation' %>
         </div>
 
         <div class="field">
@@ -54,7 +55,7 @@
 
         <div class="field">
           <%= f.label :state %><br />
-          <%= f.select :state, options_for_select(us_states) %>
+          <%= f.select :state, options_for_select(us_states,selected:['Illinois', 'IL']) %>
         </div>
 
         <div class="field">
