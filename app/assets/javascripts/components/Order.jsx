@@ -137,15 +137,15 @@ class ShippingToggle extends React.Component {
       <div>
         <div onClick={this.props.handleChange}>
           {this.props.shipping ? 
-            (<input id="shipping" type="radio" checked={true} />) : 
-            (<input id="shipping" type="radio" checked={false} />)
+            (<input id="shipping" type="radio" checked={true} readOnly={true} />) : 
+            (<input id="shipping" type="radio" checked={false} readOnly={true} />)
           }
           <label for="shipping">Shipping</label>
         </div>
         <div onClick={this.props.handleChange}>
           { this.props.shipping ? 
-            (<input id="pickup" type="radio" checked={false} />) :
-            (<input id="pickup" type="radio" checked={true} />)
+            (<input id="pickup" type="radio" checked={false} readOnly={true} />) :
+            (<input id="pickup" type="radio" checked={true} readOnly={true} />)
           }
           <label for="pickup">Pick Up</label>
         </div>
