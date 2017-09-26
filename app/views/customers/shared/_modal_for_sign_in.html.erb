@@ -22,14 +22,50 @@
     <div id="tab2" >
       <h4> Sign Up</h4>
       <%= form_for(:customer, :url => registration_path(:customer)) do |f| %>
+      
+      <div class="field">
+        <%= f.label :email %><br />
         <%= f.text_field :email, placeholder: 'Email'  %>
+      </div>
+        <div class="field">
+          <%= f.label :password %><br />
         <%= f.password_field :password, placeholder: 'Password'  %>
-        <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation'  %>
+      </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: 'Password Confirmation'%>
+        </div>
+
+        <div class="field">
+          <%= f.label :address %><br />
+          <%= f.text_field :address, autofocus: true,placeholder: 'Address' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :Address_2 %><br />
+          <%= f.text_field :Address2, autofocus: true,placeholder: 'Address 2' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :city %><br />
+          <%= f.text_field :city, autofocus: true,placeholder: 'City' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :state %><br />
+          <%= f.select :state, options_for_select(us_states) %>
+        </div>
+
+        <div class="field">
+          <%= f.label :zip_code %><br />
+          <%= f.text_field :zip_code, autofocus: true,placeholder: 'Zip Code' %>
+        </div>
+
         <%= f.hidden_field :redirect, value: "cart" %>
         <%= f.submit 'Sign up', :class => "btn" %>
       <% end %>
     </div>
     <br/>
-    
   </div>
 </div>
