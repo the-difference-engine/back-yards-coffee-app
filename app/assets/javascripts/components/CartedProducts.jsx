@@ -77,24 +77,18 @@ var CartedProducts = React.createClass({
         <table className="table">
           <thead>
             <tr>
-              <td> <b>ID</b> </td>
-              <td> <b>PRODUCT ID</b> </td>
-              <td> <b>PRODUCT NAME</b> </td>
-              <td> <b>UNIT PRICE</b> </td>
-              <td> <b>QUANTITY</b> </td>
-              <td> <b>SKU</b> </td>
-              <td> <b>TOTAL PRICE</b> </td>
+              <td> <b>Product Name</b> </td>
+              <td> <b>Unit Price</b> </td>
+              <td> <b>Quantity</b> </td>
+              <td> <b>Total Price</b> </td>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="">
             {this.state.carted_products.map((carted_product, index) =>
               <tr key={carted_product.id}>
-                <td>{ carted_product.id }</td>
-                <td>{ carted_product.product_id }</td>
                 <td>{ carted_product.name }</td>
                 <td>{ (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_product} />
-                <td>{ carted_product.sku }</td>
                 <td>{ ((carted_product.price * carted_product.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <DltBtn handler={this.deleteItem} key={carted_product.id} item={carted_product} />
               </tr>

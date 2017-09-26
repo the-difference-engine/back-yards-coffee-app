@@ -5125,9 +5125,9 @@ small {
 .btn-large[disabled],
 .btn-flat[disabled] {
   pointer-events: none;
-  background-color: #DFDFDF !important;
+  background-color: #DFDFDF;
   box-shadow: none;
-  color: #9F9F9F !important;
+  color: #9F9F9F;
   cursor: default;
 }
 
@@ -5167,7 +5167,7 @@ small {
 
 .btn:focus, .btn-large:focus,
 .btn-floating:focus {
-  background-color: #1d7d74;
+  background-color: #ac2b1a;
 }
 
 .btn, .btn-large {
@@ -5181,7 +5181,7 @@ small {
 }
 
 .btn:hover, .btn-large:hover {
-  background-color: rgb(215, 30, 45);
+  background-color: #ac2b1a;
 }
 
 .btn-floating {
@@ -5358,7 +5358,7 @@ button.btn-floating {
 .btn-flat {
   box-shadow: none;
   background-color: transparent;
-  color: #343434;
+  color: #ac2b1a;
   cursor: pointer;
   transition: background-color .2s;
 }
@@ -5378,7 +5378,7 @@ button.btn-floating {
 
 .btn-flat.disabled {
   background-color: transparent !important;
-  color: #b3b3b3 !important;
+  color: #ac2b1a!important;
   cursor: default;
 }
 
