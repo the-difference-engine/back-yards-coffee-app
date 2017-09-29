@@ -6,15 +6,21 @@ class ApplicationController < ActionController::Base
 
 def store_location
   # store last url - this is needed for post-login redirect to whatever the user last visited.
-  return unless request.get? 
+  return unless request.get?
     if (request.path != "/customers/sign_in" &&
       request.path != "/customers/sign_up" &&
       request.path != "/customers/password/new" &&
       request.path != "/customers/password/edit" &&
       request.path != "/customers/confirmation" &&
       request.path != "/customers/sign_out" &&
-      !request.xhr?) 
-    session[:previous_url] = request.fullpath 
+      request.path != "/employees/sign_in" &&
+      request.path != "/employees/sign_up" &&
+      request.path != "/employees/password/new" &&
+      request.path != "/employees/password/edit" &&
+      request.path != "/employees/confirmation" &&
+      request.path != "/employees/sign_out" &&
+      !request.xhr?)
+    session[:previous_url] = request.fullpath
    end
   end
 
