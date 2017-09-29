@@ -1,5 +1,5 @@
 <div style="margin-top: 48px;margin-left:50px;margin-right:50px;">
-  <h2 class="center">My Subscriptions</h2>
+  <h2 class="center lobster-font gray">My Subscriptions</h2>
   <% if @customer.subscriptions.total_count != 0 %>
     <table class="bordered">
       <thead>
@@ -34,8 +34,9 @@
   <% else %>
     <p class="center">You have no subscriptions! <a href="/products">Subscribe to some products!</a><p>
   <% end %>
-
-  <h2 class="center">Account Information</h2>
+  <h2 class="center lobster-font gray">Interested in Becoming a Wholesaler?</h2>
+  <p class="center"> Click here to apply! <a href="/customers/Wholesaleapplication"> Application</a></p>
+  <h2 class="center lobster-font gray">Account Information</h2>
   <div class="row" style="height:200px;">
     <div class="col s6">
       <h5 class="center">Contact Info</h5>
