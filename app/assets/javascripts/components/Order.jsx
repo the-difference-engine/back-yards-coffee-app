@@ -21,7 +21,7 @@ class Address extends React.Component {
             <input type="button" className={this.props.validate} defaultValue="Save Address" onClick={this.props.update} className="waves-effect btn" /><br />
           </form>
           ) : ( 
-            <div> state.first_name, this.state.last_name, this.state.address, this.state.address2, this.state.city, this.state.state, this.state.zip}
+            <div> 
               <h5> Pick up your freshly roasted coffee at Back of the Yards Coffee Co. located at <br /> 2059 W. 47th St, Chicago, IL. <br /> </h5> 
               <p>Please contact us at 312-487-2233 with any questions. </p>
             </div>
