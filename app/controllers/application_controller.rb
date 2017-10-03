@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  #test hound ci
   protect_from_forgery with: :exception
 
   layout :layout_by_resource
