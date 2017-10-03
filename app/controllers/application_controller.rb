@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   after_filter :store_location
 
   def store_location
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    # store last url
+    #this is needed for post-login redirect to whatever the user last visited.
+
     do_not_include = [
       'sign_in',
       'sign_up',
@@ -16,12 +18,14 @@ class ApplicationController < ActionController::Base
       'dashboard'
     ]
 
-    if !request.get? || (do_not_include.include?(request.path.split('customers/')[-1]) ||
-         do_not_include.include?(request.path.split('employees/')[-1]) ||
-         request.xhr?)
+    if !request.get? ||
+      (do_not_include.include?(request.path.split('customers/')[-1]) ||
+        do_not_include.include?(request.path.split('employees/')[-1]) ||
+        request.xhr?
+      )
       return
     end
-    
+
     session[:previous_url] = request.fullpath
   end
 
