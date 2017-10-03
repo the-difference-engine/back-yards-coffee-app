@@ -7,7 +7,7 @@ class Api::CustomersController < ApplicationController
   def update
     @customer = Customer.find_by(id: params[:id])
     unless @customer.update(customer_params)
-      render json: { error: @customer.errors.full_messages, code: 500 }
+      render json: { errors: @customer.errors.full_messages }, status: 422
     end
     @order = StripeTool.create_order(@customer)
     render json: @order

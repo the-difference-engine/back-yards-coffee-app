@@ -18,8 +18,6 @@
             data-locale="auto"
             data-label="Complete Order"
             data-shipping-address="false"></script>
-            <% if @order %>
-            <%= hidden_field_tag :order_id, @order.id %>
-            <% end %>
+    <%= hidden_field_tag :order_id, @order[:order].id %>
   <% end %>
 </div>
