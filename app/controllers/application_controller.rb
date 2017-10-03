@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def store_location
     # store last url
-    #this is needed for post-login redirect to whatever the user last visited.
+    # this is needed for post-login redirect to whatever the user last visited.
 
     do_not_include = [
       'sign_in',
@@ -20,9 +20,8 @@ class ApplicationController < ActionController::Base
 
     if !request.get? ||
       (do_not_include.include?(request.path.split('customers/')[-1]) ||
-        do_not_include.include?(request.path.split('employees/')[-1]) ||
-        request.xhr?
-      )
+      do_not_include.include?(request.path.split('employees/')[-1]) ||
+      request.xhr?)
       return
     end
 
