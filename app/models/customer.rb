@@ -23,4 +23,59 @@ class Customer < ApplicationRecord
     end
     @subscriptions_total
   end
+
+  def self.guest_customer?(id)
+    Customer.find_by(id: id)
+  end
+
+  def self.create_guest_cutomer(id)
+    customer = Customer.new(id: id, email: id)
+    customer.assign_customer_id
+    customer.save(validate: false)
+    customer
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def customer_address
+    {
+      line1: address,
+      city: city,
+      country: 'US',
+      postal_code: zip_code
+    }
+  end
+
+  def default_address
+    {
+      line1: '2059 W 47th St',
+      city: 'Chicago',
+      country: 'US',
+      postal_code: '60609'
+    }
+  end
+
+  def valid_shipping_address?
+    begin
+      address_to = Shippo::Address.create(
+        name: full_name,
+        street1: address,
+        city: city,
+        state: state,
+        zip: zip_code,
+        country: 'US',
+        validate: true
+      )
+    rescue
+      p ' ******** SHIPPO API ERRROR ********* '
+      return false
+    end
+    address_to.validation_results.is_valid
+  end
+
+  def carted_items
+    carted_products.where(status: 'carted').map { |o| { type: 'sku', parent: o.sku, quantity: o.quantity } }
+  end
 end

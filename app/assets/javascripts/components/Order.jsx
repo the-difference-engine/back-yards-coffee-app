@@ -12,7 +12,7 @@ var Order = React.createClass({
         Address2: this.props.customer.Address2 || '',
         city: this.props.customer.city || '',
         state: this.props.customer.state || '',
-        zip: this.props.customer.zip_code || '',
+        zip_code: this.props.customer.zip_code || '',
       }
     }
   },
@@ -42,8 +42,7 @@ var Order = React.createClass({
   },
   updateAddress: function() {
     var obj = {};
-    obj['address'] = this.state.address;
-    obj['order_id'] = this.state.order.id;
+    obj = this.state.address;
     var that = this;
     $.ajax({
       type: "PATCH",

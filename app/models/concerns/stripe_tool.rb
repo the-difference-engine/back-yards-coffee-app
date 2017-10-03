@@ -23,4 +23,21 @@ module StripeTool
     plans.select{|plan| plan.plan_id == plan_id}
   end
 
+  def self.create_order(customer)
+    begin
+      order = Stripe::Order.create(
+        currency: 'usd',
+        customer: customer.stripe_customer_id,
+        items: customer.carted_items,
+        shipping: {
+          name: customer.full_name,
+          address: customer.valid_shipping_address? ? customer.customer_address : customer.default_address
+        }
+      )
+    rescue => error
+      p ' ******** STRIPE API ERRROR ********* '
+      return error
+    end
+    order
+  end
 end
