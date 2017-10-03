@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root "pages#index"
 
   get "/customers/dashboard" => "customers#show"
+  get "/customers/Wholesaleapplication" => "customers#index"
   get "/employees/dashboard" => "employees#show"
 
   get "/about" => "pages#about"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901012056) do
+ActiveRecord::Schema.define(version: 20170928234407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170901012056) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "Address2"
+    t.boolean  "wholesaler"
     t.index ["email"], name: "index_customers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
   end
@@ -88,6 +89,14 @@ ActiveRecord::Schema.define(version: 20170901012056) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
+    t.integer  "price"
+    t.integer  "total_price"
   end
 
   create_table "products", force: :cascade do |t|
