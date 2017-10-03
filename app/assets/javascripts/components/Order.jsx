@@ -5,6 +5,7 @@ class Address extends React.Component {
         {this.props.shipping ? ( 
           <form>
             <h4>Shipping Information</h4>
+            <p>Shipping must be in the US</p>
             First Name:
             <input type="text" className={this.props.validate} defaultValue={this.props.address.first_name} onChange={this.props.handleChange} name="first_name" placeholder="First Name" /><br />
             Last Name:<br />
