@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928234407) do
+ActiveRecord::Schema.define(version: 20171003000446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,33 @@ ActiveRecord::Schema.define(version: 20170928234407) do
     t.integer  "category_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "wholesalers", force: :cascade do |t|
+    t.string   "business_name"
+    t.string   "contact_name"
+    t.string   "title"
+    t.string   "work_phone"
+    t.string   "alternate_phone"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "billing_address"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_zip_code"
+    t.string   "shipping_address"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.string   "shipping_zip_code"
+    t.string   "website"
+    t.string   "accounts_payable_contact_name"
+    t.string   "accounts_payable_contact_email"
+    t.string   "accounts_payable_contact_phone"
+    t.boolean  "retailer"
+    t.boolean  "tax_exempt"
+    t.string   "delivery_instructions"
+    t.string   "recieving_hours"
+    t.string   "days_closed"
   end
 
 end
