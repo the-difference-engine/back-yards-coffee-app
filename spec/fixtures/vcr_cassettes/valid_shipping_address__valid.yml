@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.goshippo.com/addresses/
+    body:
+      encoding: UTF-8
+      string: '{"name":" ","street1":"1600 Pennsylvania Ave NW","city":"Washington
+        DC","state":null,"zip":20500,"country":"US","validate":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.4.0 x86_64) ruby/2.3.0p0
+      Content-Type:
+      - application/json
+      Authorization:
+      - ShippoToken <SHIPPO_TEST_KEY>
+      Shippo-Api-Version:
+      - ''
+      Content-Length:
+      - '128'
+      Host:
+      - api.goshippo.com
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Allow:
+      - OPTIONS
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-us
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 04 Oct 2017 15:02:31 GMT
+      P3p:
+      - CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"
+      Server:
+      - nginx/1.8.0
+      Set-Cookie:
+      - sessionid=zmooeafxjxidkkeierfsvxtcdu84lgam; Domain=.goshippo.com; expires=Wed,
+        18-Oct-2017 15:02:31 GMT; httponly; Max-Age=1209600; Path=/
+      Vary:
+      - Accept-Language, Host, Cookie, Accept-Encoding
+      Content-Length:
+      - '451'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAf41FkC/31SS2/bMAz+K4LPiSG/YjenFdu1w4BuK7BhMGiZtrXZkiDR
+        6bIg/32SnTTtpUd+D5L6xFOkm98oqBYWgbCN9ixKeVJuE77l+dek2PN0nyVx
+        XqY/og27qmfTvqcuePVaLRdhCSCStBM54F2eVzsoqqZIRJs32W5XNV0wSFcL
+        PZkRCb2F7IwePMAo/TipVW3RzSM5z52CdmFuwgmdgx4D/fMUOT1bEdpEj4M0
+        RrP7tvV+x76v/bQNE4VuF80n7MC3Zg9AYggEHc1CwOqqn8EqqfqFwr8UqAdt
+        kUnVaTst622Ym8XAwDFQDAxYmlAR09bjkpCpeWrQbtgER9bLAzJgU2jhDArZ
+        ScEus+Lo/Ot8i08/K7RhXgPizxFs64TuOsQP/QRyjH1gYSkF07Lv+qjJgDpe
+        S0cWkWql3wJJKJMd5+wLKuWO4wGUBHbvF/v8dJOlb13ZyxBJy4QncIMPhrRa
+        RUBroB9D+U+a9UgK7k+E82xdb1ZkF/O3xwCMWvWS5uUntmUZ86xIA+xTvaBZ
+        FVd3VelBM2j18lAMCVwLfxA+Pdn6zCWMr8+CwP83XHWEji7s+T/bWIZ4AAMA
+        AA==
+    http_version: 
+  recorded_at: Wed, 04 Oct 2017 15:02:12 GMT
+recorded_with: VCR 3.0.3

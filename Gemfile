@@ -58,6 +58,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'dotenv-rails'
   gem 'capybara'
+  gem 'vcr'
 end
 
 group :development do

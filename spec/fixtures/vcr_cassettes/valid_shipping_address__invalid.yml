@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.goshippo.com/addresses/
+    body:
+      encoding: UTF-8
+      string: '{"name":" ","street1":"Any Street","city":"Any City","state":null,"zip":0,"country":"US","validate":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.4.0 x86_64) ruby/2.3.0p0
+      Content-Type:
+      - application/json
+      Authorization:
+      - ShippoToken <SHIPPO_TEST_KEY>
+      Shippo-Api-Version:
+      - ''
+      Content-Length:
+      - '105'
+      Host:
+      - api.goshippo.com
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Allow:
+      - OPTIONS
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-us
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 04 Oct 2017 15:02:30 GMT
+      P3p:
+      - CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"
+      Server:
+      - nginx/1.8.0
+      Set-Cookie:
+      - sessionid=hrmljlw42pw2tr4w38fcb4oulixkc2fw; Domain=.goshippo.com; expires=Wed,
+        18-Oct-2017 15:02:30 GMT; httponly; Max-Age=1209600; Path=/
+      Vary:
+      - Accept-Language, Host, Cookie, Accept-Encoding
+      Content-Length:
+      - '436'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAb41FkC/31Sz2+bMBT+VyzOKwKSlCSnVVMPvfRQyKR2mpAxj8SbsZH9
+        aEej/O97NiVpLpU42N8vv8/mGJn6DwishAWO0ERbFmVJmt+kyU2yLNPVNsm2
+        iyROs+wl+sZm9dA3X6nzLP+slkG4yevbTS7ydrNcLYXINiu+WC94LW5XLazX
+        S2+QrhKm6xUgkKXlygGhr1xJOk8aXVlwg0JH5NGLA/NJ2YFzfA+e/3WMnBms
+        8EFRcZB9b9hd01CAYz+nQGP9mcI0QfOgQxorkKp5Asc+EHxyVWDt5ED4h54o
+        DzCpmc9gUjMk5EPOJH1TZMweDYnwwJEZrUa2Kz58XDdsFxcxKylc0kASXAB7
+        4xyFUGXG69rCqwz9ibTAptDo9Pt0uWPzpsH6oWou/o7cNk6YtgX4vu+4VDHd
+        qp9c8y5Umnp3PdfjvHVoAbDS5hpI/fbu8ZkV5dP9fXkhsmvd4hwrcZw9Px7K
+        50nC8Xzuu+z9MplmGDTaoN8VHlBG7yUO4UX0oJSHqPk10h+MPseB7zdv6Jeg
+        u5cNaJRcXRwdIKcH57MOwfkXRDvA6T+XepvvAwMAAA==
+    http_version: 
+  recorded_at: Wed, 04 Oct 2017 15:02:12 GMT
+recorded_with: VCR 3.0.3

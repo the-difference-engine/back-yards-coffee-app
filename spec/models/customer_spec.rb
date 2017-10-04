@@ -47,12 +47,41 @@ RSpec.describe Customer, type: :model do
   end
 
   describe 'default_address' do
-    it 'returns an default adress if a customers address is invalid' do
-      customer = create(:customer, address: '100 Main Street', city: 'Any City', zip_code: 12_345)
+    it 'returns a default adress if a customers address is invalid' do
+      customer = create(:customer, address: 'Any Street', city: 'Any City', zip_code: 00_000)
       expect(customer.default_address).to be == { line1: '2059 W 47th St',
                                                   city: 'Chicago',
                                                   country: 'US',
                                                   postal_code: '60609' }
+    end
+  end
+
+  describe 'valid_shipping_address?' do
+    it 'returns false if the address is invalid' do
+      customer = create(:customer, address: 'Any Street', city: 'Any City', zip_code: 00_000)
+      VCR.use_cassette('valid_shipping_address?_invalid') do
+        expect(customer.valid_shipping_address?).to be false
+      end
+    end
+    it 'returns true if the address is valid' do
+      customer = create(:customer, address: '1600 Pennsylvania Ave NW', city: 'Washington DC', zip_code: 20_500)
+      VCR.use_cassette('valid_shipping_address?_valid') do
+        expect(customer.valid_shipping_address?).to be true
+      end
+    end
+  end
+
+  describe 'carted_items' do
+    it 'returns an array of carted item objects formatted for Stripe' do
+      customer = create(:customer)
+      create_list(:carted_product, 3, customer_id: customer.id)
+      expect(customer.carted_products.count).to be 3
+      expect(customer.carted_items.length).to be 3
+      expect(customer.carted_items).to be == [
+        { type: 'sku', parent: 'whole_bean', quantity: 2 },
+        { type: 'sku', parent: 'whole_bean', quantity: 2 },
+        { type: 'sku', parent: 'whole_bean', quantity: 2 }
+      ]
     end
   end
 end
