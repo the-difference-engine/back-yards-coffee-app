@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.goshippo.com/addresses/
     body:
       encoding: UTF-8
-      string: '{"name":"John Doe","street1":"100 Main Strett","city":"Any City","state":null,"zip":12345,"country":"US","validate":true}'
+      string: '{"name":" ","street1":null,"city":null,"state":null,"zip":null,"country":"US","validate":true}'
     headers:
       Accept:
       - application/json
@@ -20,7 +20,7 @@ http_interactions:
       Shippo-Api-Version:
       - ''
       Content-Length:
-      - '121'
+      - '94'
       Host:
       - api.goshippo.com
   response:
@@ -37,44 +37,41 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Oct 2017 18:07:04 GMT
+      - Wed, 04 Oct 2017 20:20:31 GMT
       P3p:
       - CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"
       Server:
       - nginx/1.8.0
       Set-Cookie:
-      - sessionid=ku7pc6csidez5gdxevumw8v89ruub3lu; Domain=.goshippo.com; expires=Wed,
-        18-Oct-2017 18:07:04 GMT; httponly; Max-Age=1209600; Path=/
+      - sessionid=yuvsoiej8vhmiusbkcsf8c96yui1j3dr; Domain=.goshippo.com; expires=Wed,
+        18-Oct-2017 20:20:31 GMT; httponly; Max-Age=1209600; Path=/
       Vary:
       - Accept-Language, Host, Cookie, Accept-Encoding
       Content-Length:
-      - '555'
+      - '412'
       Connection:
       - keep-alive
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAEgj1VkC/71TTW/UMBD9K6OcQNqNkmy2m+0JpF5AKqrUgkQRWk3sSWJI
-        7OCPllDtf+842VXphSPHee/N85ux/ZSY+gcJfxCW0JNMLiEpsny3zrN1Vt7l
-        1WW2u8zKdHdR3icrOKvDKP+lrorib7VahJt9WTeyavZ7KrGUNZVV3VS7jdzJ
-        bbXH2KDcQZhh7MkTt3gbiMEH7BUfp4w+WHKh9465p6idmRfhQM5hS5H+9pQ4
-        E6yINsltp8bRwHspud/Bl8XP2HiiMHLWXFGDbA3X6EUXCT+NM4FL1+ERrVa6
-        nSn67SN11xGcaKipN7p14A0gBK1+BYL7DzcQ/eFNj7YlqINTmsUraM0DWT2Q
-        9sCBtZjA2NjFqFN+epvCjSWhHIGkPqIToJZsZhn20QOUA208tAEtak8kU0iO
-        K/gfc18bS6B0Y+wwX8sKXBAdoOOQgCNaP0/GI7mgPIEOQ012BQNO0PI0vKEh
-        WriRZ2yUOC8xTY7fjy/PxjxqsvG8GsXPCa10wjQN0bt2QNWn/FBiKI3DnPej
-        6TRcGVqGG0bUU4Rj6bwl8gdtXgN5LPMs49mVhlvGvH9hi9fizbkUfD/zckVH
-        mmOinBYVzm82+fQ1ln/UOLsXm3K7zrIsX2IF7e3c/fk2AvHJKB/mm1jvNum+
-        LDZFxHmtJ7gs0irfXmwZHTuj6RyD4g7OBX8F3p+SvHWFEW2wd8uP4Hzo8Sz0
-        5PzpvxyfAeXYvoT7AwAA
+        H4sIAI9C1VkC/31SsW7bMBD9FUJzI1iSDSuZmjFLF9kdWgTCiTzZTChSIE9p
+        HcP/3iMVO9FSgMu99+4d35HnzHUvKKmVHoFQZQ8iK1fF9q5Y3a3Wu3L1wKcq
+        8mJd/cq+iat6GtX/1NvNQq2TsIK63GyrdV+iWnddf1/Isqylkvd1sanrbWzQ
+        oZVuGA0ScksPJiCjb2A0z9POth7DZCgweY7ixHxRDhgCHDDyv89ZcJOX0Shr
+        jnocnXhUig2C+DkbOh9nSqeS5skmN9EQR4sEncZEwNzVovdzB+FfisTuiLNa
+        RA+hrSBGPuRC85ktc/HDsYiOQMJZcxL75qMPrBL7vMnFjs01X0hjSODoQmAT
+        jiyg6zy+6ZSfSY9iNs0uz5fPHbs/Fn28VAfy9QReBen6HvH7YQBtct5qvLmF
+        IUWacw8j2NO1DOQRqbVuCRTLslyW1c1M0xcnoNuUdz1+Dpws+STbNxEwzh40
+        TWn9djImQhxziYxHZ29uGMNcC35/XrRWaEmDWfwCAn5euAoJQ3wv8hNe/gHF
+        kJB48QIAAA==
     http_version: 
-  recorded_at: Wed, 04 Oct 2017 18:06:45 GMT
+  recorded_at: Wed, 04 Oct 2017 20:20:13 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/orders
     body:
       encoding: UTF-8
-      string: currency=usd&customer=cus_BW0belZ0Jmsii2&items[][type]=sku&items[][parent]=sku_B1KPc4HwjF9Aop&items[][quantity]=2&items[][type]=sku&items[][parent]=sku_B1KMjhKL26upMH&items[][quantity]=2&shipping[name]=John+Doe&shipping[address][line1]=100+Main+Strett&shipping[address][city]=Any+City&shipping[address][country]=US&shipping[address][postal_code]=12345
+      string: currency=usd&customer=cus_BW0belZ0Jmsii2&items[][type]=sku&items[][parent]=sku_B1KPc4HwjF9Aop&items[][quantity]=2&items[][type]=sku&items[][parent]=sku_B1KMjhKL26upMH&items[][quantity]=2&shipping[name]=+&shipping[address][line1]=2059+W+47th+St&shipping[address][city]=Chicago&shipping[address][country]=US&shipping[address][postal_code]=60609
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.3.2
@@ -98,11 +95,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 04 Oct 2017 18:07:06 GMT
+      - Wed, 04 Oct 2017 20:20:34 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2645'
+      - '2634'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -118,7 +115,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_4OIJnpkkUi4out
+      - req_k2krcMB7tMBFcQ
       Stripe-Version:
       - '2017-06-05'
       Strict-Transport-Security:
@@ -127,14 +124,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "or_1B9HGvD5v3nurHsLIucfapy7",
+          "id": "or_1B9JM4D5v3nurHsLblGBQ3gS",
           "object": "order",
-          "amount": 9334,
+          "amount": 6729,
           "amount_returned": null,
           "application": null,
           "application_fee": null,
           "charge": null,
-          "created": 1507140425,
+          "created": 1507148432,
           "currency": "usd",
           "customer": "cus_BW0belZ0Jmsii2",
           "email": "28733731901",
@@ -168,10 +165,10 @@ http_interactions:
             },
             {
               "object": "order_item",
-              "amount": 5138,
+              "amount": 2533,
               "currency": "usd",
               "description": "USPS Priority Mail Express",
-              "parent": "aa7f8d338191467b91bf5201924b2e03",
+              "parent": "030eaabd7b144cffb6f5de9a033072af",
               "quantity": null,
               "type": "shipping"
             }
@@ -183,37 +180,37 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/order_returns?order=or_1B9HGvD5v3nurHsLIucfapy7"
+            "url": "/v1/order_returns?order=or_1B9JM4D5v3nurHsLblGBQ3gS"
           },
-          "selected_shipping_method": "aa7f8d338191467b91bf5201924b2e03",
+          "selected_shipping_method": "030eaabd7b144cffb6f5de9a033072af",
           "shipping": {
             "address": {
-              "city": "Any City",
+              "city": "Chicago",
               "country": "US",
-              "line1": "100 Main Strett",
+              "line1": "2059 W 47th St",
               "line2": null,
-              "postal_code": "12345",
+              "postal_code": "60609",
               "state": null
             },
             "carrier": null,
-            "name": "John Doe",
+            "name": " ",
             "phone": null,
             "tracking_number": null
           },
           "shipping_methods": [
             {
-              "id": "aa7f8d338191467b91bf5201924b2e03",
-              "amount": 5138,
+              "id": "030eaabd7b144cffb6f5de9a033072af",
+              "amount": 2533,
               "currency": "usd",
               "delivery_estimate": {
-                "date": "2017-10-05",
+                "date": "2017-10-06",
                 "type": "exact"
               },
               "description": "USPS Priority Mail Express"
             },
             {
-              "id": "da9f58511685466aaafbca317a960b4e",
-              "amount": 1352,
+              "id": "3b2fb0544fc241c892b756ed8c27122e",
+              "amount": 742,
               "currency": "usd",
               "delivery_estimate": {
                 "date": "2017-10-06",
@@ -222,8 +219,8 @@ http_interactions:
               "description": "USPS Priority Mail"
             },
             {
-              "id": "5ba15df8d5cf46199e683ebea95145fb",
-              "amount": 1359,
+              "id": "a25ac99899db45cda1e18fcba431dfd8",
+              "amount": 752,
               "currency": "usd",
               "delivery_estimate": {
                 "date": "2017-10-11",
@@ -239,8 +236,8 @@ http_interactions:
             "paid": null,
             "returned": null
           },
-          "updated": 1507140426
+          "updated": 1507148434
         }
     http_version: 
-  recorded_at: Wed, 04 Oct 2017 18:06:48 GMT
+  recorded_at: Wed, 04 Oct 2017 20:20:15 GMT
 recorded_with: VCR 3.0.3

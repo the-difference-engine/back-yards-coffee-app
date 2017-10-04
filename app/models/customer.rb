@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :zip_code, presence: true, on: :update
+
   after_commit :assign_customer_id, on: :create
 
   def assign_customer_id
