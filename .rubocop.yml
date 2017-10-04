@@ -1,3 +1,7 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+
 Metrics/LineLength:
   Max: 250
 

@@ -1,0 +1,246 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.goshippo.com/addresses/
+    body:
+      encoding: UTF-8
+      string: '{"name":"John Doe","street1":"100 Main Strett","city":"Any City","state":null,"zip":12345,"country":"US","validate":true}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (darwin16.4.0 x86_64) ruby/2.3.0p0
+      Content-Type:
+      - application/json
+      Authorization:
+      - ShippoToken <SHIPPO_TEST_KEY>
+      Shippo-Api-Version:
+      - ''
+      Content-Length:
+      - '121'
+      Host:
+      - api.goshippo.com
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Allow:
+      - OPTIONS
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-us
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 04 Oct 2017 18:07:04 GMT
+      P3p:
+      - CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"
+      Server:
+      - nginx/1.8.0
+      Set-Cookie:
+      - sessionid=ku7pc6csidez5gdxevumw8v89ruub3lu; Domain=.goshippo.com; expires=Wed,
+        18-Oct-2017 18:07:04 GMT; httponly; Max-Age=1209600; Path=/
+      Vary:
+      - Accept-Language, Host, Cookie, Accept-Encoding
+      Content-Length:
+      - '555'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAEgj1VkC/71TTW/UMBD9K6OcQNqNkmy2m+0JpF5AKqrUgkQRWk3sSWJI
+        7OCPllDtf+842VXphSPHee/N85ux/ZSY+gcJfxCW0JNMLiEpsny3zrN1Vt7l
+        1WW2u8zKdHdR3icrOKvDKP+lrorib7VahJt9WTeyavZ7KrGUNZVV3VS7jdzJ
+        bbXH2KDcQZhh7MkTt3gbiMEH7BUfp4w+WHKh9465p6idmRfhQM5hS5H+9pQ4
+        E6yINsltp8bRwHspud/Bl8XP2HiiMHLWXFGDbA3X6EUXCT+NM4FL1+ERrVa6
+        nSn67SN11xGcaKipN7p14A0gBK1+BYL7DzcQ/eFNj7YlqINTmsUraM0DWT2Q
+        9sCBtZjA2NjFqFN+epvCjSWhHIGkPqIToJZsZhn20QOUA208tAEtak8kU0iO
+        K/gfc18bS6B0Y+wwX8sKXBAdoOOQgCNaP0/GI7mgPIEOQ012BQNO0PI0vKEh
+        WriRZ2yUOC8xTY7fjy/PxjxqsvG8GsXPCa10wjQN0bt2QNWn/FBiKI3DnPej
+        6TRcGVqGG0bUU4Rj6bwl8gdtXgN5LPMs49mVhlvGvH9hi9fizbkUfD/zckVH
+        mmOinBYVzm82+fQ1ln/UOLsXm3K7zrIsX2IF7e3c/fk2AvHJKB/mm1jvNum+
+        LDZFxHmtJ7gs0irfXmwZHTuj6RyD4g7OBX8F3p+SvHWFEW2wd8uP4Hzo8Sz0
+        5PzpvxyfAeXYvoT7AwAA
+    http_version: 
+  recorded_at: Wed, 04 Oct 2017 18:06:45 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/orders
+    body:
+      encoding: UTF-8
+      string: currency=usd&customer=cus_BW0belZ0Jmsii2&items[][type]=sku&items[][parent]=sku_B1KPc4HwjF9Aop&items[][quantity]=2&items[][type]=sku&items[][parent]=sku_B1KMjhKL26upMH&items[][quantity]=2&shipping[name]=John+Doe&shipping[address][line1]=100+Main+Strett&shipping[address][city]=Any+City&shipping[address][country]=US&shipping[address][postal_code]=12345
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.3.2
+      Authorization:
+      - Bearer <SECRET_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.3.2","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin16","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Daniel-Hey.local 16.4.0 Darwin Kernel Version 16.4.0: Thu Dec 22 22:53:21
+        PST 2016; root:xnu-3789.41.3~3/RELEASE_X86_64 x86_64","hostname":"Daniel-Hey.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 04 Oct 2017 18:07:06 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2645'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Stripe-Privileged-Session-Required,stripe-manage-version,X-Stripe-External-Auth-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_4OIJnpkkUi4out
+      Stripe-Version:
+      - '2017-06-05'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "or_1B9HGvD5v3nurHsLIucfapy7",
+          "object": "order",
+          "amount": 9334,
+          "amount_returned": null,
+          "application": null,
+          "application_fee": null,
+          "charge": null,
+          "created": 1507140425,
+          "currency": "usd",
+          "customer": "cus_BW0belZ0Jmsii2",
+          "email": "28733731901",
+          "items": [
+            {
+              "object": "order_item",
+              "amount": 2198,
+              "currency": "usd",
+              "description": "47th Street Blend",
+              "parent": "sku_B1KPc4HwjF9Aop",
+              "quantity": 2,
+              "type": "sku"
+            },
+            {
+              "object": "order_item",
+              "amount": 1998,
+              "currency": "usd",
+              "description": "Blend of Blends",
+              "parent": "sku_B1KMjhKL26upMH",
+              "quantity": 2,
+              "type": "sku"
+            },
+            {
+              "object": "order_item",
+              "amount": 0,
+              "currency": "usd",
+              "description": "Taxes (included)",
+              "parent": null,
+              "quantity": null,
+              "type": "tax"
+            },
+            {
+              "object": "order_item",
+              "amount": 5138,
+              "currency": "usd",
+              "description": "USPS Priority Mail Express",
+              "parent": "aa7f8d338191467b91bf5201924b2e03",
+              "quantity": null,
+              "type": "shipping"
+            }
+          ],
+          "livemode": false,
+          "metadata": {},
+          "returns": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/order_returns?order=or_1B9HGvD5v3nurHsLIucfapy7"
+          },
+          "selected_shipping_method": "aa7f8d338191467b91bf5201924b2e03",
+          "shipping": {
+            "address": {
+              "city": "Any City",
+              "country": "US",
+              "line1": "100 Main Strett",
+              "line2": null,
+              "postal_code": "12345",
+              "state": null
+            },
+            "carrier": null,
+            "name": "John Doe",
+            "phone": null,
+            "tracking_number": null
+          },
+          "shipping_methods": [
+            {
+              "id": "aa7f8d338191467b91bf5201924b2e03",
+              "amount": 5138,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-05",
+                "type": "exact"
+              },
+              "description": "USPS Priority Mail Express"
+            },
+            {
+              "id": "da9f58511685466aaafbca317a960b4e",
+              "amount": 1352,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-06",
+                "type": "exact"
+              },
+              "description": "USPS Priority Mail"
+            },
+            {
+              "id": "5ba15df8d5cf46199e683ebea95145fb",
+              "amount": 1359,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-11",
+                "type": "exact"
+              },
+              "description": "USPS Parcel Select"
+            }
+          ],
+          "status": "created",
+          "status_transitions": {
+            "canceled": null,
+            "fulfiled": null,
+            "paid": null,
+            "returned": null
+          },
+          "updated": 1507140426
+        }
+    http_version: 
+  recorded_at: Wed, 04 Oct 2017 18:06:48 GMT
+recorded_with: VCR 3.0.3

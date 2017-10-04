@@ -5,7 +5,7 @@ RSpec.describe Customer, type: :model do
   describe "assign_customer_id" do 
     it "creates a stripe customer" do
       customer = create(:customer)
-      expect(customer.stripe_customer_id).to be == "cus_rSpecXxXxrSpec"
+      expect(customer.stripe_customer_id).to be == 'cus_BW0belZ0Jmsii2'
     end
   end
 
@@ -78,9 +78,9 @@ RSpec.describe Customer, type: :model do
       expect(customer.carted_products.count).to be 3
       expect(customer.carted_items.length).to be 3
       expect(customer.carted_items).to be == [
-        { type: 'sku', parent: 'whole_bean', quantity: 2 },
-        { type: 'sku', parent: 'whole_bean', quantity: 2 },
-        { type: 'sku', parent: 'whole_bean', quantity: 2 }
+        { type: 'sku', parent: 'sku_B1KPc4HwjF9Aop', quantity: 2 },
+        { type: 'sku', parent: 'sku_B1KPc4HwjF9Aop', quantity: 2 },
+        { type: 'sku', parent: 'sku_B1KPc4HwjF9Aop', quantity: 2 }
       ]
     end
   end

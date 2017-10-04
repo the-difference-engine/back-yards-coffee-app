@@ -13,6 +13,9 @@ VCR.configure do |config|
   config.filter_sensitive_data('<SHIPPO_TEST_KEY>') do
     ENV['SHIPPO_TEST_KEY']
   end
+  config.filter_sensitive_data('<SECRET_KEY>') do
+    ENV['SECRET_KEY']
+  end
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -76,11 +79,11 @@ RSpec.configure do |config|
     stub_request(:get, "https://api.stripe.com/v1/plans").
       to_return(:body => %Q({ "data": [{"id":"test","object":"plan", "metadata":{"prod_id":""}}]}))
     # Stub for Stripe::Customer.create(email: email) 
-    stub_request(:post, "https://api.stripe.com/v1/customers").
-      to_return(:body => %Q({"id":"cus_rSpecXxXxrSpec","object":"customer"}))
-    # Stub for Stripe::Customer.retrieve(id: stripe_customer_id)  
-    stub_request(:get, "https://api.stripe.com/v1/customers/cus_XxXxXxXxrSpec").
-      to_return(:body => %Q({ "subscriptions": 
+    stub_request(:post, 'https://api.stripe.com/v1/customers')
+      .to_return(body: %({"id":"cus_BW0belZ0Jmsii2","object":"customer"}))
+    # Stub for Stripe::Customer.retrieve(id: stripe_customer_id)
+    stub_request(:get, 'https://api.stripe.com/v1/customers/cus_BW0belZ0Jmsii2')
+      .to_return(body: %({"subscriptions":
           {
             "data": [
               {
