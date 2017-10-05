@@ -1,2 +1,12 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+
 Metrics/LineLength:
   Max: 250
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']

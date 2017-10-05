@@ -1,5 +1,8 @@
 <div class="container"> 
+
   <%= react_component('Order', order: @order, customer: @customer) %>
+
+  <!-- STRIPE CHECKOUT FORM -->
   <%= form_tag charges_path do %>
     <article>
       <% if flash[:error].present? %>
@@ -15,8 +18,6 @@
             data-locale="auto"
             data-label="Complete Order"
             data-shipping-address="false"></script>
-            <% if @order %>
-            <%= hidden_field_tag :order_id, @order.id %>
-            <% end %>
+    <%= hidden_field_tag :order_id, @order[:order].id %>
   <% end %>
 </div>

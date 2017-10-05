@@ -17,7 +17,7 @@ class Address extends React.Component {
             State:<br />
             <input type="text" className={this.props.validate} defaultValue={this.props.address.state} onChange={this.props.handleChange} name="state" placeholder="State"/><br />
             Zip/Postal Code:<br />
-            <input type="text" className={this.props.validate} defaultValue={this.props.address.zip} onChange={this.props.handleChange} name="zip_code" placeholder="Zip/Postal code"/><br />
+            <input type="text" className={this.props.validate} defaultValue={this.props.address.zip_code} onChange={this.props.handleChange} name="zip_code" placeholder="Zip/Postal code"/><br />
             <input type="button" className={this.props.validate} defaultValue="Save Address" onClick={this.props.update} className="waves-effect btn" /><br />
           </form>
           ) : ( 

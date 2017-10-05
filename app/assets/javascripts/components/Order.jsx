@@ -1,7 +1,8 @@
 var Order = React.createClass({
   getInitialState: function(){
     return {
-      order: this.props.order,
+      order: this.props.order.order,
+      validShippingAddress: this.props.order.valid_shipping_address,
       customer: this.props.customer,
       initialShipping: true,
       shippingError: '',
@@ -12,7 +13,7 @@ var Order = React.createClass({
         Address2: this.props.customer.Address2 || '',
         city: this.props.customer.city || '',
         state: this.props.customer.state || '',
-        zip: this.props.customer.zip_code || '',
+        zip_code: this.props.customer.zip_code || '',
       }
     }
   },
@@ -42,8 +43,7 @@ var Order = React.createClass({
   },
   updateAddress: function() {
     var obj = {};
-    obj['address'] = this.state.address;
-    obj['order_id'] = this.state.order.id;
+    obj = this.state.address;
     var that = this;
     $.ajax({
       type: "PATCH",
@@ -56,13 +56,25 @@ var Order = React.createClass({
         Materialize.toast('Shipping Information is Incomplete', 4000);
         that.setState({shippingError: 'inputError'});
       },
-      success: function(order){
-        console.log(order);
-        Materialize.toast('Shipping Information Saved', 4000);
-        that.setState({order: order,
-                        shippingError: ''});
+      success: function(response){
+        console.log(response);
+        that.setState({
+          order: response.order,
+          validShippingAddress: response.valid_shipping_address,
+          shippingError: response.valid_shipping_address ? '' : 'inputError'
+        });
+        if (response.valid_shipping_address) {
+          Materialize.toast('Shipping Information Saved and Validated', 4000);
+        } else {
+          Materialize.toast('Shipping Information Saved but NOT Validated', 4000);
+        }
       }
     })
+  },
+  shippingCost: function(){
+    let shippingCost = (_.last(this.state.order.items).amount * 0.01)
+          .toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2});
+    return this.state.validShippingAddress ? shippingCost : shippingCost + ' (Estimated)'
   },
   handleChange: function(event) {
     var input = event.target.name,
@@ -78,14 +90,20 @@ var Order = React.createClass({
     return (
       <div className="row">
         <div className="col s5">
-          <Address shipping={this.state.shipping} address={this.state.address} validate={this.state.shippingError} handleChange={this.handleChange} update={this.updateAddress} />
+          <Address shipping={this.state.shipping}
+                   address={this.state.address}
+                   validate={this.state.shippingError}
+                   handleChange={this.handleChange}
+                   update={this.updateAddress} />
         </div>
         <div className="col s2">
         </div> 
         <div className="col s5 test">
           <h4>Review your Order</h4>
-          <ol>{this.formatItem()}</ol>
-          <ShippingToggle shipping={this.state.shipping} handleChange={this.handleShippingChange} />
+          <ul>{this.formatItem()}</ul>
+          <ShippingToggle shipping={this.state.shipping}
+                          handleChange={this.handleShippingChange}
+                          shippingAmount={this.shippingCost()} />
           <h5>
             Total: { this.state.shipping ? 
               (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
@@ -107,7 +125,7 @@ class ShippingToggle extends React.Component {
             (<input id="shipping" type="radio" checked={true} readOnly={true} />) : 
             (<input id="shipping" type="radio" checked={false} readOnly={true} />)
           }
-          <label for="shipping">Shipping</label>
+          <label for="shipping">Shipping: {this.props.shippingAmount} </label>
         </div>
         <div onClick={this.props.handleChange}>
           { this.props.shipping ? 
