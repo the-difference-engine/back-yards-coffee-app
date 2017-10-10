@@ -1,13 +1,14 @@
 <div class="container">
-<%=form_tag "/categories/#{@category.id}", method: :patch do %>
-Name:
-<div class="row">
-<input type="text" name="name" value="<%=@category.name%>">
-</div>
-
-<%end%>
-
-<%= form_tag "/categories/#{@category.id}", method: :delete do %>
-<input class="btn" type="submit" value="Delete Category">
-<%end%>
+  <div id="EditForm">
+    <%=form_tag "/categories/#{@category.id}", method: :patch do %>
+    Name:
+    <div class="row">
+    <input type="text" name="name" value="<%=@category.name%>">
+    </div>
+    <span id="SaveBtn"><input class="btn" type="submit" value="Save"></span>
+    <%end%>
+    <%= form_tag "/categories/#{@category.id}", method: :delete do %>
+    <span id="DeleteBtn"><input class="btn" type="submit" value="Delete Category"></span>
+    <%end%>
+  </div>
 </div>
