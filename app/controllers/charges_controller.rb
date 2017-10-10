@@ -11,8 +11,8 @@ class ChargesController < ApplicationController
     else
       carted_products.each do |carted_product| carted_product.status = "product ordered"
       carted_product.save
-      end
-      flash[:success] = "Charge created!"
-      redirect_to '/'
+    end
+    flash[:success] = "Charge created!"
+    redirect_to '/'
   end
 end
