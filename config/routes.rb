@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :customers, :controllers => { registrations: 'registrations' }
 
   root "pages#index"
+  get "/customers" => "customers#index"
 
   get "/customers/dashboard" => "customers#show"
   get "/customers/:id/edit" => "customers#edit"

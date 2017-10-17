@@ -41,4 +41,10 @@ class ApplicationController < ActionController::Base
       'application'
     end
   end
+
+  def authenticate_employee_admin!
+    return if current_employee&.admin
+    flash[:error] = 'User does not have access'
+    redirect_to '/'
+  end
 end
