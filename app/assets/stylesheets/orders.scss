@@ -1,3 +1,57 @@
-// Place all the styles related to the Orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.Checkout {
+  background: white;
+  padding: 10px;
+  margin-top: 25px;
+  border-radius: 25px;
+  font-family: 'Roboto';
+}
+    
+.OrderSummary {
+  border-bottom: 1px solid darken(white, 5);
+  padding-bottom: 10px;
+  list-style: none;
+}
+        
+table {
+  font-size: 14px; 
+  margin: 0 20px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  width: calc(100% - 40px);
+  opacity: .8;
+  font-weight: 400;
+}
+
+
+.Toggle {
+  font-family: 'Roboto';
+  letter-spacing: 2px;
+  font-size: 36px;
+  padding: 20px;
+  text-shadow: 2px 2px 2px;
+}
+    
+.Title {
+  font-family: 'Lobster';
+  color: #32404b;
+  letter-spacing: 2px;
+  font-size: 32px;
+  text-decoration: underline;
+  padding: 20px;
+  font-family: 'Lobster';
+  text-shadow: 1px 1px 1px;
+  font-weight: 600;
+}
+
+.Total {
+  font-family: 'Lobster';
+  color: #ac2b1a;
+  font-size: 32px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: flex-end;
+  text-transform: uppercase;
+  font-weight: 600;
+}
