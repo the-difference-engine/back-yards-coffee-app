@@ -41,4 +41,21 @@ module StripeTool
     end
     { order: order, valid_shipping_address: valid_shipping_address }
   end
+
+  def self.customer_shipping_update(customer)
+    stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_id)
+
+    address = {
+      name: customer.full_name,
+      address: {
+        line1: customer.address,
+        line2: customer.Address2,
+        city: customer.city,
+        state: customer.state,
+        postal_code: customer.zip_code
+      }
+    }
+    stripe_customer.shipping = address
+    stripe_customer.save
+  end
 end
