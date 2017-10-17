@@ -24,3 +24,6 @@
 
 # Ignore test coverage results
 coverage
+
+# Ignore webstorm config files
+.idea

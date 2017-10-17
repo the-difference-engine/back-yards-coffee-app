@@ -1,22 +1,25 @@
-<div class="container"> 
-  <%= react_component('Order', order: @order, customer: @customer) %>
-  <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
-    </article>
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Back of the Yards Coffee"
-            data-email="<%= current_customer.email if customer_signed_in? %>"
-            data-locale="auto"
-            data-label="Complete Order"
-            data-shipping-address="false"></script>
-            <% if @order %>
-            <%= hidden_field_tag :order_id, @order.id %>
-            <% end %>
-  <% end %>
-</div>
+<body class="botysbackground">
+  <div class="container"> 
+
+    <%= react_component('Order', order: @order, customer: @customer) %>
+
+    <!-- STRIPE CHECKOUT FORM -->
+    <%= form_tag charges_path do %>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Back of the Yards Coffee"
+              data-email="<%= current_customer.email if customer_signed_in? %>"
+              data-locale="auto"
+              data-label="Complete Order"
+              data-shipping-address="false"></script>
+      <%= hidden_field_tag :order_id, @order[:order].id %>
+    <% end %>
+  </div>
+</body>

@@ -34,10 +34,14 @@
   <% else %>
     <p class="center">You have no subscriptions! <a href="/products">Subscribe to some products!</a><p>
   <% end %>
-  <h2 class="center lobster-font gray">Account Information</h2>
-  <div class="row" style="height:200px;">
+  <h2 class="center">Account Information</h2>
+  <div class="row">
     <div class="col s6">
       <h5 class="center">Contact Info</h5>
+      <p class="center"><b style="padding-right:1em">Name:</b><%= current_customer.first_name %> <%= current_customer.last_name %></p>
+      <p class="center"><b style="padding-right:1em">Adress:</b><%= current_customer.address %></p>
+      <p class="center"><b style="padding-right:1em">City:</b><%= current_customer.city %> </p>
+      <p class="center"><b style="padding-right:1em">Adress 2:</b><%= current_customer.Address2 %></p>
       <p class="center"><b style="padding-right:1em">Email:</b><%= current_customer.email %></p>
     </div>
     <div class="col s6">
