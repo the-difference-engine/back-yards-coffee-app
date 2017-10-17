@@ -1,1 +1,30 @@
-<div>hi</div>
+<div>
+  <% @customers.each do |customer| %>
+  <table>
+        <thead>
+          <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip Code</th>
+              <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><%= customer.first_name %></td>
+            <td><%= customer.last_name %></td>
+            <td><%= customer.address %></td>
+            <td><%= customer.city %></td>
+            <td><%= customer.state %></td>
+            <td><%= customer.zip_code %></td>
+            <td><%= customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+  <% end %>
+
+</div>
