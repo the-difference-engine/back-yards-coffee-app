@@ -20,3 +20,9 @@ $secondary-color: color("yellow", "base") !default;
 @import 'materialize';
 @import "materialize/extras/nouislider";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+#resize img{
+  width: 100%;
+  height: auto;
+}

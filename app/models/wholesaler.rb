@@ -1,0 +1,2 @@
+class Wholesaler < ApplicationRecord
+end

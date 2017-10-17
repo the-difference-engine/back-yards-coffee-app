@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   patch "/customers/:id" => "customers#update"
   get "/employees/dashboard" => "employees#show"
 
+  get "/wholesalers" => "wholesalers#index"
+  get "/wholesalers/new" => "wholesalers#new"
+  post "/wholesalers" => "wholesalers#create"
+
   get "/about" => "pages#about"
   get "/coffee_club" => "pages#coffee_club"
   get "/coffee_house" => "pages#coffee_house"

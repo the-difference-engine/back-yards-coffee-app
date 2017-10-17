@@ -4,4 +4,8 @@ class CustomersController < ApplicationController
   def show
     @customer = Stripe::Customer.retrieve(current_customer.stripe_customer_id)
   end
+
+  def index
+    render 'index.html.erb'
+  end
 end
