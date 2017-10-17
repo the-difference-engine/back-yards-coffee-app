@@ -3,7 +3,6 @@ class ChargesController < ApplicationController
     email = current_customer ? current_customer.email : params[:stripeEmail]
     order = Stripe::Order.retrieve(params[:order_id])
     token = params[:stripeToken]
-    
 
     begin
       order.pay(source: token, email: email)
