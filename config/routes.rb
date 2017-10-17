@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   get "/customers/dashboard" => "customers#show"
   get "/employees/dashboard" => "employees#show"
 
-  get '/wholesalers' => 'wholesalers#index'
-  get '/wholesalers/new" => "wholesalers#new'
-  post '/wholesalers/Wholesaleapplication' => '/wholesalers#create'
+  get "/wholesalers" => "wholesalers#index"
+  get "/wholesalers/new" => "wholesalers#new"
+  post "/wholesalers" => "wholesalers#create"
 
   get "/about" => "pages#about"
   get "/coffee_club" => "pages#coffee_club"

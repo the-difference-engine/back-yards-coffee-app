@@ -6,6 +6,6 @@ class CustomersController < ApplicationController
   end
 
   def index
-    render "index.html.erb"
-  end 
+    render 'index.html.erb'
+  end
 end
