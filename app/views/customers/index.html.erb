@@ -3,6 +3,7 @@
   <table>
         <thead>
           <tr>
+              <th>ID</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Address</th>
@@ -10,21 +11,36 @@
               <th>State</th>
               <th>Zip Code</th>
               <th>Email</th>
+              <th>Subscription</th>
+              <th>Status</th>
+              <th>Order History</th>
+              <th>Edit</th> 
           </tr>
         </thead>
-
         <tbody>
           <tr>
+            <td><%= customer.id %></td>
             <td><%= customer.first_name %></td>
             <td><%= customer.last_name %></td>
             <td><%= customer.address %></td>
             <td><%= customer.city %></td>
             <td><%= customer.state %></td>
             <td><%= customer.zip_code %></td>
-            <td><%= customer.email %></td>
+            <td><%= customer.email %></td> 
+            <td><% customer.carted_subscriptions.each do |subscription| %>
+                <%= subscription.interval %>
+                <br>
+                <% end %>    
+            </td>
+            <td><% customer.carted_subscriptions.each do |subscription| %>
+                <%= subscription.status %>
+                <br>
+                <% end %> 
+            </td>
+            <td> <a href="/" class="waves-effect waves-light btn">Orders</a></td> 
+            <td> <a href="/" class="waves-effect waves-light btn">Edit</a> </td>
           </tr>
         </tbody>
       </table>
   <% end %>
-
 </div>
