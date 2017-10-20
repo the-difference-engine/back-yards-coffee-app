@@ -1,4 +1,5 @@
 class WholesalersController < ApplicationController
+  before_action :authenticate_customer!
   def index
   end
 
@@ -10,6 +11,7 @@ class WholesalersController < ApplicationController
   def create
     @wholesaler = Wholesaler.create(wholesaler_params)
     if @wholesaler.save
+      UserMailer.send_wholesaler_email.deliver_now
       render 'create.html.erb'
     else
       render 'new.html.erb'
@@ -18,7 +20,7 @@ class WholesalersController < ApplicationController
 
   private
 
-    def wholesaler_params
+  def wholesaler_params
       params.permit(
         :business_name,
         :contact_name,
