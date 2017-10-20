@@ -46,15 +46,21 @@
     <li style="text-align: center;">
       <a href="/customers/dashboard">My Account</a>
     </li>
-    <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+    <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>      
   <% elsif current_employee %>
     <li style="text-align: center;">
       <a href="/employees/dashboard">My Account</a>
     </li>
+     <% if current_employee&.admin %>
+      <li>
+        <a style="text-align: center;" href="/customers">All Customers</a>
+      </li>
+    <% end %>
     <li style="text-align: center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
   <% end %>
 </ul>
 
+<!-- Responsive View -->
 <ul id='mobile-demo' class='side-nav'>
   <li class="selected">
     <a href="/coffee_club">Coffee Club</a>
