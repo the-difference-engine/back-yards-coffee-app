@@ -100,8 +100,20 @@ font-size: fa-3x;
   padding-left: 665px;
 }
 
+// Coffee Club CSS 
 
+.column {
+    float: left;
+    width: 50%;
 
+}
+
+/* Clear floats after the columns */
+.row:after {
+        display: table;
+    clear: both;
+    
+}
 
 
 
