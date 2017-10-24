@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
   def create
-    email = current_customer ? current_customer.email : params[:stripeEmail]
     order = Stripe::Order.retrieve(params[:order_id])
+    email = current_customer ? current_customer.email : customer_email(order.customer)
     token = params[:stripeToken]
 
     begin
@@ -18,5 +18,14 @@ class ChargesController < ApplicationController
     end
     flash[:success] = 'Charge created!'
     redirect_to '/'
+  end
+
+  private
+
+  def customer_email(stripe_customer_id)
+    email = params[:stripeEmail]
+    customer = Customer.find_by(stripe_customer_id: stripe_customer_id)
+    customer.update(email: email)
+    email
   end
 end
