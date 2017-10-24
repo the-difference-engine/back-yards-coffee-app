@@ -11,7 +11,6 @@ class ChargesController < ApplicationController
       redirect_to '/cart'
     end
 
-    binding.pry
     #CREATE ORDER OBJECT
     confirmed_order = Order.create(stripe_order_id: order.id, customer_id: current_customer.id)
 
@@ -22,7 +21,7 @@ class ChargesController < ApplicationController
       carted_product.save
     end
     flash[:success] = 'Charge created!'
-    redirect_to '/'
+    redirect_to "/orders/#{confirmed_order.id}"
   end
 
   private

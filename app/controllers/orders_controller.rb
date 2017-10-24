@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  def show
+  def new
     customer_id = guest_or_customer_id
 
     @customer =
@@ -10,5 +10,11 @@ class OrdersController < ApplicationController
       end
 
     @order = StripeTool.create_order(@customer)
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
+    @tax = @stripe_order.items.select{|item| item["type"] == "tax" }.first.amount
   end
 end
