@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
 
   validates :zip_code, presence: true, on: :update
 
-  after_commit :assign_customer_id, on: :create
+  before_create :assign_customer_id, on: :create
 
   def assign_customer_id
     customer = Stripe::Customer.create(email: email)
@@ -32,7 +32,6 @@ class Customer < ApplicationRecord
 
   def self.create_guest_cutomer(id)
     customer = Customer.new(id: id, email: id)
-    customer.assign_customer_id
     customer.save(validate: false)
     customer
   end
