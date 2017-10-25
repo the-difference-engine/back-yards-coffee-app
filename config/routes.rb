@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/customers/dashboard" => "customers#show"
   get "/customers/:id/edit" => "customers#edit"
   patch "/customers/:id" => "customers#update"
+  
   get "/employees/dashboard" => "employees#show"
 
   get "/wholesalers" => "wholesalers#index"
