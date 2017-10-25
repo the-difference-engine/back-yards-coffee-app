@@ -6,36 +6,36 @@
 
       <div class="field">
         <%= label_tag :first_name %><br />
-        <%= text_field_tag :first_name %>
+        <%= text_field_tag :first_name, @customer.first_name %>
       </div>
 
       <div class="field">
         <%= label_tag :last_name %><br />
-        <%= text_field_tag :last_name %>
+        <%= text_field_tag :last_name, @customer.last_name %>
       </div>
 
       <div class="field">
         <%= label_tag :address %><br />
-        <%= text_field_tag :address %>
+        <%= text_field_tag :address, @customer.address %>
       </div>
 
       <div class="field">
-        <%= text_field_tag :Address2 %>
+        <%= text_field_tag :Address2, @customer.Address2 %>
       </div>
 
       <div class="field">
         <%= label_tag :city %><br />
-        <%= text_field_tag :city %>
+        <%= text_field_tag :city, @customer.city %>
       </div>
 
       <div class="field">
         <%= label_tag :state %><br />
-        <%= text_field_tag :state %>
+        <%= text_field_tag :state, @customer.state %>
       </div>
 
       <div class="field">
         <%= label_tag :zip_code %><br />
-        <%= text_field_tag :zip_code %>
+        <%= text_field_tag :zip_code, @customer.zip_code %>
       </div>
 
       <%= submit_tag 'Update Address', :class => "btn" %>
