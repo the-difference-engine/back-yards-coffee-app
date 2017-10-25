@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
   get "/customers/dashboard" => "customers#show"
   get "/customers/:id/edit" => "customers#edit"
-  patch "/customers/:id" => "customers#update"
-  
+  patch "/customers/:id" => "customers#update" 
   get "/employees/dashboard" => "employees#show"
 
   get "/wholesalers" => "wholesalers#index"
@@ -30,7 +29,6 @@ Rails.application.routes.draw do
   get "/categories/:id/edit" => "categories#edit"
   patch "/categories/:id" =>"categories#update"
   delete "/categories/:id" => "categories#destroy"
-
 
   post "/cart" => "carted_products#create"
   get "/cart" => "carted_products#index"
