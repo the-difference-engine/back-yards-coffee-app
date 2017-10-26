@@ -8963,6 +8963,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   background-color: #eadec2;
 }
 
+.botysbackground-dark {
+  background-color: #32404b;
+}
+
 .backoff {
   padding-right:15px;
   padding-left: 5px;

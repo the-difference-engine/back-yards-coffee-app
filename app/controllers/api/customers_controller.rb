@@ -10,6 +10,7 @@ class Api::CustomersController < ApplicationController
       render json: { errors: @customer.errors.full_messages }, status: 422
       return
     end
+    StripeTool.customer_shipping_update(@customer)
     @order = StripeTool.create_order(@customer)
     render json: @order
   end

@@ -1,50 +1,64 @@
-<div style="margin-top: 48px;margin-left:50px;margin-right:50px;">
-  <h2 class="center">My Subscriptions</h2>
-  <% if @customer.subscriptions.total_count != 0 %>
-    <table class="bordered">
-      <thead>
-        <tr>
-          <td>Product</td>
-          <td>Quantity</td>
-          <td>Price</td>
-          <td>Total Price</td>
-          <td>Last Payment</td>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <td><b>Total: </b></td>
-          <td></td>
-          <td></td>
-          <td><%= number_to_currency(current_customer.subscriptions_total(current_customer.stripe_customer_id)) %>/mo</td>
-        </tr>
-      </tfoot>
-      <tbody>
-        <% @customer.subscriptions.data.each do |subscription| %>
-          <tr>
-            <td><%= subscription.items.data[0].plan.name %></td>
-            <td><%= subscription.items.data[0].quantity %></td>
-            <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
-            <td><%= number_to_currency(subscription.items.data[0].plan.amount * subscription.items.data[0].quantity * 0.01) %>/mo</td>
-            <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="center">You have no subscriptions! <a href="/products">Subscribe to some products!</a><p>
-  <% end %>
+<body class="botysbackground-dark">
+  <h2 class="center lobster-font beige underline">Account Information</h2>
+  <br>
+    <div class="grid">
+      <div class="box-1">
+        <br>
+          <h5 class="center pangolin-font beige">Shipping Information</h5>
+          <br>
+          <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
+          <p>Address: <%= current_customer.address %></p>
+          <p><%= current_customer.Address2 %></p>
+          <p>City: <%= current_customer.city %></p> 
+          <p>State: <%= current_customer.state %></p>
+          <p>Zip: <%= current_customer.zip_code %></p>
 
-  <h2 class="center">Account Information</h2>
-  <div class="row" style="height:200px;">
-    <div class="col s6">
-      <h5 class="center">Contact Info</h5>
-      <p class="center"><b style="padding-right:1em">Email:</b><%= current_customer.email %></p>
-    </div>
-    <div class="col s6">
-      <h5 class="center">Other Info</h5>
-      <p class="center">More info..</p>
+        <br>
+        <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "btn-small btn-success" %>
+      </div>
+      <div class="box-2">
+        <br>
+        <h5 class="center pangolin-font beige">Subscriptions</h5>
+        <br>
+        <% if @stripe_customer.subscriptions.total_count != 0 %>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <td>Product</td>
+              <td>Quantity</td>
+              <td class="center">Price</td>
+              <td class="center">Subtotal</td>
+              <td>Last Payment</td>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td><b>Total: </b></td>
+              <td></td>
+              <td></td>
+              <td><%= number_to_currency(current_customer.subscriptions_total(current_customer.stripe_customer_id)) %>/mo</td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @stripe_customer.subscriptions.data.each do |subscription| %>
+              <tr>
+                <td><%= subscription.items.data[0].plan.name %></td>
+                <td class="center"><%= subscription.items.data[0].quantity %></td>
+                <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
+                <td><%= number_to_currency(subscription.items.data[0].plan.amount * subscription.items.data[0].quantity * 0.01) %>/mo</td>
+                <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      <% else %>
+
+        <p class="center pangolin-font">You have no subscriptions!<br><a href="/products">Subscribe to some products!</a></p>
+
+      <% end %>
+      <br>
     </div>
   </div>
+</body>
 
-</div>

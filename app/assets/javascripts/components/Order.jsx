@@ -26,13 +26,16 @@ var Order = React.createClass({
   },
   formatItem: function(){
     var listItems = [];
+    var divStyle = {
+      marginTop: '.5cm',
+    };
     this.state.order.items.map((item, index) => {
       if (item.type === "sku") {
-        listItems.push(<li key={index + '-description'}>{item.description}</li>);
-        listItems.push(<li key={index + '-quantity'}>{item.quantity}</li>);
-        listItems.push(<li key={index + '-amount'}>{ (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</li>);
+        listItems.push(<li key={index + '-description'}><div style={divStyle}>Product: {item.description}</div> </li>);
+        listItems.push(<li key={index + '-quantity'}>Quantity: {item.quantity}</li>);
+        listItems.push(<li key={index + '-amount'}>Amount: { (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</li>);
       } else if (item.type === "tax") {
-        listItems.push(<li key={index + "-tax"}>Tax: { item.amount} </li>);
+        listItems.push(<li key={index + "-tax"}><div style={divStyle}> Tax: { (item.amount).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div> </li>);
       }
     });
     return listItems;
@@ -99,17 +102,27 @@ var Order = React.createClass({
         <div className="col s2">
         </div> 
         <div className="col s5 test">
-          <h4>Review your Order</h4>
-          <ul>{this.formatItem()}</ul>
-          <ShippingToggle shipping={this.state.shipping}
-                          handleChange={this.handleShippingChange}
-                          shippingAmount={this.shippingCost()} />
-          <h5>
-            Total: { this.state.shipping ? 
-              (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
-              ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
-            }
-          </h5>
+          <div className="Checkout">
+            <div className="OrderSummary">
+              <div className="Title">Order Summary</div>
+                <table>
+                  <tr>
+                    {this.formatItem()}
+                  </tr>
+                </table>
+              </div>
+            <div className="Toggle">
+              <ShippingToggle shipping={this.state.shipping}
+                              handleChange={this.handleShippingChange}
+                              shippingAmount={this.shippingCost()} />
+            </div>
+            <div className="Total">
+              Total: { this.state.shipping ? 
+                (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
+                ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+              }
+            </div>
+          </div>
         </div>
       </div>
     )
