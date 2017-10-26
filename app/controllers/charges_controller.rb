@@ -26,6 +26,9 @@ class ChargesController < ApplicationController
     email = params[:stripeEmail]
     customer = Customer.find_by(stripe_customer_id: stripe_customer_id)
     customer.update(email: email)
+    stripe_customer = Stripe::Customer.retrieve(stripe_customer_id)
+    stripe_customer.email = email
+    stripe_customer.save
     email
   end
 end
