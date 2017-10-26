@@ -1,16 +1,5 @@
 <%#= react_component('ProductMessage', name: @product.name ) %>
-<script>
-  $(document).ready(function () {
-    $('#test').change(function () {
-      if (this.checked) {
-        $('#subscription').fadeIn(100) && $('#one-time-buy').fadeOut(100);
-      } else {
-        $('#subscription').fadeOut(100) && $('#one-time-buy').fadeIn(100);
-      }
 
-    });
-  });
-</script>
 <%= render "customers/shared/modal_for_sign_in.html.erb" %>
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
@@ -34,111 +23,73 @@
 
 <div style="width: 100%;">
   <div style="float:left; width: 50%">
-    <div id="subscription" class="col s12" style="display:none">
+    <div id="one-time-buy" class="col s12">
       <div class="container">
+        <div class="row">
+          <h3 class="lobster-font gray">Options for purchase</h3>
+        </div>
 
-        <h4>Subscription</h4>
+        <%= form_tag "/cart", method: :post do%>
 
-        <%= form_tag "/carted_subscription", method: :post, style: () do%>
-
-        <div class="section" style="height:100px;">
-          <div class="row">
-            <div class="input-field">
-
-                <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - " %>
+          <div class="section" style="height:100px;">
+            <div class="row">
+              <div class="input-field">
+                <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - ",id:'plan_id' %>
                 <label>Plan</label>
-
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="section" style="height:100px;">
-          <div class="row">
-            <div class="input-field">
-              <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
-              <label>Quantity</label>
+          <div id="sku_form" class="section" style="height:100px;">
+            <div class="row">
+              <div class="input-field">
+                <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
+                <label>Bean Style</label>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="section" style="height:100px;">
-          <div class="row">
-            <div class="input-field">
-              <%= select_tag :grind, options_for_select(["Ground", "Whole"]), prompt: " - Select Bean Style - " %>
-              <label>Bean Style</label>
+          <div id="subscription_form" class="section" style="height:100px;display:none">
+            <div class="row">
+              <div class="input-field">
+                <%= select_tag :grind, options_for_select(["Ground", "Whole"]), prompt: " - Select Bean Style - " %>
+                <label>Bean Style</label>
+              </div>
             </div>
           </div>
-        </div>
 
-        <%if customer_signed_in? %>
-          <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-        <%else%>
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
-        <%end%>
+          <div class="section" style="height:100px;">
+            <div class="row">
+              <div class="input-field">
+                <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
+                <label>Quantity</label>
+              </div>
+            </div>
+          </div>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= hidden_field_tag :price, @product.skus.data.first.price %>
+          <%= hidden_field_tag :name, @product.name %>
 
-        <%= hidden_field_tag :product_id, @product.id %>
-        <%= hidden_field_tag :price, @product.skus.data.first.price %>
-        <%= hidden_field_tag :name, @product.name %>
+          <%if customer_signed_in? %>
+            <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
+          <%else%>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add to Cart</a>
+          <%end%>
 
-        <br>
-        <br>
+          <br>
+          <br>
         <% end %>
+
       </div>
-      <%= hidden_field_tag :product_id, @product.id %>
-
-    <br>
-    <br>
-
-  </div>
-
-  <div id="one-time-buy" class="col s12">
-    <div class="container">
-      <div class="row">
-        <h3 class="lobster-font gray">One Time Buy</h3>
-      </div>
-
-      <%= form_tag "/cart", method: :post, style: () do%>
-        <div class="section" style="height:100px;">
-          <div class="row">
-            <div class="input-field">
-              <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
-              <label>Bean Style</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="section" style="height:100px;">
-          <div class="row">
-            <div class="input-field">
-              <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
-              <label>Quantity</label>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-
-        <%= hidden_field_tag :product_id, @product.id %>
-        <%= hidden_field_tag :price, @product.skus.data.first.price %>
-        <%= hidden_field_tag :name, @product.name %>
-        <br>
-        <br>
-      <% end %>
-
     </div>
   </div>
-</div>
-
-<div style="float:left;">
-  <input type="checkbox" id="test"/>
-  <label for="test" id="test">Subscribe</label>
-</div>
 
 </div>
 
 <div style="clear:both"></div>
 
 <script>
+
   $(document).ready(function () {
     $('select').material_select();
   });

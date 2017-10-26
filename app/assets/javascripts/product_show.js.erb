@@ -1,0 +1,9 @@
+$('#plan_id').on('change', function(){
+  if ($(this).val() === "One Time Buy") {
+    $('#sku_form').hide();
+    $('#subscription_form').show();
+  } else {
+    $('#sku_form').show();
+    $('#subscription_form').hide();
+  }
+})
