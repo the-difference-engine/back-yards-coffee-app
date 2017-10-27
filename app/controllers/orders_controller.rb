@@ -15,6 +15,11 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
-    @tax = @stripe_order.items.select{|item| item["type"] == "tax" }.first.amount
+    @product_name = @stripe_order.items.select{|item| item["type"] == "sku" }.first.description
+    @sku_price = @stripe_order.items.select{|item| item["type"] == "sku" }.first.amount * 0.01
+    @quantity = @stripe_order.items.select{|item| item["type"] == "sku" }.first.quantity
+    @unit_price = @sku_price / @quantity
+    @tax = @stripe_order.items.select{|item| item["type"] == "tax" }.first.amount * 0.01
+    @shipping = @stripe_order.items.select{|item| item["type"] == "shipping" }.first.amount * 0.01
   end
 end
