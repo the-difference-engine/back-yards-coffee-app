@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003200900) do
+ActiveRecord::Schema.define(version: 20171027000104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20171003200900) do
     t.string   "delivery_instructions"
     t.string   "recieving_hours"
     t.string   "days_closed"
+    t.integer  "customer_id"
   end
 
 end

@@ -2,6 +2,7 @@ class Customer < ApplicationRecord
 
   has_many :carted_products
   has_many :carted_subscriptions
+  has_one :wholesaler
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

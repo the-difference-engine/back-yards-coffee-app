@@ -41,4 +41,11 @@ class ApplicationController < ActionController::Base
       'application'
     end
   end
+
+  def authenticate_customer_or_employee!
+    unless current_customer || current_employee
+      flash[:warning] = 'Please log in'
+      redirect_to '/'
+    end
+  end
 end
