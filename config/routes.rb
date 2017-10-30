@@ -36,8 +36,8 @@ Rails.application.routes.draw do
 
   post '/carted_subscription' => 'carted_subscriptions#create'
 
-  get "/orders/new" => "orders#new"
-  get "/orders/:id" => "orders#show"
+  get '/orders/new' => 'orders#new'
+  get '/orders/:id' => 'orders#show'
 
   resources :products
   get '/subscriptions' => 'products#subscriptions'
