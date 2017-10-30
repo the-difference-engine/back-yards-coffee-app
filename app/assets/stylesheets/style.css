@@ -26,6 +26,13 @@ p {
   padding: 2em;
 }
 
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-gap: 2em;
+  padding: 2em;
+}
+
 .box-1 {
   color: #eadec2;
   border: 2px solid #ac2b1a;
@@ -87,7 +94,7 @@ footer.page-footer {
 }
 
 .page-footer a:link { 
-  padding: 10px;
+  padding: 20px;
 }
 
 .social-media-logo {
