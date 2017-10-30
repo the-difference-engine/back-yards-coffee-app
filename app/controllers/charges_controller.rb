@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
       redirect_to '/cart'
     end
 
-    #CREATE ORDER OBJECT
+    # CREATE ORDER OBJECT
     confirmed_order = Order.create(stripe_order_id: order.id, customer_id: current_customer.id)
 
     carted_products = CartedProduct.my_carted(guest_or_customer_id)
