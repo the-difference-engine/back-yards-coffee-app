@@ -103,6 +103,7 @@ var CartedProducts = React.createClass({
             <p className="right-align"><b>Total: </b>{(this.state.products_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
           )}
         </div>
+        <a className="btn botyred" href="/orders">Review Order</a>
       </div>
     )}
 })
