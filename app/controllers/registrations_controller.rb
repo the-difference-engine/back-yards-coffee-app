@@ -5,7 +5,4 @@ class RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     params.require(:customer).permit(:address, :Address2, :first_name, :last_name, :city, :state, :zip_code, :email, :password, :password_confirmation)
   end
-
-
-
 end
