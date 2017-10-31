@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/about' => 'pages#about'
   get '/coffee_club' => 'pages#coffee_club'
   get '/coffee_house' => 'pages#coffee_house'
+  get '/contact' => 'pages#contact'
+  get '/faqs' => 'pages#faqs'
 
   get '/menus/new' => 'menus#new'
   post '/menus' => 'menus#create'
@@ -49,6 +51,8 @@ Rails.application.routes.draw do
     get '/employees' => 'employees#index'
 
     get '/products' => 'products#index'
+
+    get '/subscriptions' => 'subscriptions#index'
 
     patch '/carted_products/:id/:qnty' => 'carted_products#update'
     delete '/carted_products/:id' => 'carted_products#destroy'

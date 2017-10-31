@@ -26,6 +26,13 @@ p {
   padding: 2em;
 }
 
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-gap: 2em;
+  padding: 2em;
+}
+
 .box-1 {
   color: #eadec2;
   border: 2px solid #ac2b1a;
@@ -46,6 +53,7 @@ p {
   letter-spacing: .2em;
 
 }
+
 
 .parallax-container {
   min-height: 380px;
@@ -82,6 +90,12 @@ p {
 
 footer.page-footer {
   margin: 0;
+
+}
+
+.page-footer a:link { 
+  padding: 20px;
+  color: ;
 }
 
 .social-media-logo {
