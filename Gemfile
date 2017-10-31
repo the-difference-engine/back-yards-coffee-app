@@ -43,6 +43,7 @@ gem 'materialize-sass'
 gem 'stripe'
 gem 'pry'
 gem 'simplecov', :require => false, :group => :test
+
 gem 'react-rails'
 gem 'shippo', git: 'https://github.com/goshippo/shippo-ruby-client'
 gem 'awesome_print'
