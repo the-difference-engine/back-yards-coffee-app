@@ -1,15 +1,14 @@
 <body class="botysbackground">
   <div class="container">
     <h3 class="lobster-font gray"> Shopping Cart </h3>
-      <br>
+    <br>
 
-<%= react_component('Cart',
- carted_products: @carted_products,
- carted_subscriptions: @carted_subscriptions,
- products_total: @products_total,
- subscriptions_total: @subscriptions_total,
- cart_total: @cart_total) %>
+    <%= react_component('Cart',
+     carted_products: @carted_products,
+     carted_subscriptions: @carted_subscriptions,
+     products_total: @products_total,
+     subscriptions_total: @subscriptions_total,
+     cart_total: @cart_total) %>
 
-    <a class="btn botyred" href="/orders">Complete Order</a>
   </div>
 </body>

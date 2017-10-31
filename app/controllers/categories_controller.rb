@@ -6,12 +6,13 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(
-      name: params[:name]
-      )
-    redirect_to '/coffee_house'
+    category = Category.new(category_params)
+    if category.save
+      redirect_to '/coffee_house'
+    else
+      redirect_to '/categories/new'
+    end
   end
-
 
   def edit
     category_id = params[:id]
@@ -30,5 +31,13 @@ class CategoriesController < ApplicationController
     @category = Category.find_by(id: category_id)
     @category.destroy
     redirect_to '/coffee_house'
+  end
+
+  private
+
+  def category_params
+    params.permit(
+      :name
+    )
   end
 end

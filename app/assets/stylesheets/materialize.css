@@ -2552,7 +2552,7 @@ ul:not(.browser-default) li {
 }
 
 a {
-  color: #039be5;
+  color: #ac2b1a;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -2862,22 +2862,24 @@ ul.staggered-list li {
 }
 
 .page-footer {
-  padding-top: 20px;
+  padding-top: 10px;
   background-color: #eadec2;
 }
 
 .page-footer .footer-copyright {
   overflow: hidden;
-  min-height: 50px;
+  min-height: 25px;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 0px;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(51, 51, 51, 0.08);
+  padding: 5px 0px;
+  background-color: #eadec2;
+  color: #32404b;
+  font-style: italic;
+  font-size: .8em;
 }
 
 table, th, td {
@@ -4219,6 +4221,7 @@ nav i.material-icons {
 nav .nav-wrapper {
   position: relative;
   height: 100%;
+  background-color: black;
 }
 
 @media only screen and (min-width: 993px) {
@@ -4310,7 +4313,7 @@ nav ul li.active {
 nav ul a {
   transition: background-color .3s;
   font-size: 1rem;
-  color: #fff;
+  color: white;
   display: block;
   padding: 0 15px;
   cursor: pointer;
@@ -8961,6 +8964,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .botysbackground {
   background-color: #eadec2;
+}
+
+.botysbackground-dark {
+  background-color: #32404b;
 }
 
 .backoff {
