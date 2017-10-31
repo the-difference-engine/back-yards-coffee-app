@@ -14,4 +14,12 @@ class PagesController < ApplicationController
   def coffee_house
     @categories = Category.all
   end
+
+  def contact
+    render 'contact.html.erb'
+  end
+
+  def faqs
+    render 'faqs.html.erb'
+  end
 end

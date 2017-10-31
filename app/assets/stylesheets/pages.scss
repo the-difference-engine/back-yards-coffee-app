@@ -25,6 +25,11 @@ body {
   text-shadow: 2px 2px 2px #000;
 }
 
+.roboto-font {
+  font-family: 'Roboto', sans-serif;
+  text-shadow: 1px 1px 1px #000;
+}
+
 .-font {
   font-family: 'Lobster', cursive;
 }
@@ -65,28 +70,6 @@ body {
   pointer-events: default;
   cursor: hand;
   color: white;
-}
-
-.fa fa-facebook 
-{ padding-right: 1em; 
-}
-
-.fa fa-facebook {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
-}
-
-.fa fa-instagram {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
-}
-
-.fa fa-tweeter {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
 }
 
 .active {
