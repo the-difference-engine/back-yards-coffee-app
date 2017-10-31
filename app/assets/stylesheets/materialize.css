@@ -4221,7 +4221,7 @@ nav i.material-icons {
 nav .nav-wrapper {
   position: relative;
   height: 100%;
-  background-color: #eadec2;
+  background-color: black;
 }
 
 @media only screen and (min-width: 993px) {
@@ -4313,7 +4313,7 @@ nav ul li.active {
 nav ul a {
   transition: background-color .3s;
   font-size: 1rem;
-  color: #ac2b1a;
+  color: white;
   display: block;
   padding: 0 15px;
   cursor: pointer;
