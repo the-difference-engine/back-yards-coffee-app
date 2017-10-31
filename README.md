@@ -1,3 +1,5 @@
+# Back of the Yards
+
 Back of the Yards Coffee Co. is a specialty coffee roaster located in Chicago's Back of the Yards community that not only produces great tasting coffee, but that also makes a direct social and economic impact in the community
 
 ## Application details:
