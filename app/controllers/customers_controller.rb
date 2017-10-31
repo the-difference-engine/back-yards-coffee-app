@@ -5,6 +5,7 @@ class CustomersController < ApplicationController
   def index
     @customers = Customer.all
   end
+
   def show
     @customer = Customer.find(current_customer.id)
     @stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_id)
@@ -16,16 +17,7 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(current_customer.id)
-    if @customer.update(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      address: params[:address],
-      Address2: params[:address2],
-      city: params[:city],
-      state: params[:state],
-      zip_code: params[:zip_code]
-    )
-
+    if @customer.update(customer_params)
       flash[:success] = 'Shipping address updated'
       StripeTool.customer_shipping_update(@customer)
       redirect_to '/customers/dashboard'
@@ -33,5 +25,19 @@ class CustomersController < ApplicationController
       flash[:warning] = 'Unable to update address'
       render :edit
     end
+  end
+
+  private
+
+  def customer_params
+    params.permit(
+      :first_name,
+      :last_name,
+      :address,
+      :Address2,
+      :city,
+      :state,
+      :zip_code
+    )
   end
 end
