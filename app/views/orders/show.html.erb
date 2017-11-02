@@ -1,25 +1,34 @@
-<body class="botysbackground">
-  <div class="container"> 
-
-    <%= react_component('Order', order: @order, customer: @customer) %>
-
-    <!-- STRIPE CHECKOUT FORM -->
-    <%= form_tag charges_path do %>
-      <article>
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <p><%= flash[:error] %></p>
-          </div>
-        <% end %>
-      </article>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Back of the Yards Coffee"
-              data-email="<%= current_customer.email if customer_signed_in? %>"
-              data-locale="auto"
-              data-label="Complete Order"
-              data-shipping-address="false"></script>
-      <%= hidden_field_tag :order_id, @order[:order].id %>
-    <% end %>
-  </div>
-</body>
+<h2>Thanks for your purchase!</h2>
+<h4>Order Summary</h4>
+<table style="width:50%">
+  <tr>
+    <td>Order number:</td>
+    <td><%= @order.id %></td>
+  </tr>
+  <tr>
+    <td>Order date:</td>
+    <td><%= @order.created_at %></td>
+  </tr>
+</table>
+<hr>
+<table style="width:100%">
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </tr>
+  <% @stripe_order.items.each do |item| %>
+    <tr style="border:1px">
+      <% if item.type == 'sku' %>
+          <td><%= item.description %></td>
+          <td><%= item.amount/item.quantity * 0.01 %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.amount * 0.01 %></td>
+      <% else %>
+        <td style="text-align:right" colspan="3"><%= item.type.capitalize %></td>
+        <td><%= item.amount * 0.01 %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
