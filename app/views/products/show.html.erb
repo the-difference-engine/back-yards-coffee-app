@@ -28,52 +28,7 @@
           <h3 class="lobster-font gray">Options for purchase</h3>
         </div>
 
-        <%= form_tag "/cart", method: :post do%>
-
-          <div class="section" style="height:100px;">
-            <div class="row">
-              <div class="input-field">
-                <%= select_tag :plan_id, options_for_select(@product_plan_options), prompt: " - Select Plan - ",id:'plan_id' %>
-                <label>Plan</label>
-              </div>
-            </div>
-          </div>
-
-          <div id="sku_form" class="section" style="height:100px;">
-            <div class="row">
-              <div class="input-field">
-                <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
-                <label>Bean Style</label>
-              </div>
-            </div>
-          </div>
-
-          <div id="subscription_form" class="section" style="height:100px;display:none">
-            <div class="row">
-              <div class="input-field">
-                <%= select_tag :grind, options_for_select(["Ground", "Whole"]), prompt: " - Select Bean Style - " %>
-                <label>Bean Style</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="section" style="height:100px;">
-            <div class="row">
-              <div class="input-field">
-                <%= select_tag :quantity, options_for_select((1..StripeTool.product_quantity(@product)).to_a), prompt: " - Select Quantity - " %>
-                <label>Quantity</label>
-              </div>
-            </div>
-          </div>
-          <%= hidden_field_tag :product_id, @product.id %>
-          <%= hidden_field_tag :price, @product.skus.data.first.price %>
-          <%= hidden_field_tag :name, @product.name %>
-
-
-            <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-          <br>
-          <br>
-        <% end %>
+        <%= render "form_for_buying_products" %>
 
       </div>
     </div>

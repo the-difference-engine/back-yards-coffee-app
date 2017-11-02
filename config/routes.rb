@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   get '/orders' => 'orders#show'
 
+  get '/fetch_products' => 'products#from_id'
+
   resources :products
   get '/subscriptions' => 'products#subscriptions'
   resources :charges

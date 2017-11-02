@@ -1,28 +1,60 @@
 <div class="container padding-top">
- <h1><span class="lobster-font">Products</span></h1>       
+  <h1>
+    <span class="lobster-font">Products</span>
+  </h1>
   <div class="row">
     <%@products.each do |product|%>
-      <div class ="col s12 m4">
-        <div class="card medium">
-          <div class="card-image">
-            <img class="activator" img src="<%=product.images[0]%>" >
-          </div>
+    <div class="col s12 m4">
+      <div class="card medium">
+        <div class="card-image">
+          <img class="activator" img src="<%=product.images[0]%>">
+        </div>
 
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><%=product.name%></span>
-          </div></a>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%=product.name%></span>
+        </div>
+      </a>
 
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4"><%=product.name%>
-              <i class="material-icons right">close</i></span>
-            <p><%=product.description%> jbfniaejkfba;ekfbaweik</p>
-            <p>Starting at <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
-            <a href="/products/<%= product.id %>" button class="btn waves-effect waves-light botyred " type="submit" name="action">Go to product</a>
-          </div>
-
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><%=product.name%>
+          <i class="material-icons right">close</i>
+        </span>
+        <div class="innercard">
+          <p><%=product.description%></p>
+          <p>Starting at
+            <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
+          <a href="/products/<%= product.id %>" class="btn waves-effect waves-light botyred " type="submit" name="action">Go to product</a>
+          <a href="#" id="id<%=product.id%>" class="add btn waves-effect waves-light botyred" >Add to cart</a>
         </div>
       </div>
-    <%end%>
 
+    </div>
   </div>
+  <%end%>
+
 </div>
+</div>
+
+<script>
+
+const addToCart = document.querySelectorAll('.add');
+
+function buyForm(){
+
+  // find the id param of this, get just the integer part
+  // ajax request function
+  // pass it id param based on what user clicked
+  // if it fails...
+  // if it succeeeds...
+  // it should have returned html
+
+  this.closest(".innercard").innerHTML = `
+  $.ajax('#from_for_buying_products').html("<%= escape_javascript (render partial: 'form_for_buying_products',locals{ product: @product_plan_options}) %>")`
+
+  };
+
+for(var i = 0; i<addToCart.length; i++){
+  addToCart[i].addEventListener('click', buyForm);
+}
+
+</script>
