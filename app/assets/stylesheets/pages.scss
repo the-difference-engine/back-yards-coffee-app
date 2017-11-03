@@ -16,29 +16,39 @@ body {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
-video#bgvid { 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -100;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-}
-
 .lobster-font {
   font-family: 'Lobster', cursive;
 }
 
-.lobster-font-gray {
-  font-family: 'Lobster', cursive;
-  color: #32404b
+.pangolin-font {
+  font-family: 'Pangolin';
+  text-shadow: 2px 2px 2px #000;
 }
+
+.roboto-font {
+  font-family: 'Roboto', sans-serif;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.-font {
+  font-family: 'Lobster', cursive;
+}
+
+
+.beige {
+  color: #eadec2;
+}
+
 .gray {
-  color: #32404b
+  color: #32404b;
+}
+
+.red {
+  color: #ac2b1a;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .title {
@@ -62,28 +72,6 @@ video#bgvid {
   color: white;
 }
 
-.fa fa-facebook 
-{ padding-right: 1em; 
-}
-
-.fa fa-facebook {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
-}
-
-.fa fa-instagram {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
-}
-
-.fa fa-tweeter {
-color: white;
-padding-left: 3em;
-font-size: fa-3x;
-}
-
 .active {
   color: grey;
 }
@@ -99,13 +87,3 @@ font-size: fa-3x;
   // width: 40px;
   padding-left: 665px;
 }
-
-
-
-
-
-
-
-
-
-

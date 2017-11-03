@@ -1,6 +1,11 @@
+Rails:
+  Enabled: true
 AllCops:
   Exclude:
     - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'vendor/**/*'
 
 Metrics/LineLength:
   Max: 250
@@ -10,3 +15,7 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

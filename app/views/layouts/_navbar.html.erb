@@ -1,6 +1,6 @@
 <div class="navbar">
   <nav>
-    <div class="nav-wrapper black">
+    <div class="nav-wrapper">
       <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="material-icons">menu</i>
@@ -54,10 +54,16 @@
     <li style="text-align: center;">
       <a href="/employees/dashboard">My Account</a>
     </li>
+     <% if current_employee&.admin %>
+      <li>
+        <a style="text-align: center;" href="/customers">All Customers</a>
+      </li>
+    <% end %>
     <li style="text-align: center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
   <% end %>
 </ul>
 
+<!-- Responsive View -->
 <ul id='mobile-demo' class='side-nav'>
   <li class="selected">
     <a href="/coffee_club">Coffee Club</a>
@@ -76,6 +82,7 @@
       <i class="material-icons">shopping_cart</i>
     </a>
   </li>
+
   <li class="divider"></li>
   <% if current_customer %>
     <li style="text-align: center;">
@@ -87,7 +94,9 @@
       <a href="/employees/dashboard">My Account</a>
     </li>
     <li style="text-align: center;"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
-
+  <%else%>
+    <li>
+      <a href="/customers/sign_in">Login</a>
+    </li>  
   <% end %>
-
 </ul>

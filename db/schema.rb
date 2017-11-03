@@ -87,8 +87,16 @@ ActiveRecord::Schema.define(version: 20171027000104) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "stripe_order_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "products", force: :cascade do |t|
