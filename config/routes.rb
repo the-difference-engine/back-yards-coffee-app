@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     get '/products' => 'products#index'
 
     get '/subscriptions' => 'subscriptions#index'
-    
     post '/subscriptions' => 'subscriptions#create'
 
     patch '/carted_products/:id/:qnty' => 'carted_products#update'
