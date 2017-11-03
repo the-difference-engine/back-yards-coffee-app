@@ -50,7 +50,7 @@ var Cart = React.createClass({
     if(this.state.carted_subscriptions.length) {
       return (
         <div>
-          <h5 className="center">Subscriptions</h5>
+          <h5 className="center lobster-font gray">Subscriptions</h5>
           <CartedSubscriptions handleUpdate={this.handleSubscriptionsUpdate} handleEmpty={this.handleSubscriptionsEmpty} cartedSubscriptions={this.state.carted_subscriptions} subscriptionsTotal={this.state.subscriptions_total}/>
         </div>
       )

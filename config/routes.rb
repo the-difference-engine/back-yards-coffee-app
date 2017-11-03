@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get '/orders/new' => 'orders#new'
   get '/orders/:id' => 'orders#show'
 
+  get '/subscriptions/new' => 'subscriptions#new'
+
   resources :products
   get '/subscriptions' => 'products#subscriptions'
   resources :charges
@@ -54,6 +56,7 @@ Rails.application.routes.draw do
     get '/products' => 'products#index'
 
     get '/subscriptions' => 'subscriptions#index'
+    post '/subscriptions' => 'subscriptions#create'
 
     patch '/carted_products/:id/:qnty' => 'carted_products#update'
     delete '/carted_products/:id' => 'carted_products#destroy'
