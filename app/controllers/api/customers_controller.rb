@@ -11,8 +11,16 @@ class Api::CustomersController < ApplicationController
       return
     end
     StripeTool.customer_shipping_update(@customer)
-    @order = StripeTool.create_order(@customer)
-    render json: @order
+    if params[:subscription]
+      valid_shipping_address = @customer.valid_shipping_address?
+      render json: { 
+        customer: @customer, 
+        valid_shipping_address: valid_shipping_address 
+      }
+    else
+      @order = StripeTool.create_order(@customer)
+      render json: @order
+    end
   end
 
   private

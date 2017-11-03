@@ -50,7 +50,7 @@ var Order = React.createClass({
     var that = this;
     $.ajax({
       type: "PATCH",
-      url: "/api/customers/" + this.state.customer.id, 
+      url: "/api/customers/" + this.state.customer.id + '?page=order', 
       contentType: "application/json",
       dataType: "json", 
       data: JSON.stringify(obj),
