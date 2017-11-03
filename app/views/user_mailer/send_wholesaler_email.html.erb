@@ -6,6 +6,9 @@
 </head>
 <body>
   <h1>Thanks for submitting your application</h1>
+  <%= link_to 'view wholesaler application', wholesalers_url + '/' + @wholesaler.id.to_s %>
+  
+<!--    link_to "http://localhost:3000/#{@wholesaler.id}", "Click Me", target: :_blank -->
 
 </body>
 </html>

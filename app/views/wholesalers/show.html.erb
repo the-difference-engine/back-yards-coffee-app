@@ -1,0 +1,44 @@
+<body class="botybgblue">
+  <div class="container">
+    <div class="row wholesaler-bg">
+    <h1 class="lobster-font botytanletter center">Your Wholesaler Application!</h1>
+      <div class="col s8 m8 l12" >
+        <div class="info-column" ">Contact Info</div>
+        <div class="botytanletter apppad">Business Name: <%= @wholesaler.business_name %></div>
+        <div class="botytanletter apppad">Contact Name: <%= @wholesaler.contact_name %></div>
+        <div class="botytanletter apppad">Phone: <%= @wholesaler.work_phone %></div>
+        <div class="botytanletter apppad">Website: <%= @wholesaler.website %></div>
+      </div>
+      <div class="col s8 m8 l12" > 
+        <div class="info-column" ">Billing Address</div>
+        <div class="botytanletter apppad">Address: <%= @wholesaler.billing_address %></div>
+        <div class="botytanletter apppad">City: <%= @wholesaler.billing_city %></div>
+        <div class="botytanletter apppad">State: <%= @wholesaler.billing_state %></div>
+        <div class="botytanletter apppad">Zip Code: <%= @wholesaler.billing_zip_code %></div>
+      </div>
+      <div class="col s8 m8 l12" >
+        <div class="info-column" ">Shipping Adress</div>
+        <div class="botytanletter apppad">Address: <%= @wholesaler.shipping_address %></div>
+        <div class="botytanletter apppad">City: <%= @wholesaler.shipping_city %></div>
+        <div class="botytanletter apppad">State: <%= @wholesaler.shipping_state %></div>
+        <div class="botytanletter apppad">Zip Code: <%= @wholesaler.shipping_zip_code %></div>
+        <div class="botytanletter apppad">Instructions: <%= @wholesaler.delivery_instructions %></div>
+        <div class="botytanletter apppad">Recieving Hours: <%= @wholesaler.recieving_hours %></div>
+      </div>
+      <div class="col s8 m8 l12" >
+        <div class="info-column" ">Additional Information</div>
+        <div class="botytanletter apppad">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
+        <div class="botytanletter apppad">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
+        <div class="botytanletter apppad">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
+        <div class="botytanletter apppad">Retailer: <%= @wholesaler.retailer %></div>
+        <div class="botytanletter apppad">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
+        <div class="botytanletter apppad">Closed: <%= @wholesaler.days_closed %></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+

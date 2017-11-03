@@ -42,6 +42,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_customer_or_employee!
+    unless current_customer || current_employee
+      flash[:warning] = 'Please log in'
+      redirect_to '/'
+    end
+  end
+
   def authenticate_employee_admin!
     return if current_employee&.admin
     flash[:error] = 'User does not have access'

@@ -1,5 +1,6 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except: [:show]
+  before_action :authenticate_customer_or_employee!, only: [:show]
   def index
   end
 
@@ -9,12 +10,20 @@ class WholesalersController < ApplicationController
   end
 
   def create
-    @wholesaler = Wholesaler.create(wholesaler_params)
+    @wholesaler = Wholesaler.create(wholesaler_params.merge(customer_id: current_customer.id))
     if @wholesaler.save
-      UserMailer.send_wholesaler_email.deliver_now
+      UserMailer.send_wholesaler_email(@wholesaler).deliver_now
       render 'create.html.erb'
     else
       render 'new.html.erb'
+    end
+  end
+
+  def show
+    if current_employee
+      @wholesaler = Wholesaler.find_by(id: params[:id])
+    else
+      @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
     end
   end
 

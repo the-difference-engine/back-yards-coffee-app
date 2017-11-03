@@ -8981,4 +8981,20 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   color: #ac2b1a;
 }
 
+.botybgblue {
+  background-color: #32404b;
+}
+.botytanletter {
+  color: #eadec2;
+}
+.botywhite {
+  background-color: white;
+  opacity: .5
+}
+.botyblueletter {
+  color: #32404b;
+}
+.apppad {
+  padding-left: 25px;
+}
 }
