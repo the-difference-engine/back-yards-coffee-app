@@ -23,8 +23,17 @@
           <p><%=product.description%></p>
           <p>Starting at
             <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
-          <a href="/products/<%= product.id %>" class="btn waves-effect waves-light botyred " type="submit" name="action">Go to product</a>
-          <a href="#" id="id<%=product.id%>" class="add btn waves-effect waves-light botyred" >Add to cart</a>
+            <div class="section">
+          <div class="row">
+            <div class="col s6">
+            <a href="/products/<%= product.id %>" class="btn-large btn-floating waves-effect waves-light botyred tooltipped" type="submit" name="action" data-delay="5" data-tooltip="More info"><i class="material-icons large">info_outline</i></a>
+          </div>
+          <div class="col s6">
+            <a href="#" id="id<%=product.id%>" class="add btn-large
+              btn-floating waves-effect waves-light botyred tooltipped" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
+          </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -40,21 +49,31 @@
 const addToCart = document.querySelectorAll('.add');
 
 function buyForm(){
+  const thisProdId = this.id.slice(2)
 
-  // find the id param of this, get just the integer part
-  // ajax request function
-  // pass it id param based on what user clicked
-  // if it fails...
-  // if it succeeeds...
-  // it should have returned html
-
-  this.closest(".innercard").innerHTML = `
-  $.ajax('#from_for_buying_products').html("<%= escape_javascript (render partial: 'form_for_buying_products',locals{ product: @product_plan_options}) %>")`
-
-  };
-
-for(var i = 0; i<addToCart.length; i++){
-  addToCart[i].addEventListener('click', buyForm);
+  $.ajax({
+    type: 'GET',
+    url: `/products/${thisProdId}`,
+    success: (data) => {
+      this.closest(".innercard").innerHTML = data
+  },
+    error: function() {},
+      }).then(function(){
+          console.log("helo")
+          $(document).ready(function() {
+          $('select').material_select();
+        });
+      })
 }
+
+  for(var i = 0; i<addToCart.length; i++){
+    addToCart[i].addEventListener('click', buyForm);
+  }
+
+</script>
+<script>
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 5});
+  });
 
 </script>
