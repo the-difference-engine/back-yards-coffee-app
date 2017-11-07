@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003200900) do
+ActiveRecord::Schema.define(version: 20171107005804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,16 @@ ActiveRecord::Schema.define(version: 20171003200900) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_employees_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "stripe_order_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -106,8 +114,8 @@ ActiveRecord::Schema.define(version: 20171003200900) do
     t.string   "title"
     t.string   "work_phone"
     t.string   "alternate_phone"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "billing_address"
     t.string   "billing_city"
     t.string   "billing_state"
@@ -125,6 +133,8 @@ ActiveRecord::Schema.define(version: 20171003200900) do
     t.string   "delivery_instructions"
     t.string   "recieving_hours"
     t.string   "days_closed"
+    t.integer  "customer_id"
+    t.boolean  "is_approved",                    default: false
   end
 
 end
