@@ -1,5 +1,6 @@
 class CartedProductsController < ApplicationController
   def create
+    # checks plan id first; if plan id indicates one time purchase then directed to carted products checkout process
     if params[:plan_id] == 'One Time Buy'
       carted_product = CartedProduct.find_by(
         status: 'carted',
@@ -23,10 +24,10 @@ class CartedProductsController < ApplicationController
         flash[:success] = 'Product Added to Cart!'
         redirect_to '/cart'
       else
-        flash[:error] = carted_product.errors.full_messages.join(', ').gsub(/[']/, "\\\\\'")
+        flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
         redirect_to "/products/#{params[:product_id]}"
       end
-
+    # if plan id is determined to not be a one time purchase a stripe plan id is assigned and checkout is directed to carted subscriptions
     else
       carted_subscription = CartedSubscription.find_by(
         status: 'carted',
