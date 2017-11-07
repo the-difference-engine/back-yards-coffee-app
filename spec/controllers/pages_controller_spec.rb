@@ -44,4 +44,18 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "GET pages#contact" do
+    it 'should renter the contact page' do
+      get :contact
+      expect(response).to render_template :contact
+    end
+  end
+
+  describe "GET pages#faqs" do
+    it 'should render faqs page' do
+     get :faqs
+     expect(response).to render_template :faqs
+   end
+ end
+
 end
