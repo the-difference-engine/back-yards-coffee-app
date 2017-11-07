@@ -30,15 +30,15 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe 'GET pages#coffee_house' do 
-    it 'should render the coffee_house page' do 
+  describe 'GET pages#coffee_house' do
+    it 'should render the coffee_house page' do
       get :coffee_house
       expect(response).to render_template :coffee_house
     end
   end
 
-  describe 'GET pages#coffee_club' do 
-    it 'should render the coffee_club page' do 
+  describe 'GET pages#coffee_club' do
+    it 'should render the coffee_club page' do
       get :coffee_club
       expect(response).to render_template :coffee_club
     end
@@ -53,8 +53,8 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'GET pages#faqs' do
     it 'should render faqs page' do
-     get :faqs
-     expect(response).to render_template :faqs
-   end
- end
+      get :faqs
+      expect(response).to render_template :faqs
+    end
+  end
 end
