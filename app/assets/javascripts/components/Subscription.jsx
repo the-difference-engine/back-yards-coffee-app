@@ -63,7 +63,23 @@ var Subscription = React.createClass({
       }
     })
   },
+  shippingCost: function(){
+    let shippingCost = (_.last(this.state.cartedSubscriptions).amount * 0.01)
+          .toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2});
+    return this.state.validShippingAddress ? shippingCost : shippingCost + ' (Estimated)'
+  },
+  calcTotal: function() {
+    console.log("calculating total" + this.state.subscriptions_total);
+    var total = 0;
+    this.state.cartedSubscriptions.forEach(function(carted_subscription) {
+      console.log(carted_subscription);
+      total += (carted_subscription.amount * carted_subscription.quantity)
+      });
+    console.log("FINISHED CALCULATING.." + total);
+    return (total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2});
+  },
   render: function() {  
+    var total = 0;
     var divStyle = {
       marginTop: '.5cm',
     };
@@ -85,13 +101,14 @@ var Subscription = React.createClass({
                 {this.state.cartedSubscriptions.map((sub, i) => {
                   return (
                     <tr key={i}>
-                      Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})} <div style={divStyle}></div>
+                      <h5 className="left roboto-font gray">Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})} <div style={divStyle}></div></h5>
                     </tr>
                     )
                   })
                 }
-              </table>
-            </div>
+              </table>      
+          </div>
+          <h4 className="left lobster-font gray">Total: <div className="Total">{(this.calcTotal())}</div></h4>
           </div>
         </div>
       </div>
