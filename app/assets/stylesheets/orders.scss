@@ -23,6 +23,10 @@ table {
   font-weight: 400;
 }
 
+.OrderDetails {
+  margin-top: 10px;
+}
+
 
 .Toggle {
   font-family: 'Roboto';
@@ -45,11 +49,12 @@ table {
 }
 
 .Total {
-  font-family: 'Lobster';
+  font-family: 'Pangolin';
   color: #ac2b1a;
   display: inline;
   font-size: 32px;
   letter-spacing: 2px;
+  padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   align-items: flex-end;
