@@ -35,7 +35,7 @@ var Order = React.createClass({
         listItems.push(<li key={index + '-quantity'}>Quantity: {item.quantity}</li>);
         listItems.push(<li key={index + '-amount'}>Amount: { (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</li>);
       } else if (item.type === "tax") {
-        listItems.push(<li key={index + "-tax"}><div style={divStyle}> Tax: { (item.amount).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div> </li>);
+        listItems.push(<li key={index + "-tax"}><div style={divStyle}> Tax: { (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div> </li>);
       }
     });
     return listItems;
