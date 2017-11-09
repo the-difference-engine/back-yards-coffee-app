@@ -26,16 +26,13 @@ var Order = React.createClass({
   },
   formatItem: function(){
     var listItems = [];
-    var divStyle = {
-      marginTop: '.5cm',
-    };
     this.state.order.items.map((item, index) => {
       if (item.type === "sku") {
-        listItems.push(<li key={index + '-description'}><div style={divStyle}>Product: {item.description}</div> </li>);
+        listItems.push(<li key={index + '-description'}><div className="OrderDetails">Product: {item.description}</div> </li>);
         listItems.push(<li key={index + '-quantity'}>Quantity: {item.quantity}</li>);
         listItems.push(<li key={index + '-amount'}>Amount: { (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</li>);
       } else if (item.type === "tax") {
-        listItems.push(<li key={index + "-tax"}><div style={divStyle}> Tax: { (item.amount).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div> </li>);
+        listItems.push(<li key={index + "-tax"}><div className="OrderDetails"> Tax: { (item.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div> </li>);
       }
     });
     return listItems;
@@ -116,12 +113,12 @@ var Order = React.createClass({
                               handleChange={this.handleShippingChange}
                               shippingAmount={this.shippingCost()} />
             </div>
-            <div className="Total">
-              Total: { this.state.shipping ? 
-                (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
-                ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+          </div>
+          <h5 className="left roboto-font gray">Total: </h5><div className="Total">
+              { this.state.shipping ? 
+              (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
+              ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
               }
-            </div>
           </div>
         </div>
       </div>

@@ -80,9 +80,6 @@ var Subscription = React.createClass({
   },
   render: function() {  
     var total = 0;
-    var divStyle = {
-      marginTop: '.5cm',
-    };
     return (
       <div className="row">
         <div className="col s5">
@@ -101,14 +98,14 @@ var Subscription = React.createClass({
                 {this.state.cartedSubscriptions.map((sub, i) => {
                   return (
                     <tr key={i}>
-                      <h5 className="left roboto-font gray">Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})} <div style={divStyle}></div></h5>
+                      <div className="OrderDetails"><p>Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})}</p></div>
                     </tr>
                     )
                   })
                 }
               </table>      
           </div>
-          <h4 className="left lobster-font gray">Total: <div className="Total">{(this.calcTotal())}</div></h4>
+          <h4 className="left roboto-font gray">Total: <div className="Total">{(this.calcTotal())}</div></h4>
           </div>
         </div>
       </div>
