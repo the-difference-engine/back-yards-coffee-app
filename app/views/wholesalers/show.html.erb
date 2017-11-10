@@ -26,17 +26,29 @@
         <div class="botytanletter apppad">Recieving Hours: <%= @wholesaler.recieving_hours %></div>
       </div>
       <div class="col s8 m8 l12" >
-        <div class="info-column" ">Additional Information</div>
-        <div class="botytanletter apppad">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
-        <div class="botytanletter apppad">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
-        <div class="botytanletter apppad">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
-        <div class="botytanletter apppad">Retailer: <%= @wholesaler.retailer %></div>
-        <div class="botytanletter apppad">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
-        <div class="botytanletter apppad">Closed: <%= @wholesaler.days_closed %></div>
+        <div class="info-column">Additional Information
+        <div class="apppad">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
+        <div class="apppad">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
+        <div class="apppad">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
+        <div class="apppad">Retailer: <%= @wholesaler.retailer %></div>
+        <div class="apppad">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
+        <div class="apppad">Closed: <%= @wholesaler.days_closed %></div>
+      </div>
       </div>
     </div>
   </div>
+  <% if current_employee && current_employee.admin %>
+    <div class="center wsmargin">
+    <%= link_to "Approve", "/wholesalers/#{@wholesaler.id}?is_approved=true&is_rejected=false", class: 'waves-effect waves-light btn', :method=> :patch %>
+    <%= link_to "Reject", "/wholesalers/#{@wholesaler.id}?is_rejected=true&is_approved=false", class: 'waves-effect waves-light btn', :method=> :patch %>
+      <br>
+    </div>
+  <% end %>
+  <% if current_customer %>
+    Edit
+  <% end %>
 </body>
+
 
 
 
