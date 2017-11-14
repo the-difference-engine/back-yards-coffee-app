@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027000104) do
+ActiveRecord::Schema.define(version: 20171107015656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(version: 20171027000104) do
     t.string   "title"
     t.string   "work_phone"
     t.string   "alternate_phone"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "billing_address"
     t.string   "billing_city"
     t.string   "billing_state"
@@ -134,6 +134,8 @@ ActiveRecord::Schema.define(version: 20171027000104) do
     t.string   "recieving_hours"
     t.string   "days_closed"
     t.integer  "customer_id"
+    t.boolean  "is_approved",                    default: false
+    t.boolean  "is_rejected",                    default: false
   end
 
 end

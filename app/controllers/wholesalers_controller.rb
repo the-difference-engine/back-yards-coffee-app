@@ -1,6 +1,5 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_customer!, except: [:show]
-  before_action :authenticate_customer_or_employee!, only: [:show]
+  before_action :authenticate_customer_or_employee!
   def index
   end
 
@@ -22,8 +21,33 @@ class WholesalersController < ApplicationController
   def show
     if current_employee
       @wholesaler = Wholesaler.find_by(id: params[:id])
-    else
+    elsif @current_customer.wholesaler
       @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
+    else
+      flash[:warning] = 'You have not submitted an application!'
+      redirect_to '/'
+    end
+  end
+
+  def edit
+    if current_customer && current_customer.wholesaler
+      @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
+    else
+      flash[:warning] = 'You have not submitted an application!'
+      redirect_to '/'
+    end
+  end
+
+  def update
+    @wholesaler = Wholesaler.find(params[:id])
+    if @wholesaler.update(wholesaler_params)
+      flash[:success] = 'Updated!'
+      flash[:success] = 'Approved!' if params[:is_approved] == 'true'
+      flash[:success] = 'Rejected!' if params[:is_rejected] == 'true'
+      redirect_to '/wholesalers'
+    else
+      flash[:warning] = 'Something went wrong.'
+      render :show
     end
   end
 
@@ -50,7 +74,9 @@ class WholesalersController < ApplicationController
         :tax_exempt,
         :delivery_instructions,
         :recieving_hours,
-        :days_closed
+        :days_closed,
+        :is_approved,
+        :is_rejected
       )
     end
 end
