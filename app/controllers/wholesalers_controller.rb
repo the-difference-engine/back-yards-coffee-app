@@ -1,6 +1,5 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_customer!, except: [:show]
-  before_action :authenticate_customer_or_employee!, only: [:show]
+  before_action :authenticate_customer_or_employee!
   def index
   end
 

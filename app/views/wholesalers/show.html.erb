@@ -41,7 +41,6 @@
     <div class="center wsmargin">
     <%= link_to "Approve", "/wholesalers/#{@wholesaler.id}?is_approved=true&is_rejected=false", class: 'waves-effect waves-light btn', :method=> :patch %>
     <%= link_to "Reject", "/wholesalers/#{@wholesaler.id}?is_rejected=true&is_approved=false", class: 'waves-effect waves-light btn', :method=> :patch %>
-      <br>
     </div>
   <% end %>
   <% if current_customer %>
