@@ -36,16 +36,18 @@
       </div>
       </div>
     </div>
-  </div>
+
   <% if current_employee && current_employee.admin %>
     <div class="center wsmargin">
     <%= link_to "Approve", "/wholesalers/#{@wholesaler.id}?is_approved=true&is_rejected=false", class: 'waves-effect waves-light btn', :method=> :patch %>
     <%= link_to "Reject", "/wholesalers/#{@wholesaler.id}?is_rejected=true&is_approved=false", class: 'waves-effect waves-light btn', :method=> :patch %>
     </div>
   <% end %>
+  
   <% if current_customer %>
-    Edit
+      <a class='btn wsmargin' href="/wholesalers/<%=@wholesaler.id%>/edit">Edit Application</a>
   <% end %>
+  </div>
 </body>
 
 
