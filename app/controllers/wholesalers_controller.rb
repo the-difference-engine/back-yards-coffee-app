@@ -1,6 +1,7 @@
 class WholesalersController < ApplicationController
   before_action :authenticate_customer_or_employee!
   def index
+    @apps = Wholesaler.all
   end
 
   def new

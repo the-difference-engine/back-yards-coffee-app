@@ -10,4 +10,30 @@
     <% end %>
 <% else %>
   <h4 class="center lobster-font gray"> Please sign-up or login to access wholesaler application </h4>
+
+
 <% end %>
+<% else current_employee.admin %> 
+<div class="container">
+<h3 class="center">Wholesaler Applications</h3>
+<table class="striped centered responsive-table">
+  <thead>
+    <tr>
+      <th>Business Name</th>
+      <th>Contact Name</th>
+      <th>Created</th>
+      <th>Application Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr>
+        <td><%= app.business_name %> </td>
+        <td><%= app.contact_name %> </td>
+        <td><%= app.created_at.strftime('%b %e %Y') %> </td>
+        <td><%= app.is_approved ? "Approved" : app.is_rejected ? "Rejected" : "Pending" %></td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>
+</div>
