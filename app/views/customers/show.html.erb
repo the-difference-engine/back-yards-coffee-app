@@ -1,10 +1,10 @@
-<body class="botysbackground-dark">
-  <h2 class="center lobster-font beige underline">Account Information</h2>
+<body class="botysbackground">
+  <h2 class="center lobster-font underline">Account Information</h2>
   <br>
     <div class="grid">
       <div class="box-1">
         <br>
-          <h5 class="center pangolin-font beige">Shipping Information</h5>
+          <div class="Title">Shipping Information</div>
           <br>
           <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
           <p>Address: <%= current_customer.address %></p>
@@ -18,7 +18,7 @@
       </div>
       <div class="box-2">
         <br>
-        <h5 class="center pangolin-font beige">Subscriptions</h5>
+        <div class="Title">Coffee Club Plan(s)</div>
         <br>
         <% if @stripe_customer.subscriptions.total_count != 0 %>
         <table class="bordered">

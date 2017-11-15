@@ -39,7 +39,6 @@ var Cart = React.createClass({
     if(this.state.carted_products.length) {
       return (
         <div>
-          <h5 className="center lobster-font gray">One Time Purchases</h5>
           <CartedProducts handleUpdate={this.handleProductsUpdate} handleEmpty={this.handleProductsEmpty} cartedProducts={this.state.carted_products} productsTotal={this.state.products_total} />
         </div>
       )
@@ -50,7 +49,6 @@ var Cart = React.createClass({
     if(this.state.carted_subscriptions.length) {
       return (
         <div>
-          <h5 className="center lobster-font gray">Subscriptions</h5>
           <CartedSubscriptions handleUpdate={this.handleSubscriptionsUpdate} handleEmpty={this.handleSubscriptionsEmpty} cartedSubscriptions={this.state.carted_subscriptions} subscriptionsTotal={this.state.subscriptions_total}/>
         </div>
       )
@@ -59,7 +57,7 @@ var Cart = React.createClass({
   _renderCartTotal: function() {
     if((this.state.carted_subscriptions.length) && (this.state.carted_products.length)) {
       return (
-        <div><h5><b>OVERALL TOTAL:</b> {(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</h5></div>
+        <div className="box-3"><b>Grand Total:</b> <div className="Total">{(this.state.cart_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</div></div>
       )
     }
   },

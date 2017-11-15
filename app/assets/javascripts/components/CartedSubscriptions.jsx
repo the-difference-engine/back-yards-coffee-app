@@ -73,26 +73,21 @@ var CartedSubscriptions = React.createClass({
   render() {
 
     return (
-      <div>
-        <table className="table">
+      <div className="box-2">
+        <div className="Title">Coffee Club Plan(s)</div>
+        <table className="bordered">
           <thead>
             <tr>
-              <td> <b>ID</b> </td>
-              <td> <b>PLAN ID</b> </td>
-              <td> <b>UNIT PRICE</b> </td>
-              <td> <b>QUANTITY</b> </td>
-              <td> <b>TYPE</b> </td>
-              <td> <b>TOTAL PRICE</b> </td>
+              <td> <b>Plan</b> </td>
+              <td> <b>Quantity</b> </td>
+              <td> <b>Price</b> </td>
             </tr>
           </thead>
           <tbody>
             {this.state.carted_subscriptions.map((carted_subscription, index) =>
               <tr key={carted_subscription.id}>
-                <td>{ carted_subscription.id }</td>
                 <td>{ carted_subscription.plan_id }</td>
-                <td>{ (carted_subscription.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_subscription} />
-                <td>{ carted_subscription.grind }</td>
                 <td>{ ((carted_subscription.amount * carted_subscription.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <DltBtn handler={this.deleteItem} key={carted_subscription.id} item={carted_subscription} />
               </tr>
@@ -102,12 +97,12 @@ var CartedSubscriptions = React.createClass({
         <hr/>
         <div id="cart-total">
           {this.state.isEmpty ? (
-            <p className="center">Your subscriptions cart is empty. Shop for more coffee <a href="/products">here</a>!</p>
+            <p className="center">You have not added any Coffee Club plans. Shop for plans <a href="/products">here</a>!</p>
           ) : (
-            <p className="right-align"><b>Total: </b>{(this.state.subscriptions_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+            <p className="right-align"><b>Subtotal: </b>{(this.state.subscriptions_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
           )}
         </div>
-         <a className="btn botyred" href="/subscriptions/new">Review Subscription</a>
+         <a className="btn" href="/subscriptions/new">REVIEW</a>
       </div>
     )}
 })

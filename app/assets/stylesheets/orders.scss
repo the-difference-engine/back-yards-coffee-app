@@ -37,19 +37,19 @@ table {
 }
     
 .Title {
-  font-family: 'Lobster';
+  font-family: 'Century Gothic';
   color: #32404b;
   letter-spacing: 2px;
-  font-size: 32px;
+  align: center;
+  font-size: 24px;
   text-decoration: underline;
   padding: 20px;
-  font-family: 'Lobster';
   text-shadow: 1px 1px 1px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .Total {
-  font-family: 'Pangolin';
+  font-family: 'Century Gothic';
   color: #ac2b1a;
   display: inline;
   font-size: 32px;
@@ -61,3 +61,5 @@ table {
   text-transform: uppercase;
   font-weight: 600;
 }
+
+
