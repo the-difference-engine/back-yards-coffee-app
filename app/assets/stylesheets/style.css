@@ -34,7 +34,7 @@ p {
 }
 
 .box-1 {
-  color: #eadec2;
+  color: #32404b;
   border: 2px solid #ac2b1a;
   border-radius: 20px;
   padding: 20px;
@@ -44,16 +44,25 @@ p {
 }
 
 .box-2 {
-  color: #eadec2;
+  color: #32404b;
   border: 2px solid #ac2b1a;
   border-radius: 20px;
   padding: 30px;
-  margin: auto;
+  margin: 20px;
   text-transform: uppercase;
   letter-spacing: .2em;
 
 }
 
+.box-3 {
+  color: #32404b;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-right: 20px;
+  float: right;
+  font-family: 'Century Gothic';
+  font-size: 32px;
+}
 
 .parallax-container {
   min-height: 380px;

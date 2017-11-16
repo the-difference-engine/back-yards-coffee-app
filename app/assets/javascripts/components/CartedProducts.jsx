@@ -73,21 +73,21 @@ var CartedProducts = React.createClass({
   render() {
 
     return (
-      <div>
-        <table className="table">
+      <div className="box-2">
+        <div className="Title">One-Time Purchase(s)</div>
+        <table className="bordered">
           <thead>
             <tr>
-              <td> <b>Product Name</b> </td>
-              <td> <b>Unit Price</b> </td>
+              <td> <b>Product</b> </td>
               <td> <b>Quantity</b> </td>
-              <td> <b>Total Price</b> </td>
+              <td> <b>Price</b> </td>
             </tr>
           </thead>
-          <tbody class="">
+          <tbody>
             {this.state.carted_products.map((carted_product, index) =>
               <tr key={carted_product.id}>
-                <td>{ carted_product.name }</td>
-                <td>{ (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</td>
+                <td>{ carted_product.name } /
+                { (carted_product.price * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})} ea.</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_product} />
                 <td>{ ((carted_product.price * carted_product.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <DltBtn handler={this.deleteItem} key={carted_product.id} item={carted_product} />
@@ -98,12 +98,12 @@ var CartedProducts = React.createClass({
         <hr/>
         <div id="cart-total">
           {this.state.isEmpty ? (
-            <p className="center">Your cart is empty. Shop for more coffee <a href="/products">here</a>!</p>
+            <p className="center">Your cart is empty. Shop for more products <a href="/products">here</a>!</p>
           ) : (
-            <p className="right-align"><b>Total: </b>{(this.state.products_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
+            <p className="right-align"><b>Subtotal: </b>{(this.state.products_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
           )}
         </div>
-        <a className="btn botyred" href="/orders/new">Review Order</a>
+        <a className="btn" href="/orders/new">REVIEW</a>
       </div>
     )}
 })
