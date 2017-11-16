@@ -29,8 +29,18 @@
       <p>The social impact fund is meant to fund youth programs, education and scholarships as well as encouraging peace within the community.</p>
     </div>
   </div>
+  <div class="carousel">
+    <a class="carousel-item" href="#one!"><%=image_tag("botycoffeebanner2.jpg", alt: "Unsplashed background img 1")%></a>
+    <a class="carousel-item" href="#two!"><%=image_tag("botyrecycle1.jpg", alt: "Unsplashed background img 1")%></a>
+    <a class="carousel-item" href="#three!"><%=image_tag("botycoffeebanner3.jpg", alt: "Unsplashed background img 1")%></a>
+    <a class="carousel-item" href="#four!"><%=image_tag("botyrecycle2.jpg", alt: "Unsplashed background img 1")%></a>
+    <a class="carousel-item" href="#five!"><%=image_tag("botycoffeebanner4.jpg", alt: "Unsplashed background img 1")%></a>
+  </div>
 </div>
 
 <script>
   $('.carousel.carousel-slider').carousel({fullWidth: true});
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
 </script>
