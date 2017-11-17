@@ -1,19 +1,5 @@
-
-<% if current_customer %>
-  <h1 class="center lobster-font gray"> About Becoming a Wholesaler </h1>
-  <div id="resize"><%=image_tag("Wholesale_Packet.png", alt: "Unsplashed background img 1")%></div>
-    <% if current_customer.wholesaler %>
-      <p class="center"> Click to see your <a href="/wholesalers/<%=@current_customer.wholesaler.id%>"> Application</a></p>
-    <% else %>
-      <h2 class="center lobster-font gray">Interested in Becoming a Wholesaler?</h2>
-      <p class="center"> Click here to apply! <a href="/wholesalers/new"> Application</a></p>
-    <% end %>
-<% else %>
-  <h4 class="center lobster-font gray"> Please sign-up or login to access wholesaler application </h4>
-
-
-<% end %>
-<% else current_employee.admin %> 
+<!-- Employee View shows all wholesaler applications -->
+<% if current_employee  %> 
 <div class="container">
 <h3 class="center">Wholesaler Applications</h3>
 <table class="striped centered responsive-table">
@@ -37,3 +23,19 @@
   </tbody>  
 </table>
 </div>
+<!-- Customer View  -->
+<% elsif current_customer %>
+  <h1 class="center lobster-font gray"> About Becoming a Wholesaler </h1>
+  <div id="resize"><%=image_tag("Wholesale_Packet.png", alt: "Unsplashed background img 1")%></div>
+    <!-- If already wholesaler  -->
+    <% if current_customer &. wholesaler %>
+      <p class="center"> Click to see your <a href="/wholesalers/<%=current_customer.wholesaler.id%>"> Application</a></p>
+    <!-- If NOT a wholesaler -->
+    <% else %>
+      <h2 class="center lobster-font gray">Interested in Becoming a Wholesaler?</h2>
+      <p class="center"> Click here to apply! <a href="/wholesalers/new"> Application</a></p>
+    <% end %>
+<!-- Not Signed In -->
+<% else %>
+  <h4 class="center lobster-font gray"> Please sign-up or login to access wholesaler application </h4>
+<% end %>
