@@ -1,6 +1,7 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_customer_or_employee!
+  before_action :authenticate_customer_or_employee!, except: [:index]
   def index
+    @apps = Wholesaler.all
   end
 
   def new
@@ -30,7 +31,7 @@ class WholesalersController < ApplicationController
   end
 
   def edit
-    if current_customer && current_customer.wholesaler
+    if current_customer &. wholesaler
       @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
     else
       flash[:warning] = 'You have not submitted an application!'
@@ -54,29 +55,29 @@ class WholesalersController < ApplicationController
   private
 
   def wholesaler_params
-      params.permit(
-        :business_name,
-        :contact_name,
-        :work_phone,
-        :billing_address,
-        :billing_city,
-        :billing_state,
-        :billing_zip_code,
-        :shipping_address,
-        :shipping_city,
-        :shipping_state,
-        :shipping_zip_code,
-        :website,
-        :accounts_payable_contact_name,
-        :accounts_payable_contact_email,
-        :accounts_payable_contact_phone,
-        :retailer,
-        :tax_exempt,
-        :delivery_instructions,
-        :recieving_hours,
-        :days_closed,
-        :is_approved,
-        :is_rejected
-      )
-    end
+    params.permit(
+      :business_name,
+      :contact_name,
+      :work_phone,
+      :billing_address,
+      :billing_city,
+      :billing_state,
+      :billing_zip_code,
+      :shipping_address,
+      :shipping_city,
+      :shipping_state,
+      :shipping_zip_code,
+      :website,
+      :accounts_payable_contact_name,
+      :accounts_payable_contact_email,
+      :accounts_payable_contact_phone,
+      :retailer,
+      :tax_exempt,
+      :delivery_instructions,
+      :recieving_hours,
+      :days_closed,
+      :is_approved,
+      :is_rejected
+    )
+  end
 end
