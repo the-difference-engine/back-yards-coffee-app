@@ -28,9 +28,13 @@ RSpec.describe CategoriesController, type: :controller do
       employee = create(:employee)
       sign_in employee
     end
-    it 'redirects to coffee house' do
-      post :create, category: attributes_for(:category)
+    it 'redirects to coffee house when category is saved' do
+      post :create, params: { name: 'category name' }
       expect(response).to redirect_to('/coffee_house')
+    end
+    it 'redirects to new categories if it fails' do
+      post :create
+      expect(response).to redirect_to('/categories/new')
     end
   end
   describe 'GET categories#edit' do
