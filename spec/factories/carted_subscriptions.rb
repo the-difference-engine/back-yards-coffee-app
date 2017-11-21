@@ -4,5 +4,6 @@ FactoryGirl.define do
     plan_id "MyString"
     status "MyString"
     customer_id ""
+    grind "Whole"
   end
 end
