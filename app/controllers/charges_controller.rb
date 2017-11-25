@@ -1,19 +1,21 @@
 class ChargesController < ApplicationController
   def create
     if params[:subscription]
-      carted_subscriptions = CartedSubscription.where(status: 'carted',
-                                              customer_id: current_customer.id)
+      carted_subscriptions = CartedSubscription.where(
+        status: 'carted',
+        customer_id: current_customer.id
+      )
       items = []
       carted_subscriptions.each do |carted_subscription|
-        items << { 
+        items << {
           plan: carted_subscription.plan_name,
           quantity: carted_subscription.quantity
         }
       end
-      subscription = Stripe::Subscription.create(
+      Stripe::Subscription.create(
         customer: current_customer.stripe_customer_id,
         items: items
-        )
+      )
     else
       order = Stripe::Order.retrieve(params[:order_id])
       email = current_customer ? current_customer.email : customer_email(order.customer)

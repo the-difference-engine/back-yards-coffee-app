@@ -35,7 +35,7 @@ class CartedProductsController < ApplicationController
         plan_id: params[:plan_id],
         plan_name: params[:plan_name],
         grind: params[:grind]
-      )###supposed to catch and up the quantity if its the same###
+      ) ### supposed to catch and up the quantity if its the same ###
       if carted_subscription
         carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
       else
@@ -49,9 +49,8 @@ class CartedProductsController < ApplicationController
 
         carted_subscriptions.each do |cs|
           if cs.interval_count != plan.first.interval_count || cs.interval != plan.first.interval
-            flash[:error] = "A similar plan currently exists in your cart. Please continue shopping or review the plan in your cart."
-            redirect_to "/products/#{params[:product_id]}"
-            return
+            flash[:error] = 'A similar plan currently exists in your cart. Please continue shopping or review the plan in your cart.'
+            redirect_to '/products/#{params[:product_id]}'
           end
         end
 
