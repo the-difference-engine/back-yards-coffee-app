@@ -49,8 +49,9 @@ class CartedProductsController < ApplicationController
 
         carted_subscriptions.each do |cs|
           if cs.interval_count != plan.first.interval_count || cs.interval != plan.first.interval
-            flash[:error] = 'A similar plan currently exists in your cart. Please continue shopping or review the plan in your cart.'
-            redirect_to '/products/#{params[:product_id]}'
+            flash[:error] = 'A similar plan currently exists in your cart. Please continue shopping or checkout.'
+            redirect_to "/products/#{params[:product_id]}"
+            return
           end
         end
 
