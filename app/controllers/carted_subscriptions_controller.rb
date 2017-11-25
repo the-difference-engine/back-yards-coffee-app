@@ -13,6 +13,7 @@ class CartedSubscriptionsController < ApplicationController
                                           customer_id: guest_or_customer_id,
                                           status: 'carted',
                                           plan_id: params[:plan_id],
+                                          plan_name: params[:plan_name],
                                           grind: params[:grind],
                                           amount: plan[0].amount,
                                           interval: plan[0].interval,
