@@ -86,7 +86,7 @@ var CartedSubscriptions = React.createClass({
           <tbody>
             {this.state.carted_subscriptions.map((carted_subscription, index) =>
               <tr key={carted_subscription.id}>
-                <td>{ carted_subscription.plan_id }</td>
+                <td>{ carted_subscription.plan_name }</td>
                 <QntyBtn handler={this.updateQuantity} key={index} item={carted_subscription} />
                 <td>{ ((carted_subscription.amount * carted_subscription.quantity) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2}) }</td>
                 <DltBtn handler={this.deleteItem} key={carted_subscription.id} item={carted_subscription} />

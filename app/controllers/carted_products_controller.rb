@@ -13,20 +13,51 @@ class CartedProductsController < ApplicationController
         product_id: params[:product_id],
         sku: params[:sku],
         customer_id: guest_or_customer_id,
-        status: 'carted',
-        price: params[:price].to_i,
-        name: params[:name]
-      )
-    end
-    if carted_product.save
-      flash[:success] = 'Product Added to Cart!'
-      redirect_to '/cart'
-    else
-      flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
-      if request.referer.split('/').last == 'products'
-        redirect_to '/products'
+        plan_id: params[:plan_id],
+        plan_name: params[:plan_name],
+        grind: params[:grind]
+      ) ### supposed to catch and up the quantity if its the same ###
+      if carted_subscription
+        carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
       else
-        redirect_to "/products/#{params[:product_id]}"
+        carted_subscriptions = CartedSubscription.where(
+          status: 'carted',
+          customer_id: guest_or_customer_id
+        )
+
+        plans = Stripe::Plan.list(limit: 50)
+        plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
+
+        carted_subscriptions.each do |cs|
+          if cs.interval_count != plan.first.interval_count || cs.interval != plan.first.interval
+            flash[:error] = 'A similar plan currently exists in your cart. Please continue shopping or checkout.'
+            redirect_to "/products/#{params[:product_id]}"
+            return
+          end
+        end
+
+        carted_subscription = CartedSubscription.new(
+          quantity: params[:quantity],
+          customer_id: guest_or_customer_id,
+          status: 'carted',
+          plan_id: params[:plan_id],
+          plan_name: plan[0].id,
+          grind: params[:grind],
+          amount: plan[0].amount,
+          interval: plan[0].interval,
+          interval_count: plan[0].interval_count
+        )
+      end
+      if carted_subscription.save
+        flash[:success] = 'Product Added to Cart!'
+        redirect_to '/cart'
+      else
+        flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
+        if request.referer.split('/').last == 'products'
+          redirect_to '/products'
+        else
+          redirect_to "/products/#{params[:product_id]}"
+        end
       end
     end
   end

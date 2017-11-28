@@ -10,14 +10,13 @@
           </div>
         <% end %>
       </article>
-
       <%= hidden_field_tag :subscription, value: params[:subscription] %>
 
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Back of the Yards Coffee"
           data-email="<%= current_customer.email if customer_signed_in? %>"
-          data-label="Complete Order"
+          data-label="Subscribe!"
           data-locale="auto"></script>
     <% end %>
   </div>
