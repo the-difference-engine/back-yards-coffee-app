@@ -43,37 +43,3 @@
 
 </div>
 </div>
-
-<script>
-
-const addToCart = document.querySelectorAll('.add');
-
-function buyForm(){
-  const thisProdId = this.id.slice(2)
-
-  $.ajax({
-    type: 'GET',
-    url: `/products/${thisProdId}`,
-    success: (data) => {
-      this.closest(".innercard").innerHTML = data
-  },
-    error: function() {},
-      }).then(function(){
-          console.log("helo")
-          $(document).ready(function() {
-          $('select').material_select();
-        });
-      })
-}
-
-  for(var i = 0; i<addToCart.length; i++){
-    addToCart[i].addEventListener('click', buyForm);
-  }
-
-</script>
-<script>
-$(document).ready(function(){
-    $('.tooltipped').tooltip({delay: 5});
-  });
-
-</script>

@@ -1,36 +1,17 @@
 class CartedProductsController < ApplicationController
   def create
-    # checks plan id first; if plan id indicates one time purchase then directed to carted products checkout process
-    if params[:plan_id] == 'One Time Buy'
-      carted_product = CartedProduct.find_by(
-        status: 'carted',
-        customer_id: guest_or_customer_id,
-        sku: params[:sku]
-      )
-      if carted_product
-        carted_product.quantity = carted_product.quantity.to_i + params[:quantity].to_i
-      else
-        carted_product = CartedProduct.new(
-          quantity: params[:quantity],
-          product_id: params[:product_id],
-          sku: params[:sku],
-          customer_id: guest_or_customer_id,
-          status: 'carted',
-          price: params[:price].to_i,
-          name: params[:name]
-        )
-      end
-      if carted_product.save
-        flash[:success] = 'Product Added to Cart!'
-        redirect_to '/cart'
-      else
-        flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
-        redirect_to "/products/#{params[:product_id]}"
-      end
-    # if plan id is determined to not be a one time purchase a stripe plan id is assigned and checkout is directed to carted subscriptions
+    carted_product = CartedProduct.find_by(
+      status: 'carted',
+      customer_id: guest_or_customer_id,
+      sku: params[:sku]
+    )
+    if carted_product
+      carted_product.quantity = carted_product.quantity.to_i + params[:quantity].to_i
     else
-      carted_subscription = CartedSubscription.find_by(
-        status: 'carted',
+      carted_product = CartedProduct.new(
+        quantity: params[:quantity],
+        product_id: params[:product_id],
+        sku: params[:sku],
         customer_id: guest_or_customer_id,
         plan_id: params[:plan_id],
         plan_name: params[:plan_name],
@@ -71,8 +52,12 @@ class CartedProductsController < ApplicationController
         flash[:success] = 'Product Added to Cart!'
         redirect_to '/cart'
       else
-        flash[:error] = carted_subscription.errors.full_messages.join(', ').gsub(/[']/, "\\\\\'")
-        redirect_to "/products/#{params[:product_id]}"
+        flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
+        if request.referer.split('/').last == 'products'
+          redirect_to '/products'
+        else
+          redirect_to "/products/#{params[:product_id]}"
+        end
       end
     end
   end

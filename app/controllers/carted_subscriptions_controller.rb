@@ -23,13 +23,16 @@ class CartedSubscriptionsController < ApplicationController
         interval_count: plan[0].interval_count
       )
     end
-
     if carted_subscription.save
       flash[:success] = 'Product Added to Cart!'
       redirect_to '/cart'
     else
       flash[:error] = carted_subscription.errors.full_messages.join(', ').gsub(/[']/, "\\\\\'")
-      redirect_to "/products/#{params[:product_id]}"
+      if request.referer.split('/').last == 'products'
+        redirect_to '/products'
+      else
+        redirect_to "/products/#{params[:product_id]}"
+      end
     end
   end
 end
