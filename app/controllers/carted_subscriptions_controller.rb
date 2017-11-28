@@ -13,9 +13,9 @@ class CartedSubscriptionsController < ApplicationController
       plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
 
       carted_subscriptions = CartedSubscription.where(
-          status: 'carted',
-          customer_id: guest_or_customer_id
-        )
+        status: 'carted',
+        customer_id: guest_or_customer_id
+      )
 
       carted_subscriptions.each do |cs|
         if cs.interval_count != plan.first.interval_count || cs.interval != plan.first.interval

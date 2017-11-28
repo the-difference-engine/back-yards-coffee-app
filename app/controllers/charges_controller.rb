@@ -14,7 +14,7 @@ class ChargesController < ApplicationController
       end
 
       begin
-        subscription = Stripe::Subscription.create(
+        Stripe::Subscription.create(
           customer: current_customer.stripe_customer_id,
           items: items
         )
