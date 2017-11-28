@@ -12,10 +12,22 @@ class ChargesController < ApplicationController
           quantity: carted_subscription.quantity
         }
       end
-      Stripe::Subscription.create(
-        customer: current_customer.stripe_customer_id,
-        items: items
-      )
+
+      begin
+        subscription = Stripe::Subscription.create(
+          customer: current_customer.stripe_customer_id,
+          items: items
+        )
+      rescue
+        flash[:error] = 'Error Creating Subscription'
+        redirect_to '/cart'
+      end
+      carted_subscriptions.map do |carted_subscription|
+        carted_subscription.status = 'subscribed'
+        carted_subscription.save
+      end
+      flash[:success] = 'Charge created!'
+      redirect_to '/customers/dashboard'
     else
       order = Stripe::Order.retrieve(params[:order_id])
       email = current_customer ? current_customer.email : customer_email(order.customer)

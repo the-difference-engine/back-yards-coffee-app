@@ -11,12 +11,26 @@ class CartedSubscriptionsController < ApplicationController
     else
       plans = Stripe::Plan.list(limit: 50)
       plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
+
+      carted_subscriptions = CartedSubscription.where(
+          status: 'carted',
+          customer_id: guest_or_customer_id
+        )
+
+      carted_subscriptions.each do |cs|
+        if cs.interval_count != plan.first.interval_count || cs.interval != plan.first.interval
+          flash[:error] = 'A similar plan currently exists in your cart. Please continue shopping or checkout.'
+          redirect_to "/products/#{params[:product_id]}"
+          return
+        end
+      end
+
       carted_subscription = CartedSubscription.new(
         quantity: params[:quantity],
         customer_id: guest_or_customer_id,
         status: 'carted',
         plan_id: params[:plan_id],
-        plan_name: params[:plan_name],
+        plan_name: plan.first.id,
         grind: params[:grind],
         amount: plan[0].amount,
         interval: plan[0].interval,
