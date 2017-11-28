@@ -13,7 +13,9 @@ class CartedProductsController < ApplicationController
         product_id: params[:product_id],
         sku: params[:sku],
         customer_id: guest_or_customer_id,
-        grind: params[:grind]
+        status: 'carted',
+        price: params[:price].to_i,
+        name: params[:name]
       ) ### supposed to catch and up the quantity if its the same ###
       if carted_product.save
         flash[:success] = 'Product Added to Cart!'
