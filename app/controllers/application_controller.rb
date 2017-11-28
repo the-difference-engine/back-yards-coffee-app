@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def guest_or_customer_id
-    customer_signed_in? ? current_customer.id : session['session_id'].gsub(/\D/, '').to_i / 10_000_000_000
+    customer_signed_in? ? current_customer.id : session['session_id'].gsub(/\D/, '')[0..8].to_i
   end
 
   def layout_by_resource
