@@ -20,7 +20,7 @@ class ChargesController < ApplicationController
         )
       rescue
         flash[:error] = 'Error Creating Subscription'
-        redirect_to '/cart'
+        return redirect_to '/cart'
       end
       carted_subscriptions.map do |carted_subscription|
         carted_subscription.status = 'subscribed'
@@ -37,7 +37,7 @@ class ChargesController < ApplicationController
         order.pay(source: token, email: email)
       rescue Stripe::CardError => e
         flash[:error] = e.message
-        redirect_to '/cart'
+        return redirect_to '/cart'
       end
 
       # CREATE ORDER OBJECT
