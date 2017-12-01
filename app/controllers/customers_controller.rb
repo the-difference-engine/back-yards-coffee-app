@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
-  before_action :authenticate_employee_admin!, only: [:index]
+  before_action :authenticate_employee!, only: [:index]
 
   def index
     @customers = Customer.all
