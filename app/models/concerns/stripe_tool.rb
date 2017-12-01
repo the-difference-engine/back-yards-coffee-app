@@ -36,19 +36,17 @@ module StripeTool
         }
       )
     rescue => error
-      sku_name = error.message.split(': ')[1].split(' ')[0]
-      sku_object = Stripe::SKU.retrieve(id: sku_name)
+      sku_id = error.message.split(': ')[1].split(' ')[0]
+      sku_object = Stripe::SKU.retrieve(id: sku_id)
       product = Stripe::Product.retrieve(id: sku_object.product)
-      new_error_message = error.message.gsub(sku, product.name)
-      return { order: new_error_message, valid_shipping_address: valid_shipping_address, 'catch': 'It Broke' }
+      new_error_message = error.message.gsub(sku_id, product.name)
+      return { order: new_error_message, valid_shipping_address: valid_shipping_address, catch: 'It Broke' }
     end
-
     return { order: order, valid_shipping_address: valid_shipping_address, 'catch': 'All good in the hood'}
   end
 
   def self.customer_shipping_update(customer)
     stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_id)
-
     address = {
       name: customer.full_name,
       address: {

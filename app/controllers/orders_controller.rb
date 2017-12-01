@@ -1,23 +1,19 @@
 class OrdersController < ApplicationController
   def new
     customer_id = guest_or_customer_id
-
     @customer =
       if customer_signed_in?
         current_customer
       else
         Customer.guest_customer?(customer_id) ? Customer.guest_customer?(customer_id) : Customer.create_guest_cutomer(customer_id)
       end
-
     @order = StripeTool.create_order(@customer)
-
-    if @order[:'catch'] == 'It Broke'
+    if @order[:catch] == 'It Broke'
       flash[:error] = @order[:order]
       redirect_to '/cart'
     else
       render '/orders/new'
     end
-
   end
 
   def show
