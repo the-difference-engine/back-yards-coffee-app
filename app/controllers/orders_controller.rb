@@ -10,6 +10,14 @@ class OrdersController < ApplicationController
       end
 
     @order = StripeTool.create_order(@customer)
+
+    if @order[:'catch'] == 'It Broke'
+      flash[:error] = @order[:order]
+      redirect_to '/cart'
+    else
+      render '/orders/new'
+    end
+
   end
 
   def show
