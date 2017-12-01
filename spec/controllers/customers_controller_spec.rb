@@ -42,11 +42,11 @@ RSpec.describe CustomersController, type: :controller do
       expect(flash[:warning]).to be_present
     end
 
-    # it "should redirect to '/customers/dashboard'" do
-    #   patch :update, id: @customer
-    #   @customer.update(address: "meow")
-    #   @customer.save
-    #   expect(response).to redirect_to '/customers/dashboard'
-    # end
+    it "should redirect to '/customers/dashboard'" do
+      patch :update, id: @customer
+      @customer.update(address: "meow")
+      @customer.save
+      expect(response).to redirect_to '/customers/dashboard'
+    end
   end
 end
