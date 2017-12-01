@@ -1,5 +1,5 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_employee_admin!, except: [:index]
+  before_action :authenticate_employee!, except: [:index]
   def index
     @apps = Wholesaler.all
   end
