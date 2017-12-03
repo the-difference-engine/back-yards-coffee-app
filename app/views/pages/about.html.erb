@@ -1,46 +1,42 @@
-<div class="botysbackground">  
-  <div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-item red" href="#one!">
-      <h2>Our Origin</h2>
-      <br>
-      <p>Our story began with two Back of the Yards residents and longtime friends, Mayra Hernandez and Jesse Iñiguez, experimenting with making coffee, and it wasn't long before they began dreaming about turning that passion into a business.</p>
-      <br>
-      <p>Thanks to community support, Jesse and Mayra were able to raise $16,000 to start their own roastery. Since the coffeehouse at 2059 W 47th Street opened in early 2017, business has been booming, which is a testament to Mayra and Jesse's dedication to brewing, serving and selling GREAT tasting coffee. </p>
-    </div>
-    <div class="carousel-item brown white-text" href="#two!">
-      <h2>Our Coffee</h2>
-      <br>
-      <p>Life is too short to drink bad coffee. Our coffee is selected from the finest beans available from around the world and sourced in a socially and environmentally responsible way.</p>
-      <br> 
-      <p>We've established direct relationships with coffee growers in Chiapas, Mexico. This provides additional revenue while allowing us to offer high quality specialty coffee in our neighborhood at a reasonable price.</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-      <h2>Our Sustainability</h2>
-      <br>
-      <p>We are a company dedicated to reduce the impact of wastes generated in our store by offering reusable cups and by composting other waste.</p>
-      <br> 
-      <p>In addition, we source as many of our products as possible from around the neighborhood and sell baked goods in our coffeehouse made from locally-grown ingredients.</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-      <h2>Our Neighborhood</h2>
-      <br>
-      <p>Above all else, Mayra and Jesse hope to change the narrative of a neighborhood negatively associated with gang violence. To work toward this, they developed a social impact fund which donates $1 of every bag of coffee sold toward scholarships and funding for young people in Back of the Yards.</p>
-      <br>
-      <p>The social impact fund is meant to fund youth programs, education and scholarships as well as encouraging peace within the community.</p>
+<div class="botysbackground">
+  <div class="section">
+    <div class="row">
+      <div class="col s7 push-s5"><span class="flow-text">
+        <h3 style="text-decoration: underline">Our Origin</h3>
+        <p style="text-align:justify">Our story began with making cold brew coffee and selling it at craft fairs. Before long, Mayra was taking orders for up to 40 gallons a week. After obtaining some coffee beans directly from Mexico, we found a Michigan roaster that would let us roast once a week, and we began selling bags of beans to subscribers. </p>
+        <p style="text-align:justify">Thanks in part to community support, we were able to raise enough money to start our own roastery. Since the coffeehouse at 2059 W 47th Street opened in early 2017, business has been booming. As a testament to our great tasting coffee, Zagat recently rated us as one of the <a href="https://www.zagat.com/b/10-hottest-coffee-shops-in-chicago">ten hottest coffee shops </a>in Chicago! </p>
+      </span></div>
+      <div class="col s5 pull-s7"><span class="flow-text">
+        <img class="materialboxed"> <%=image_tag("boty-owners.jpg", size: "550")%>
+      </span></div>
     </div>
   </div>
-  <div class="carousel">
-    <a class="carousel-item" href="#one!"><%=image_tag("botycoffeebanner2.jpg", alt: "Unsplashed background img 1")%></a>
-    <a class="carousel-item" href="#two!"><%=image_tag("botyrecycle1.jpg", alt: "Unsplashed background img 1")%></a>
-    <a class="carousel-item" href="#three!"><%=image_tag("botycoffeebanner3.jpg", alt: "Unsplashed background img 1")%></a>
-    <a class="carousel-item" href="#four!"><%=image_tag("botyrecycle2.jpg", alt: "Unsplashed background img 1")%></a>
-    <a class="carousel-item" href="#five!"><%=image_tag("botycoffeebanner4.jpg", alt: "Unsplashed background img 1")%></a>
+  <div class="section">
+    <div class="row">
+      <div class="col s5 push-s7"><span class="flow-text">
+        <%=image_tag("chiapas-jesse.jpg", size: "550")%>
+      </span></div>
+      <div class="grid-example col s7 pull-s5"><span class="flow-text">
+        <h3 style="text-decoration: underline">Our Coffee</h3>
+        <p style="text-align:justify">Our coffee is selected from the finest beans available from around the world and sourced in a socially and environmentally responsible way.</p>
+        <p style="text-align:justify">We've established direct relationships with coffee growers in Chiapas, Mexico. This provides additional revenue while allowing us to offer high quality specialty coffee in our neighborhood at a reasonable price.</p>
+      </span></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="row">
+      <div class="col s7 push-s5"><span class="flow-text">
+        <h3 style="text-decoration: underline">Our Mission</h3>
+        <p style="text-align:justify">We hope to change the narrative of a neighborhood negatively associated with gang violence. We have developed a social impact fund which donates $1 of every bag of coffee sold toward scholarships and funding for young people in Back of the Yards. The social impact fund is meant to fund youth programs, education and scholarships as well as encouraging peace within the community.</p>
+        <p style="text-align:justify">We are also committed to sustainability and strive to reduce the wastes generated by our store by offering reusable cups and by composting other wastes. We sell baked goods in our coffeehouse made from locally-grown ingredients and seek to source as many products from the neighborhood as possible from around the neighborhood.</p>
+      </span></div>
+      <div class="col s5 pull-s7"><span class="flow-text">
+        <%=image_tag("social-impact-fund.jpg", size: "550")%>
+      </span></div>
+    </div>
   </div>
 </div>
 
-<script>
-  $('.carousel.carousel-slider').carousel({fullWidth: true});
-  $(document).ready(function(){
-    $('.carousel').carousel();
-  });
-</script>
+
+
+
