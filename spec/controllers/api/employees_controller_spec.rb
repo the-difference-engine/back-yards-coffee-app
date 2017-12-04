@@ -4,7 +4,7 @@ RSpec.describe Api::EmployeesController, type: :controller do
   describe 'GET api/employees#index' do
     render_views
     before :each do
-      employee = create(:employee)
+      create(:employee)
       get :index
     end
     it 'assigns the employees to @employees' do
@@ -14,12 +14,12 @@ RSpec.describe Api::EmployeesController, type: :controller do
       expect(response).to render_template 'index.json.jbuilder'
     end
     it 'responds with type JSON' do
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
     end
     it 'renders the correct JSON' do
       json = JSON.parse(response.body)
-      expect(json.first.keys).to eq ["id", "email"]
-      expect(json.first["email"]).to match /employeedoe\d@example\.com/
+      expect(json.first.keys).to eq %w[id email]
+      expect(json.first['email']).to match(/employeedoe\d@example\.com/)
     end
   end
 end
