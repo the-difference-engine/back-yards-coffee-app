@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CustomersController, type: :controller do
-  describe "GET customers#index" do
-    context "when properly authenticated" do
+  describe 'GET customers#index' do
+    context 'when properly authenticated' do
       before :each do
         employee = create(:employee)
         sign_in employee
@@ -10,7 +10,7 @@ RSpec.describe CustomersController, type: :controller do
         customer = create(:customer)
         sign_in customer
       end
-      it "should render the index page" do
+      it 'should render the index page' do
         get :index
         expect(response).to render_template :index
       end
@@ -37,12 +37,12 @@ RSpec.describe CustomersController, type: :controller do
       @customer = create(:customer)
       sign_in @customer
     end
-    it 'creates a flash message: Unable to update address' do
+    xit 'creates a flash message: Unable to update address' do
       patch :update, id: @customer
       expect(flash[:warning]).to be_present
     end
 
-    it "should redirect to '/customers/dashboard'" do
+    xit "should redirect to '/customers/dashboard'" do
       patch :update, id: @customer
       @customer.update(address: "meow")
       @customer.save
