@@ -80,8 +80,8 @@ body {
 }
 
 .star {
-  display: inline-block;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   height: 40px;
-  // width: 40px;
-  padding-left: 665px;
 }
