@@ -37,7 +37,7 @@ RSpec.describe CustomersController, type: :controller do
       @customer = create(:customer)
       sign_in @customer
     end
-    xit 'creates a flash message: Unable to update address' do
+    it 'creates a flash message: Unable to update address' do
       patch :update, id: @customer
       expect(flash[:warning]).to be_present
     end
