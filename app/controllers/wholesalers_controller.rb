@@ -1,16 +1,16 @@
 class WholesalersController < ApplicationController
-  before_action :authenticate_customer_or_employee!, except: [:index]
-
   def index
     @apps = Wholesaler.all
   end
 
   def new
+    authenticate_customer!
     @wholesaler = Wholesaler.new
     render 'new.html.erb'
   end
 
   def create
+    authenticate_customer!
     @wholesaler = Wholesaler.create(wholesaler_params.merge(customer_id: current_customer.id))
     if @wholesaler.save
       UserMailer.send_wholesaler_email(@wholesaler).deliver_now
@@ -22,9 +22,9 @@ class WholesalersController < ApplicationController
 
   def show
     if current_employee
-      @wholesaler = Wholesaler.find_by(id: params[:id])
-    elsif @current_customer.wholesaler
-      @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
+      @wholesaler = Wholesaler.find(params[:id])
+    elsif current_customer&.wholesaler
+      @wholesaler = current_customer.wholesaler
     else
       flash[:warning] = 'You have not submitted an application!'
       redirect_to '/'
@@ -32,8 +32,12 @@ class WholesalersController < ApplicationController
   end
 
   def edit
-    if current_customer &. wholesaler
-      @wholesaler = Wholesaler.find_by(id: current_customer.wholesaler.id)
+    if !signed_in?
+      redirect_to '/customers/sign_in'
+    elsif current_customer&.wholesaler
+      @wholesaler = current_customer.wholesaler
+    elsif current_employee
+      @wholesaler = Wholesaler.find(params[:id])
     else
       flash[:warning] = 'You have not submitted an application!'
       redirect_to '/'
@@ -42,21 +46,28 @@ class WholesalersController < ApplicationController
 
   def update
     @wholesaler = Wholesaler.find(params[:id])
-    if @wholesaler.update(wholesaler_params)
+    if wrong_user
+      redirect_to '/customers/sign_in'
+    elsif @wholesaler.update(wholesaler_params)
       flash[:success] = 'Updated!'
-      flash[:success] = 'Approved!' if params[:is_approved] == 'true'
-      flash[:success] = 'Rejected!' if params[:is_rejected] == 'true'
+      # flash[:success] = 'Approved!' if params[:is_approved] == 'true'
+      # flash[:success] = 'Rejected!' if params[:is_rejected] == 'true'
       redirect_to '/wholesalers'
     else
       flash[:warning] = 'Something went wrong.'
-      render :show
+      render :edit
     end
+  end
+
+  def wrong_user
+    (current_customer && params[:id].to_i != current_customer&.wholesaler&.id) ||
+      (current_customer.nil? && current_employee.nil?)
   end
 
   private
 
   def wholesaler_params
-    params.permit(
+    safe_params = params.permit(
       :business_name,
       :contact_name,
       :work_phone,
@@ -76,9 +87,9 @@ class WholesalersController < ApplicationController
       :tax_exempt,
       :delivery_instructions,
       :recieving_hours,
-      :days_closed,
-      :is_approved,
-      :is_rejected
+      :days_closed
     )
+    safe_params.merge!(params.permit(:is_approved, :is_rejected)) if current_employee
+    safe_params
   end
 end
