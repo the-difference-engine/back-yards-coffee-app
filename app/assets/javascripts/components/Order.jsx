@@ -96,35 +96,37 @@ var Order = React.createClass({
                    handleChange={this.handleChange}
                    update={this.updateAddress} />
         </div>
-        <div className="col s2">
-        </div> 
-        <div className="col s5 test">
+        <div className="col s1"></div> 
+        <div className="col s5">
           <div className="Checkout">
             <div className="OrderSummary">
-              <div className="Title">Order Summary</div>
-                <table>
-                  <tr>
-                    {this.formatItem()}
-                  </tr>
-                </table>
-              </div>
+              <h5 className="LobsterCenter">Order Summary</h5>
+              <table>
+                <tr>
+                  {this.formatItem()}
+                </tr>
+              </table>
+            </div>
             <div className="Toggle">
               <ShippingToggle shipping={this.state.shipping}
-                              handleChange={this.handleShippingChange}
-                              shippingAmount={this.shippingCost()} />
+                            handleChange={this.handleShippingChange}
+                            shippingAmount={this.shippingCost()} />
             </div>
-          </div>
-          <h5 className="left roboto-font gray">Total: </h5><div className="Total">
-              { this.state.shipping ? 
-              (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
-              ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
-              }
+            <div className="center">
+              <div className="Total">
+              Total: &nbsp;
+                { this.state.shipping ? 
+                (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
+                ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})
+                }
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    )
-  },
-})
+      )
+    },
+  })
 
 class ShippingToggle extends React.Component {
   render() {
