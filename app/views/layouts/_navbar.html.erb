@@ -1,26 +1,25 @@
-<div class="navbar">
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", size: "219x65", alt: "logo")%></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i class="material-icons">menu</i>
       </a>
-      <ul id="nav-mobile black" class="right hide-on-med-and-down">
-        <li class="selected">
+      <ul class="right hide-on-med-and-down">
+        <li class="<%='active' if current_page?(coffee_club_url)%>">
           <a href="/coffee_club">Coffee Club</a>
         </li>
-        <li class="selected">
+        <li class="<%='active' if current_page?(wholesalers_url)%>">
           <a href="/wholesalers">Wholesalers</a>
         </li>
-        <li>
+        <li class="<%='active' if current_page?(products_url)%>">
           <a href="/products">Products</a>
         </li>
-        <li>
-          <a href="/coffee_house">Menu</a>
+        <li class="<%='active' if current_page?(coffee_house_url)%>">
+          <a href="/coffee_house">Coffee House</a>
         </li>
-        <li>
+        <li class="<%='active' if current_page?(about_url)%>">
           <a href="/about">Who we are</a>
-        </li>
+        </li >
         <% if current_customer || current_employee %>
           <li>
             <a class='dropdown-button' href='#' data-activates='account-dropdown'>
@@ -29,7 +28,7 @@
           </li>
         <% else %>
           <li>
-            <a class=<%= request.url.include?('sign_in') ? 'disabled' : 'active' %> href="/customers/sign_in">Login</a>
+            <a href="/customers/sign_in">Login</a>
           </li>
         <% end %>
         <li>
@@ -40,7 +39,6 @@
       </ul>
     </div>
   </nav>
-</div>
 
 <!-- Dropdown Structure -->
 <ul style="margin-top:64px;min-width:160px;" id='account-dropdown' class='dropdown-content'>
