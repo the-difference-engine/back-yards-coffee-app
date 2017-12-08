@@ -42,11 +42,34 @@ RSpec.describe CustomersController, type: :controller do
       expect(flash[:warning]).to be_present
     end
 
+    it "locates the requested @customer" do
+      patch :update, id: @customer, customer: attributes_for(:customer)
+      expect(assigns(:customer)).to eq(@customer)
+    end
+
+    it "changes @customer attributes" do
+      patch :update, id: @customer,
+      @customer.update(address: "meow")
+
+
+      p "QQQQQQQQQQQQ"
+      p @customer
+      p "QQQQQQQQQQQQ"
+      expect(@customer.address).to eq('meow')
+    end
+
     xit "should redirect to '/customers/dashboard'" do
-      patch :update, id: @customer
+      p "QQQQQQQQQQQQ"
+      p @customer
+      p "QQQQQQQQQQQQ"
+
+      patch :update, id: @customer.id
       @customer.update(address: "meow")
       @customer.save
-      expect(response).to redirect_to '/customers/dashboard'
+      expect(response).to redirect_to :dashboard
     end
+
+
+
   end
 end

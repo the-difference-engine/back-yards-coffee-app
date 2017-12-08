@@ -4,5 +4,6 @@ FactoryGirl.define do
     password '12345678'
     password_confirmation '12345678'
     stripe_customer_id 'cus_BW0belZ0Jmsii2'
+    address 'dog'
   end
 end
