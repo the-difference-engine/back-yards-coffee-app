@@ -58,10 +58,11 @@ docker-compose up
 ```
 
 ### Initial container setup
-If this is your first time running these containers, you will need to perform the following to setup the database:
+If this is your first time running these containers, you will need to run the following commands to setup the database:
 
 ```
-docker-compose run web rake db:setup
+docker-compose run web rake db:create
+docker-compose run web rake db:migrate
 ```
 This will create and migrate all databases in `config/database.yml`.
 
