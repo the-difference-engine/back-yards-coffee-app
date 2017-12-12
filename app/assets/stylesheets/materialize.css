@@ -3,6 +3,7 @@
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+
 .materialize-red {
   background-color: #ac2b1a !important;
 }
@@ -2867,19 +2868,7 @@ ul.staggered-list li {
 }
 
 .page-footer .footer-copyright {
-  overflow: hidden;
-  min-height: 25px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5px 0px;
-  background-color: #eadec2;
-  color: #32404b;
-  font-style: italic;
-  font-size: .8em;
+
 }
 
 table, th, td {
@@ -3321,6 +3310,13 @@ nav ul a span.badge {
   margin-left: 4px;
   line-height: 22px;
   height: 22px;
+}
+
+hr {
+  background-color: #32404b;
+  width: 30%;
+  height: 3px;
+  border: none;
 }
 
 .collection-item span.badge {
@@ -5620,7 +5616,6 @@ button.btn-floating {
 
 .modal .modal-footer {
   border-radius: 0 0 2px 2px;
-  background-color: #fafafa;
   padding: 4px 6px;
   height: 56px;
   width: 100%;
