@@ -8,7 +8,9 @@ RSpec.describe OrdersController, type: :controller do
       session_id = '1x2x3x4x5x1x2x3x4x5x1x2x3x4x5x1x2x3x4x5x1x2x3x4x5'
 
       it 'should assign a customer instance using session id' do
-        get :new, session: { session_id: session_id }
+        VCR.use_cassette('stripe_create_order') do
+          get :new, session: { session_id: session_id }
+        end
         expect(assigns(:customer).class).to be Customer
         expect(assigns(:customer).id).to be @controller.guest_or_customer_id
       end
@@ -33,7 +35,9 @@ RSpec.describe OrdersController, type: :controller do
       end
 
       it 'should assign a customer instance using customer id' do
-        get :new
+        VCR.use_cassette('stripe_create_order') do
+          get :new
+        end
         expect(assigns(:customer).class).to be Customer
         expect(assigns(:customer).id).to be @customer.id
       end
