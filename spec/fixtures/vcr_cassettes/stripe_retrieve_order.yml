@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/orders/or_1B9JM4D5v3nurHsLblGBQ3gS
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.3.2
+      Authorization:
+      - Bearer <SECRET_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.3.2","lang":"ruby","lang_version":"2.3.0 p0 (2015-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Mal.lan 17.2.0 Darwin Kernel Version 17.2.0: Fri Sep 29 18:27:05 PDT 2017;
+        root:xnu-4570.20.62~3/RELEASE_X86_64 x86_64","hostname":"Mal.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 12 Dec 2017 05:10:58 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2634'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Stripe-Privileged-Session-Required,stripe-manage-version,X-Stripe-External-Auth-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_NSZ909cn7WiQng
+      Stripe-Version:
+      - '2017-06-05'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "or_1B9JM4D5v3nurHsLblGBQ3gS",
+          "object": "order",
+          "amount": 6729,
+          "amount_returned": null,
+          "application": null,
+          "application_fee": null,
+          "charge": null,
+          "created": 1507148432,
+          "currency": "usd",
+          "customer": "cus_BW0belZ0Jmsii2",
+          "email": "28733731901",
+          "items": [
+            {
+              "object": "order_item",
+              "amount": 2198,
+              "currency": "usd",
+              "description": "47th Street Blend",
+              "parent": "sku_B1KPc4HwjF9Aop",
+              "quantity": 2,
+              "type": "sku"
+            },
+            {
+              "object": "order_item",
+              "amount": 1998,
+              "currency": "usd",
+              "description": "Blend of Blends",
+              "parent": "sku_B1KMjhKL26upMH",
+              "quantity": 2,
+              "type": "sku"
+            },
+            {
+              "object": "order_item",
+              "amount": 0,
+              "currency": "usd",
+              "description": "Taxes (included)",
+              "parent": null,
+              "quantity": null,
+              "type": "tax"
+            },
+            {
+              "object": "order_item",
+              "amount": 2533,
+              "currency": "usd",
+              "description": "USPS Priority Mail Express",
+              "parent": "030eaabd7b144cffb6f5de9a033072af",
+              "quantity": null,
+              "type": "shipping"
+            }
+          ],
+          "livemode": false,
+          "metadata": {},
+          "returns": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/order_returns?order=or_1B9JM4D5v3nurHsLblGBQ3gS"
+          },
+          "selected_shipping_method": "030eaabd7b144cffb6f5de9a033072af",
+          "shipping": {
+            "address": {
+              "city": "Chicago",
+              "country": "US",
+              "line1": "2059 W 47th St",
+              "line2": null,
+              "postal_code": "60609",
+              "state": null
+            },
+            "carrier": null,
+            "name": " ",
+            "phone": null,
+            "tracking_number": null
+          },
+          "shipping_methods": [
+            {
+              "id": "030eaabd7b144cffb6f5de9a033072af",
+              "amount": 2533,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-06",
+                "type": "exact"
+              },
+              "description": "USPS Priority Mail Express"
+            },
+            {
+              "id": "3b2fb0544fc241c892b756ed8c27122e",
+              "amount": 742,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-06",
+                "type": "exact"
+              },
+              "description": "USPS Priority Mail"
+            },
+            {
+              "id": "a25ac99899db45cda1e18fcba431dfd8",
+              "amount": 752,
+              "currency": "usd",
+              "delivery_estimate": {
+                "date": "2017-10-11",
+                "type": "exact"
+              },
+              "description": "USPS Parcel Select"
+            }
+          ],
+          "status": "created",
+          "status_transitions": {
+            "canceled": null,
+            "fulfiled": null,
+            "paid": null,
+            "returned": null
+          },
+          "updated": 1507148434
+        }
+    http_version: 
+  recorded_at: Tue, 12 Dec 2017 05:10:58 GMT
+recorded_with: VCR 3.0.3
