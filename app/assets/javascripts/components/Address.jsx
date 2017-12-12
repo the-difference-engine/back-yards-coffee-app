@@ -4,7 +4,7 @@ class Address extends React.Component {
       <div className="Checkout">
         {this.props.shipping ? ( 
           <form>
-            <div className="Title">Shipping Information</div>
+            <h5 className="LobsterCenter">Shipping Information</h5>
             First Name:
             <input type="text" className={this.props.validate} defaultValue={this.props.address.first_name} onChange={this.props.handleChange} name="first_name" placeholder="First Name" /><br />
             Last Name:<br />
