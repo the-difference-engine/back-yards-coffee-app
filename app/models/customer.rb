@@ -80,8 +80,4 @@ class Customer < ApplicationRecord
   def carted_items
     carted_products.where(status: 'carted').map { |o| { type: 'sku', parent: o.sku, quantity: o.quantity } }
   end
-
-  def wholesaler?
-    wholesaler &. is_approved
-  end
 end
