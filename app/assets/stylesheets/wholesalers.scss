@@ -8,16 +8,28 @@
   opacity: 0.7; 
   font-size: 25px;
   border-radius: 7px;
-  padding-bottom: 5%;
+  padding-bottom: 2%;
 }
 .info-column {
-  background-color: #eadec2;
-  font-weight: bold;
-  opacity: 0.6;
+  padding: 10px;
+  background: rgba(235, 223, 195, 0.55);
   border-radius: 7px;
   margin-bottom: 1%;
 }
 
 .whitetext {
   color: white;
+}
+
+.container-title {
+    font-weight: bold;
+    font-size: 27px;
+    border-radius: 25px;
+    border: 2px solid #444;
+    padding: 7px;
+}
+
+.container-info {
+  padding-left: 25px;
+
 }
