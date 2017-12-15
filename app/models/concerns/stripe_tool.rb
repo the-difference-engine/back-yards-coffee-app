@@ -40,9 +40,9 @@ module StripeTool
       sku_object = Stripe::SKU.retrieve(id: sku_id)
       product = Stripe::Product.retrieve(id: sku_object.product)
       new_error_message = error.message.gsub(sku_id, product.name)
-      { order: new_error_message, valid_shipping_address: valid_shipping_address, catch: 'It Broke' }
+      return { order: new_error_message, valid_shipping_address: valid_shipping_address, catch: 'It Broke' }
     end
-    { order: order, valid_shipping_address: valid_shipping_address, 'catch': 'All good in the hood' }
+    { order: order, valid_shipping_address: valid_shipping_address, catch: 'All good in the hood' }
   end
 
   def self.customer_shipping_update(customer)

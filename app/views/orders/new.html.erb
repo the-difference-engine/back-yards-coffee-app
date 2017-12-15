@@ -1,5 +1,5 @@
 <body class="botysbackground">
-  <div class="container"> 
+  <div class="container">
 
     <%= react_component('Order', order: @order, customer: @customer) %>
 
@@ -12,6 +12,8 @@
           </div>
         <% end %>
       </article>
+      <%= hidden_field_tag :order_id, @order[:order].id %>
+
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
               data-description="Back of the Yards Coffee"
@@ -19,7 +21,6 @@
               data-locale="auto"
               data-label="Complete Order"
               data-shipping-address="false"></script>
-      <%= hidden_field_tag :order_id, @order[:order].id %>
     <% end %>
   </div>
 </body>
