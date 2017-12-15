@@ -17,7 +17,22 @@ RSpec.describe CustomersController, type: :controller do
     end
   end
 
-  describe 'GET categories#edit' do
+  describe 'GET customers#show' do
+    before :each do
+      employee = create(:employee)
+      sign_in employee
+
+      customer = create(:customer)
+      sign_in customer
+    end
+
+    it 'should retrieve the customer' do
+      get :show
+      expect(response).to render_template :show
+    end  
+  end  
+
+  describe 'GET customers#edit' do
     before :each do
       employee = create(:employee)
       sign_in employee
