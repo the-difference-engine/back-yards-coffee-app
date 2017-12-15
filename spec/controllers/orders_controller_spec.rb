@@ -8,7 +8,9 @@ RSpec.describe OrdersController, type: :controller do
       session_id = '1x2x3x4x5x1x2x3x4x5x1x2x3x4x5x1x2x3x4x5x1x2x3x4x5'
 
       it 'should assign a customer instance using session id' do
-        get :new, session: { session_id: session_id }
+        VCR.use_cassette('stripe_create_order') do
+          get :new, session: { session_id: session_id }
+        end
         expect(assigns(:customer).class).to be Customer
         expect(assigns(:customer).id).to be @controller.guest_or_customer_id
       end
@@ -33,7 +35,9 @@ RSpec.describe OrdersController, type: :controller do
       end
 
       it 'should assign a customer instance using customer id' do
-        get :new
+        VCR.use_cassette('stripe_create_order') do
+          get :new
+        end
         expect(assigns(:customer).class).to be Customer
         expect(assigns(:customer).id).to be @customer.id
       end
@@ -48,6 +52,33 @@ RSpec.describe OrdersController, type: :controller do
           expect(@order[:order].object).to be == 'order'
         end
       end
+    end
+  end
+
+  describe 'GET orders#show' do
+    before :each do
+      @customer = create(:customer)
+      VCR.use_cassette('stripe_create_order') do
+        @stripe_order = StripeTool.create_order(@customer)[:order]
+      end
+      sign_in @customer
+      @order = Order.create(
+        stripe_order_id: @stripe_order.id,
+        customer_id: @customer.id
+      )
+    end
+    it 'should assign the correct order using order id' do
+      VCR.use_cassette('stripe_retrieve_order') do
+        get :show, params: { id: @order.id }
+      end
+      expect(assigns(:order)).to eq @order
+      expect(assigns(:stripe_order)).to eq @stripe_order
+    end
+    it 'should use the show template' do
+      VCR.use_cassette('stripe_retrieve_order') do
+        get :show, params: { id: @order.id }
+      end
+      expect(response).to render_template :show
     end
   end
 end
