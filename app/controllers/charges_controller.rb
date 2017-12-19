@@ -12,13 +12,16 @@ class ChargesController < ApplicationController
           quantity: carted_subscription.quantity
         }
       end
-
       begin
+        customer_id = current_customer.stripe_customer_id
+        customer = Stripe::Customer.retrieve(customer_id)
+        customer.sources.create(source: params[:stripeToken])
         Stripe::Subscription.create(
-          customer: current_customer.stripe_customer_id,
+          customer: customer_id,
           items: items
         )
-      rescue
+      rescue => e
+        p e
         flash[:error] = 'Error Creating Subscription'
         return redirect_to '/cart'
       end
