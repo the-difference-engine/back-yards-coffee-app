@@ -114,7 +114,7 @@ var Order = React.createClass({
             </div>
             <div className="center">
               <div className="Total">
-              Total: &nbsp;
+              Total:
                 { this.state.shipping ? 
                 (this.state.order.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2}) : 
                 ((this.state.order.amount - this.state.order.items[this.state.order.items.length - 1].amount) * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})

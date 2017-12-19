@@ -95,7 +95,6 @@ var CartedProducts = React.createClass({
             )}
           </tbody>
         </table>
-        <hr/>
         <div id="cart-total">
           {this.state.isEmpty ? (
             <p className="center">Your cart is empty. Shop for more products <a href="/products">here</a>!</p>

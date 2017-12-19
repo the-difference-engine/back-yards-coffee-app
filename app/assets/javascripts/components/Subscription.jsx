@@ -92,20 +92,18 @@ var Subscription = React.createClass({
         
         <div className="col s5 test">
           <div className="Checkout">
-            <div className="OrderSummary">
-              <div className="Title">Plan Summary</div>
-              <table>
-                {this.state.cartedSubscriptions.map((sub, i) => {
-                  return (
-                    <tr key={i}>
-                      <div className="OrderDetails"><p>Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})}</p></div>
-                    </tr>
-                    )
-                  })
-                }
-              </table>      
-          </div>
-          <h4 className="left roboto-font gray">Total: <div className="Total">{(this.calcTotal())}</div></h4>
+            <h5 className="LobsterCenter">Plan Summary</h5>
+            <table>
+              {this.state.cartedSubscriptions.map((sub, i) => {
+                return (
+                  <tr key={i}>
+                    <div className="OrderDetails"><p>Plan: {sub.plan_id}, Price {(sub.amount * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits:2})}</p></div>
+                  </tr>
+                  )
+                })
+              }
+            </table>
+            <div className="Total">Total: <div className="Total">{(this.calcTotal())}</div></div>  
           </div>
         </div>
       </div>

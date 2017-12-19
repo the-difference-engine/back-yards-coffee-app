@@ -95,7 +95,6 @@ var CartedSubscriptions = React.createClass({
             )}
           </tbody>
         </table>
-        <hr/>
         <div id="cart-total">
           {this.state.isEmpty ? (
             <p className="center">You have not added any Coffee Club plans. Shop for plans <a href="/products">here</a>!</p>
