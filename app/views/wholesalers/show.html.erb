@@ -2,38 +2,46 @@
   <div class="container">
     <div class="row wholesaler-bg">
     <h1 class="lobster-font botytanletter center">Your Wholesaler Application!</h1>
-      <div class="col s8 m8 l12" >
-        <div class="info-column" ">Contact Info</div>
-        <div class="botytanletter apppad">Business Name: <%= @wholesaler.business_name %></div>
-        <div class="botytanletter apppad">Contact Name: <%= @wholesaler.contact_name %></div>
-        <div class="botytanletter apppad">Phone: <%= @wholesaler.work_phone %></div>
-        <div class="botytanletter apppad">Website: <%= @wholesaler.website %></div>
+      <div class="col s12 m12 l12">
+        <div class="info-column">
+          <div class="container-title center">Contact Info</div>
+          <div class="container-info">Business Name: <%= @wholesaler.business_name %></div>
+          <div class="container-info">Contact Name: <%= @wholesaler.contact_name %></div>
+          <div class="container-info">Phone: <%= @wholesaler.work_phone %></div>
+          <div class="container-info">Website: <%= @wholesaler.website %></div>
+        </div>
       </div>
-      <div class="col s8 m8 l12" > 
-        <div class="info-column" ">Billing Address</div>
-        <div class="botytanletter apppad">Address: <%= @wholesaler.billing_address %></div>
-        <div class="botytanletter apppad">City: <%= @wholesaler.billing_city %></div>
-        <div class="botytanletter apppad">State: <%= @wholesaler.billing_state %></div>
-        <div class="botytanletter apppad">Zip Code: <%= @wholesaler.billing_zip_code %></div>
+      <div class="col s12 m12 l12" > 
+        <div class="info-column">
+          <div class="container-title center">Billing Address</div>
+          <div class="container-info">Address: <%= @wholesaler.billing_address %></div>
+          <div class="container-info">City: <%= @wholesaler.billing_city %></div>
+          <div class="container-info">State: <%= @wholesaler.billing_state %></div>
+          <div class="container-info">Zip Code: <%= @wholesaler.billing_zip_code %></div>
+        </div>
       </div>
-      <div class="col s8 m8 l12" >
-        <div class="info-column" ">Shipping Address</div>
-        <div class="botytanletter apppad">Address: <%= @wholesaler.shipping_address %></div>
-        <div class="botytanletter apppad">City: <%= @wholesaler.shipping_city %></div>
-        <div class="botytanletter apppad">State: <%= @wholesaler.shipping_state %></div>
-        <div class="botytanletter apppad">Zip Code: <%= @wholesaler.shipping_zip_code %></div>
-        <div class="botytanletter apppad">Instructions: <%= @wholesaler.delivery_instructions %></div>
-        <div class="botytanletter apppad">Receiving Hours: <%= @wholesaler.recieving_hours %></div>
+      <div class="col s12 m12 l12" >
+        <div class="info-column">
+          <div class="container-title center">Shipping Address</div>
+          <div class="container-info">Address: <%= @wholesaler.shipping_address %></div>
+          <div class="container-info">City: <%= @wholesaler.shipping_city %></div>
+          <div class="container-info">State: <%= @wholesaler.shipping_state %></div>
+          <div class="container-info">Zip Code: <%= @wholesaler.shipping_zip_code %></div>
+          <div class="container-info">Instructions: <%= @wholesaler.delivery_instructions %></div>
+          <div class="container-info">Receiving Hours: <%= @wholesaler.recieving_hours %></div>
+        </div>
       </div>
-      <div class="col s8 m8 l12" >
-        <div class="info-column">Additional Information
-        <div class="apppad">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
-        <div class="apppad">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
-        <div class="apppad">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
-        <div class="apppad">Retailer: <%= @wholesaler.retailer %></div>
-        <div class="apppad">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
-        <div class="apppad">Closed: <%= @wholesaler.days_closed %></div>
-      </div>
+
+      <div class="col s12 m12 l12" >
+        <div class="info-column">
+          <div class="container-title center">Additional Information</div>
+          <div class="container-info">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
+          <div class="container-info">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
+          <div class="container-info">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
+          <div class="container-info">Retailer: <%= @wholesaler.retailer %></div>
+          <div class="container-info">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
+          <div class="container-info">Closed: <%= @wholesaler.days_closed %></div>
+        </div>
       </div>
     </div>
 
