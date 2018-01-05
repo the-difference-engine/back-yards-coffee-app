@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_customer!
   def new
     if current_customer
       @customer = current_customer
