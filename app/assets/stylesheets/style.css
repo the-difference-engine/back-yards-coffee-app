@@ -15,10 +15,6 @@ p {
   line-height: 2rem;
 }
 
-.button-collapse {
-  color: #white !important;
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -119,5 +115,30 @@ footer.page-footer {
 }
 
 
+nav .nav-wrapper .button-collapse i {
+    color: white !important;
+}
 
+.side-nav li > a {
+  color: rgba(0, 0, 0, 0.87) !important;     
+  display: block !important;      
+  font-size: 14px !important;     
+  font-weight: 500;       
+  height: 48px;       
+  line-height: 48px;        
+  padding: 0 32px;
+}
 
+img { max-width: 100%; }
+
+div#go-to-prods-btn {
+    padding: 10px;
+}
+
+img#nav-bar-logo {
+    max-height: 100% !important; 
+}
+
+.side-nav .divider {
+  margin: !important0;
+}

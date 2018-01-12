@@ -7132,7 +7132,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .side-nav {
   position: fixed;
-  width: 70% !important;
+  width: 300px !important;
   left: 0;
   top: 0;
   margin: 0;
@@ -7177,12 +7177,10 @@ input[type=range]:focus::-ms-fill-upper {
 .side-nav li > a {
   color: rgba(0, 0, 0, 0.87);
   display: block;
-  font-size: 50px !important;
+  font-size: 14px;
   font-weight: 500;
   height: 48px;
-  line-height: 48px;
-  padding: 50px 32px !important;
-  padding-bottom: 100px !important; 
+  line-height: 48px; 
 } 
 
 .side-nav li > a:hover {
@@ -7221,7 +7219,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav .divider {
-  margin: 8px 0 0 0;
+  margin: 0px 0 0 0;
 }
 
 .side-nav .subheader {
