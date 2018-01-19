@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <%= stylesheet_link_tag   'application', media: 'all' %>
+  <link rel="stylesheet" href="https://use.fontawesome.com/93160d36b8.css">
   <%= javascript_include_tag 'application' %>
 </head>
 <body class="login_logout">
+  <%= render "layouts/navbar" %>
   <div class="form_box">
-    <%= render "layouts/alerts" %> 
+    <%= render "layouts/alerts" %>
     <%= yield %>
   </div>
+  <%= render "layouts/footer" %>
 </body>
 </html>
