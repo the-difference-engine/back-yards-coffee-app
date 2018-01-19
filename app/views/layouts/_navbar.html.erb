@@ -2,7 +2,7 @@
     <div class="nav-wrapper">
       <a href="/" class="brand-logo"><%=image_tag("logo_beige_transparent.png", id:"nav-bar-logo", size: "219x65", alt: "logo")%></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse">
-        <i class="material-icons">menu</i>
+        <i id="menu-btn" class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
         <li class="<%='active' if current_page?(coffee_club_url)%>">
