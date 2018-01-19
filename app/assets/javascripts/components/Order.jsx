@@ -89,15 +89,15 @@ var Order = React.createClass({
   render: function() {  
     return (
       <div className="row">
-        <div className="col s5">
+        <div className="col s12 m6 l6">
           <Address shipping={this.state.shipping}
                    address={this.state.address}
                    validate={this.state.shippingError}
                    handleChange={this.handleChange}
                    update={this.updateAddress} />
         </div>
-        <div className="col s1"></div> 
-        <div className="col s5">
+        <div className="col s12 m6 l6"></div> 
+        <div className="col s12 m6 l6">
           <div className="Checkout">
             <div className="OrderSummary">
               <h5 className="LobsterCenter">Order Summary</h5>
