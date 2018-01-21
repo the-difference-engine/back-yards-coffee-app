@@ -45,14 +45,15 @@ p {
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: .2em;
+  margin-bottom: 1em;
 
 }
 
-table#cart-table {
+.cart-table {
     margin: auto;
 }
 
-a#review-btn {
+.review-btn {
     margin: 1rem;
 }
 
@@ -163,3 +164,11 @@ html { font-size:100%; }
 i#menu-btn {
     color: white !important;
 }
+
+/* Order Summary Page */
+
+dt {
+    float: left;
+    width: 140px;
+}
+
