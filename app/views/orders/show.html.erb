@@ -29,7 +29,7 @@
             <% if item.amount > 0 %>
             <td><%= item.description %></td>
             <td><%= item.quantity %></td>
-            <td> $ <%= item.amount * 0.01%></td>
+            <td> <%= number_to_currency(item.amount * 0.01)%></td>
           </tr>
             <% end %>
           <% end %>
@@ -37,7 +37,7 @@
             <td> Total </td>
             <!-- Parse items && count the quantities -->
             <td> <%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.quantity}.sum  %></td>
-            <td>$ <%= @stripe_order.amount * 0.01 %></td>
+            <td> <%= number_to_currency(@stripe_order.amount * 0.01) %></td>
           </tfoot>
         </tbody>
       </table>
