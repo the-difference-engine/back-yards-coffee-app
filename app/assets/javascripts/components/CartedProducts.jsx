@@ -75,7 +75,7 @@ var CartedProducts = React.createClass({
     return (
       <div className="box-2">
         <div className="Title">One-Time Purchase(s)</div>
-        <table id="" className="bordered cart-table">
+        <table className="bordered cart-table">
           <thead>
             <tr>
               <td> <b>Product</b> </td>
