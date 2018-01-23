@@ -1,8 +1,8 @@
 <body class="botysbackground">
   <h2 class="center lobster-font underline">Account Information</h2>
   <br>
-    <div class="grid">
-      <div class="box-1">
+    <div class="row">
+      <div class="box-1 col l6 m6 s12">
         <br>
           <div class="Title">Shipping Information</div>
           <br>
@@ -16,12 +16,12 @@
         <br>
         <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "btn-small btn-success" %>
       </div>
-      <div class="box-2">
+      <div class="box-2 col l6 m6 s12">
         <br>
         <div class="Title">Coffee Club Plan(s)</div>
         <br>
         <% if @stripe_customer.subscriptions.total_count != 0 %>
-        <table class="bordered">
+        <table class="bordered responsive-table">
           <thead>
             <tr>
               <td>Product</td>
@@ -61,4 +61,3 @@
     </div>
   </div>
 </body>
-

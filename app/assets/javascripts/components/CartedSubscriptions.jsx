@@ -75,7 +75,7 @@ var CartedSubscriptions = React.createClass({
     return (
       <div className="box-2">
         <div className="Title">Coffee Club Plan(s)</div>
-        <table className="bordered">
+        <table className="bordered cart-table">
           <thead>
             <tr>
               <td> <b>Plan</b> </td>
@@ -103,7 +103,7 @@ var CartedSubscriptions = React.createClass({
             <p className="right-align"><b>Subtotal: </b>{(this.state.subscriptions_total * 0.01).toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2})}</p>
           )}
         </div>
-         <a className="btn" href="/subscriptions/new">REVIEW</a>
+         <a className="btn review-btn" href="/subscriptions/new">REVIEW</a>
       </div>
     )}
 })

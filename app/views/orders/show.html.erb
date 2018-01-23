@@ -1,34 +1,44 @@
-<h2>Thanks for your purchase!</h2>
-<h4>Order Summary</h4>
-<table style="width:50%">
-  <tr>
-    <td>Order number:</td>
-    <td><%= @order.id %></td>
-  </tr>
-  <tr>
-    <td>Order date:</td>
-    <td><%= @order.created_at %></td>
-  </tr>
-</table>
-<hr>
-<table style="width:100%">
-  <tr>
-    <th>Product</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Subtotal</th>
-  </tr>
-  <% @stripe_order.items.each do |item| %>
-    <tr style="border:1px">
-      <% if item.type == 'sku' %>
-          <td><%= item.description %></td>
-          <td><%= item.amount/item.quantity * 0.01 %></td>
-          <td><%= item.quantity %></td>
-          <td><%= item.amount * 0.01 %></td>
-      <% else %>
-        <td style="text-align:right" colspan="3"><%= item.type.capitalize %></td>
-        <td><%= item.amount * 0.01 %></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
+<div class="container row" >
+<h3>Thank you for your purchase!</h2>
+  <hr>
+  <h5>Order Details</h5>
+  <div >
+    <dl>
+      <dt>Customer Email: </dt>
+      <dd><%= @stripe_order.email %></dd>
+      <dt>Order number:</dt>
+      <dd><%= @order.id %></dd>
+      <dt>Order date:</dt>
+      <dd><%= @order.created_at %></dd>
+      <dd></dd>
+    </dl>
+  </div>
+      <h5>Items</h5>
+        <table class="bordered">
+        <thead>
+          <tr>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @stripe_order.items.each do |item| %>
+          <tr>
+            <% if item.amount > 0 %>
+            <td><%= item.description %></td>
+            <td><%= item.quantity %></td>
+            <td> <%= number_to_currency(item.amount * 0.01)%></td>
+          </tr>
+            <% end %>
+          <% end %>
+          <tfoot>
+            <td> Total </td>
+            <!-- Parse items && count the quantities -->
+            <td> <%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.quantity}.sum  %></td>
+            <td> <%= number_to_currency(@stripe_order.amount * 0.01) %></td>
+          </tfoot>
+        </tbody>
+      </table>
+ </div>
