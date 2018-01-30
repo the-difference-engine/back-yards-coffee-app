@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   get '/customers' => 'customers#index'
 
   get '/customers/dashboard' => 'customers#show'
-  get '/customers/:id/edit' => 'customers#edit'
-  patch '/customers/:id' => 'customers#update'
+  resources :customers, except: [:show]
   get '/employees/dashboard' => 'employees#show'
 
   get '/wholesalers' => 'wholesalers#index'
@@ -43,6 +42,7 @@ Rails.application.routes.draw do
 
   get '/orders/new' => 'orders#new'
   get '/orders/:id' => 'orders#show'
+  patch '/orders' => 'orders#create', as: 'orders_create'
 
   get '/subscriptions/new' => 'subscriptions#new'
 

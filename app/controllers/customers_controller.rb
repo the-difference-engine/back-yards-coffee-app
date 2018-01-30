@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(current_customer.id)
+    @customer = current_customer
     if @customer.update(customer_params)
       flash[:success] = 'Shipping address updated'
       StripeTool.customer_shipping_update(@customer)
@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.permit(
+    params.require(:customer).permit(
       :first_name,
       :last_name,
       :address,

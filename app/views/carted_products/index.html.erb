@@ -1,14 +1,65 @@
 <body class="botysbackground">
   <div class="container">
     <h3 class="center lobster-font gray"> Shopping Cart </h3>
-    <br>
-
-    <%= react_component('Cart',
-     carted_products: @carted_products,
-     carted_subscriptions: @carted_subscriptions,
-     products_total: @products_total,
-     subscriptions_total: @subscriptions_total,
-     cart_total: @cart_total) %>
-
+    <div class="row">
+        <div class="col s5">
+          <!-- Form for Address -->
+          <div class="Checkout">
+            <h5 class="LobsterCenter">Shipping Information</h5>
+            <%= form_for(@customer, url: orders_create_path) do |f|%>
+                <%= f.label :first_name %>
+                <%= f.text_field :first_name %>
+                <%= f.label :last_name %>
+                <%= f.text_field :last_name %>
+                <%= f.label :address  %>
+                <%= f.text_field :address %>
+                <%= f.label :Address2  %>
+                <%= f.text_field :Address2 %>
+                <%= f.label :city %>
+                <%= f.text_field :city %>
+                <%= f.label :state %>
+                <%= f.text_field :state %>
+                <%= f.label :zip_code  %>
+                <%= f.text_field :zip_code %>
+                <input type="submit" value="Save Address" class="waves-effect btn" />
+            <% end %>
+          </div>
+        </div>
+        <div class="col s1"></div>
+        <div class="col s5">
+          <div class="Checkout">
+            <div class="OrderSummary">
+              <h5 class="LobsterCenter">Order Summary</h5>
+              <table>
+                <% @carted_products.each do |product| %>
+                  <tr>
+                    <%= product.name %>
+                    <%= product.quantity %>
+                  </tr>
+                <% end %>
+                <% @carted_subscriptions.each do |subscription| %>
+                  <tr>
+                    <%= subscription.plan_name %>
+                    <%= subscription.quantity %>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+            <div class="Toggle">
+              <div>
+                <input type="radio" value="on" name="shipping">
+                <label for="shipping">Shipping: Foobar</label>
+              </div>
+              <div>
+                <input type="radio" value="on" name="pickup">
+                <label for="pickup">Pick Up</label>
+              </div>
+            </div>
+            <div class="center">
+              <%= @cart_total %>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </body>
