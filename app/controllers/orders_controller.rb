@@ -12,6 +12,18 @@ class OrdersController < ApplicationController
     @order = StripeTool.create_order(@customer)
   end
 
+  def create
+    if customer_signed_in?
+      customer = current_customer
+      customer.update(customer_params)
+      @order = StripeTool.create_order(current_customer)
+      # else
+      # TODO: GUEST ORDER
+    end
+    redirect_to '/cart'
+    # TODO: REDIRECT TO ORDERS NEW
+  end
+
   def show
     @order = Order.find(params[:id])
     @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
@@ -21,5 +33,11 @@ class OrdersController < ApplicationController
     # @unit_price = @sku_price / @quantity
     # @tax = @stripe_order.items.select { |item| item['type'] == 'tax' }.first.amount * 0.01
     # @shipping = @stripe_order.items.select { |item| item['type'] == 'shipping' }.first.amount * 0.01
+  end
+
+  private
+
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :address, :Adddress2, :city, :state, :zip_code)
   end
 end

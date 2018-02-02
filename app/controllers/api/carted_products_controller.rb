@@ -1,6 +1,6 @@
 class Api::CartedProductsController < ApplicationController
   def update
-    @carted_product = CartedProduct.find_by(id: params[:id])
+    @carted_product = CartedProduct.find(params[:id])
     @carted_product.quantity = params[:qnty]
     if @carted_product.save
       render :json => @carted_product

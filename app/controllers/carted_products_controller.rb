@@ -28,6 +28,7 @@ class CartedProductsController < ApplicationController
   end
 
   def index
+    @customer = current_customer || Customer.new
     @carted_products = CartedProduct.my_carted(guest_or_customer_id)
     @carted_subscriptions = CartedSubscription.my_carted(guest_or_customer_id)
     @products_total = @carted_products.sum { |s| s.price * s.quantity }
