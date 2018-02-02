@@ -1,25 +1,37 @@
 <body class="botysbackground">
   <div class="container"> 
+    <div class="row">
+      <div class="col l6 ">
+        <h5 class="LobsterCenter">Shipping Information</h5>
 
-    <%= react_component('Order', order: @order, customer: @customer) %>
+ "id": "or_1Bpo35D5v3nurHsLzF9ge9kQ", "object": "order", "amount": 4396, "amount_returned": null, "application": null, "application_fee": null, "charge": "ch_1Bpo3bD5v3nurHsLHDWQpnxZ", "created": 1517276195, "currency": "usd", "customer": "cus_CBfEUS5szIQ7vv", "email": "test@email.com", "items": [ { "object": "order_item", "amount": 1099, "currency": "usd", "description": "Blend of Blends", "parent": "sku_B1KMb3gUeRquyd", "quantity": 1, "type": "sku" }, { "object": "order_item", "amount": 1099, "currency": "usd", "description": "47th Street Blend", "parent": "sku_B1KPc4HwjF9Aop", "quantity": 1, "type": "sku" }, { "object": "order_item", "amount": 0, "currency": "usd", "description": "Sales tax", "parent": null, "quantity": null, "type": "tax" }, { "object": "order_item", "amount": 2198, "currency": "usd", "description": "USPS Priority Mail Express", "parent": "19692a2b0e7448c0a5d3e25b6a2a7c9b", "quantity": null, "type": "shipping" }, { "object": "order_item", "amount": 0, "currency": "usd", "description": "Shipping tax", "parent": "19692a2b0e7448c0a5d3e25b6a2a7c9b", "quantity": null, "type": "tax" } ], "livemode": false, "metadata": { }, "returns": { "object": "list", "data": [ ], "has_more": false, "total_count": 0, "url": "/v1/order_returns?order=or_1Bpo35D5v3nurHsLzF9ge9kQ" }, "selected_shipping_method": "19692a2b0e7448c0a5d3e25b6a2a7c9b", "shipping": { "address": { "city": "Chicago", "country": "US", "line1": "2059 W 47th St", "line2": null, "postal_code": "60609", "state": null }, "carrier": null, "name": " ", "phone": null, "tracking_number": null }, "shipping_methods": [ { "id": "19692a2b0e7448c0a5d3e25b6a2a7c9b", "amount": 2198, "currency": "usd", "delivery_estimate": { "date": "2018-02-01", "type": "exact" }, "description": "USPS Priority Mail Express" }, { "id": "2607cac3d5624409af995c27a7d11dbd", "amount": 716, "currency": "usd", "delivery_estimate": { "date": "2018-02-01", "type": "exact" }, "description": "USPS Priority Mail" }, { "id": "2272392dddba4c48ae9961ac09b788c6", "amount": 720, "currency": "usd", "delivery_estimate": { "date": "2018-02-06", "type": "exact" }, "description": "USPS Parcel Select" } ], "status": "paid", "status_transitions": { "canceled": null, "fulfiled": null, "paid": 1517276228, "returned": null }, "updated": 1517276228 }</div>
 
-    <!-- STRIPE CHECKOUT FORM -->
-    <%= form_tag charges_path do %>
-      <article>
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <p><%= flash[:error] %></p>
-          </div>
-        <% end %>
-      </article>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Back of the Yards Coffee"
-              data-email="<%= current_customer.email if customer_signed_in? %>"
-              data-locale="auto"
-              data-label="Complete Order"
-              data-shipping-address="false"></script>
-      <%= hidden_field_tag :order_id, @order[:order].id %>
-    <% end %>
+----------------------------------
+ <%= @first_name %> <%= @last_name %>
+ <%= @first_name %> <%= @last_name %>
+ <%= @address %> 
+ <%= @address2 %> 
+    
+  <div class="col l12">
+      <!-- STRIPE CHECKOUT FORM -->
+      <%= form_tag charges_path do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+        </article>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Back of the Yards Coffee"
+                data-email="<%= current_customer.email if customer_signed_in? %>"
+                data-locale="auto"
+                data-label="Complete Order"
+                data-shipping-address="false"></script>
+       
+      <% end %>
+      </div>
+    </div>
   </div>
 </body>
