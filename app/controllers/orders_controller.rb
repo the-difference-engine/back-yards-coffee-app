@@ -1,17 +1,16 @@
 class OrdersController < ApplicationController
   def new
-    customer_id = guest_or_customer_id
+    @first_name = current_customer.first_name.capitalize
+    @last_name = current_customer.last_name.capitalize
+  
 
-    @customer =
-      if customer_signed_in?
-        current_customer
-      else
-        Customer.guest_customer?(customer_id) ? Customer.guest_customer?(customer_id) : Customer.create_guest_cutomer(customer_id)
-      end
+    # @order = Order.find(params[:id])
+    # @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
 
-    @order = StripeTool.create_order(@customer)
+     # this goes over the last erb tag
+     # <%= hidden_field_tag :order_id, @order[:order].id %>
   end
-
+  
   def create
     if customer_signed_in?
       customer = current_customer
@@ -27,12 +26,10 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
-    # @product_name = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.description
-    # @sku_price = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.amount * 0.01
-    # @quantity = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.quantity
-    # @unit_price = @sku_price / @quantity
-    # @tax = @stripe_order.items.select { |item| item['type'] == 'tax' }.first.amount * 0.01
-    # @shipping = @stripe_order.items.select { |item| item['type'] == 'shipping' }.first.amount * 0.01
+
+
+    @address = @stripe_order.shipping.address.line1
+    @address2 = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
   end
 
   private
