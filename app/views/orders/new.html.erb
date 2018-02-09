@@ -1,27 +1,5 @@
 <body class="botysbackground">
   <div class="container"> 
-
-
-
-
-  <!-- Shipping-->
-    <div class="col l6 s12 m6center">
-      <h5 class="LobsterCenter center">Choose your delivery option:</h5>
-      <form action="" >
-        <% @stripe_order.shipping_methods.each do |option| %>
-          <input type="checkbox" name="shipping" value="1"> 
-          <label>
-            <div> <%= option.delivery_estimate[:date] %> </div>
-            <div> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %> 
-            </div>
-            </label>
-        <% end %>
-        <input type="submit" value="Choose this shipping method">
-      </form>
-    </div>
-
-
-
     <div class="row">
       <!-- Shipping -->
       <div class="col l6 s12 m6 center">
@@ -29,6 +7,19 @@
         <div><%= @stripe_order.shipping.name %></div>
         <div><%= @stripe_order.shipping.address.line1 %></div>
         <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>      
+      </div>
+      <!-- Shipping-->
+      <div class="col l6 s12 m6center">
+        <h5 class="LobsterCenter center">Choose your delivery option:</h5>
+        <form action="" >
+          <% @stripe_order.shipping_methods.each do |option| %>
+            <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>"> 
+            <label>
+               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %> 
+              </label>
+          <% end %>
+          <input class="btn" type="submit" value="Choose this shipping method">
+        </form>
       </div>
       <!-- Items-->
       <div class="col l6 s12 m6center">
