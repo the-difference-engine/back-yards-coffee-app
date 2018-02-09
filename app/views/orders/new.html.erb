@@ -8,7 +8,7 @@
         <div><%= @stripe_order.shipping.address.line1 %></div>
         <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>      
       </div>
-      
+     
       <!-- Items-->
       <div class="col l6 s12 m6center">
         <h5 class="LobsterCenter center">Items</h5>
@@ -64,9 +64,10 @@
         </table>
       </div>  
     </div>
-    <%= hidden_field_tag :order_id, @order[:order].id %>
+
     <!-- STRIPE CHECKOUT FORM -->
-    <%= form_tag ("/orders", method: "patch") do %>
+    <%= form_tag charges_path do %>
+    <%= hidden_field_tag :order_id, @stripe_order.id %>
       <article>
         <% if flash[:error].present? %>
           <div id="error_explanation">
