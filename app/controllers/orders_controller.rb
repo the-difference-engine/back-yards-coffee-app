@@ -5,9 +5,7 @@ class OrdersController < ApplicationController
     # This could be how to get the description
     #  i.e USPS Priority Mail Express
     @shipping = @stripe_order.items.select{ |item| item.type == 'shipping' }
-
-    # This is a list of all the shipping options
-    @shipping_methods = @stripe_order.shipping_methods.select { |shipping| shipping.currency == 'usd' }
+    
   end
   def create
     if customer_signed_in?
