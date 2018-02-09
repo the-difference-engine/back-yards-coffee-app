@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   post '/carted_subscription' => 'carted_subscriptions#create'
 
   get '/orders/new' => 'orders#new'
-  get '/orders/:id' => 'orders#show'
+  get '/orders/show' => 'orders#show'
   patch '/orders' => 'orders#create', as: 'orders_create'
 
   get '/subscriptions/new' => 'subscriptions#new'

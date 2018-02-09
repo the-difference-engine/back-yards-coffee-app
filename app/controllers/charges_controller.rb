@@ -55,7 +55,7 @@ class ChargesController < ApplicationController
       flash[:success] = 'Charge created!'
       redirect_to "/orders/#{confirmed_order.id}"
     end
-  end
+   end
 
   private
 
