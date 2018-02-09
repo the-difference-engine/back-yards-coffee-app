@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       order_id = @order[:order]["id"]
       # else
       # TODO: GUEST ORDER
-      redirect_to "'/orders/show'"
+      redirect_to "/orders/new?order_id=#{order_id}"
     end
     # TODO: REDIRECT TO 'ORDERS NEW
   end
