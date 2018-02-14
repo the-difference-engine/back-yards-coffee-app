@@ -25,9 +25,7 @@ class OrdersController < ApplicationController
     @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
     @address = @stripe_order.shipping.address.line1
     @address2 = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
-
   end
-
   private
 
   def customer_params
