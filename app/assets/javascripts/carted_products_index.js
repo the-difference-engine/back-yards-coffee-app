@@ -6,6 +6,8 @@ $('.carted_products.index').ready(function(){
   var deleteSubscriptionBoxes = document.querySelectorAll('.deleteSubscriptions');
   var button = document.querySelector('.addsAjax');
   var subTotal = document.querySelector('.totalFoSho');
+  var productView = document.querySelectorAll('.productView');
+  var subscriptionView = document.querySelectorAll('.subscriptionView');
   const cartedProducts = gon.cartedProducts
   const cartedSubscriptions = gon.cartedSubscriptions
 
@@ -84,6 +86,13 @@ $('.carted_products.index').ready(function(){
 
   function deleteProduct(){
     const id = this.id.slice(2);
+    for(var i = 0; i<deleteProductBoxes.length;i++){
+      if(parseInt(cartedProducts[i].id) === parseInt(id)){
+        cartedProducts[i].quantity = 0;
+        productView[i].style.display = 'none';
+        subTotalView();
+      }
+    }
     $.ajax({
       type: "DELETE",
       url: "/api/carted_products/" + id,
@@ -94,6 +103,13 @@ $('.carted_products.index').ready(function(){
 
     function deleteSubscription(){
       const id = this.id.slice(2);
+      for(var i = 0; i<deleteSubscriptionBoxes.length;i++){
+        if(parseInt(cartedSubscriptions[i].id) === parseInt(id)){
+          cartedSubscriptions[i].quantity = 0;
+          subscriptionView[i].style.display = 'none';
+          subTotalView();
+        }
+      }
       $.ajax({
         type: "DELETE",
         url: "/api/carted_subscriptions/" + id,
@@ -130,8 +146,6 @@ $('.carted_products.index').ready(function(){
       }
       subTotalView();
     }
-
-
 
   for (var i = 0; i < deleteProductBoxes.length; i++){
     deleteProductBoxes[i].addEventListener('click', deleteProduct);

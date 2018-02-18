@@ -36,7 +36,7 @@
                 <h5 class="LobsterCenter ultraGrey"> Products </h5>
                 <% @carted_products.each do |product| %>
                   <tr>
-                    <div class = "col s12">
+                    <div class = "col s12 productView">
                       <div class= "col s8">
                     <%= product.name %>
                   </div>
@@ -54,7 +54,7 @@
 
                 <% @carted_subscriptions.each do |subscription| %>
                   <tr>
-                    <div class="col s12">
+                    <div class="col s12 subscriptionView">
                       <div class= "col s8">
                     <%= subscription.plan_name %>
                   </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="center">
               <div class="totalFoSho">
-              
+
               </div>
             </div>
           </div>
