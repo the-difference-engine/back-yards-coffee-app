@@ -1,5 +1,5 @@
-<div class="botysbackground">
-  <div class="container"> 
+<body id="botysbackground">
+  <div class="container">
     <%= react_component('Subscription', customer: @customer, carted_subscriptions: @carted_subscriptions) %>
 
     <%= form_tag charges_path do %>
@@ -20,4 +20,4 @@
           data-locale="auto"></script>
     <% end %>
   </div>
-</div>
+</body>
