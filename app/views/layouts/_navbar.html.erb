@@ -91,8 +91,10 @@
   <li class="divider"></li>
   <li>
     <a href="/cart">
-      <i class="material-icons">shopping_cart</i>
-
+      <i class="fa fa-shopping-cart cart-icon"></i>
+        <% if current_customer.carted_items != [] %>
+          <span class="badge"><%= current_customer.carted_items.map{|item| item[:quantity]}.sum %></span>
+        <% end %>
     </a>
   </li>
 
