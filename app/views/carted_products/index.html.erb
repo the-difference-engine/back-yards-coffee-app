@@ -33,7 +33,9 @@
             <div class="OrderSummary">
               <h5 class="LobsterCenter">Order Summary</h5>
               <table>
+                <%if @carted_products.length > 0 %>
                 <h5 class="LobsterCenter ultraGrey"> Products </h5>
+                <%end%>
                 <% @carted_products.each do |product| %>
                   <tr>
                     <div class = "col s12 productView">
@@ -50,8 +52,9 @@
                   </tr>
                 <% end %>
 
+                <% if @carted_subscriptions.length > 0 %>
                 <h5 class="LobsterCenter ultraGrey"> Subscriptions </h5>
-
+                <% end %>
                 <% @carted_subscriptions.each do |subscription| %>
                   <tr>
                     <div class="col s12 subscriptionView">
