@@ -38,3 +38,15 @@ $secondary-color: color("yellow", "base") !default;
     border-radius: 25px;
     margin: 10px;
 }
+
+i.fa.fa-shopping-cart.cart-icon{
+  font-size: 24px;
+}
+
+span.badge {
+  border-radius: 50%;
+  background-color: white;
+  font-size: 1rem;
+  color: black;
+  display: inline !important;
+}

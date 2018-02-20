@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   layout :layout_by_resource
-  after_filter :store_location
+  after_filter :store_location 
 
   def store_location
     # store last url
