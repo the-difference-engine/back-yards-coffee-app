@@ -13,20 +13,20 @@ class MenusController < ApplicationController
 
   def edit
     menu_id = params[:id]
-    @menu_item = Product.find_by(id: menu_id)
+    @menu_item = Product.find(menu_id)
     @categories = Category.all
   end
 
   def update
     menu_id = params[:id]
-    @menu_item = Product.find_by(id: menu_id)
+    @menu_item = Product.find(menu_id)
     @menu_item.update(menu_item_params)
     redirect_to '/coffee_house'
   end
 
   def destroy
     menu_id = params[:id]
-    @menu_item = Product.find_by(id: menu_id)
+    @menu_item = Product.find(menu_id)
     @menu_item.destroy
     redirect_to '/coffee_house'
   end
