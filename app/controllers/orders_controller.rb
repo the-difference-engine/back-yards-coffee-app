@@ -26,6 +26,11 @@ class OrdersController < ApplicationController
     @address = @stripe_order.shipping.address.line1
     @address2 = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
   end
+
+
+  def update
+    # TODO: GUEST ORDER
+  end
   private
 
   def customer_params

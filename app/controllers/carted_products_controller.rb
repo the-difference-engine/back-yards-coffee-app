@@ -19,7 +19,7 @@ class CartedProductsController < ApplicationController
       ) ### supposed to catch and up the quantity if its the same ###
       if carted_product.save
         flash[:success] = 'Product Added to Cart!'
-        redirect_to '/cart'
+        redirect_to '/products'
       else
         flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
         redirect_to "/products/#{params[:product_id]}"
