@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     if customer_signed_in?
       customer = current_customer
       customer.update(customer_params)
+      @order = StripeTool.create_order(current_customer)
       order_id = @order[:order]['id']
       # else
       # TODO: GUEST ORDER
