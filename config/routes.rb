@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   patch '/menus/:id' => 'menus#update'
   delete '/menus/:id' => 'menus#destroy'
 
-  get '/orders/new:order_id' => 'categories#new'
+  get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
   get '/categories/:id/edit' => 'categories#edit'
   patch '/categories/:id' => 'categories#update'
@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   post '/carted_subscription' => 'carted_subscriptions#create'
 
   get '/orders/new/' => 'orders#new'
-  get '/orders/:id' => 'orders#show'
+  get '/orders/new:order_id' => 'orders#create'
+  get '/orders/show/:id' => 'orders#show'
   patch '/orders' => 'orders#create', as: 'orders_create'
 
   get '/subscriptions/new' => 'subscriptions#new'

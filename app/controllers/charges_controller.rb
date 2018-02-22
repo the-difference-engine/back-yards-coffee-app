@@ -53,7 +53,7 @@ class ChargesController < ApplicationController
         carted_product.save
       end
       flash[:success] = 'Charge created!'
-      redirect_to '/orders/show'
+      redirect_to "/orders/show/#{confirmed_order.id}"
     end
   end
 
