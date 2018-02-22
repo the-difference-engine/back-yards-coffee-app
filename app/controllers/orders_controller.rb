@@ -4,15 +4,14 @@ class OrdersController < ApplicationController
     @stripe_order = Stripe::Order.retrieve(params_order_id)
     # This could be how to get the description
     #  i.e USPS Priority Mail Express
-    @shipping = @stripe_order.items.select{ |item| item.type == 'shipping' }
-    
+    @shipping = @stripe_order.items.select { |item| item.type == 'shipping' }
   end
+
   def create
     if customer_signed_in?
       customer = current_customer
       customer.update(customer_params)
-      p @order = StripeTool.create_order(current_customer)
-      order_id = @order[:order]["id"]
+      order_id = @order[:order]['id']
       # else
       # TODO: GUEST ORDER
       redirect_to "/orders/new?order_id=#{order_id}"
@@ -27,10 +26,10 @@ class OrdersController < ApplicationController
     @address2 = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
   end
 
-
   def update
     # TODO: GUEST ORDER
   end
+
   private
 
   def customer_params
