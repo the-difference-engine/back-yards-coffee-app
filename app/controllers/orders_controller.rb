@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
     # This could be how to get the description
     #  i.e USPS Priority Mail Express
     @shipping = @stripe_order.items.select { |item| item.type == 'shipping' }
+
   end
 
   def create
@@ -13,8 +14,6 @@ class OrdersController < ApplicationController
       customer.update(customer_params)
       @order = StripeTool.create_order(current_customer)
       order_id = @order[:order]['id']
-      # else
-      # TODO: GUEST ORDER
       redirect_to "/orders/new?order_id=#{order_id}"
     end
     # TODO: REDIRECT TO 'ORDERS NEW
