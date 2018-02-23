@@ -34,7 +34,8 @@
         <li>
           <a href="/cart">
             <i class="fa fa-shopping-cart cart-icon"></i>
-              <% if current_customer.carted_items != [] %>
+              <% if current_customer == nil %>  
+              <% elsif current_customer.carted_items != [] %>
                 <span class="badge"><%= current_customer.carted_items.map{|item| item[:quantity]}.sum %></span>
               <% end %>
           </a>
@@ -92,7 +93,8 @@
   <li>
     <a href="/cart">
       <i class="fa fa-shopping-cart cart-icon"></i>
-        <% if current_customer.carted_items != [] %>
+        <% if current_customer == nil %>
+        <% elsif current_customer.carted_items != [] %>
           <span class="badge"><%= current_customer.carted_items.map{|item| item[:quantity]}.sum %></span>
         <% end %>
     </a>
