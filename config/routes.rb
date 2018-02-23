@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   post '/carted_subscription' => 'carted_subscriptions#create'
 
-  get '/coupons/new' => 'coupon#new'
+  get '/coupons/new' => 'coupons#new'
   post '/coupons' => 'coupons#create'
   get '/coupons/:id/edit' => 'coupons#edit'
   patch '/coupons/:id' => 'coupons#update'

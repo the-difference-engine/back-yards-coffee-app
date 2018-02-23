@@ -1,1 +1,59 @@
-div.con
+<div class="container">
+<h1 class="center">Create a new coupon</h1>
+<hr>
+
+<%=form_tag '/coupons', method: :post do %>
+
+<div class="row">
+  <div class="col xl6">
+    <label>Please enter a unique name for coupon</label>
+    <input type="text" name="id">
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col xl6">
+      <label>Amount off</label>
+      <input type="text" name="amount_off">
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col xl6">
+        <label>percent off</label>
+        <input type="text" name="percent_off">
+      </div>
+      </div>
+
+  <div class="row">
+    <div class="col xl6">
+      <label>Lasts forever, Once, or Monthly</label>
+      <input type="text" name="duration">
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col xl6">
+        <label>How long do you want the coupon to last for (in months)?</label>
+        <input type="text" name="duration_in_months">
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col xl6">
+          <label>Max number of redemptions</label>
+          <input type="text" name="max_redemptions">
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="col xl6">
+            <label>Redeem by</label>
+            <input type="text" name="redeem_by">
+          </div>
+          </div>
+
+          <%=hidden_field_tag :currency, 'USD'%>
+
+<% end %>
+</div>

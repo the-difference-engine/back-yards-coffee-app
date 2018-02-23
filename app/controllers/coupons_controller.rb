@@ -1,18 +1,10 @@
 class CouponsController < ApplicationController
+  before_action :authenticate_employee!
 
   def new
-    @coupons = 
   end
 
   def create
-    coupon = Stripe::Coupon.create(
-      :amount_off =>,
-      :percent_off => 25,
-      :duration => 'repeating',
-      :duration_in_months => 3,
-      :id => ''
-    )
-
   end
 
   def edit
@@ -26,4 +18,18 @@ class CouponsController < ApplicationController
   def delete
   end
 
+  private
+
+  def coupon_params
+    params.require(:employee).permit(
+      :id,
+      :duration,
+      :amount_off,
+      :currency,
+      :duration_in_months,
+      :max_redemptions,
+      :percent_off,
+      :redeem_by
+    )
+  end
 end
