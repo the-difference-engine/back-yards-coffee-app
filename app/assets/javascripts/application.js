@@ -18,7 +18,5 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require jquery-readyselector
 //= require_tree .
-
-
-

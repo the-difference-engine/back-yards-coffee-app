@@ -1,5 +1,7 @@
-<body class="botysbackground">
-  <div class="container">
+<body id="botysbackground" class="carted_products index">
+
+      <div class="container">
+
     <h3 class="center lobster-font gray"> Shopping Cart </h3>
     <div class="row">
         <div class="col s5">
@@ -21,28 +23,54 @@
                 <%= f.text_field :state %>
                 <%= f.label :zip_code  %>
                 <%= f.text_field :zip_code %>
-                <input type="submit" value="Save Address" class="waves-effect btn" />
+                <input type="submit" value="Save Address" class="waves-effect btn addsAjax" />
             <% end %>
           </div>
         </div>
         <div class="col s1"></div>
-        <div class="col s5">
+        <div class="col s6">
           <div class="Checkout">
             <div class="OrderSummary">
               <h5 class="LobsterCenter">Order Summary</h5>
               <table>
+                <%if @carted_products.length > 0 %>
+                <h5 class="LobsterCenter ultraGrey"> Products </h5>
+                <%end%>
                 <% @carted_products.each do |product| %>
                   <tr>
+                    <div class = "col s12 productView">
+                      <div class= "col s8">
                     <%= product.name %>
-                    <%= product.quantity %>
+                  </div>
+                    <div class="col s2 quantity">
+                      <input id="id<%=product.id%>" class="productEdit" type="number" min="1" max="100" step="1"  value= "<%=product.quantity%>">
+                      </div>
+                      <div class = "col s2">
+                        <a id="id<%=product.id%>" class = "btn-floating btn-tiny waves-effect waves-light black deleteProducts"><i class="material-icons">delete</i></a>
+                      </div>
+                  </div>
                   </tr>
+                <% end %>
+
+                <% if @carted_subscriptions.length > 0 %>
+                <h5 class="LobsterCenter ultraGrey"> Subscriptions </h5>
                 <% end %>
                 <% @carted_subscriptions.each do |subscription| %>
                   <tr>
+                    <div class="col s12 subscriptionView">
+                      <div class= "col s8">
                     <%= subscription.plan_name %>
-                    <%= subscription.quantity %>
+                  </div>
+                    <div class="col s2 quantity">
+                      <input id="id<%=subscription.id%>" class="subscriptionEdit" type="number" min="1" max="100" step="1"  value= "<%=subscription.quantity%>">
+                      </div>
+                      <div class = "col s2">
+                        <a id="id<%=subscription.id%>" class = "btn-floating btn-tiny waves-effect waves-light black deleteSubscriptions"><i class="material-icons">delete</i></a>
+                      </div>
+                  </div>
                   </tr>
                 <% end %>
+
               </table>
             </div>
             <div class="Toggle">
@@ -56,7 +84,9 @@
               </div>
             </div>
             <div class="center">
-              <%= @cart_total %>
+              <div class="totalFoSho">
+
+              </div>
             </div>
           </div>
         </div>

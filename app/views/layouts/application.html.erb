@@ -8,6 +8,7 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= include_gon %>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lobster|Roboto|Amatica SC|Pangolin" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/93160d36b8.css">
@@ -32,10 +33,10 @@
     <!-- end favicon -->
   </head>
 
-  <body>
-    <%= render "layouts/navbar" %> 
-    <%= render "layouts/alerts" %> 
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render "layouts/navbar" %>
+    <%= render "layouts/alerts" %>
     <%= yield %>
-    <%= render "layouts/footer" %> 
+    <%= render "layouts/footer" %>
   </body>
 </html>

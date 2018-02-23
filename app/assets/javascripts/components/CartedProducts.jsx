@@ -21,6 +21,7 @@ var CartedProducts = React.createClass({
     this.setState({products_total: total});
     this.props.handleUpdate(total);
   },
+
   updateQuantity: function(val, id) {
     console.log(val, "from parent && id: ", id);
     var that = this;
@@ -47,6 +48,7 @@ var CartedProducts = React.createClass({
       }
     });
   },
+
   deleteItem: function(id){
     this.state.carted_products = this.state.carted_products.filter((carted_product) =>
       carted_product.id !== id
