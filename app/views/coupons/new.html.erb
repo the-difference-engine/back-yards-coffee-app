@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col xl6">
         <label>percent off</label>
-        <input type="text" name="percent_off">
+        <input type="integer" name="percent_off">
       </div>
       </div>
 
@@ -35,14 +35,14 @@
     <div class="row">
       <div class="col xl6">
         <label>How long do you want the coupon to last for (in months)?</label>
-        <input type="text" name="duration_in_months">
+        <input type="integer" name="duration_in_months">
       </div>
       </div>
 
       <div class="row">
         <div class="col xl6">
           <label>Max number of redemptions</label>
-          <input type="text" name="max_redemptions">
+          <input type="integer" name="max_redemptions">
         </div>
         </div>
 
@@ -54,6 +54,7 @@
           </div>
 
           <%=hidden_field_tag :currency, 'USD'%>
+          <input type="submit" value="Submit" class="waves-effect btn">
 
 <% end %>
 </div>

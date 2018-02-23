@@ -5,6 +5,12 @@ class CouponsController < ApplicationController
   end
 
   def create
+    coupon = Stripe::Coupon.create(coupon_params)
+    if coupon.save
+      redirect_to '/employees/dashboard'
+    else
+      redirect_to '/coupons/new'
+    end
   end
 
   def edit
@@ -21,15 +27,10 @@ class CouponsController < ApplicationController
   private
 
   def coupon_params
-    params.require(:employee).permit(
+    params.permit(
       :id,
-      :duration,
-      :amount_off,
-      :currency,
-      :duration_in_months,
-      :max_redemptions,
       :percent_off,
-      :redeem_by
+      :duration
     )
   end
 end
