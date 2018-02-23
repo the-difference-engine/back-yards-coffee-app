@@ -17,6 +17,23 @@ RSpec.describe CustomersController, type: :controller do
     end
   end
 
+  describe 'GET customers#show' do
+    before :each do
+      @customer = create(:customer)
+      sign_in @customer
+      get :show, params: { id: @customer.id }
+    end
+    it 'assigns a Customer to @custer' do
+      expect(assigns(:customer)).to be_a Customer
+    end
+    it 'assigns a Stripe::Customer to a @stripe_customer' do
+      expect(assigns(:stripe_customer)).to be_a Stripe::Customer
+    end
+    it 'renders the show template' do
+      expect(response).to render_template :show
+    end
+  end
+
   describe 'GET categories#edit' do
     before :each do
       employee = create(:employee)
@@ -27,7 +44,7 @@ RSpec.describe CustomersController, type: :controller do
     end
     it 'redirects to edit page' do
       customer = create(:customer)
-      get :edit, id: customer
+      get :edit, params: { id: customer }
       expect(response).to render_template :edit
     end
   end
@@ -37,15 +54,17 @@ RSpec.describe CustomersController, type: :controller do
       @customer = create(:customer)
       sign_in @customer
     end
-    xit 'creates a flash message: Unable to update address' do
-      patch :update, id: @customer
+
+    it 'creates a flash message: Unable to update address' do
+      params = { id: @customer.id, customer: { state: 'IL' } }
+      patch :update, params: params
       expect(flash[:warning]).to be_present
     end
 
-    xit "should redirect to '/customers/dashboard'" do
-      patch :update, id: @customer
-      @customer.update(address: "meow")
-      @customer.save
+    it "should redirect to '/customers/dashboard'" do
+      params = { id: @customer.id, customer: { zip_code: '90210' } }
+      patch :update, params: params
+      expect(flash[:success]).to be_present
       expect(response).to redirect_to '/customers/dashboard'
     end
   end

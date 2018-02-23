@@ -1,20 +1,21 @@
 
 .Checkout {
   background: white;
-  padding: 10px;
+  padding: 30px;
   margin-top: 25px;
+  margin: auto;
   border-radius: 25px;
   font-family: 'Roboto';
 }
-    
+
 .OrderSummary {
   border-bottom: 1px solid darken(white, 5);
   padding-bottom: 10px;
   list-style: none;
 }
-        
+
 table {
-  font-size: 14px; 
+  font-size: 14px;
   margin: 0 20px;
   margin-bottom: 10px;
   line-height: 1.6;
@@ -35,7 +36,7 @@ table {
   padding: 20px;
   text-shadow: 2px 2px 2px;
 }
-    
+
 .Title {
   font-family: 'Century Gothic';
   color: #32404b;
@@ -77,5 +78,3 @@ table {
   text-transform: uppercase;
   font-weight: 600;
 }
-
-

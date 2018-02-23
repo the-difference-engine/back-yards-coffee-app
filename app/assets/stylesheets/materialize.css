@@ -7180,8 +7180,8 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: 14px;
   font-weight: 500;
   height: 48px;
-  line-height: 48px; 
-} 
+  line-height: 48px;
+}
 
 .side-nav li > a:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -8967,11 +8967,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 
-.botysbackground {
-  background-color: #eadec2;
+#botysbackground {
+  background-color: #eadec2 !important;
 }
 
-.botysbackground-dark {
+#botysbackground-dark {
   background-color: #32404b;
 }
 
