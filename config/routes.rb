@@ -66,5 +66,7 @@ Rails.application.routes.draw do
 
     patch '/carted_subscriptions/:id/:qnty' => 'carted_subscriptions#update'
     delete '/carted_subscriptions/:id' => 'carted_subscriptions#destroy'
+
+    post '/shipping', to: 'shipping_callback#create'
   end
 end
