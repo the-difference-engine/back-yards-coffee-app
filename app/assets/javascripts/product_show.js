@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $('select').material_select();
-  const thingToWatch = $('div#plan_id').find('select')
-  const formAction = $('form')
+  const thingToWatch = $('div#plan_id').find('select');
+  const $formAction = $('form');
 
-  thingToWatch.change(function() {
-    if ($(this).val() === "One Time Buy") {
+  thingToWatch.change(function () {
+    if ($(this).val() === 'One Time Buy') {
       formAction.attr('action', '/cart');
       $('#sku_form').show();
       $('#subscription_form').hide();
@@ -13,5 +13,5 @@ $(document).ready(function() {
       $('#sku_form').hide();
       $('#subscription_form').show();
     }
-  })
-})
+  });
+});

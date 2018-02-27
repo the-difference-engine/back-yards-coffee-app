@@ -5,7 +5,15 @@ class CouponsController < ApplicationController
   end
 
   def create
-    coupon = Stripe::Coupon.create(coupon_params)
+    coupon = Stripe::Coupon.create(
+      :id => params['id'],
+      # :amount_off => params['amount_off'] || null,
+      :percent_off => params['percent_off'],
+      :duration => params['duration']
+      # :duration_in_months => params['duration_in_months'] || '',
+      # :max_redemptions => params['max_redemptions'] || '',
+      # :redeem_by => params['redeem_by'] || ''
+      )
     if coupon.save
       redirect_to '/employees/dashboard'
     else
@@ -22,15 +30,5 @@ class CouponsController < ApplicationController
   end
 
   def delete
-  end
-
-  private
-
-  def coupon_params
-    params.permit(
-      :id,
-      :percent_off,
-      :duration
-    )
   end
 end
