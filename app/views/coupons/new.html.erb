@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col xl6">
       <label>Amount off</label>
-      <input type="text" name="amount_off">
+      <input type="integer" name="amount_off">
     </div>
     </div>
 
@@ -53,7 +53,7 @@
           </div>
           </div>
 
-          <%=hidden_field_tag :currency, 'USD'%>
+
           <input type="submit" value="Submit" class="waves-effect btn">
 
 <% end %>
