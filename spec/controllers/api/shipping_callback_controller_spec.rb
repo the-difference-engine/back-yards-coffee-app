@@ -2,44 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::ShippingCallbackController, type: :controller do
   describe 'POST shipping_callback#create' do
-    let(:params) do
-      {
-        order: {
-          id: 'fake_order_id',
-          shipping: {
-            name: 'Jenny Rosen',
-            address: {
-              line1: '1234 Main street',
-              line2: nil,
-              city: 'Anytown',
-              state: 'CA',
-              postal_code: '123456',
-              country: 'US'
-            }
-          },
-          items: [
-            {
-              amount: 4200,
-              currency: 'usd',
-              parent: {
-                id: 'sku_blah_blah',
-                package_dimensions: nil, # Not this one
-                product: {
-                  id: 'prod_blah_blah',
-                  package_dimensions: { # This one
-                    height: 10.0,
-                    length: 3.0,
-                    weight: 16.0,
-                    width: 5.0
-                  }
-                }
-              }
-            }
-          ],
-          charge: nil
-        }
-      }
-    end
+    let(:params) { build(:stripe_callback) }
     before :each do
       post :create, params: params, as: :json
     end
@@ -60,6 +23,21 @@ RSpec.describe Api::ShippingCallbackController, type: :controller do
       body = JSON.parse(response.body)
       expect(body['order_update']['shipping_methods'][0]['id']).to eq 'pick_up_shipping'
       expect(body['order_update']['shipping_methods'][0]['amount']).to eq 0
+    end
+  end
+  describe 'shipping_callback#create interaction with Shippo' do
+    let(:params) { build(:stripe_callback) }
+    it 'will make a ShippoService object' do
+      expect(ShippoService).to receive(:new).with(instance_of(Hash))
+      post :create, params: params, as: :json
+    end
+    it 'will combine the recieved shipping options with the pickup option' do
+      shippo = double("shippo")
+      allow(ShippoService).to receive(:new) { shippo }
+      allow(shippo).to recieve(:create_shipment) { [:fake_option] }
+      post :create, params: params, as: json
+      body = JSON.parse(response.body)
+      expect(body['order_update']['shipping_methods'][1]).to be :fake_option
     end
   end
 end
