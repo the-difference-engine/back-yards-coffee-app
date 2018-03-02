@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    environment:
+      - PUBLISHABLE_KEY
+      - SECRET_KEY
+      - SENDGRID_API_KEY
+      - SENDGRID_USER
+      - SENDGRID_PASSWORD
+      - ROLLBAR_ACESS_KEY
+    
+    command: bundle exec rails s -p 3000 -b '0.0.0.0' -e development
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db    
+
+
