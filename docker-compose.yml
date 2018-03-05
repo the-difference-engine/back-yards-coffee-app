@@ -12,7 +12,7 @@ services:
       - SENDGRID_PASSWORD
       - ROLLBAR_ACESS_KEY
     
-    command: bundle exec rails s -p 3000 -b '0.0.0.0' -e development
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0' -e development"
     volumes:
       - .:/app
     ports:
