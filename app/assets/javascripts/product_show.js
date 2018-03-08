@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$('.products.index').ready(function() {
   $('select').material_select();
-  const thingToWatch = $('div#plan_id').find('select')
-  const formAction = $('form')
+  const planSelect = $('div#plan_id').find('select');
+  const formAction = $('form');
 
-  thingToWatch.change(function() {
-    if ($(this).val() === "One Time Buy") {
+  planSelect.change(function() {
+    if ($(this).val() === 'One Time Buy') {
       formAction.attr('action', '/cart');
       $('#sku_form').show();
       $('#subscription_form').hide();
@@ -13,5 +13,45 @@ $(document).ready(function() {
       $('#sku_form').hide();
       $('#subscription_form').show();
     }
-  })
-})
+  });
+
+  $('.products.index').on('submit', 'form', function(event) {
+    const params = objectifyForm($(this).serializeArray());
+    let ready = true;
+    let errors = [];
+    // Check for plan_id
+    if (params['plan_id'] === '') {
+      ready = false;
+      errors.push('No plan selected');
+    }
+    // Check for quantity
+    if (params['quantity'] === '') {
+      ready = false;
+      errors.push('No quantity selected');
+    }
+    // Check for sku or grind depending on plan_id
+    if (
+      (params['plan_id'] === 'One Time Buy' && params['sku'] === '') ||
+      (params['plan_id'] !== 'One Time Buy' &&
+        params['plan_id'] !== '' &&
+        params['grind'] === '') ||
+      (params['sku'] === '' && params['grind'] == '')
+    ) {
+      ready = false;
+      errors.push('No bean style selected');
+    }
+    console.log(params);
+    if (!ready) {
+      event.preventDefault();
+      Materialize.toast(`${errors.join(', ')}`, 4000, 'pulse red');
+    }
+  });
+});
+
+function objectifyForm(formArray) {
+  var returnArray = {};
+  for (var i = 0; i < formArray.length; i++) {
+    returnArray[formArray[i]['name']] = formArray[i]['value'];
+  }
+  return returnArray;
+}
