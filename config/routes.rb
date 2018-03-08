@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   patch '/menus/:id' => 'menus#update'
   delete '/menus/:id' => 'menus#destroy'
 
+  get '/categories/new' => 'categories#new'
   post '/categories' => 'categories#create'
   get '/categories/:id/edit' => 'categories#edit'
   patch '/categories/:id' => 'categories#update'
