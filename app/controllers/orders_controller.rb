@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def new
     params_order_id = params[:order_id]
-    @stripe_order = Stripe::Order.retrieve(params_order_id)
+    @stripe_order = Stripe::Order.retrieve(params_order_id) if params_order_id.present?
     # This could be how to get the description
     #  i.e USPS Priority Mail Express
     @shipping = @stripe_order.items.select { |item| item.type == 'shipping' }
@@ -11,9 +11,12 @@ class OrdersController < ApplicationController
     if customer_signed_in?
       customer = current_customer
       customer.update(customer_params)
-      @order = StripeTool.create_order(current_customer)
-      order_id = @order[:order]['id']
-      # else
+
+      if customer.carted_items.present?
+        @order = StripeTool.create_order(current_customer)
+        order_id = @order[:order]['id']
+      end
+      
       # TODO: GUEST ORDER
       redirect_to "/orders/new?order_id=#{order_id}"
     end

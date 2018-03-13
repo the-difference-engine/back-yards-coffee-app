@@ -1,21 +1,21 @@
 <body class="botysbackground">
-  <div class="container"> 
+  <div class="container">
     <div class="row center">
       <!-- Shipping -->
       <div class="col l12 s12 m12 center boty-box">
         <h5 class="LobsterCenter">1. Shipping Information</h5>
         <div><%= @stripe_order.shipping.name %></div>
         <div><%= @stripe_order.shipping.address.line1 %></div>
-        <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>      
+        <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>
       </div>
       <!-- Shipping-->
       <div class="col l12 s12 m12 center boty-box">
         <h5 class="LobsterCenter">2. Choose your delivery option:</h5>
         <form action="" >
           <% @stripe_order.shipping_methods.each do |option| %>
-            <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>"> 
+            <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>">
             <label>
-               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %> 
+               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
               </label>
           <% end %>
           <input class="btn" type="submit" value="Choose this shipping method">
@@ -67,14 +67,14 @@
               <td> <%= number_to_currency(item.amount * 0.01)%></td>
               <% end %>
             </tr>
-            <% end %>       
+            <% end %>
             <tfoot>
               <td> Total </td>
               <td> <%= number_to_currency(@stripe_order.amount * 0.01) %></td>
             </tfoot>
           </tbody>
         </table>
-      </div>  
+      </div>
     </div>
 
     <!-- STRIPE CHECKOUT FORM -->
@@ -93,7 +93,7 @@
               data-email="<%= current_customer.email if customer_signed_in? %>"
               data-locale="auto"
               data-label="Complete Order"
-              data-shipping-address="false">      
+              data-shipping-address="false">
       </script>
     <% end %>
   </div>
