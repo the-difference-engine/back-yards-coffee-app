@@ -1,7 +1,7 @@
 include ActionView::Helpers::NumberHelper
 module StripeTool
 
-  # returns the quantity for a Stripe Product object
+  # returns the quantity for a Stripe Product objec
   def self.product_quantity(product)
     product.skus.data[0].inventory.quantity + 1
   end
@@ -37,6 +37,7 @@ module StripeTool
       )
     rescue => error
       p ' ******** STRIPE API ERRROR ********* '
+
       return { order: error, valid_shipping_address: valid_shipping_address }
     end
     { order: order, valid_shipping_address: valid_shipping_address }
