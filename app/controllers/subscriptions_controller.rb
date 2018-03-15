@@ -8,4 +8,12 @@ class SubscriptionsController < ApplicationController
       redirect_to new_customer_registration_path
     end
   end
+
+  def create
+    if customer_signed_in?
+      customer = current_customer
+      customer.update(customer_params)
+    end
+    redirect_to '/orders/new'
+  end  
 end

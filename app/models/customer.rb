@@ -71,7 +71,7 @@ class Customer < ApplicationRecord
         validate: true
       )
     rescue
-      p ' ******** SHIPPO API ERRROR ********* '
+      p ' ******** SHIPPO API ERROR ********* '
       return false
     end
     address_to.validation_results.is_valid

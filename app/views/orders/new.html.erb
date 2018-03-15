@@ -19,7 +19,7 @@
               data-locale="auto"
               data-label="Complete Order"
               data-shipping-address="false"></script>
-      <%= hidden_field_tag :order_id, @order[:order].id %>
+      <%= hidden_field_tag :order_id, @order[:order].object_id %> #error 
     <% end %>
   </div>
 </body>
