@@ -18,6 +18,7 @@
 
 # Ignore local environment variables
 .env
+.env.development
 
 # Ignore all DS_store files
 .DS_Store

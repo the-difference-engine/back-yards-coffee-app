@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-
+  has_many :orders
   has_many :carted_products
   has_many :carted_subscriptions
   has_one :wholesaler
