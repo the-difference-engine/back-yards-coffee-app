@@ -7,6 +7,10 @@ class CartedProductsController < ApplicationController
     )
     if carted_product
       carted_product.quantity = carted_product.quantity.to_i + params[:quantity].to_i
+      if carted_product.save
+        flash[:success] = "Product quantity increased by #{params[:quantity]}"
+        redirect_to '/cart'
+      end
     else
       carted_product = CartedProduct.new(
         quantity: params[:quantity],
