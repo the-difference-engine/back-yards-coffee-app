@@ -7,9 +7,9 @@ class CouponsController < ApplicationController
   def create
     coupon = StripeTool.create_coupon(
       params[:id],
-      params[:percent_off],
+      params[:amount_and_percent],
+      params[:amount],
       params[:duration],
-      params[:amount_off],
       params[:duration_in_months],
       params[:max_redemptions],
       params[:redeem_by]

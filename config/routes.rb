@@ -41,15 +41,11 @@ Rails.application.routes.draw do
 
   post '/carted_subscription' => 'carted_subscriptions#create'
 
-  get '/coupons/new' => 'coupons#new'
-  post '/coupons' => 'coupons#create'
-  get '/coupons/:id/edit' => 'coupons#edit'
-  patch '/coupons/:id' => 'coupons#update'
-  delete '/coupons/:id' => 'coupons#destroy'
+  resources :coupons
 
   get '/orders/new' => 'orders#new'
   get '/orders/:id' => 'orders#show'
-  patch '/orders' => 'orders#create', as: 'orders_create'
+  post '/orders' => 'orders#create', as: 'orders_create'
 
   get '/subscriptions/new' => 'subscriptions#new'
 
@@ -62,6 +58,8 @@ Rails.application.routes.draw do
     patch '/customers/:id' => 'customers#update'
 
     get '/employees' => 'employees#index'
+
+    get '/coupons'=>'coupons#index'
 
     get '/products' => 'products#index'
 

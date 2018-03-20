@@ -23,12 +23,13 @@ module StripeTool
     plans.select{|plan| plan.plan_id == plan_id}
   end
 
-  def self.create_order(customer)
+  def self.create_order(customer,coupon)
     valid_shipping_address = customer.valid_shipping_address?
     begin
       order = Stripe::Order.create(
         currency: 'usd',
         customer: customer.stripe_customer_id,
+        coupon: coupon,
         items: customer.carted_items,
         shipping: {
           name: customer.full_name,
@@ -59,38 +60,39 @@ module StripeTool
     stripe_customer.save
   end
 
-  def self.create_coupon(id,percent_off,duration,amount_off,duration_in_months,max_redemptions,redeem_by)
+  def self.create_coupon(id,amount_and_percent,amount,duration,duration_in_months,max_redemptions,redeem_by)
     hash_of_params ={}
+    hash_of_params[:duration]= duration
+
     if id != ''
       hash_of_params[:id]= id
     end
 
-    if percent_off != ''
-      hash_of_params[:percent_off] = percent_off
-    end
-
-    if amount_off !=''
-      hash_of_params[:amount_off]=amount_off
+    if amount_and_percent == 'percent_off'
+      hash_of_params[:percent_off] = amount
+    else
+      hash_of_params[:amount_off] = amount
       hash_of_params[:currency]='USD'
     end
 
-    if duration != ''
-      hash_of_params[:duration]= duration
-    end
-
-    if duration_in_months !=''
+    if duration_in_months != ''
       hash_of_params[:duration_in_months]=duration_in_months
     end
 
-    if max_redemptions !=''
+    if max_redemptions != ''
       hash_of_params[:max_redemptions]=max_redemptions
     end
 
-    if redeem_by !=''
+    if redeem_by != ''
       hash_of_params[:redeem_by]=redeem_by
     end
 
     Stripe::Coupon.create(hash_of_params)
+
+  end
+
+  def self.check_coupon(coupon_code)
+    if Stripe::Coupon.retrieve(coupon_code)
 
   end
 end
