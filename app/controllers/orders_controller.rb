@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     if customer_signed_in?
       customer = current_customer
       customer.update(customer_params)
-      @order = StripeTool.create_order(current_customer,params[:coupon])
+      @order = StripeTool.create_order(current_customer, params[:coupon])
       # else
       # TODO: GUEST ORDER
     end

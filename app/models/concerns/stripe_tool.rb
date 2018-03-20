@@ -23,7 +23,7 @@ module StripeTool
     plans.select{|plan| plan.plan_id == plan_id}
   end
 
-  def self.create_order(customer,coupon)
+  def self.create_order(customer, coupon)
     valid_shipping_address = customer.valid_shipping_address?
     begin
       order = Stripe::Order.create(

@@ -1,8 +1,7 @@
 class CouponsController < ApplicationController
   before_action :authenticate_employee!
 
-  def new
-  end
+  def new; end
 
   def create
     coupon = StripeTool.create_coupon(
@@ -13,7 +12,7 @@ class CouponsController < ApplicationController
       params[:duration_in_months],
       params[:max_redemptions],
       params[:redeem_by]
-      )
+    )
     if coupon.save
       redirect_to '/employees/dashboard'
     else
@@ -21,14 +20,9 @@ class CouponsController < ApplicationController
     end
   end
 
-  def edit
+  def edit; end
 
-  end
+  def update; end
 
-  def update
-
-  end
-
-  def delete
-  end
+  def delete; end
 end
