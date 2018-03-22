@@ -23,6 +23,9 @@ default: &default
 
 development:
   <<: *default
+  host: db
+  username: postgres
+  password:
   database: back-yards-coffee-app_development
 
   # The specified database role being used to connect to postgres.

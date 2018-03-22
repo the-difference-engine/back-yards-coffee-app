@@ -1,10 +1,85 @@
 <body class="botysbackground">
   <div class="container">
-
-  
+    <div class="row center">
+      <!-- Shipping -->
+      <div class="col l12 s12 m12 center boty-box">
+        <h5 class="LobsterCenter">1. Shipping Information</h5>
+        <div><%= @stripe_order.shipping.name %></div>
+        <div><%= @stripe_order.shipping.address.line1 %></div>
+        <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>
+      </div>
+      <!-- Shipping-->
+      <div class="col l12 s12 m12 center boty-box">
+        <h5 class="LobsterCenter">2. Choose your delivery option:</h5>
+        <form action="" >
+          <% @stripe_order.shipping_methods.each do |option| %>
+            <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>">
+            <label>
+               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
+              </label>
+          <% end %>
+          <input class="btn" type="submit" value="Choose this shipping method">
+        </form>
+      </div>
+      <!-- Items-->
+      <div class="col l12 s12 m12 center boty-box">
+        <h5 class="LobsterCenter">3. Items</h5>
+        <table class="bordered">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @stripe_order.items.select{|item| item.type == "sku"}.each do |item| %>
+              <tr>
+                <% if item.amount > 0 %>
+                <td><%= item.description %></td>
+                <td><%= item.quantity %></td>
+                <td> <%= number_to_currency(item.amount * 0.01)%></td>
+              </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+      <!-- Order Summary-->
+      <div class="col l12 s12 m12 center boty-box">
+        <h5 class="LobsterCenter">4.Order Summary</h5>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Items(<%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.quantity}.sum  %>)</td>
+              <td>$<%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.amount * 0.01}.sum  %></td>
+            </tr>
+            <tr>
+              <% @stripe_order.items.each do |item| %>
+              <% if item.type != "sku" %>
+              <td><%= item.type %></td>
+              <td> <%= number_to_currency(item.amount * 0.01)%></td>
+              <% end %>
+            </tr>
+            <% end %>
+            <tfoot>
+              <td> Total </td>
+              <td> <%= number_to_currency(@stripe_order.amount * 0.01) %></td>
+            </tfoot>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <!-- STRIPE CHECKOUT FORM -->
     <%= form_tag charges_path do %>
+    <%= hidden_field_tag :order_id, @stripe_order.id %>
       <article>
         <% if flash[:error].present? %>
           <div id="error_explanation">
@@ -18,7 +93,8 @@
               data-email="<%= current_customer.email if customer_signed_in? %>"
               data-locale="auto"
               data-label="Complete Order"
-              data-shipping-address="false"></script>
+              data-shipping-address="false">
+      </script>
     <% end %>
   </div>
 </body>

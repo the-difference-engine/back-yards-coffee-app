@@ -7,6 +7,10 @@ class CartedProductsController < ApplicationController
     )
     if carted_product
       carted_product.quantity = carted_product.quantity.to_i + params[:quantity].to_i
+      if carted_product.save
+        flash[:success] = "Product quantity increased by #{params[:quantity]}"
+        redirect_to '/cart'
+      end
     else
       carted_product = CartedProduct.new(
         quantity: params[:quantity],
@@ -19,7 +23,7 @@ class CartedProductsController < ApplicationController
       ) ### supposed to catch and up the quantity if its the same ###
       if carted_product.save
         flash[:success] = 'Product Added to Cart!'
-        redirect_to '/cart'
+        redirect_to '/products'
       else
         flash[:error] = carted_product.errors.values.join(', ').gsub(/[']/, "\\\\\'")
         redirect_to "/products/#{params[:product_id]}"

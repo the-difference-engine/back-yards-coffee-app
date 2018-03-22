@@ -43,9 +43,10 @@ Rails.application.routes.draw do
 
   resources :coupons
 
-  get '/orders/new' => 'orders#new'
-  get '/orders/:id' => 'orders#show'
-  post '/orders' => 'orders#create', as: 'orders_create'
+  get '/orders/new/' => 'orders#new'
+  get '/orders/new:order_id' => 'orders#create'
+  get '/orders/show/:id' => 'orders#show'
+  patch '/orders' => 'orders#create', as: 'orders_create'
 
   get '/subscriptions/new' => 'subscriptions#new'
 
