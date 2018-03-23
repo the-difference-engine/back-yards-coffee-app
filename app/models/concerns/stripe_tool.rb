@@ -13,7 +13,13 @@ module StripeTool
     plans.map{|sub| "#{sub.metadata.frequency} / #{number_to_currency(sub.amount.to_f / 100)} per bag" }
   end
 
-  def self.find_plan(plans, plan_id, prod_id)
+  def self.find_plan(plan_id, prod_id)
+    plans = Stripe::Plan.list(limit: 50).data
+
+    plans = plans.select do |sub|
+      sub['metadata'].to_h.present? && sub['metadata'].to_h[:prod_id] == prod_id
+    end
+
     prod_plans = plans.select{|plan| (plan.metadata.prod_id == prod_id)}
     interval = /\w+/.match(plan_id)[0].downcase.insert(0, '-')
     plan = prod_plans.select{|plan| plan.id.include?(interval) }

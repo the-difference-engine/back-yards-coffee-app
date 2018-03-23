@@ -6,16 +6,11 @@ class CartedSubscriptionsController < ApplicationController
       plan_id: params[:plan_id],
       grind: params[:grind]
     )
+
     if carted_subscription
       carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
     else
-      plans = Stripe::Plan.list(limit: 50).data
-
-      plans = plans.select do |sub|
-        sub['metadata'].to_h.present? && sub['metadata'].to_h[:prod_id] == params[:product_id]
-      end
-
-      plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
+      plan = StripeTool.find_plan(params[:plan_id], params[:product_id])
 
       carted_subscriptions = CartedSubscription.where(
         status: 'carted',
@@ -39,7 +34,8 @@ class CartedSubscriptionsController < ApplicationController
         grind: params[:grind],
         amount: plan[0].amount,
         interval: plan[0].interval,
-        interval_count: plan[0].interval_count
+        interval_count: plan[0].interval_count,
+        product_id: params[:product_id]
       )
     end
     if carted_subscription.save
