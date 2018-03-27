@@ -1,5 +1,5 @@
+include ActionView::Helpers::NumberHelper
 module StripeTool
-  include ActionView::Helpers::NumberHelper
   # returns the quantity for a Stripe Product object
   def self.product_quantity(product)
     product.skus.data[0].inventory.quantity + 1
@@ -7,16 +7,18 @@ module StripeTool
 
   def self.product_plan_options(plans, prod_id)
     freq = { 'Weekly' => 1, 'Bimonthly' => 2, 'Monthly' => 3 }
-    plan_opts = plans.data.select { |plan| plan.metadata['prod_id'] && plan.metadata['frequency'] }
-    plan_opts = plan_opts.select { |plan| plan.metadata.prod_id == prod_id }
-    plan_opts.sort! { |a, b| freq[a.metadata.frequency] <=> freq[b.metadata.frequency] }
-    plan_opts.map { |sub| "#{sub.metadata.frequency} / #{number_to_currency(sub.amount.to_f / 100)} per bag" }
+    plans.select { |plan| plan.metadata['prod_id'] && plan.metadata['frequency'] }
+         .select { |plan| plan.metadata.prod_id == prod_id }
+         .sort! { |a, b| freq[a.metadata.frequency] <=> freq[b.metadata.frequency] }
+         .map do |sub|
+           "#{sub.metadata.frequency} / #{number_to_currency(sub.amount.to_f / 100)} per bag"
+         end
   end
 
   def self.find_plan(plans, plan_id, prod_id)
-    prod_plans = plans.select{ |plan| (plan.metadata.prod_id == prod_id) }
+    prod_plans = plans.select { |plan| (plan.metadata.prod_id == prod_id) }
     interval = /\w+/.match(plan_id)[0].downcase.insert(0, '-')
-    prod_plans.select{ |plan| plan.id.include?(interval) }
+    prod_plans.select { |plan| plan.id.include?(interval) }
   end
 
   def self.selected_plan(plans, plan_id)
