@@ -21,6 +21,7 @@ By default, it renders:
   <title>
     <%= content_for(:title) %> - <%= Rails.application.class.parent_name.titlecase %>
   </title>
+  <%= render "admin_navbar" %>
   <%= render "stylesheet" %>
   <%= csrf_meta_tags %>
 </head>

@@ -1,0 +1,35 @@
+<ul>
+  <li id="logo-img" class="float-left"> <a href="/"><%=image_tag("logo_beige_transparent.png", id:"nav-bar-logo", size: "219x65", alt: "logo")%></a></li>
+  <li class="float-right"><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
+  <li class="float-right"><a href="https://dashboard.stripe.com">Stripe</a></li>
+</ul>
+
+<style type="text/css">
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    
+}
+
+.float-right {
+    float: right;
+    padding: 14px 16px;
+}
+
+.float-left  {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+  
+</style>
