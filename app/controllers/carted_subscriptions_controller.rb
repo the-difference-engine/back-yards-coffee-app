@@ -9,7 +9,12 @@ class CartedSubscriptionsController < ApplicationController
     if carted_subscription
       carted_subscription.quantity = carted_subscription.quantity.to_i + params[:quantity].to_i
     else
-      plans = Stripe::Plan.list(limit: 50)
+      plans = Stripe::Plan.list(limit: 50).data
+
+      plans = plans.select do |sub|
+        sub['metadata'].to_h.present? && sub['metadata'].to_h[:prod_id] == params[:product_id]
+      end
+
       plan = StripeTool.find_plan(plans, params[:plan_id], params[:product_id])
 
       carted_subscriptions = CartedSubscription.where(

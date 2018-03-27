@@ -1,43 +1,42 @@
 class OrdersController < ApplicationController
   def new
-    customer_id = guest_or_customer_id
-
-    @customer =
-      if customer_signed_in?
-        current_customer
-      else
-        Customer.guest_customer?(customer_id) ? Customer.guest_customer?(customer_id) : Customer.create_guest_cutomer(customer_id)
-      end
-
-    @order = StripeTool.create_order(@customer)
+    params_order_id = params[:order_id]
+    @stripe_order = Stripe::Order.retrieve(params_order_id) if params_order_id.present?
+    # This could be how to get the description
+    #  i.e USPS Priority Mail Express
+    @shipping = @stripe_order.items.select { |item| item.type == 'shipping' }
   end
 
   def create
     if customer_signed_in?
       customer = current_customer
       customer.update(customer_params)
-      @order = StripeTool.create_order(current_customer)
-      # else
+
+      if customer.carted_items.present?
+        @order = StripeTool.create_order(current_customer)
+        order_id = @order[:order]['id']
+      end
+      
       # TODO: GUEST ORDER
+      redirect_to "/orders/new?order_id=#{order_id}"
     end
-    redirect_to '/cart'
-    # TODO: REDIRECT TO ORDERS NEW
+    # TODO: REDIRECT TO 'ORDERS NEW
   end
 
   def show
     @order = Order.find(params[:id])
     @stripe_order = Stripe::Order.retrieve(@order.stripe_order_id)
-    # @product_name = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.description
-    # @sku_price = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.amount * 0.01
-    # @quantity = @stripe_order.items.select { |item| item['type'] == 'sku' }.first.quantity
-    # @unit_price = @sku_price / @quantity
-    # @tax = @stripe_order.items.select { |item| item['type'] == 'tax' }.first.amount * 0.01
-    # @shipping = @stripe_order.items.select { |item| item['type'] == 'shipping' }.first.amount * 0.01
+    @address = @stripe_order.shipping.address.line1
+    @address2 = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
+  end
+
+  def update
+    # TODO: GUEST ORDER
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :address, :Adddress2, :city, :state, :zip_code)
+    params.require(:customer).permit(:first_name, :last_name, :address, :Address2, :city, :state, :zip_code)
   end
 end

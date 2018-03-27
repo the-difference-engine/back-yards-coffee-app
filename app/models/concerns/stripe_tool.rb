@@ -14,13 +14,13 @@ module StripeTool
   end
 
   def self.find_plan(plans, plan_id, prod_id)
-    prod_plans = plans.select{|plan| (plan.metadata.prod_id == prod_id) }
+    prod_plans = plans.select{ |plan| (plan.metadata.prod_id == prod_id) }
     interval = /\w+/.match(plan_id)[0].downcase.insert(0, '-')
-    prod_plans.select{|plan| plan.id.include?(interval) }
+    prod_plans.select{ |plan| plan.id.include?(interval) }
   end
 
   def self.selected_plan(plans, plan_id)
-    plans.select{ |plan| plan.plan_id == plan_id }
+    plans.select { |plan| plan.plan_id == plan_id }
   end
 
   def self.create_order(customer)

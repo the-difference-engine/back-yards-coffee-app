@@ -33,13 +33,16 @@
         <% end %>
         <li>
           <a href="/cart">
-            <i class="material-icons">shopping_cart</i>
+            <i class="fa fa-shopping-cart cart-icon"></i>
+              <% if current_customer == nil %>  
+              <% elsif current_customer.carted_items != [] %>
+                <span class="badge"><%= current_customer.carted_items.map{|item| item[:quantity]}.sum %></span>
+              <% end %>
           </a>
         </li>
       </ul>
     </div>
   </nav>
-
 <!-- Dropdown Structure -->
 <ul style="margin-top:64px;min-width:160px;" id='account-dropdown' class='dropdown-content'>
   <li class="divider"></li>
@@ -89,10 +92,13 @@
   <li class="divider"></li>
   <li>
     <a href="/cart">
-      <i class="material-icons">shopping_cart</i>
+      <i class="fa fa-shopping-cart cart-icon"></i>
+        <% if current_customer == nil %>
+        <% elsif current_customer.carted_items != [] %>
+          <span class="badge"><%= current_customer.carted_items.map{|item| item[:quantity]}.sum %></span>
+        <% end %>
     </a>
   </li>
-
   <li class="divider"></li>
   <% if current_customer %>
     <li style="text-align: center;">
