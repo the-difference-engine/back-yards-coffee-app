@@ -82,9 +82,9 @@ class Customer < ApplicationRecord
   end
 
   def carted_products_and_subscription_quantity
-    product_quantity = carted_products.where(status: 'carted').map(&:quantity) || 0
-    subscription_quantity = carted_subscriptions.where(status: 'carted').map(&:quantity) || 0
+    product_quantity = carted_products.where(status: 'carted').map(&:quantity)&.sum || 0
+    subscription_quantity = carted_subscriptions.where(status: 'carted').map(&:quantity)&.sum || 0
 
-    total_quantity = product_quantity + subscription_quantity
+    product_quantity + subscription_quantity
   end
 end
