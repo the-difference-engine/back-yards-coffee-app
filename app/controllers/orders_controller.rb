@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
         @order = StripeTool.create_order(current_customer)
         order_id = @order[:order]['id']
       end
-      
+
       # TODO: GUEST ORDER
       redirect_to "/orders/new?order_id=#{order_id}"
     end

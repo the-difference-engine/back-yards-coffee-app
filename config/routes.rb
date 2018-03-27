@@ -34,11 +34,14 @@ Rails.application.routes.draw do
   patch '/categories/:id' => 'categories#update'
   delete '/categories/:id' => 'categories#destroy'
 
+
   post '/cart' => 'carted_products#create'
   get '/cart' => 'carted_products#index'
   patch '/cart' => 'carted_products#update'
 
   post '/carted_subscription' => 'carted_subscriptions#create'
+
+  resources :coupons
 
   get '/orders/new/' => 'orders#new'
   get '/orders/new:order_id' => 'orders#create'
@@ -56,6 +59,8 @@ Rails.application.routes.draw do
     patch '/customers/:id' => 'customers#update'
 
     get '/employees' => 'employees#index'
+
+    get '/coupons'=>'coupons#index'
 
     get '/products' => 'products#index'
 

@@ -6,10 +6,30 @@ $('.carted_products.index').ready(function () {
   var deleteSubscriptionBoxes = document.querySelectorAll('.deleteSubscriptions');
   var button = document.querySelector('.addsAjax');
   var subTotal = document.querySelector('.totalFoSho');
+  var couponDiv = document.querySelector('.coupon_view');
+  var newTotalDiv = document.querySelector('.new_total');
   var productView = document.querySelectorAll('.productView');
   var subscriptionView = document.querySelectorAll('.subscriptionView');
   const cartedProducts = gon.cartedProducts;
   const cartedSubscriptions = gon.cartedSubscriptions;
+  const couponApplyButton = document.querySelector('#apply_coupon_button');
+  const couponCode = document.querySelector('#coupon_input');
+
+  function validateCoupon() {
+    const coupon = couponCode.value;
+    $.ajax({
+      method: 'GET',
+      url: '/api/coupons',
+      data: { data: coupon },
+      success: (data) => {
+        couponView(data);
+      },
+
+      error: () => {
+        alert('coupon does not exist');
+      },
+    });
+  }
 
   jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
   jQuery('.quantity').each(function () {
@@ -132,10 +152,27 @@ $('.carted_products.index').ready(function () {
     }
 
     subTotal.innerText = 'Subtotal: $ ' + (itemsTotal * 0.01).toFixed(2);
-    return 'Subtotal: $' + (itemsTotal * 0.01).toFixed(2);
+    return (itemsTotal * 0.01).toFixed(2);
   }
 
   const quantityButtons = document.querySelectorAll('.quantity-nav');
+
+  function couponView(data) {
+    var itemsTotal = subTotalView();
+    console.log(itemsTotal);
+    var couponAmount = 0;
+    var newTotal = 0;
+    if (data.percent_off != null) {
+      couponAmount = itemsTotal * (data.percent_off * 0.01);
+      newTotal = itemsTotal - couponAmount;
+    } else {
+      couponAmount =  data.amount_off;
+      newTotal = itemsTotal - (data.amount_off);
+    }
+
+    couponDiv.innerText = `Amount off: $ ${couponAmount.toFixed(2)}`;
+    newTotalDiv.innerText = `Amount with coupon: $ ${newTotal.toFixed(2)}`;
+  }
 
   function updateQuantity() {
     var newQuantity = this.parentNode.firstChild.nextSibling.value;
@@ -170,6 +207,7 @@ $('.carted_products.index').ready(function () {
 
   button.addEventListener('click', grabProductAmount);
   button.addEventListener('click', grabSubscriptionAmount);
+  couponApplyButton.addEventListener('click', validateCoupon);
   subTotal.innerText = subTotalView();
 
 });

@@ -1,0 +1,77 @@
+<div class="container">
+  <h1 class="center">Create a new coupon</h1>
+  <hr>
+
+  <%=form_tag '/coupons', method: :post do %>
+
+  <div id="id" class="row">
+    <div class="col xl6">
+      <label>Please enter a unique name for coupon</label>
+      <input type="text" name="id">
+    </div>
+  </div>
+
+  <div id="amount_and_percent_form" class="row">
+    <div class="col xl6">
+      <div class="input-field">
+        <%= select_tag :amount_and_percent, options_for_select(['Amount Off','Percent Off']), prompt: " - Select Amount or Percent - " %>
+        <label>Amount or Percent Off</label>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col xl6">
+      <label>Amount/Percent off</label>
+      <input name="amount" type="integer">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col xl6">
+      <div class="input-field duration_select">
+        <%= select_tag :duration, options_for_select(['once','repeating','forever']), prompt: " - Select Duration- " %>
+        <label>Lasts forever, Once, or Monthly</label>
+    </div>
+  </div>
+</div>
+
+  <div id="duration_in_months" class="row">
+    <div class="col xl6">
+      <label>How long do you want the coupon to last for (in months)?</label>
+      <input type="integer" name="duration_in_months">
+    </div>
+  </div>
+
+  <div id="max_redemptions" class="row">
+    <div class="col xl6">
+      <label>Max number of redemptions</label>
+      <input type="integer" name="max_redemptions">
+    </div>
+  </div>
+
+  <div id="redeem_by" class="row">
+    <div class="col xl6">
+      <label>Redeem by</label>
+      <input type="text" name="redeem_by">
+    </div>
+  </div>
+
+  <input type="submit" value="Submit" class="waves-effect btn">
+
+<% end %>
+</div>
+
+<script>
+$('.dropdown-button').dropdown({
+   inDuration: 300,
+   outDuration: 225,
+   constrainWidth: false, // Does not change width of dropdown to that of the activator
+   hover: true, // Activate on hover
+   gutter: 0, // Spacing from edge
+   belowOrigin: false, // Displays dropdown below the button
+   alignment: 'left', // Displays dropdown with edge aligned to the left of button
+   stopPropagation: false // Stops event propagation
+ }
+);
+</script>
