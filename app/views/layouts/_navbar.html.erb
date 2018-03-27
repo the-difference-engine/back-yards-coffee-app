@@ -5,6 +5,11 @@
         <i id="menu-btn" class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
+        <%if current_employee %>
+        <li >
+          <a href="/admin" class='btn'>Admin</a>
+        </li>
+        <%end%>
         <li class="<%='active' if current_page?(coffee_club_url)%>">
           <a href="/coffee_club">Coffee Club</a>
         </li>
@@ -113,6 +118,6 @@
   <%else%>
     <li>
       <a href="/customers/sign_in">Login</a>
-    </li>  
+    </li>
   <% end %>
 </ul>
