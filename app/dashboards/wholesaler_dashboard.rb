@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class WholesalerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -80,7 +80,7 @@ class WholesalerDashboard < Administrate::BaseDashboard
     :recieving_hours,
     :days_closed,
     :is_approved,
-    :is_rejected,
+    :is_rejected
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -111,7 +111,7 @@ class WholesalerDashboard < Administrate::BaseDashboard
     :recieving_hours,
     :days_closed,
     :is_approved,
-    :is_rejected,
+    :is_rejected
   ].freeze
 
   # Overwrite this method to customize how wholesalers are displayed

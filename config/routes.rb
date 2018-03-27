@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :carted_subscriptions
+    # resources :carted_subscriptions
     resources :employees
     resources :customers
-    resources :carted_products
-    resources :categories
-    resources :orders
-    resources :products
+    # resources :carted_products
+    # resources :categories
+    # resources :orders
+    # resources :products
     resources :wholesalers
 
-    root to: "carted_subscriptions#index"
+    root to: "employees#index"
   end
 
   devise_for :employees
