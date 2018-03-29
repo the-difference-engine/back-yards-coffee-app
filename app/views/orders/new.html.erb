@@ -4,13 +4,16 @@
       <!-- Shipping -->
       <div class="col l12 s12 m12 center boty-box">
         <h5 class="LobsterCenter">1. Shipping Information</h5>
-        <div><%= @stripe_order.shipping.name %></div>
-        <div><%= @stripe_order.shipping.address.line1 %></div>
-        <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>
+        <% if @stripe_order.present? %>
+          <div><%= @stripe_order.shipping.name %></div>
+          <div><%= @stripe_order.shipping.address.line1 %></div>
+          <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>
+        <% end %>
       </div>
       <!-- Shipping-->
       <div class="col l12 s12 m12 center boty-box">
         <h5 class="LobsterCenter">2. Choose your delivery option:</h5>
+        <% if @stripe_order.present? %>
         <form action="" >
           <% @stripe_order.shipping_methods.each do |option| %>
             <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>">
@@ -20,6 +23,7 @@
           <% end %>
           <input class="btn" type="submit" value="Choose this shipping method">
         </form>
+        <% end %>
       </div>
       <!-- Items-->
       <div class="col l12 s12 m12 center boty-box">
@@ -33,14 +37,23 @@
               </tr>
             </thead>
             <tbody>
-              <% @stripe_order.items.select{|item| item.type == "sku"}.each do |item| %>
-              <tr>
-                <% if item.amount > 0 %>
-                <td><%= item.description %></td>
-                <td><%= item.quantity %></td>
-                <td> <%= number_to_currency(item.amount * 0.01)%></td>
-              </tr>
+              <% if @stripe_order.present? %>
+                <% @stripe_order.items.select{|item| item.type == "sku"}.each do |item| %>
+                  <% if item.amount > 0 %>
+                    <tr>
+                      <td><%= item.description %></td>
+                      <td><%= item.quantity %></td>
+                      <td> <%= number_to_currency(item.amount * 0.01)%></td>
+                    </tr>
+                  <% end %>
                 <% end %>
+              <% end %>
+              <% @carted_subscriptions.each do |item| %>
+                <tr>
+                  <td><%= item.plan_name %></td>
+                  <td><%= item.quantity %></td>
+                  <td> <%= number_to_currency(item.amount * 0.01)%></td>
+                </tr>
               <% end %>
             </tbody>
         </table>
@@ -57,20 +70,22 @@
           </thead>
           <tbody>
             <tr>
-              <td>Items(<%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.quantity}.sum  %>)</td>
-              <td>$<%= @stripe_order.items.select{|item| item.type == "sku"}.map{|item| item.amount * 0.01}.sum  %></td>
+              <td>Items(<%= @total_quantity %>)</td>
+              <td><%= number_to_currency(@total) %></td>
             </tr>
             <tr>
-              <% @stripe_order.items.each do |item| %>
-              <% if item.type != "sku" %>
-              <td><%= item.type %></td>
-              <td> <%= number_to_currency(item.amount * 0.01)%></td>
+              <% if @stripe_order.present? %>
+                <% @stripe_order.items.each do |item| %>
+                  <% if item.type != "sku" %>
+                    <td><%= item.type %></td>
+                    <td> <%= number_to_currency(item.amount * 0.01)%></td>
+                  <% end %>
+              </tr>
+                <% end %>
               <% end %>
-            </tr>
-            <% end %>
             <tfoot>
               <td> Total </td>
-              <td> <%= number_to_currency(@stripe_order.amount * 0.01) %></td>
+              <td> <%= number_to_currency(@total) %></td>
             </tfoot>
           </tbody>
         </table>
@@ -79,7 +94,7 @@
 
     <!-- STRIPE CHECKOUT FORM -->
     <%= form_tag charges_path do %>
-    <%= hidden_field_tag :order_id, @stripe_order.id %>
+    <%= hidden_field_tag :order_id, @stripe_order&.id %>
       <article>
         <% if flash[:error].present? %>
           <div id="error_explanation">
