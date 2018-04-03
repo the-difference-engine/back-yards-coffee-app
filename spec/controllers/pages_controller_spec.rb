@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PagesController, type: :controller do
-
   describe 'GET pages#index' do
-
     context 'as a guest' do
       it 'should render the front page/index page' do
+        allow(Stripe::Product).to receive(:list).and_return([])
         get :index
         expect(response).to render_template :index
       end
@@ -17,6 +16,7 @@ RSpec.describe PagesController, type: :controller do
         sign_in customer
       end
       it 'should render the front page/index page' do
+        allow(Stripe::Product).to receive(:list).and_return([])
         get :index
         expect(response).to render_template :index
       end
@@ -39,6 +39,7 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'GET pages#coffee_club' do
     it 'should render the coffee_club page' do
+    allow(Stripe::Product).to receive(:list).and_return([])
       get :coffee_club
       expect(response).to render_template :coffee_club
     end

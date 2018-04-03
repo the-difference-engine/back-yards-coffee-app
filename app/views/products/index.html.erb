@@ -21,8 +21,7 @@
         </span>
         <div class="innercard">
           <p><%=product.description%></p>
-          <p>Starting at
-            <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
+          <p>Starting at <%= starting_price(product) %></p>
             <div class="section">
           <div class="row">
             <div class="col s6">

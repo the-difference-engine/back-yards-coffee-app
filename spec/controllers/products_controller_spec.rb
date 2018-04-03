@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ProductsController, type: :controller do
   describe "GET products#index" do
     it "should render the index page" do
+      allow(Stripe::Product).to receive(:list).and_return([])
       get :index
       expect(response).to render_template :index
     end
