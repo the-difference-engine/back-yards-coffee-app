@@ -39,7 +39,7 @@ RSpec.describe PagesController, type: :controller do
 
   describe 'GET pages#coffee_club' do
     it 'should render the coffee_club page' do
-    allow(Stripe::Product).to receive(:list).and_return([])
+      allow(Stripe::Product).to receive(:list).and_return([])
       get :coffee_club
       expect(response).to render_template :coffee_club
     end

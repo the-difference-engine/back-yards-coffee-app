@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def coffee_club
     @products = Stripe::Product.list(active: true)
-      .select { |product| product.attributes.include?('featured') }
+                               .select { |product| product.attributes.include?('featured') }
     @subscriptions = Stripe::Plan.list(limit: 50)
   end
 
