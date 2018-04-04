@@ -8,24 +8,25 @@
       </div>
     </div>
   </div>
-
-  <div id="sku_form" class="section" style="height:100px">
-    <div class="row">
-      <div class="input-field">
-        <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
-        <label>Bean Style</label>
+  <% if @product.attributes.include?('bean_style') %>
+    <div id="sku_form" class="section" style="height:100px">
+      <div class="row">
+        <div class="input-field">
+          <%= select_tag :sku, options_for_select(@product.skus.data.collect{|x| [x.attributes.bean_style, x.id]}), prompt: " - Select Bean Style - " %>
+          <label>Bean Style</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="subscription_form" class="section" style="height:100px;display:none">
-    <div class="row">
-      <div class="input-field">
-        <%= select_tag :grind, options_for_select(['Ground','Whole Bean']), prompt: " - Select Bean Style - " %>
-        <label>Bean Style</label>
+    <div id="subscription_form" class="section" style="height:100px;display:none">
+      <div class="row">
+        <div class="input-field">
+          <%= select_tag :grind, options_for_select(['Ground','Whole Bean']), prompt: " - Select Bean Style - " %>
+          <label>Bean Style</label>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="section" style="height:100px;">
     <div class="row">

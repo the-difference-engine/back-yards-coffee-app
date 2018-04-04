@@ -49,7 +49,7 @@
               <span class="card-title grey-text text-darken-4"><%=product.name%>
                 <i class="material-icons right">close</i></span>
               <p><%=product.description%></p>
-              <p>Starting at <%=number_to_currency(product.skus.data[1].price.to_f / 100)%></p>
+              <p>Starting at <%= starting_price(product) %></p>
               <a href="/products/<%= product.id %>" button class="btn waves-effect waves-light botyred " type="submit" name="action" text-align="center">Go to product</a>
             </div>
           </div>
