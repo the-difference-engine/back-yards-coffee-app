@@ -43,7 +43,7 @@
             <i class="fa fa-shopping-cart cart-icon"></i>
               <% if current_customer == nil %>
               <% else %>
-                <span class="badge"><%= current_customer.carted_products_and_subscription_quantity %></span>
+                <span  id="cart-amount" class="badge"><%= current_customer.carted_products_and_subscription_quantity %></span>
               <% end %>
           </a>
         </li>
