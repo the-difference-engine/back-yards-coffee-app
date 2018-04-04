@@ -4,6 +4,13 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse">
         <i id="menu-btn" class="material-icons">menu</i>
       </a>
+      <!-- <a href="/cart" class="button-collapse float-right">
+        <i class="fa fa-shopping-cart cart-icon"></i>
+        <%# if current_customer == nil %>
+        <%# else %>
+          <span class="badge"><%#= current_customer.carted_products_and_subscription_quantity %></span>
+        <%# end %>
+      </a> -->
       <ul class="right hide-on-med-and-down">
         <li class="<%='active' if current_page?(coffee_club_url)%>">
           <a href="/coffee_club">Coffee Club</a>
