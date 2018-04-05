@@ -38,7 +38,7 @@
             </thead>
             <tbody>
               <% if @stripe_order.present? %>
-                <% @stripe_order.items.select{|item| item.type == "sku"}.each do |item| %>
+                <% @sku_items.each do |item| %>
                   <% if item.amount > 0 %>
                     <tr>
                       <td><%= item.description %></td>
@@ -47,13 +47,6 @@
                     </tr>
                   <% end %>
                 <% end %>
-              <% end %>
-              <% @carted_subscriptions.each do |item| %>
-                <tr>
-                  <td><%= item.plan_name %></td>
-                  <td><%= item.quantity %></td>
-                  <td> <%= number_to_currency(item.amount * 0.01)%></td>
-                </tr>
               <% end %>
             </tbody>
         </table>
@@ -70,8 +63,8 @@
           </thead>
           <tbody>
             <tr>
-              <td>Items(<%= @total_quantity %>)</td>
-              <td><%= number_to_currency(@total) %></td>
+              <td>Items(<%= @sku_items.length %>)</td>
+              <td><%= number_to_currency(@stripe_order_total) %></td>
             </tr>
             <tr>
               <% if @stripe_order.present? %>

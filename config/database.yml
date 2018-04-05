@@ -22,10 +22,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
   host: db
   username: postgres
   password:
+  <<: *default
   database: back-yards-coffee-app_development
 
   # The specified database role being used to connect to postgres.
