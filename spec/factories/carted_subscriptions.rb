@@ -4,7 +4,6 @@ FactoryGirl.define do
     plan_id 'Weekly / $42.00 per bag'
     status 'carted'
     customer_id 1
-    grind 'Ground'
     interval 'week'
     interval_count 1
     plan_name 'bob-weekly'
@@ -16,7 +15,6 @@ FactoryGirl.define do
     plan_id 'Weekly / $42.00 per bag'
     status 'subscribed'
     customer_id 1
-    grind 'Ground'
     interval 'week'
     interval_count 1
     plan_name 'bob-weekly'

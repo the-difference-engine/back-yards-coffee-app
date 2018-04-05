@@ -78,7 +78,13 @@ class Customer < ApplicationRecord
   end
 
   def carted_items
-    carted_products.where(status: 'carted').map { |o| { type: 'sku', parent: o.sku, quantity: o.quantity } }
+    products = carted_products.where(status: 'carted')
+    subscriptions = carted_subscriptions.where(status: 'carted')
+
+    stripe_products = carted_products.map { |o| { type: 'sku', parent: o.sku, quantity: o.quantity } } || []
+    stripe_subscriptions = carted_subscriptions.map { |o| { type: 'sku', parent: o.sku, quantity: o.quantity } } || []
+
+    stripe_products + stripe_subscriptions
   end
 
   def carted_products_and_subscription_quantity

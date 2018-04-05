@@ -2,18 +2,19 @@ class OrdersController < ApplicationController
   def new
     params_order_id = params[:order_id]
     @stripe_order = Stripe::Order.retrieve(params_order_id) if params_order_id.present?
-    @carted_subscriptions = CartedSubscription.my_carted(guest_or_customer_id)
 
-    @carted_subscriptions_quantity = CartedSubscription.my_carted(guest_or_customer_id).pluck(:quantity)&.sum || 0
     @stripe_order_quantity = @stripe_order&.items&.select{|item| item.type == "sku"}&.map{|item| item.quantity}&.sum || 0
-    @total_quantity = @carted_subscriptions_quantity + @stripe_order_quantity
+    @total_quantity = @stripe_order_quantity
 
-    @carted_subscriptions_total = CartedSubscription.my_carted(guest_or_customer_id).pluck(:amount).map {|item| item * 0.01 }.sum
+    @sku_items = @stripe_order.items.select{|item| item.type == "sku"}
+
     @stripe_order_total = @stripe_order&.items&.select{|item| item.type == "sku"}&.map{|item| item.amount * 0.01}&.sum || 0
-    @total = @carted_subscriptions_total + @stripe_order_total
+    @shipping = @stripe_order&.items&.select { |item| item.type == 'shipping' }&.map{|item| item.amount * 0.01}&.sum || 0
+    @tax = @stripe_order&.items&.select { |item| item.type == 'tax' }&.map{|item| item.amount * 0.01}&.sum || 0
+
+    @total = @stripe_order_total + @shipping + @tax
     # This could be how to get the description
     #  i.e USPS Priority Mail Express
-    @shipping = @stripe_order&.items&.select { |item| item.type == 'shipping' }
   end
 
   def create
