@@ -4,7 +4,7 @@ class CartedSubscriptionsController < ApplicationController
       status: 'carted',
       customer_id: guest_or_customer_id,
       plan_id: params[:plan_id],
-      grind: params[:grind]
+      sku: params[:sku]
     )
 
     if carted_subscription
@@ -31,11 +31,11 @@ class CartedSubscriptionsController < ApplicationController
         status: 'carted',
         plan_id: params[:plan_id],
         plan_name: plan.first.id,
-        grind: params[:grind],
         amount: plan[0].amount,
         interval: plan[0].interval,
         interval_count: plan[0].interval_count,
-        product_id: params[:product_id]
+        product_id: params[:product_id],
+        sku: params[:sku]
       )
     end
     if carted_subscription.save

@@ -30,13 +30,7 @@ $('.products.index').ready(function() {
       errors.push('No quantity selected');
     }
     // Check for sku or grind depending on plan_id
-    if (
-      (params['plan_id'] === 'One Time Buy' && params['sku'] === '') ||
-      (params['plan_id'] !== 'One Time Buy' &&
-        params['plan_id'] !== '' &&
-        params['grind'] === '') ||
-      (params['sku'] === '' && params['grind'] == '')
-    ) {
+    if (params['sku'] === '') {
       ready = false;
       errors.push('No bean style selected');
     }
