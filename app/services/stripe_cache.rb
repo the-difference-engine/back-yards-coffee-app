@@ -8,6 +8,6 @@ class StripeCache
   end
 
   def featured_products
-    products.select { |p| p.attributes.include?('featured') }
+    products.select { |product| product.metadata['featured'] }
   end
 end
