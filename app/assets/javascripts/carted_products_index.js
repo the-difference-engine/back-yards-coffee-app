@@ -101,6 +101,7 @@ $('.carted_products.index').ready(function () {
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
     });
+    updateCartIcon();
   }
 
   function deleteSubscription() {
@@ -109,7 +110,8 @@ $('.carted_products.index').ready(function () {
       if (parseInt(cartedSubscriptions[i].id) === parseInt(id)) {
         cartedSubscriptions[i].quantity = 0;
         subscriptionView[i].style.display = 'none';
-        subTotalView();
+        
+
       }
     }
 
@@ -119,6 +121,7 @@ $('.carted_products.index').ready(function () {
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
     });
+    updateCartIcon();
   }
 
   function subTotalView() {
@@ -142,12 +145,14 @@ $('.carted_products.index').ready(function () {
     for (var i = 0; i < cartedSubscriptions.length; i++) {
       if (parseInt(this.parentNode.firstChild.nextSibling.id.slice(2)) === cartedSubscriptions[i].id) {
         cartedSubscriptions[i].quantity = newQuantity;
+        updateCartIcon();
       }
     }
 
     for (var i = 0; i < cartedProducts.length; i++) {
       if (parseInt(this.parentNode.firstChild.nextSibling.id.slice(2)) === cartedProducts[i].id) {
         cartedProducts[i].quantity = newQuantity;
+        updateCartIcon();
       }
     }
 
@@ -171,5 +176,18 @@ $('.carted_products.index').ready(function () {
   button.addEventListener('click', grabProductAmount);
   button.addEventListener('click', grabSubscriptionAmount);
   subTotal.innerText = subTotalView();
+
+  function updateCartIcon() { 
+    var cartIconNumber = document.getElementsByClassName('productEdit');
+    var temporaryProduct = 0;
+    for (var i = 0; i < cartedProducts.length; i++) {
+      temporaryProduct = temporaryProduct + parseInt(cartedProducts[i].quantity);
+    }
+    var temporarySubscription = 0;
+    for (var i = 0; i < cartedSubscriptions.length; i++) {
+      temporarySubscription = temporarySubscription + parseInt(cartedSubscriptions[i].quantity);
+    }
+    $('#cart-amount').text(temporarySubscription + temporaryProduct);
+  }
 
 });
