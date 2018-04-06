@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   def new
-    params_order_id = params[:order_id]
-    @stripe_order = Stripe::Order.retrieve(params_order_id) if params_order_id.present?
+    p @stripe_order = Stripe::Order.retrieve(params[:order_id]) if params[:order_id].present?
 
     @stripe_order_quantity = @stripe_order&.items&.select{|item| item.type == "sku"}&.map{|item| item.quantity}&.sum || 0
     @total_quantity = @stripe_order_quantity
@@ -23,6 +22,7 @@ class OrdersController < ApplicationController
       customer.update(customer_params)
 
       if customer.carted_items.present?
+        puts "customer.carted_items: #{customer.carted_items}"
         @order = StripeTool.create_order(current_customer)
         order_id = @order[:order]['id']
       end
