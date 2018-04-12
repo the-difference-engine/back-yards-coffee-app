@@ -12,14 +12,16 @@ class CartedProductsController < ApplicationController
         redirect_to '/cart'
       end
     else
+      @product = StripeCache.new.product(params[:product_id])
+      price = @product.skus.data.find { |sku| sku.id == params[:sku] } .price
       carted_product = CartedProduct.new(
         quantity: params[:quantity],
         product_id: params[:product_id],
         sku: params[:sku],
         customer_id: guest_or_customer_id,
         status: 'carted',
-        price: params[:price].to_i,
-        name: params[:name]
+        price: price,
+        name: @product.name
       ) ### supposed to catch and up the quantity if its the same ###
       if carted_product.save
         flash[:success] = 'Product Added to Cart!'

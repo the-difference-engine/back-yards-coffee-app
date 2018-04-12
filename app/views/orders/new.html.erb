@@ -15,11 +15,15 @@
         <h5 class="LobsterCenter">2. Choose your delivery option:</h5>
         <% if @stripe_order.present? %>
         <form action="" >
+          <% p @stripe_order.shipping_methods %>
           <% @stripe_order.shipping_methods.each do |option| %>
             <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>">
             <label>
-               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
-              </label>
+              <% if option.delivery_estimate %>
+                <%= option.delivery_estimate[:date] %>
+              <% end %>
+              <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
+            </label>
           <% end %>
           <input class="btn" type="submit" value="Choose this shipping method">
         </form>

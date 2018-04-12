@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   def new
-    params_order_id = params[:order_id]
-    @stripe_order = Stripe::Order.retrieve(params_order_id) if params_order_id.present?
+    @stripe_order = Stripe::Order.retrieve(params[:order_id]) if params[:order_id].present?
 
     @stripe_order_quantity = @stripe_order&.items&.select{|item| item.type == "sku"}&.map{|item| item.quantity}&.sum || 0
     @total_quantity = @stripe_order_quantity
@@ -18,18 +17,18 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if customer_signed_in?
-      customer = current_customer
-      customer.update(customer_params)
+    redirect_to '/orders/new' unless customer_signed_in?
+    customer = current_customer
+    customer.update(customer_params)
 
-      if customer.carted_items.present?
-        @order = StripeTool.create_order(current_customer)
-        order_id = @order[:order]['id']
-      end
-
-      # TODO: GUEST ORDER
-      redirect_to "/orders/new?order_id=#{order_id}"
+    if customer.carted_items.present?
+      # puts "customer.carted_items: #{customer.carted_items}"
+      @order = StripeTool.create_order(current_customer)
+      order_id = @order[:order]['id']
     end
+
+    # TODO: GUEST ORDER
+    redirect_to "/orders/new?order_id=#{order_id}"
     # TODO: REDIRECT TO 'ORDERS NEW
   end
 
