@@ -3,13 +3,16 @@ $(document).ready(function() {
   $('.tooltipped').tooltip({ delay: 5 });
   const addToCart = document.querySelectorAll('.add');
 
-  function buyForm() {
+  function buyForm(event) {
+    event.preventDefault();
     const thisProdId = this.id.slice(2);
     $.ajax({
       type: 'GET',
       url: `/products/${thisProdId}`,
       success: data => {
-        this.closest('.innercard').innerHTML = data;
+        $(this)
+          .closest('.innercard')
+          .html(data);
       },
       error: function() {}
     }).then(function() {
@@ -17,7 +20,5 @@ $(document).ready(function() {
     });
   }
 
-  for (var i = 0; i < addToCart.length; i++) {
-    addToCart[i].addEventListener('click', buyForm);
-  }
+  $('.add').on('click', buyForm);
 });
