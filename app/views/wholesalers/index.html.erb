@@ -18,6 +18,9 @@
         <td><%= app.contact_name %> </td>
         <td><%= app.created_at.strftime('%b %e %Y') %> </td>
         <td><%= app.is_approved ? "Approved" : app.is_rejected ? "Rejected" : "Pending" %></td>
+        <td>
+          <a class='btn' href="/wholesalers/<%=app.id%>">View</a>
+        </td>
       </tr>
     <% end %>
   </tbody>  
