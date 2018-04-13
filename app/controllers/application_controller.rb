@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
       'sign_out',
       'dashboard'
     ]
+
     if !request.get? || (
       do_not_include.include?(request.path.split('customers/')[-1]) ||
       do_not_include.include?(request.path.split('employees/')[-1]) ||
@@ -26,6 +27,9 @@ class ApplicationController < ActionController::Base
 
   # Overrides the default method for redirecting to home page given with devise. Simply returns the url/path.
   def after_sign_in_path_for(resource_or_scope)
+    if session[:previous_url] == "/logincheck"
+      return "/cart"
+    end
     session[:previous_url] || "/#{resource_or_scope.class.name.downcase.pluralize}/dashboard"
   end
 

@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/coffee_house' => 'pages#coffee_house'
   get '/contact' => 'pages#contact'
   get '/faqs' => 'pages#faqs'
+  
+  #TODO Change name of route
+  get '/logincheck' => 'pages#logincheck'
 
   get '/menus/new' => 'menus#new'
   post '/menus' => 'menus#create'

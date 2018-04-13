@@ -18,7 +18,11 @@ class Api::CustomersController < ApplicationController
         valid_shipping_address: valid_shipping_address
       }
     else
-      @order = StripeTool.create_order(@customer)
+      begin
+        @order = StripeTool.create_order(@customer)
+      rescue => e
+        p ' ******** STRIPE API ERRROR ********* '
+      end
       render json: @order
     end
   end

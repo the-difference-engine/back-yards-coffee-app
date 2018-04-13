@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     @total_quantity = @stripe_order_quantity
 
     @sku_items = @stripe_order.items.select{|item| item.type == "sku"}
-
+    puts @sku_items
     @stripe_order_total = @stripe_order&.items&.select{|item| item.type == "sku"}&.map{|item| item.amount * 0.01}&.sum || 0
     @shipping = @stripe_order&.items&.select { |item| item.type == 'shipping' }&.map{|item| item.amount * 0.01}&.sum || 0
     @tax = @stripe_order&.items&.select { |item| item.type == 'tax' }&.map{|item| item.amount * 0.01}&.sum || 0
@@ -23,8 +23,13 @@ class OrdersController < ApplicationController
       customer.update(customer_params)
 
       if customer.carted_items.present?
-        @order = StripeTool.create_order(current_customer)
-        order_id = @order[:order]['id']
+        begin
+          @order = StripeTool.create_order(current_customer)
+          order_id = @order[:order]['id']
+        rescue => e
+          flash[:error] = e.message
+          return redirect_to '/cart'
+        end
       end
 
       # TODO: GUEST ORDER
