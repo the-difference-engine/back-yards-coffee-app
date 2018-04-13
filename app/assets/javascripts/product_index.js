@@ -1,10 +1,10 @@
 $(document).ready(function() {
   $('select').material_select();
   $('.tooltipped').tooltip({ delay: 5 });
-  const addToCart = document.querySelectorAll('.add');
 
   function buyForm(event) {
     event.preventDefault();
+    $(this).tooltip('hide')
     const thisProdId = this.id.slice(2);
     $.ajax({
       type: 'GET',
