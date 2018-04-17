@@ -1,7 +1,5 @@
 class CartedSubscriptionsController < ApplicationController
-  def index
-
-  end
+  def index; end
 
   def create
     @today = Date.today
@@ -38,13 +36,10 @@ class CartedSubscriptionsController < ApplicationController
     redirect_to products_path
   end
 
-  def update
+  def update; end
 
-  end
-
-  def destroy
-    # just set to inactive
-  end
+  # for setting to inactive
+  def destroy; end
 
   private
 
