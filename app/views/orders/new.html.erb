@@ -1,4 +1,4 @@
-<body class="botysbackground">
+<body id="botysbackground">
   <div class="container">
     <div class="row center">
       <!-- Shipping -->
@@ -11,23 +11,22 @@
         <% end %>
       </div>
       <!-- Shipping-->
-      <div class="col l12 s12 m12 center boty-box">
+      <div class="section">
+        <div class="row col l12 s12 m12">
+      <div class="center boty-box">
         <h5 class="LobsterCenter">2. Choose your delivery option:</h5>
         <% if @stripe_order.present? %>
-        <form action="" >
-          <% p @stripe_order.shipping_methods %>
           <% @stripe_order.shipping_methods.each do |option| %>
-            <input type="checkbox" name="<%= option.description %>"value="<%= option.id %>">
-            <label>
-              <% if option.delivery_estimate %>
-                <%= option.delivery_estimate[:date] %>
-              <% end %>
-              <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
-            </label>
+          <div class="input-field">
+            <input  name="grp1" type="radio"  id="<%=option.id%>" >
+            <label for="<%=option.id%>">
+               <%= option.delivery_estimate[:date] %> <%= number_to_currency(option.amount * 0.01) %> - <%= option.description %>
+              </label>
+              </div>
           <% end %>
-          <input class="btn" type="submit" value="Choose this shipping method">
-        </form>
         <% end %>
+      </div>
+      </div>
       </div>
       <!-- Items-->
       <div class="col l12 s12 m12 center boty-box">

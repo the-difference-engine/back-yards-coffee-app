@@ -20,4 +20,6 @@ class PagesController < ApplicationController
 
   def faqs
   end
+
+  def logincheck; end
 end

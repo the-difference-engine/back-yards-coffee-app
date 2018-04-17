@@ -35,7 +35,7 @@ class ChargesController < ApplicationController
       order = Stripe::Order.retrieve(params[:order_id])
       email = current_customer ? current_customer.email : customer_email(order.customer)
       token = params[:stripeToken]
-
+      binding.pry
       begin
         order.pay(source: token, email: email)
       rescue Stripe::CardError => e

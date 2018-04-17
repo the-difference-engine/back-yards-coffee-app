@@ -34,20 +34,17 @@ module StripeTool
 
   def self.create_order(customer)
     valid_shipping_address = customer.valid_shipping_address?
-    begin
-      order = Stripe::Order.create(
-        currency: 'usd',
-        customer: customer.stripe_customer_id,
-        items: customer.carted_items,
-        shipping: {
-          name: customer.full_name,
-          address: valid_shipping_address ? customer.customer_address : customer.default_address
-        }
-      )
-    rescue => error
-      p ' ******** STRIPE API ERRROR ********* '
-      return { order: error, valid_shipping_address: valid_shipping_address }
-    end
+
+    order = Stripe::Order.create(
+      currency: 'usd',
+      customer: customer.stripe_customer_id,
+      items: customer.carted_items,
+      shipping: {
+        name: customer.full_name,
+        address: valid_shipping_address ? customer.customer_address : customer.default_address
+      }
+    )
+
     { order: order, valid_shipping_address: valid_shipping_address }
   end
 
