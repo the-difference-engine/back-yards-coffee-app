@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405010334) do
+ActiveRecord::Schema.define(version: 20180413004445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,20 @@ ActiveRecord::Schema.define(version: 20180405010334) do
     t.string   "plan_id"
     t.string   "status"
     t.bigint   "customer_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "amount"
     t.string   "interval"
     t.integer  "interval_count"
     t.string   "plan_name"
     t.string   "product_id"
     t.string   "sku"
+    t.jsonb    "products",         default: "{}", null: false
+    t.string   "plan"
+    t.datetime "expired_at"
+    t.datetime "order_created_at"
+    t.date     "next_order_date"
+    t.index ["products"], name: "index_carted_subscriptions_on_products", using: :gin
   end
 
   create_table "categories", force: :cascade do |t|

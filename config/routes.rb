@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get '/orders/show/:id' => 'orders#show'
   patch '/orders' => 'orders#create', as: 'orders_create'
 
-  get '/subscriptions/new' => 'subscriptions#new'
+  # get '/subscriptions/new' => 'subscriptions#new'
 
   resources :products
   get '/subscriptions' => 'products#subscriptions'
