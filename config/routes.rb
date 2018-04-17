@@ -57,6 +57,8 @@ Rails.application.routes.draw do
 
     get '/employees' => 'employees#index'
 
+    patch '/orders/:order_id/:shipping_id' => 'orders#update'
+
     get '/products' => 'products#index'
 
     get '/subscriptions' => 'subscriptions#index'
