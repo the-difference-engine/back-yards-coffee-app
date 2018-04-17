@@ -1,4 +1,4 @@
-class AddColumnsToCartedProducts < ActiveRecord::Migration[5.0]
+class AddColumnsToCartedSubscriptions < ActiveRecord::Migration[5.0]
   def change
     add_column  :carted_subscriptions, :products, :jsonb, null: false, default: '{}'
     add_column  :carted_subscriptions, :plan, :string

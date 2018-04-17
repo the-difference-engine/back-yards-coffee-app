@@ -1,5 +1,6 @@
 class CartedProductsController < ApplicationController
   def create
+    # TODO redirect to cartedsubs conditionally
     carted_product = CartedProduct.find_by(
       status: 'carted',
       customer_id: guest_or_customer_id,
