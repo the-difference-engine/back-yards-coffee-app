@@ -1,36 +1,24 @@
 $(document).ready(function() {
   $('select').material_select();
-  $('.tooltipped').tooltip({delay: 5});
+  $('.tooltipped').tooltip({ delay: 5 });
   const addToCart = document.querySelectorAll('.add');
 
-  function buyForm() {
-    const thisProdId = this.id.slice(2)
+  function buyForm(event) {
+    event.preventDefault();
+    const thisProdId = this.id.slice(2);
     $.ajax({
       type: 'GET',
       url: `/products/${thisProdId}`,
-      success: (data) => {
-        this.closest(".innercard").innerHTML = data
+      success: data => {
+        $(this)
+          .closest('.innercard')
+          .html(data);
       },
       error: function() {}
     }).then(function() {
-        $('select').material_select();
-        addUI();
-      });
+      $('select').material_select(); // Make sure materialize properly displays dropdowns
+    });
   }
 
-  function addUI(){
-    var $select = $('.plan_select').find('select');
-    const formAction = $('form');
-    $select.change(function(){
-      if ($(this).val() === "One Time Buy") {
-        formAction.attr('action', '/cart');
-      } else {
-        formAction.attr('action', '/carted_subscription');
-      }
-    })
-  }
-
-  for (var i = 0; i < addToCart.length; i++) {
-    addToCart[i].addEventListener('click', buyForm);
-  }
-})
+  $('.add').on('click', buyForm);
+});

@@ -7,7 +7,13 @@ class StripeCache
     end
   end
 
+  def product(prod_id)
+    Rails.cache.fetch("stripe/products#{prod_id}", expires_in: 5.minutes) do
+      Stripe::Product.retrieve(prod_id)
+    end
+  end
+
   def featured_products
-    products.select { |p| p.attributes.include?('featured') }
+    products.select { |product| product.metadata['featured'] }
   end
 end
