@@ -50,26 +50,6 @@
                   </div>
                   </tr>
                 <% end %>
-
-                <% if @carted_subscriptions.length > 0 %>
-                <h5 class="LobsterCenter ultraGrey"> Subscriptions </h5>
-                <% end %>
-                <% @carted_subscriptions.each do |subscription| %>
-                  <tr>
-                    <div class="col s12 subscriptionView">
-                      <div class= "col s8">
-                    <%= subscription.plan_name %>
-                  </div>
-                    <div class="col s2 quantity">
-                      <input id="id<%=subscription.id%>" class="subscriptionEdit" type="number" min="1" max="100" step="1"  value= "<%=subscription.quantity%>">
-                      </div>
-                      <div class = "col s2">
-                        <a id="id<%=subscription.id%>" class = "btn-floating btn-tiny waves-effect waves-light black deleteSubscriptions"><i class="material-icons">delete</i></a>
-                      </div>
-                  </div>
-                  </tr>
-                <% end %>
-
               </table>
             </div>
             <div class="Toggle">
