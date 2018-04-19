@@ -14,7 +14,6 @@ class CartedSubscriptionsController < ApplicationController
     unless @subscription.save
       flash[:error] = 'Error updating subscriptions' unless subscription.save
     end
-    p flash
     redirect_to carted_subscriptions_path
   end
 
