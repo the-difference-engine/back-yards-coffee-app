@@ -54,9 +54,14 @@ class WholesalersController < ApplicationController
     if wrong_user
       redirect_to '/customers/sign_in'
     elsif @wholesaler.update(wholesaler_params)
-      flash[:success] = 'Updated!'
-      # flash[:success] = 'Approved!' if params[:is_approved] == 'true'
-      # flash[:success] = 'Rejected!' if params[:is_rejected] == 'true'
+      if params[:is_approved] == 'true'
+        UserMailer.approved_email(@wholesaler).deliver_now
+        flash[:success] = 'Approved!'
+      end
+      if params[:is_rejected] == 'true'
+        UserMailer.rejection_email(@wholesaler).deliver_now
+        flash[:success] = 'Rejected!'
+      end
       redirect_to '/wholesalers'
     else
       flash[:warning] = 'Something went wrong.'
