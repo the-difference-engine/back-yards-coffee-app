@@ -1,42 +1,21 @@
 class CartedSubscriptionsController < ApplicationController
+  include CartedSubscriptionsHelper
   def index; end
 
   def create
-    @today = Date.today
-    @wait = case carted_subscription_params[:plan]
-            when 'w'
-              @today + 7
-            when 'b'
-              @today + 14
-            when 'm'
-              Date.new(@today.year, @today.month + 1, @today.day)
-            end
-
-    subscription_params = {
-      plan: carted_subscription_params[:plan],
-      products: {
-        items: [
-          {
-            type: 'sku',
-            quantity: carted_subscription_params[:quantity],
-            parent: carted_subscription_params[:sku]
-          }
-        ],
-        items_meta: [
-          {
-            name: carted_subscription_params[:name],\
-            product_id: carted_subscription_params[:product_id]
-          }
-        ]
-      },
-      order_created_at: @today,
-      next_order_date: @wait
-    }
-    current_customer.carted_subscriptions.create(subscription_params)
+    subscription = current_customer.carted_subscriptions.new(new_subscription_params)
+    flash[:error] = 'Error creating subscription' unless subscription.save
     redirect_to products_path
   end
 
-  def update; end
+  def update
+    @subscription = current_customer.carted_subscriptions.last
+    @subscription.assign_attributes(carted_subscription_update_params)
+    unless @subscription.save
+      flash[:error] = 'Error updating subscriptions' unless subscription.save
+    end
+    redirect_to carted_subscriptions_path
+  end
 
   # for setting to inactive
   def destroy; end
@@ -46,6 +25,10 @@ class CartedSubscriptionsController < ApplicationController
   def carted_subscription_params
     #  {"plan"=>"", "sku"=>"sku_B0DjuBqmFJ2xch", "quantity"=>"1", "product_id"=>"prod_Aux02LoK2aZg19", "name"=>"Subtle Mellow Yellow"}
     params.permit(:plan, :sku, :quantity, :product_id, :name)
+  end
+
+  def carted_subscription_update_params
+    params.require(:carted_subscription).permit(:plan, :products)
   end
 end
 
