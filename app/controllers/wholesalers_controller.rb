@@ -14,7 +14,7 @@ class WholesalersController < ApplicationController
     @wholesaler = Wholesaler.create(wholesaler_params.merge(customer_id: current_customer.id))
     if @wholesaler.save
       # This sends email to all employees
-      @employees = Employee.all
+      @employees = Employee.where(admin: true)
       @employees.each do |employee|
         UserMailer.wholesaler_email_to_admin(employee, @wholesaler).deliver_later
       end
