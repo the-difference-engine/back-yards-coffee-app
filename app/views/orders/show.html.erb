@@ -1,18 +1,17 @@
+<body id="botysbackground">
 <div class="container row" >
-<h3>Thank you for your purchase!</h2>
-  <hr>
-  <h5>Purchase Summary</h5>
-  <div >
-    <dl>
-      <dt>Customer Email: </dt>
-      <dd><%= @stripe_order.email %></dd>
-      <dt>Order number:</dt>
-      <dd><%= @order.id %></dd>
-      <dt>Order date:</dt>
-      <dd><%= @order.created_at %></dd>
-      <dd></dd>
-    </dl>
-  </div>
+  <h1>
+    Thank you for your Order!
+  </h1>
+    <div>
+      <p> 
+          You will receive an email confirmation shortly at <%= @stripe_order.email %> 
+      </p>
+      <h3>
+          Order number is: <%= @order.id %>
+      </h3>  
+    </div>
+    <div>
       <h5>Items</h5>
         <table class="bordered">
         <thead>
@@ -22,7 +21,6 @@
               <th>Total</th>
           </tr>
         </thead>
-
         <tbody>
           <% @stripe_order.items.each do |item| %>
           <tr>
@@ -41,4 +39,10 @@
           </tfoot>
         </tbody>
       </table>
+    </div>
+    <a href="/products" class="waves-effect waves-light btn-large col s12 m12 l3">Continue Shopping
+    </a>
+    <a href="/customers/dashboard" class="waves-effect waves-light btn-large col s12 m12 l3">My Account
+    </a>
  </div>
+</body>
