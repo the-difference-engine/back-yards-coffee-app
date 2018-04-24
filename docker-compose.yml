@@ -2,6 +2,10 @@ version: '3'
 services:
   db:
     image: postgres
+  redis:
+    image: 'redis:4.0-alpine'
+    volumes:
+      - 'redis:/data'
   web:
     build: .
     environment:
@@ -18,3 +22,15 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
+  sidekiq:
+    depends_on:
+      - 'db'
+      - 'redis'
+    build: .
+    command: sidekiq -C config/sidekiq.yml.erb
+    volumes:
+      - '.:/app'
+volumes:
+  redis:
+  db:
