@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta content= 'Wholesale application was submitted' charset="utf-8">
 </head>
 <body>
-  <h1>Thanks for submitting your application</h1>
-  <%= link_to 'view wholesaler application', wholesalers_url + '/' + @wholesaler.id.to_s %>
-  
+  <h1>New Wholesaler Application</h1>
+  <%= link_to 'View Application on the Website', wholesalers_url + '/' + @wholesaler.id.to_s %>
+
 <!--    link_to "http://localhost:3000/#{@wholesaler.id}", "Click Me", target: :_blank -->
 
 </body>

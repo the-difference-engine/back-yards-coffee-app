@@ -1,109 +1,114 @@
-<h1 class="center lobster-font gray">Wholesaler Application</h1>
-
-<div class="container">
+<div class="container wholesaler-form">
 <%= form_tag "/wholesalers", method: :post do %>
+  <div class="row">
+    <div class="col l6" id="wholesaler-img"><img alt="logo" src="/assets/logo_beige_transparent-93414eb7e083d74b5a856831c2d4b8f548de25b6aa4211dbf0710e2b940b26d7.png" width="80%" height="80%"></div>
+    <div class="col l6 right-align">
+      2059 W 47th St <br> 
+      Chicago, IL 60609 <br> 
+      (773) 475-6381 <br>
+      backoftheyardscoffee.com <br>
+    </div>
+  </div>
+  <div class="row border">
+    <div class="col l8 border">New Wholesaler Application</div>
+    <div class="col l4 border"> Form NO. <%= @appid %> </div>
+  </div> 
+  <div>Contact Info</div>
+  <div class="row border">
+    <div class="col l12 border">
+      <label> Business Name: </label>
+      <input class="browser-default" type="text" name="business_name" value="<%= @wholesaler.business_name %>">
+    </div>
+    <div class="form-group col l6 border remove-mtrlze-style">
+      <label for="exampleInputImage">Contact Name:</label>
+      <input type="text" name="contact_name" class="form-control" id="exampleInputName" value="<%= @wholesaler.contact_name %>">
+    </div>
+    <div class="form-group col l6 border">
+      <label for="exampleInputPrice">Work Phone:</label>
+      <input type="text" name="work_phone" class="form-control" id="exampleInputName" value="<%= @wholesaler.work_phone %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Billing Address:</label>
+      <input type="text" name="billing_address" class="form-control" id="exampleInputName" value="<%= @wholesaler.billing_address %>">
+    </div>
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Billing City:</label>
+      <input type="text" name="billing_city" class="form-control" id="exampleInputName" value="<%= @wholesaler.billing_city %>">
+    </div>
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Billing State:</label>
+      <input type="text" name="billing_state" class="form-control" id="exampleInputName" value="<%= @wholesaler.billing_state %>">
+    </div>
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Billing Zip Code: </label>
+      <input type="text" name="billing_zip_code" class="form-control" id="exampleInputName" value="<%= @wholesaler.billing_zip_code %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Shipping Address: </label>
+      <input type="text" name="shipping_address" class="form-control" id="exampleInputName" value="<%= @wholesaler.shipping_address %>">
+    </div>
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Shipping City: </label>
+      <input type="text" name="shipping_city" class="form-control" id="exampleInputName" value="<%= @wholesaler.shipping_city %>">
+    </div>
 
-<div class="form-group">
-  <label for="exampleInputName"> Business Name</label>
-  <input type="text" name="business_name" class="form-control" id="exampleInputName" placeholder=" Business Name" value="<%= @wholesaler.business_name %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputImage">Contact Name</label>
-  <input type="text" name="contact_name" class="form-control" id="exampleInputName" placeholder="Contact Name" value="<%= @wholesaler.contact_name %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Work Phone</label>
-  <input type="text" name="work_phone" class="form-control" id="exampleInputName" placeholder="Work Phone" value="<%= @wholesaler.work_phone %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Billing Address </label>
-  <input type="text" name="billing_address" class="form-control" id="exampleInputName" placeholder="Billing Address" value="<%= @wholesaler.billing_address %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Billing City </label>
-  <input type="text" name="billing_city" class="form-control" id="exampleInputName" placeholder="Billing City" value="<%= @wholesaler.billing_city %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Billing State </label>
-  <input type="text" name="billing_state" class="form-control" id="exampleInputName" placeholder="Billing State" value="<%= @wholesaler.billing_state %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Billing Zip Code </label>
-  <input type="text" name="billing_zip_code" class="form-control" id="exampleInputName" placeholder="Billing Zip Code" value="<%= @wholesaler.billing_zip_code %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Shipping Address </label>
-  <input type="text" name="shipping_address" class="form-control" id="exampleInputName" placeholder="Shipping Address" value="<%= @wholesaler.shipping_address %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Shipping City </label>
-  <input type="text" name="shipping_city" class="form-control" id="exampleInputName" placeholder="Shipping City" value="<%= @wholesaler.shipping_city %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Shipping State </label>
-  <input type="text" name="shipping_state" class="form-control" id="exampleInputName" placeholder="Shipping State" value="<%= @wholesaler.shipping_state %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Shipping Zip Code </label>
-  <input type="text" name="shipping_zip_code" class="form-control" id="exampleInputName" placeholder="Shipping Zip Code" value="<%= @wholesaler.shipping_zip_code %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Website </label>
-  <input type="text" name="website" class="form-control" id="exampleInputName" placeholder="Website" value="<%= @wholesaler.website %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Accounts Payable Contact Name </label>
-  <input type="text" name="accounts_payable_contact_name" class="form-control" id="exampleInputName" placeholder="Contact Name" value="<%= @wholesaler.accounts_payable_contact_name %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Accounts Payable Contact Email </label>
-  <input type="text" name="accounts_payable_contact_email" class="form-control" id="exampleInputName" placeholder="Email" value="<%= @wholesaler.accounts_payable_contact_email %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Accounts Payable Contact Phone </label>
-  <input type="text" name="accounts_payable_contact_phone" class="form-control" id="exampleInputName" placeholder="Phone" value="<%= @wholesaler.accounts_payable_contact_phone %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Retailer </label>
-  <input type="text" name="retailer" class="form-control" id="exampleInputName" placeholder="Retail" value="<%= @wholesaler.retailer %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Tax Exempt </label>
-  <input type="text" name="tax_exempt" class="form-control" id="exampleInputName" placeholder="Tax Exempt" value="<%= @wholesaler.tax_exempt %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Delivery Instructions </label>
-  <input type="text" name="delivery_instructions" class="form-control" id="exampleInputName" placeholder="Instructions" value="<%= @wholesaler.delivery_instructions %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Recieving Hours </label>
-  <input type="text" name="recieving_hours" class="form-control" id="exampleInputName" placeholder="Hours" value="<%= @wholesaler.recieving_hours %>">
-</div>
-
-<div class="form-group">
-  <label for="exampleInputPrice">Days Closed </label>
-  <input type="text" name="days_closed" class="form-control" id="exampleInputName" placeholder="Closed" value="<%= @wholesaler.days_closed %>">
-</div>
-
-
-<input type="submit" class="btn btn-default" value="Submit New Form"> 
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Shipping State:</label>
+      <input type="text" name="shipping_state" class="form-control" id="exampleInputName" value="<%= @wholesaler.shipping_state %>">
+    </div>
+    <div class="form-group col l4 border">
+      <label for="exampleInputPrice">Shipping Zip Code:</label>
+      <input type="text" name="shipping_zip_code" class="form-control" id="exampleInputName" value="<%= @wholesaler.shipping_zip_code %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Website: </label>
+      <input type="text" name="website" class="form-control" id="exampleInputName" value="<%= @wholesaler.website %>">
+    </div>
+  </div>
+  <div>Accounts Payable Contact</div>
+  <div class="row border">
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Accounts Payable Contact Name:</label>
+      <input type="text" name="accounts_payable_contact_name" class="form-control" id="exampleInputName" value="<%= @wholesaler.accounts_payable_contact_name %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Accounts Payable Contact Email: </label>
+      <input type="text" name="accounts_payable_contact_email" class="form-control" id="exampleInputName" placeholder="Email" value="<%= @wholesaler.accounts_payable_contact_email %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Accounts Payable Contact Phone: </label>
+      <input type="text" name="accounts_payable_contact_phone" class="form-control" id="exampleInputName" value="<%= @wholesaler.accounts_payable_contact_phone %>">
+    </div>
+  </div>
+  <div class="row border">
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Are you a retailer?</label>
+      <input type="text" name="retailer" class="form-control" id="exampleInputName" placeholder="Yes or No" value="<%= @wholesaler.retailer %>">
+    </div>
+    <div class="form-group col l12 border">
+      <label for="exampleInputPrice">Are you tax exempt?</label>
+      <input type="text" name="tax_exempt" class="form-control" id="exampleInputName" placeholder="Yes or No" value="<%= @wholesaler.tax_exempt %>">
+    </div>
+  </div>
+  <div class="row two-px-border">
+    <div class="form-group col l12">
+      <label for="exampleInputPrice">Any special delivery instructions?</label>
+      <input type="text" name="delivery_instructions" class="form-control" id="exampleInputName" placeholder="Instructions" value="<%= @wholesaler.delivery_instructions %>">
+    </div>
+    <div class="form-group col l12">
+      <label for="exampleInputPrice">Recieving hours? </label>
+      <input type="text" name="recieving_hours" class="form-control" id="exampleInputName" placeholder="Example Mon-Fri 8am-5pm" value="<%= @wholesaler.recieving_hours %>">
+    </div>
+    <div class="form-group col l12">
+      <label for="exampleInputPrice">Days closed? </label>
+      <input type="text" name="days_closed" class="form-control" id="exampleInputName" placeholder="Sat-Sun" value="<%= @wholesaler.days_closed %>">
+    </div>
+  </div>
+  <div class="row">
+      <p class="two-px-border" id="wholesaler-terms">
+        I verify that all the information is corectly provided. All information entered on this form will be kept trictly confidential by Back of the Yards Coffee Co.
+      </p>
+    </div>
+  <input type="submit" class="btn btn-default" value="Submit New Form"> 
 <% end %> 
 </div>

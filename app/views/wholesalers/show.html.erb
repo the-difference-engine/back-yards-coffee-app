@@ -1,65 +1,101 @@
-<body class="botybgblue">
-  <div class="container">
-    <div class="row wholesaler-bg">
-    <h1 class="lobster-font botytanletter center">Your Wholesaler Application!</h1>
-      <div class="col s12 m12 l12">
-        <div class="info-column">
-          <div class="container-title center">Contact Info</div>
-          <div class="container-info">Business Name: <%= @wholesaler.business_name %></div>
-          <div class="container-info">Contact Name: <%= @wholesaler.contact_name %></div>
-          <div class="container-info">Phone: <%= @wholesaler.work_phone %></div>
-          <div class="container-info">Website: <%= @wholesaler.website %></div>
-        </div>
-      </div>
-      <div class="col s12 m12 l12" > 
-        <div class="info-column">
-          <div class="container-title center">Billing Address</div>
-          <div class="container-info">Address: <%= @wholesaler.billing_address %></div>
-          <div class="container-info">City: <%= @wholesaler.billing_city %></div>
-          <div class="container-info">State: <%= @wholesaler.billing_state %></div>
-          <div class="container-info">Zip Code: <%= @wholesaler.billing_zip_code %></div>
-        </div>
-      </div>
-      <div class="col s12 m12 l12" >
-        <div class="info-column">
-          <div class="container-title center">Shipping Address</div>
-          <div class="container-info">Address: <%= @wholesaler.shipping_address %></div>
-          <div class="container-info">City: <%= @wholesaler.shipping_city %></div>
-          <div class="container-info">State: <%= @wholesaler.shipping_state %></div>
-          <div class="container-info">Zip Code: <%= @wholesaler.shipping_zip_code %></div>
-          <div class="container-info">Instructions: <%= @wholesaler.delivery_instructions %></div>
-          <div class="container-info">Receiving Hours: <%= @wholesaler.recieving_hours %></div>
-        </div>
-      </div>
-
-      <div class="col s12 m12 l12" >
-        <div class="info-column">
-          <div class="container-title center">Additional Information</div>
-          <div class="container-info">Contact Name: <%= @wholesaler.accounts_payable_contact_name %></div>
-          <div class="container-info">Email: <%= @wholesaler.accounts_payable_contact_email %></div>
-          <div class="container-info">Phone: <%= @wholesaler.accounts_payable_contact_phone %></div>
-          <div class="container-info">Retailer: <%= @wholesaler.retailer %></div>
-          <div class="container-info">Tax Exempt: <%= @wholesaler.tax_exempt %></div>
-          <div class="container-info">Closed: <%= @wholesaler.days_closed %></div>
-        </div>
-      </div>
+<div class="container wholesaler-form">
+  <div class="row">
+    <div class="col l6" id="wholesaler-img"><img alt="logo" src="/assets/logo_beige_transparent-93414eb7e083d74b5a856831c2d4b8f548de25b6aa4211dbf0710e2b940b26d7.png" width="80%" height="80%"></div>
+    <div class="col l6 right-align">
+      2059 W 47th St <br> 
+      Chicago, IL 60609 <br> 
+      (773) 475-6381 <br>
+      backoftheyardscoffee.com <br>
+    </div>
+  </div>
+  <div class="row border">
+    <div class="col l8 border">Wholesaler Application</div>
+    <div class="col l4 border"> Form NO. <%= @wholesaler.id %> </div>
+  </div> 
+  <div>Contact Info</div>
+  <div class="row border">
+    <div class="col l12 border">
+      Business Name: <%= @wholesaler.business_name %>
+    </div>
+    <div class="col l6 border remove-mtrlze-style">
+      Contact Name: <%= @wholesaler.contact_name %>
+    </div>
+    <div class="col l6 border">
+      Work Phone: <%= @wholesaler.work_phone %>
+    </div>
+    <div class="col l12 border">
+      Billing Address: <%= @wholesaler.billing_address %>
+    </div>
+    <div class="col l4 border">
+      Billing City: <%= @wholesaler.billing_city %>
+    </div>
+    <div class="col l4 border">
+      Billing State: <%= @wholesaler.billing_state %>
+    </div>
+    <div class="col l4 border">
+      Billing Zip Code: <%= @wholesaler.billing_zip_code %>
+    </div>
+    <div class="col l12 border">
+      Shipping Address: <%= @wholesaler.shipping_address %>
+    </div>
+    <div class="col l4 border">
+      Shipping City: <%= @wholesaler.shipping_city %>
+    </div>
+    <div class="col l4 border">
+      Shipping State: <%= @wholesaler.shipping_state %>
+    </div>
+    <div class="col l4 border">
+      Shipping Zip Code: <%= @wholesaler.shipping_zip_code %>
+    </div>
+    <div class="col l12 border">
+      Website: <%= @wholesaler.website %>
+    </div>
+  </div>
+  <div>Accounts Payable Contact</div>
+  <div class="row border">
+    <div class="col l12 border">
+      Accounts Payable Contact Name: <%= @wholesaler.accounts_payable_contact_name %>
+    </div>
+    <div class="col l12 border">
+      Accounts Payable Contact Email: <%= @wholesaler.accounts_payable_contact_email %>
+    </div>
+    <div class="col l12 border">
+      Accounts Payable Contact Phone:<%= @wholesaler.accounts_payable_contact_phone %>
+    </div>
+  </div>
+  <div class="row border">
+    <div class="col l12 border">
+      Are you a retailer? <%= @wholesaler.retailer %>
+    </div>
+    <div class="col l12 border">
+      Are you tax exempt? <%= @wholesaler.tax_exempt %>
+    </div>
+  </div>
+  <div class="row two-px-border">
+    <div class="col l12">
+      Any special delivery instructions? <%= @wholesaler.delivery_instructions %>
+    </div>
+    <div class="col l12">
+     Recieving hours? <%= @wholesaler.recieving_hours %>
+    </div>
+    <div class="col l12">
+      Days closed? <%= @wholesaler.days_closed %>
+    </div>
+  </div>
+  <div class="row">
+      <p class="two-px-border" id="wholesaler-terms">
+        I verify that all the information is corectly provided. All information entered on this form will be kept trictly confidential by Back of the Yards Coffee Co.
+      </p>
     </div>
 
-  <% if current_employee && current_employee.admin %>
+    <% if current_employee && current_employee.admin %>
     <div class="center wsmargin">
     <%= link_to "Approve", "/wholesalers/#{@wholesaler.id}?is_approved=true&is_rejected=false", class: 'waves-effect waves-light btn', :method=> :patch %>
     <%= link_to "Reject", "/wholesalers/#{@wholesaler.id}?is_rejected=true&is_approved=false", class: 'waves-effect waves-light btn', :method=> :patch %>
     </div>
-  <% end %>
-  
-  <% if current_customer %>
+    <% end %>
+
+    <% if current_customer %>
       <a class='btn wsmargin' href="/wholesalers/<%=@wholesaler.id%>/edit">Edit Application</a>
-  <% end %>
-  </div>
-</body>
-
-
-
-
-
-
+    <% end %> 
+</div>

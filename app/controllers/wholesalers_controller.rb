@@ -13,7 +13,12 @@ class WholesalersController < ApplicationController
     authenticate_customer!
     @wholesaler = Wholesaler.create(wholesaler_params.merge(customer_id: current_customer.id))
     if @wholesaler.save
-      UserMailer.send_wholesaler_email(@wholesaler).deliver_now
+      # This sends email to all employees
+      @employees = Employee.where(admin: true)
+      @employees.each do |employee|
+        UserMailer.wholesaler_email_to_admin(employee, @wholesaler).deliver_later
+      end
+
       render 'create.html.erb'
     else
       render 'new.html.erb'
@@ -49,9 +54,14 @@ class WholesalersController < ApplicationController
     if wrong_user
       redirect_to '/customers/sign_in'
     elsif @wholesaler.update(wholesaler_params)
-      flash[:success] = 'Updated!'
-      # flash[:success] = 'Approved!' if params[:is_approved] == 'true'
-      # flash[:success] = 'Rejected!' if params[:is_rejected] == 'true'
+      if params[:is_approved] == 'true'
+        UserMailer.approved_email(@wholesaler).deliver_now
+        flash[:success] = 'Approved!'
+      end
+      if params[:is_rejected] == 'true'
+        UserMailer.rejection_email(@wholesaler).deliver_now
+        flash[:success] = 'Rejected!'
+      end
       redirect_to '/wholesalers'
     else
       flash[:warning] = 'Something went wrong.'

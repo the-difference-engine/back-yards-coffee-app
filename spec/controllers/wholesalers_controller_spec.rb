@@ -182,10 +182,11 @@ RSpec.describe WholesalersController, type: :controller do
       # currently employees are restricted from even accepting applications
       it 'accepts the is_approved or is_rejected params' do
         customer = create(:customer)
-        wholesaler = create(:wholesaler, customer_id: customer.id)
+        wholesaler = create(:wholesaler, customer_id: customer.id, accounts_payable_contact_email: 'email@email.com')
         employee = create(:employee)
         sign_in employee
         post :update, params: { id: wholesaler.id, is_approved: true }
+        allow(UserMailer).to receive(:approved_email)
         p flash[:success]
         expect(response).to redirect_to '/wholesalers'
         expect(customer.wholesaler.is_approved).to be true
