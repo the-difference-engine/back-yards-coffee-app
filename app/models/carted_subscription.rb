@@ -3,6 +3,11 @@ class CartedSubscription < ApplicationRecord
   # validates :plan_id, presence: { message: 'Please select a plan' }
   # validates :quantity, numericality: { greater_than: 0, message: 'Please select a quantity' }
   # scope :my_carted, ->(id) { where(status: 'carted', customer_id: id) }
+  before_save :default_values
+
+  def default_values
+    self.status = 'pending'
+  end
 
   def next_date
     today = Date.today
