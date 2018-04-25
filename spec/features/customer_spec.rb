@@ -13,7 +13,7 @@ RSpec.describe "The Customer Signin Process", :type => :feature do
         fill_in 'Password', with: '12345678'
       end
       click_button 'Log in'
-      expect(page).to have_content 'Account Information'
+      expect(page).to have_content 'My Account'
     end
   end
   
