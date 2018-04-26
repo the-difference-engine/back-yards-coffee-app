@@ -55,11 +55,11 @@ class WholesalersController < ApplicationController
       redirect_to '/customers/sign_in'
     elsif @wholesaler.update(wholesaler_params)
       if params[:is_approved] == 'true'
-        UserMailer.approved_email(@wholesaler).deliver_now
+        UserMailer.approved_email(@wholesaler).deliver_later
         flash[:success] = 'Approved!'
       end
       if params[:is_rejected] == 'true'
-        UserMailer.rejection_email(@wholesaler).deliver_now
+        UserMailer.rejection_email(@wholesaler).deliver_later
         flash[:success] = 'Rejected!'
       end
       redirect_to '/wholesalers'
