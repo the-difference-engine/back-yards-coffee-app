@@ -52,6 +52,7 @@ class ChargesController < ApplicationController
         carted_product.order_id = confirmed_order.id
         carted_product.save
       end
+      OrderEmailJob.perform_later(current_customer, order['id'])
       flash[:success] = 'Charge created!'
       redirect_to "/orders/show/#{confirmed_order.id}"
     end
