@@ -1,7 +1,7 @@
 <div class="container wholesaler-form">
   <div class="row">
-    <div class="col l6" id="wholesaler-img"><img alt="logo" src="/assets/logo_beige_transparent-93414eb7e083d74b5a856831c2d4b8f548de25b6aa4211dbf0710e2b940b26d7.png" width="80%" height="80%"></div>
-    <div class="col l6 right-align">
+    <div class="col s12 m6 l6 center" id="wholesaler-img"><img alt="logo" src="/assets/logo_beige_transparent-93414eb7e083d74b5a856831c2d4b8f548de25b6aa4211dbf0710e2b940b26d7.png" width="80%" height="80%"></div>
+    <div class="col s12 l6 right-align">
       2059 W 47th St <br> 
       Chicago, IL 60609 <br> 
       (773) 475-6381 <br>
@@ -9,76 +9,76 @@
     </div>
   </div>
   <div class="row border">
-    <div class="col l8 border">Wholesaler Application</div>
-    <div class="col l4 border"> Form NO. <%= @wholesaler.id %> </div>
+    <div class="col s12 l8 border">Wholesaler Application</div>
+    <div class="col s12 l4 border"> Form NO. <%= @wholesaler.id %> </div>
   </div> 
   <div>Contact Info</div>
   <div class="row border">
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Business Name: <%= @wholesaler.business_name %>
     </div>
-    <div class="col l6 border remove-mtrlze-style">
+    <div class="col s12 l6 border remove-mtrlze-style">
       Contact Name: <%= @wholesaler.contact_name %>
     </div>
-    <div class="col l6 border">
+    <div class="col s12 l6 border">
       Work Phone: <%= @wholesaler.work_phone %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Billing Address: <%= @wholesaler.billing_address %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Billing City: <%= @wholesaler.billing_city %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Billing State: <%= @wholesaler.billing_state %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Billing Zip Code: <%= @wholesaler.billing_zip_code %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Shipping Address: <%= @wholesaler.shipping_address %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Shipping City: <%= @wholesaler.shipping_city %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Shipping State: <%= @wholesaler.shipping_state %>
     </div>
-    <div class="col l4 border">
+    <div class="col s12 l4 border">
       Shipping Zip Code: <%= @wholesaler.shipping_zip_code %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Website: <%= @wholesaler.website %>
     </div>
   </div>
   <div>Accounts Payable Contact</div>
   <div class="row border">
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Accounts Payable Contact Name: <%= @wholesaler.accounts_payable_contact_name %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Accounts Payable Contact Email: <%= @wholesaler.accounts_payable_contact_email %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Accounts Payable Contact Phone:<%= @wholesaler.accounts_payable_contact_phone %>
     </div>
   </div>
   <div class="row border">
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Are you a retailer? <%= @wholesaler.retailer %>
     </div>
-    <div class="col l12 border">
+    <div class="col s12 l12 border">
       Are you tax exempt? <%= @wholesaler.tax_exempt %>
     </div>
   </div>
   <div class="row two-px-border">
-    <div class="col l12">
+    <div class="col s12 l12">
       Any special delivery instructions? <%= @wholesaler.delivery_instructions %>
     </div>
-    <div class="col l12">
+    <div class="col s12 l12">
      Recieving hours? <%= @wholesaler.recieving_hours %>
     </div>
-    <div class="col l12">
+    <div class="col s12 l12">
       Days closed? <%= @wholesaler.days_closed %>
     </div>
   </div>
