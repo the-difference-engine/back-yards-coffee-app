@@ -1,0 +1,14 @@
+<h1>Order Summary</h1>
+<div>
+  <% @order.items.each do |item| %>
+    <p>
+      <%= item.quantity %>
+      <%= item.description %>
+      <%= number_to_currency(item.amount.to_f / 100) %>
+    </p>
+  <% end %>
+  <p>Total: <%= number_to_currency(@order.amount.to_f / 100) %></p>
+</div>
+<pre>
+  <%= raw JSON.pretty_generate(@order.to_hash).gsub(" ","&nbsp;") %>
+</pre>
