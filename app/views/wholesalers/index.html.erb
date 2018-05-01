@@ -31,16 +31,16 @@
   <!-- If already wholesaler  -->
     <% if current_customer &. wholesaler %>
     <h1 class="center lobster-font gray"> You are on your way to becoming a Wholesaler! </h1>
-      <p class="center"> Click to see your <a href="/wholesalers/<%=current_customer.wholesaler.id%>"> Application</a></p>
+      <p class="center"><a href="/wholesalers/<%=current_customer.wholesaler.id%>">Click <u>HERE</u> To See Your Application</a></p>
     <!-- If NOT a wholesaler -->
     <% else %>
       <h2 class="center lobster-font gray">Interested in Becoming a Wholesaler?</h2>
-      <p class="center"> Click here to apply! <a href="/wholesalers/new"> Application</a></p>
+      <p class="center"><a href="/wholesalers/new">Click <u>HERE</u> To Apply</a>
     <% end %>
 <!-- Not Signed In -->
   <div id="resize"><%=image_tag("Wholesale_Packet.png", alt: "Unsplashed background img 1")%></div>
 <% else %>
-  <h1 class="center lobster-font gray"> About Becoming a Wholesaler </h1>
+  <h1 class="center lobster-font gray">About Becoming a Wholesaler </h1>
   <hr>
   <h3 class="center lobster-font gray"> Please <a href="/customers/sign_up">sign-up </a>or <a href="/customers/sign_in"> login </a>to access wholesaler application </h3>
   <div id="resize"><%=image_tag("Wholesale_Packet.png", alt: "Unsplashed background img 1")%></div>
