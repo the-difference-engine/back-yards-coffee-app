@@ -34,11 +34,10 @@ Rails.application.routes.draw do
   patch '/categories/:id' => 'categories#update'
   delete '/categories/:id' => 'categories#destroy'
 
-  post '/cart' => 'carted_products#create'
   get '/cart' => 'carted_products#index'
-  patch '/cart' => 'carted_products#update'
 
   resources :carted_subscriptions, only: [:index, :create, :update, :destroy]
+  resources :carted_subscriptions, only: [:index, :create, :update]
 
   get '/orders/new/' => 'orders#new'
   get '/orders/new:order_id' => 'orders#create'
