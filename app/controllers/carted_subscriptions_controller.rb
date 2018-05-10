@@ -11,8 +11,22 @@ class CartedSubscriptionsController < ApplicationController
   end
 
   def create
-    subscription = current_customer.carted_subscriptions.new(new_subscription_params)
-    flash[:error] = 'Error creating subscription' unless subscription.save
+    @subscription = current_customer.current_subscription
+    @subscription.plan = carted_subscription_params[:plan]
+    @subscription.products = { items: [] } unless @subscription.products['items']
+    # exists = @subscription.products['items'].any? do |item|
+    #   item['parent'] == carted_subscription_params['sku']
+    # end
+    # if exists
+
+    # else
+    @subscription.products['items'] << {
+      type: 'sku',
+      parent: carted_subscription_params[:sku],
+      quantity: carted_subscription_params[:quantity]
+    }
+    # end
+    @subscription.save
     redirect_to products_path
   end
 
