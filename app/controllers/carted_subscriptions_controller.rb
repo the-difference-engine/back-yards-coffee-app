@@ -12,20 +12,7 @@ class CartedSubscriptionsController < ApplicationController
 
   def create
     @subscription = current_customer.current_subscription
-    @subscription.plan = carted_subscription_params[:plan]
-    @subscription.products = { items: [] } unless @subscription.products['items']
-    # exists = @subscription.products['items'].any? do |item|
-    #   item['parent'] == carted_subscription_params['sku']
-    # end
-    # if exists
-
-    # else
-    @subscription.products['items'] << {
-      type: 'sku',
-      parent: carted_subscription_params[:sku],
-      quantity: carted_subscription_params[:quantity]
-    }
-    # end
+    @subscription.add_item(carted_subscription_params)
     @subscription.save
     redirect_to products_path
   end
