@@ -18,10 +18,10 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/coffee_club' => 'pages#coffee_club'
-  get '/coffee_house' => 'pages#coffee_house'
   get '/contact' => 'pages#contact'
   get '/faqs' => 'pages#faqs'
 
+  get '/menu' => 'pages#menu'
   get '/menus/new' => 'menus#new'
   post '/menus' => 'menus#create'
   get '/menus/:id/edit' => 'menus#edit'

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container fit">
   <%=form_tag "/menus", methond: :post do %>
   <div class="row">
     Name:
@@ -22,9 +22,15 @@
       </div>
     </div>
   </div>
-
 <div class="row">
-  <input class="btn" type="submit" name="submit">
+<div>
+  <input class="btn col l2 m2 s12 btn-padding" type="submit" name="submit">
+</div>
+
+<div><a href="/menu" class="btn col l2 m2 s12 btn-padding">Cancel</a>
+</div>
+
+
 </div>
 <%end%>
 </div>

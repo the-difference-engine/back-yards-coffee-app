@@ -8,7 +8,7 @@ class MenusController < ApplicationController
 
   def create
     @menu_item = Product.create(menu_item_params)
-    redirect_to '/coffee_house'
+    redirect_to '/menu'
   end
 
   def edit
@@ -21,14 +21,14 @@ class MenusController < ApplicationController
     menu_id = params[:id]
     @menu_item = Product.find_by(id: menu_id)
     @menu_item.update(menu_item_params)
-    redirect_to '/coffee_house'
+    redirect_to '/menu'
   end
 
   def destroy
     menu_id = params[:id]
     @menu_item = Product.find_by(id: menu_id)
     @menu_item.destroy
-    redirect_to '/coffee_house'
+    redirect_to '/menu'
   end
 
   private
