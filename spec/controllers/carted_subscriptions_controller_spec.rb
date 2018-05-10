@@ -60,6 +60,7 @@ RSpec.describe CartedSubscriptionsController, type: :controller do
         expect(assigns(:items)).to be_an Array
       end
     end
+  end
   describe '#destroy' do
     before :each do
       @customer = create(:customer)
