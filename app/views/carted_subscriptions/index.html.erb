@@ -1,0 +1,24 @@
+<div class="container">
+  <% if @subscriptions.length > 0 %>
+    <h3>Current Subscription</h3>
+      <p>
+        Status: <%= @subscriptions.first.status %>
+      </p>
+      <p>Products:</p>
+      <% @items.each do |item| %>
+        <p><%= item['name'] %>, quantity: <%= item['quantity'] %></p>
+      <% end %>
+    <% if @subscriptions.length > 1 %>
+      <h3>Subscription History</h3>
+      <% @subscriptions[1..-1].each do |subscription| %>
+        <p>
+          ID: <%= subscription.id %>
+          Status: <%= subscription.status %>
+          <!-- Products: <%= subscription.products %> -->
+        </p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <h3>You have no subscriptions</h3>
+  <% end %>
+</div>
