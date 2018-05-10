@@ -29,13 +29,11 @@ RSpec.describe CartedSubscriptionsController, type: :controller do
         post :update, params: {
           id: @carted_subscription.id,
           carted_subscription: {
-            plan: 'b',
-            products: { foo: 'bar' }.to_json
+            plan: 'b'
           }
         }
         carted_subscription = @customer.carted_subscriptions.last
         expect(carted_subscription.plan).to eq 'b'
-        expect(JSON.parse(carted_subscription.products)).to eq('foo' => 'bar')
       end
     end
   end

@@ -19,12 +19,6 @@ FactoryGirl.define do
             quantity: 1,
             parent: 'sku_foo'
           }
-        ],
-        items_meta: [
-          {
-            name: 'Foo Blend',
-            product_id: 'prod_foo'
-          }
         ]
       }
     end
