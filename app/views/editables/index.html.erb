@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Editables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editables.each do |editable| %>
+      <tr>
+        <td><%= link_to 'Show', editable %></td>
+        <td><%= link_to 'Edit', edit_editable_path(editable) %></td>
+        <td><%= link_to 'Destroy', editable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Editable', new_editable_path %>

@@ -3,7 +3,9 @@ class PagesController < ApplicationController
     @products = StripeCache.new.featured_products
   end
 
-  def about; end
+  def about
+    @editables = Editable.first
+  end
 
   def coffee_club
     @products = Stripe::Product.list(active: true)
