@@ -30,7 +30,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'redirects to coffee house when category is saved' do
       post :create, params: { name: 'category name' }
-      expect(response).to redirect_to('/coffee_house')
+      expect(response).to redirect_to('/menu')
     end
     it 'redirects to new categories if it fails' do
       post :create
@@ -68,9 +68,9 @@ RSpec.describe CategoriesController, type: :controller do
       patch :update, id: @category, name: 'new'
       expect(assigns(:category).name).to eq 'new'
     end
-    it 'redirects to coffee_house' do
+    it 'redirects to menu' do
       patch :update, id: @category, category: attributes_for(:category)
-      expect(response).to redirect_to('/coffee_house')
+      expect(response).to redirect_to('/menu')
     end
   end
   describe 'DELETE categories#destroy' do
@@ -86,7 +86,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'redirects to category#index' do
       delete :destroy, id: @category
-      expect(response).to redirect_to('/coffee_house')
+      expect(response).to redirect_to('/menu')
     end
   end
 end

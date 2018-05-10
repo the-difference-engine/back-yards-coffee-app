@@ -1,13 +1,16 @@
-<div class="container">
+<div class="container fit">
 <%=form_tag "/categories", methond: :post do %>
 
 <div class="row">
   Name:
   <input type="text" name="name">
 </div>
-
 <div class="row">
-  <input class="btn" type="submit" name="submit">
+  <div class="btn col l3 m3 s10 btn-padding center">
+    <input  type="submit" name="submit">
+  </div>
+  <div><a href="/menu" class="btn col l3 m3 s10 btn-padding">Cancel</a>
+  </div>
 </div>
 
 <%end%>
