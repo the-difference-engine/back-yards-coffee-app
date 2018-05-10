@@ -29,6 +29,7 @@ FactoryGirl.define do
       }
     end
     order_created_at Date.today
+    status 'active'
   end
 
   factory :subscribed_subscription, class: CartedSubscription do
