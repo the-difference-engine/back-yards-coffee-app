@@ -60,5 +60,19 @@ RSpec.describe CartedSubscriptionsController, type: :controller do
         expect(assigns(:items)).to be_an Array
       end
     end
+  describe '#destroy' do
+    before :each do
+      @customer = create(:customer)
+      sign_in @customer
+      @carted_subscription = create(:carted_subscription, customer: @customer)
+    end
+    it 'sets the subscription status to inactive and saves the time' do
+      post :destroy, params: {
+        id: @carted_subscription.id
+      }
+      @carted_subscription.reload
+      expect(@carted_subscription.status).to eq 'inactive'
+      expect(@carted_subscription.expired_at).to be_a Time
+    end
   end
 end

@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container fit">
   <%=form_tag "/menus/#{@menu_item.id}", method: :patch do %>
-  Name:
+  
   <div class="row">
+    Name:
     <input type="text" name="name" value="<%=@menu_item.name%>">
   </div>
 
@@ -25,13 +26,16 @@
   </div>
 
   <div class="row">
-    <input class="btn col s4" type="submit" name="submit">
+    <input class="btn col l3 m3 s12 btn-padding" type="submit" name="submit">
 
     <%end%>
 
     <%= form_tag "/menus/#{@menu_item.id}", method: :delete do %>
-    <input class="btn col s4 offset-s1" type="submit" value="Delete Menu Item">
+    <input class="btn col l3 m3 s12 btn-padding" type="submit" value="Delete Menu Item">
     <%end%>
+
+    <div><a href="/menu" class="btn col l3 m3 s12 btn-padding">Cancel</a>
+    </div>
   </div>
 </div>
 

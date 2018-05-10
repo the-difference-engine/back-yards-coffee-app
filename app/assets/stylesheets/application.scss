@@ -21,7 +21,89 @@ $secondary-color: color("yellow", "base") !default;
 @import "materialize/extras/nouislider";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+// Target Specific Device Size 
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
 
+@media (min-width: 1281px) {
+  
+  .dot {
+  margin: .7rem;
+}
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .dot {
+  margin: .5rem;
+}
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .dot {
+  margin: 0.5rem !important;
+  }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+   .dot {
+  margin: 0.7rem !important;
+  }
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+   .dot {
+  margin: 0.3rem !important;
+  }
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .dot {
+  margin: 0rem !important;
+  }
+
+  .fit{
+    width: 80% !important;
+    padding: 1rem;
+  }
+  
+}
 #resize img{
   width: 100%;
   height: auto;
@@ -60,3 +142,29 @@ footer a
 a.button-collapse.float-right {
     float: right;
 }
+
+#botysbackground {
+  background-color: #eadec2 !important;
+}
+
+#botysbackground-dark {
+  background-color: #32404b;
+}
+
+a.waves-effect.waves-light.btn{
+  margin-bottom: 1rem;
+}
+
+.onerem {
+  padding: 1rem !important;
+
+}
+
+.h2 {
+  font-size: 2.5rem;
+}
+
+.dot {
+  margin: .7rem;
+}
+

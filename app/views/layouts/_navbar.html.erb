@@ -21,8 +21,8 @@
         <li class="<%='active' if current_page?(products_url)%>">
           <a href="/products">Products</a>
         </li>
-        <li class="<%='active' if current_page?(coffee_house_url)%>">
-          <a href="/coffee_house">Menu</a>
+        <li class="<%='active' if current_page?(menu_url)%>">
+          <a href="/menu">Menu</a>
         </li>
         <li class="<%='active' if current_page?(about_url)%>">
           <a href="/about">Who we are</a>
@@ -57,7 +57,7 @@
     <li style="text-align: center;">
       <a href="/customers/dashboard">My Account</a>
     </li>
-    <li style="text-align: center;"><%= link_to "Sign out", destroy_customer_session_path, :method => :delete %></li>
+    <li style="text-align: center;"><%= link_to "Sign Out", destroy_customer_session_path, :method => :delete %></li>
   <% elsif current_employee %>
     <li style="text-align: center;">
       <a href="/employees/dashboard">My Account</a>
@@ -90,7 +90,7 @@
   </li>
   <li class="divider"></li>
   <li>
-    <a href="/coffee_house">Menu</a>
+    <a href="/menu">Menu</a>
   </li>
   <li class="divider"></li>
   <li>

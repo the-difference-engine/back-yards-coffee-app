@@ -31,5 +31,47 @@
 
 .container-info {
   padding-left: 25px;
+}
 
+.wholesaler-form {
+    border: 2px solid black;
+    border-radius: 30px;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+    padding: 1.2rem;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.two-px-border {
+  border: 2px solid black;
+}
+
+#wholesaler-img {
+    -webkit-filter: brightness(70%); /* Safari 6.0 - 9.0 */
+    filter: brightness(10%);
+}
+
+#wholesaler-terms {
+  padding: 1rem;
+}
+
+.two-rem-margin {
+  margin-top: 2rem;
+}
+
+.three-rem-margin-bottom
+{
+  margin-bottom: 3rem;
+}
+
+.two-rem-title {
+  font-size: 2rem;
+
+}
+
+a.waves-effect.waves-light.btn-large.col.s12.m12.l3 {
+    margin: 1rem;
 }

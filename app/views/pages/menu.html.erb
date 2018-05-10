@@ -1,0 +1,53 @@
+<body id="botysbackground">
+  <div class="container menu">
+    <h2 class="center lobster-font botyredletter">Menu</h2>
+    <img id="center_star" class="star" src="https://static1.squarespace.com/static/5616c8cde4b0bbc1cabb7c79/562ff5bee4b09cb454d6fc75/563ec3d3e4b03043c9b69693/1446953940037/chicago-star-transparent.png">
+      <% @categories.each do |category| %> 
+      <div class="h2 lobster-font gray col s12 m12 l12 onerem">
+        <%= category.name %>
+        <%if current_employee%>
+          <a class="btn-floating" href="/categories/<%=category.id%>/edit">
+            <i class="material-icons">edit</i>
+          </a>
+        <%end%>
+      </div>
+      <div id="menu-categories" class="row"> 
+    
+      <% category.products.each do |product| %>
+      <div class="menu-item row">
+        <div class="col s5 m3 l4 onerem">
+          <p class="title"> <b><%= product.name %> </b>
+            <a class="ptn-small" href="/menus/<%=product.id%>/edit">
+              <% if current_employee %>
+              <i class="material-icons">edit</i> 
+              <%end%>
+            </a>
+          </p>
+        </div>
+        <div class="col s5 m6 l6 onerem">
+          <p><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b><b class="dot">.</b></p>
+        </div>
+        <div class="col s2 m2 l2 right-align onerem">
+          <p class="title"><b><%= number_to_currency(product.price.to_f)%></b> </p>
+        </div>
+        <div class="col s12 m12 l12 item-description">
+          - <%= product.description%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+      <% end %>
+    <div class="row center">
+      <% if current_employee %>
+      <div class="col s12 m6 l6">
+        <a class="btn btn-padding" href="/categories/new">Create new category
+        </a>
+      </div>
+      <div class="col s12 m6 l6">
+        <a class="btn btn-padding" href="/menus/new">Create new menu item
+        </a>
+      </div> 
+      <%end%>
+    </div>
+  </div>
+</body>
