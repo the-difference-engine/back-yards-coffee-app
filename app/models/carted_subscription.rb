@@ -6,7 +6,7 @@ class CartedSubscription < ApplicationRecord
   before_save :default_values
 
   def default_values
-    self.status = 'pending'
+    self.status ||= 'pending'
   end
 
   def next_date
