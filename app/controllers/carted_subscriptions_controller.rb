@@ -6,8 +6,6 @@ class CartedSubscriptionsController < ApplicationController
     @subscriptions = current_customer.carted_subscriptions.order(created_at: :desc)
     @subscription = @subscriptions.first
     @items = @subscription.products['items']
-                          .zip(@subscription.products['items_meta'])
-                          .map { |a, b| a.merge(b) }
   end
 
   def create
