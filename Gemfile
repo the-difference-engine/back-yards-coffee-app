@@ -50,6 +50,7 @@ gem 'lodash-rails'
 gem 'gon'
 gem 'sidekiq'
 gem 'redis', '~> 3.3', '>= 3.3.1'
+gem 'phrasing'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

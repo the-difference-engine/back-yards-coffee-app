@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Editing Editable</h1>
+
+  <%= form_tag "/editables/#{@editable.id}", method: :patch do %>
+    <%=text_field_tag 'about_me_pic_1', value=@editable.about_me_pic_1%>
+    <%=text_field_tag 'about_me_pic_2', value=@editable.about_me_pic_2%>
+    <%=text_field_tag 'about_me_pic_3', value=@editable.about_me_pic_3%>
+    <%=submit_tag 'Edit about me'%>
+  <%end%>
+</div>

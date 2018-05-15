@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413004445) do
+ActiveRecord::Schema.define(version: 20180508014830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20180413004445) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "editables", force: :cascade do |t|
+    t.text     "about_me_sec_1"
+    t.string   "about_me_pic_1"
+    t.text     "about_me_sec_2"
+    t.string   "about_me_pic_2"
+    t.text     "about_me_sec_3"
+    t.string   "about_me_pic_3"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -105,6 +116,22 @@ ActiveRecord::Schema.define(version: 20180413004445) do
     t.integer  "customer_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "phrasing_phrase_versions", force: :cascade do |t|
+    t.integer  "phrasing_phrase_id"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["phrasing_phrase_id"], name: "index_phrasing_phrase_versions_on_phrasing_phrase_id", using: :btree
+  end
+
+  create_table "phrasing_phrases", force: :cascade do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", force: :cascade do |t|

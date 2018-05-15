@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get '/customers' => 'customers#index'
 
+  resources :editables
   get '/customers/dashboard' => 'customers#show'
   resources :customers, except: [:show]
   get '/employees/dashboard' => 'employees#show'
