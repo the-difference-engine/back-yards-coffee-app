@@ -42,7 +42,7 @@
                     <%= product.name %>
                   </div>
                     <div class="col s2 quantity">
-                      <input id="id<%=product.id%>" class="productEdit" type="number" min="1" max="100" step="1"  value= "<%=product.quantity%>">
+                      <input id="id<%=product.id%>" class="productEdit" type="number" min="0" max="100" step="1"  value= "<%=product.quantity%>">
                       </div>
                       <div class = "col s2">
                         <a id="id<%=product.id%>" class = "btn-floating btn-tiny waves-effect waves-light black deleteProducts"><i class="material-icons">delete</i></a>
