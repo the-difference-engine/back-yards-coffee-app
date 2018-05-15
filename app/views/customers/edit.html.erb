@@ -2,44 +2,35 @@
   <div class="grid">
     <h4 class="center lobster-font gray underline">Shipping Address</h4>
     <br>
-    <%= form_tag "/customers/#{@customer.id}", method: :patch do %>
-
+    <%= form_for @customer, method: :patch do |f| %>
       <div class="field">
-        <%= label_tag :first_name %><br />
-        <%= text_field_tag :first_name, @customer.first_name %>
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name %>
       </div>
-
       <div class="field">
-        <%= label_tag :last_name %><br />
-        <%= text_field_tag :last_name, @customer.last_name %>
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name %>
       </div>
-
       <div class="field">
-        <%= label_tag :address %><br />
-        <%= text_field_tag :address, @customer.address %>
+        <%= f.label :address %><br />
+        <%= f.text_field :address %>
       </div>
-
       <div class="field">
-        <%= text_field_tag :Address2, @customer.Address2 %>
+        <%= f.text_field :Address2 %>
       </div>
-
       <div class="field">
-        <%= label_tag :city %><br />
-        <%= text_field_tag :city, @customer.city %>
+        <%= f.label :city %><br />
+        <%= f.text_field :city %>
       </div>
-
       <div class="field">
-        <%= label_tag :state %><br />
-        <%= text_field_tag :state, @customer.state %>
+        <%= f.label :state %><br />
+        <%= f.text_field :state %>
       </div>
-
       <div class="field">
-        <%= label_tag :zip_code %><br />
-        <%= text_field_tag :zip_code, @customer.zip_code %>
+        <%= f.label :zip_code %><br />
+        <%= f.text_field :zip_code %>
       </div>
-
-      <%= submit_tag 'Update Address', :class => "btn" %>
-
+      <%= f.submit 'Update Address', :class => "btn" %>
     <% end %>
   </div>
 </body>

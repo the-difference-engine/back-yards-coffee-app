@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   def create
     category = Category.new(category_params)
     if category.save
-      redirect_to '/coffee_house'
+      redirect_to '/menu'
     else
       redirect_to '/categories/new'
     end
@@ -23,14 +23,14 @@ class CategoriesController < ApplicationController
     category_id = params[:id]
     @category = Category.find_by(id: category_id)
     @category.update(name: params[:name])
-    redirect_to '/coffee_house'
+    redirect_to '/menu'
   end
 
   def destroy
     category_id = params[:id]
     @category = Category.find_by(id: category_id)
     @category.destroy
-    redirect_to '/coffee_house'
+    redirect_to '/menu'
   end
 
   private

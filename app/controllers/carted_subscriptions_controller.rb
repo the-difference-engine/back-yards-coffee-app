@@ -1,6 +1,13 @@
 class CartedSubscriptionsController < ApplicationController
   include CartedSubscriptionsHelper
-  def index; end
+  before_action :authenticate_customer!, only: [:index]
+  def index
+    @subscriptions = current_customer.carted_subscriptions.order(created_at: :desc)
+    @subscription = @subscriptions.first
+    @items = @subscription.products['items']
+                          .zip(@subscription.products['items_meta'])
+                          .map { |a, b| a.merge(b) }
+  end
 
   def create
     subscription = current_customer.carted_subscriptions.new(new_subscription_params)
@@ -9,7 +16,7 @@ class CartedSubscriptionsController < ApplicationController
   end
 
   def update
-    @subscription = current_customer.carted_subscriptions.last
+    @subscription = CartedSubscription.find(params[:id])
     @subscription.assign_attributes(carted_subscription_update_params)
     unless @subscription.save
       flash[:error] = 'Error updating subscriptions' unless subscription.save
@@ -18,7 +25,12 @@ class CartedSubscriptionsController < ApplicationController
   end
 
   # for setting to inactive
-  def destroy; end
+  def destroy
+    @subscription = CartedSubscription.find(params[:id])
+    @subscription.status = 'inactive'
+    @subscription.expired_at = DateTime.now
+    @subscription.save
+  end
 
   private
 

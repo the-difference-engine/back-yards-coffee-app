@@ -19,10 +19,10 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   get '/coffee_club' => 'pages#coffee_club'
-  get '/coffee_house' => 'pages#coffee_house'
   get '/contact' => 'pages#contact'
   get '/faqs' => 'pages#faqs'
 
+  get '/menu' => 'pages#menu'
   get '/menus/new' => 'menus#new'
   post '/menus' => 'menus#create'
   get '/menus/:id/edit' => 'menus#edit'
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get '/cart' => 'carted_products#index'
   patch '/cart' => 'carted_products#update'
 
-  resources :carted_subscriptions, only: [:index, :create, :update]
+  resources :carted_subscriptions, only: [:index, :create, :update, :destroy]
 
   get '/orders/new/' => 'orders#new'
   get '/orders/new:order_id' => 'orders#create'

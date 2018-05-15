@@ -1,13 +1,35 @@
 // Place all the styles related to the Menus controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#menu_items {
-    background-color: white;
-    padding-top: 1%;
-    padding-left: 3%;
-    padding-bottom: 1%;
+#menu-categories {
+    padding: 1rem;
 }
 
 #center_star {
     display: block;
 }
+
+.menu-item {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  
+}
+
+.menu{
+  background-color: white;
+}
+
+.item-description{
+  padding-left: 2rem !important;
+
+}
+
+.btn-padding{
+  margin: 1rem !important;
+}
+
+font-garamond{
+  font-family: 'Garamond';
+}
+
+

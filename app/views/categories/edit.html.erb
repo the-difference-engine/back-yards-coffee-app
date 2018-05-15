@@ -4,11 +4,14 @@
     Name:
     <div class="row">
     <input type="text" name="name" value="<%=@category.name%>">
-    </div>
-    <span id="SaveBtn"><input class="btn" type="submit" value="Save"></span>
+    
+    <div><input class="btn col l3 m3 s10 btn-padding" type="submit" value="Save"></div>
     <%end%>
     <%= form_tag "/categories/#{@category.id}", method: :delete do %>
-    <span id="DeleteBtn"><input class="btn" type="submit" value="Delete Category"></span>
+    <div><input class="btn col l3 m3 s10 btn-padding" type="submit" value="Delete Category"></div>
+    <div><a href="/menu" class="btn col l3 m3 s10 btn-padding">Cancel</a>
+    </div>
     <%end%>
+    </div>
   </div>
 </div>
