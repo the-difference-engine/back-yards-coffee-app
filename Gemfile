@@ -62,6 +62,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'capybara'
   gem 'vcr'
+  gem 'administrate'
 end
 
 group :development do
