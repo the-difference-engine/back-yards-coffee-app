@@ -4,7 +4,7 @@ module PhrasingHelper
   #
   def can_edit_phrases?
     if current_employee
-      current_employee
+      current_employee.admin
     end
   end
 
