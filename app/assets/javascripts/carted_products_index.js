@@ -8,8 +8,8 @@
 //   var subTotal = document.querySelector('.totalFoSho');
 //   var productView = document.querySelectorAll('.productView');
 //   // var subscriptionView = document.querySelectorAll('.subscriptionView');
-//   const cartedProducts = gon.cartedProducts;
-//   // const cartedSubscriptions = gon.cartedSubscriptions;
+// const cartedProducts = gon.cartedProducts;
+// const cartedSubscriptions = gon.cartedSubscriptions;
 
 //   jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
 //   jQuery('.quantity').each(function() {

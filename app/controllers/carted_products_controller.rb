@@ -35,12 +35,12 @@ class CartedProductsController < ApplicationController
 
   def index
     @customer = current_customer || Customer.new
-    @carted_products = CartedProduct.my_carted(guest_or_customer_id)
+    @carted_products = @customer.carted_products.where(status: 'carted')
     @products_total = @carted_products.sum { |s| s.price * s.quantity }
-    @cart_total = @products_total
 
     gon.push(
       :cartedProducts => @carted_products,
+      :cartedSubscriptions => @customer.current_subscription.products
     )
 
     if @carted_products.empty?

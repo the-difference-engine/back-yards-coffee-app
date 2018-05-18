@@ -17,7 +17,7 @@
               <%= f.label :city %>
               <%= f.text_field :city %>
               <%= f.label :state %>
-              <%= f.text_field :state %>
+              <%= f.select :state, options_for_select(us_states) %>
               <%= f.label :zip_code  %>
               <%= f.text_field :zip_code %>
               <input type="submit" value="Save Address" class="waves-effect btn addsAjax" />
@@ -28,26 +28,30 @@
         <div class="Checkout">
           <div class="OrderSummary">
             <h5 class="LobsterCenter">Order Summary</h5>
-            <table>
-              <%if @carted_products.length > 0 %>
-              <h5 class="LobsterCenter ultraGrey"> Products </h5>
-              <%end%>
-              <% @carted_products.each do |product| %>
-                <tr>
-                  <div class = "col s12 productView">
-                    <div class= "col s8">
-                      <%= product.name %>
+            <%if @carted_products.length > 0 %>
+              <h5 class="LobsterCenter ultraGrey">Products</h5>
+              <ul>
+                <% @carted_products.each do |product| %>
+                  <li id="id<%=product.id%>" >
+                    <div class="col s12 productView">
+                      <div class="col s8">
+                        <%= product.name %>
+                      </div>
+                      <div class="col s2 quantity">
+                        <input class="productEdit" type="number" step="1" value="<%=product.quantity%>">
+                        <div class="quantity-nav">
+                          <div class="quantity-button quantity-up">+</div>
+                          <div class="quantity-button quantity-down">-</div>
+                        </div>
+                      </div>
+                      <div class="col s2">
+                        <a class="btn-floating btn-tiny waves-effect waves-light black deleteProduct"><i class="material-icons">delete</i></a>
+                      </div>
                     </div>
-                    <div class="col s2 quantity">
-                      <input id="id<%=product.id%>" class="productEdit" type="number" min="0" max="100" step="1"  value= "<%=product.quantity%>">
-                    </div>
-                    <div class = "col s2">
-                      <a id="id<%=product.id%>" class = "btn-floating btn-tiny waves-effect waves-light black deleteProducts"><i class="material-icons">delete</i></a>
-                    </div>
-                  </div>
-                </tr>
-              <% end %>
-            </table>
+                  </li>
+                <%end%>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>
