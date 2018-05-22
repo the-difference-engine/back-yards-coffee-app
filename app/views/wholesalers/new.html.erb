@@ -5,12 +5,12 @@
     <div class="col l6 s11 m6 right-align">
       2059 W 47th St <br> 
       Chicago, IL 60609 <br> 
-      (773) 475-6381 <br>
+      312-487-CAFÉ<br>
       backoftheyardscoffee.com <br>
     </div>
   </div>
   <div class="row border">
-    <div class="col l8 m8 s8 border">New Wholesaler Application</div>
+    <div class="col l8 m8 s8 border">New Customer Application</div>
     <div class="col l4 m4 s4 border"> Form NO. <%= @appid %> </div>
   </div> 
   <div>Contact Info</div>
@@ -86,8 +86,16 @@
       <input type="text" name="retailer" class="form-control" id="exampleInputName" placeholder="Yes or No" value="<%= @wholesaler.retailer %>">
     </div>
     <div class="form-group col s12 l12 border">
+      <div for="exampleInputPrice">If Yes, please email info@by.coffee a copy of retailer certificate upon submitting your application</div>
+     
+    </div>
+    <div class="form-group col s12 l12 border">
       <label for="exampleInputPrice">Are you tax exempt?</label>
       <input type="text" name="tax_exempt" class="form-control" id="exampleInputName" placeholder="Yes or No" value="<%= @wholesaler.tax_exempt %>">
+    </div>
+     <div class="form-group col s12 l12 border">
+      <div for="exampleInputPrice">If Yes, please email info@by.coffee a copy of tax exemption form upon submitting your application</div>
+      
     </div>
   </div>
   <div class="row two-px-border">
@@ -106,7 +114,7 @@
   </div>
   <div class="row">
       <p class="two-px-border" id="wholesaler-terms">
-        I verify that all the information is corectly provided. All information entered on this form will be kept trictly confidential by Back of the Yards Coffee Co.
+        I verify that all the information is correctly provided. All information entered on this form will be kept strictly confidential by Back of the Yards Coffee Co.
       </p>
     </div>
     <div class="center">
