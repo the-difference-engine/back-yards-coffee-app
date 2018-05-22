@@ -13,7 +13,7 @@ class CartedProductsController < ApplicationController
       end
     else
       @product = StripeCache.new.product(params[:product_id])
-      price = @product.skus.data.find { |sku| sku.mrchid == params[:sku] } .price
+      price = @product.skus.data.find { |sku| sku.id == params[:sku] } .price
       carted_product = CartedProduct.new(
         quantity: params[:quantity],
         product_id: params[:product_id],
