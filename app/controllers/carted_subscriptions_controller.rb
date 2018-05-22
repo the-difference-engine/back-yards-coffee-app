@@ -1,17 +1,17 @@
 class CartedSubscriptionsController < ApplicationController
+  before_action :authenticate_customer!
   include CartedSubscriptionsHelper
   before_action :authenticate_customer!, only: [:index]
   def index
     @subscriptions = current_customer.carted_subscriptions.order(created_at: :desc)
     @subscription = @subscriptions.first
     @items = @subscription.products['items']
-                          .zip(@subscription.products['items_meta'])
-                          .map { |a, b| a.merge(b) }
   end
 
   def create
-    subscription = current_customer.carted_subscriptions.new(new_subscription_params)
-    flash[:error] = 'Error creating subscription' unless subscription.save
+    @subscription = current_customer.current_subscription
+    @subscription.add_item(carted_subscription_params)
+    @subscription.save
     redirect_to products_path
   end
 

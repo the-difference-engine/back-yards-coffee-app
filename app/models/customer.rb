@@ -94,4 +94,12 @@ class Customer < ApplicationRecord
 
     product_quantity + subscription_quantity
   end
+
+  def current_subscription
+    @subscriptions = carted_subscriptions
+    if @subscriptions.length.zero? || @subscriptions.last.status == 'inactive'
+      return carted_subscriptions.create
+    end
+    @subscriptions.last
+  end
 end
