@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
       # product_name = @product.name
       attributes = sku.attributes.map { |pr| pr[1] } .join(', ')
       cost = number_to_currency(sku.price.to_f / 100)
-      ["#{attributes} #{cost}", sku.id]
+      ["#{attributes} #{cost}", sku.mrchid]
     end
     render partial: 'form_for_buying_products', layout: false if request.xhr?
   end
