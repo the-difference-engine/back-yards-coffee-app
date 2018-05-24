@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col l12 s12 m12">
-        <h4 class="center lobster-font gray underline">Account Information</h4>
+        <h4 class="center lobster-font gray underline">My Information</h4>
         <br>
         <%= form_for @customer, method: :patch do |f| %>
           <div class="field">
@@ -37,7 +37,7 @@
             <%= f.label :zip_code %><br />
             <%= f.text_field :zip_code %>
           </div>
-          <%= f.submit 'Update Address', :class => "btn" %>
+          <%= f.submit 'Update Information', :class => "btn" %>
         <% end %>
       </div>
     </div>
