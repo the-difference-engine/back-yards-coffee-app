@@ -1,16 +1,21 @@
 <body id="botysbackground">
   <div class="container">
   <h2 class="center lobster-font underline">My Account</h2>
-  <div class="row center">
-    <div class="col l12 s12 m12 center boty-box">
-        <div class="Title">Shipping Information</div>
-        <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
-        <p>Address: <%= current_customer.address %></p>
-        <p><%= current_customer.Address2 %></p>
-        <p>City: <%= current_customer.city %></p>
-        <p>State: <%= current_customer.state %></p>
-        <p>Zip: <%= current_customer.zip_code %></p>
-      <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "waves-effect waves-light btn" %>
+  <div class="row">
+    <div class="col l12 s12 m12 boty-box" style="text-align: center;">
+        <div class="Title center">Shipping Information</div>
+        <div style="display: inline-block; text-align: left;">
+          <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
+          <p>Email: <%= current_customer.first_name %> <%= current_customer.email %></p>
+          <p>Address: <%= current_customer.address %></p>
+          <p><%= current_customer.Address2 %></p>
+          <p>City: <%= current_customer.city %></p>
+          <p>State: <%= current_customer.state %></p>
+          <p>Zip: <%= current_customer.zip_code %></p>
+        </div>
+        <div>
+          <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "waves-effect waves-light btn" %> 
+        </div> 
     </div>
     <div class="col l12 s12 m12 center boty-box">
       <div class="Title">Coffee Club Plan(s)</div>
