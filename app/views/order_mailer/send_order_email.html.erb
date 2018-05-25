@@ -1,14 +1,30 @@
 <h1>Order Summary</h1>
 <div>
+  <p>Dear
+    <%=@customer.first_name%>,</p>
+  <p>Thank you for ordering with Back of the Yards Coffee! Please See Order Details below. Thank you for your support!</p>
+  <p>Back of the Yards Coffee</p>
+
+<h3>Order Details</h3>
+  <p>Order Id:
+    <%=@order.id%></p>
+  <p>Name:
+    <%=@order.shipping.name%></p>
+  <h4>Shipping</h4>
+  <p>Address:
+    <%=@order.shipping.address.line1%>
+    <%=@order.shipping.address.city%>,
+    <%=@order.shipping.address.state%>
+    <%=@order.shipping.address.postal_code%>
+    <%=@order.shipping.address.country%></p>
+  <h4>Items</h4>
   <% @order.items.each do |item| %>
     <p>
-      <%= item.quantity %>
       <%= item.description %>
+      <%= item.quantity %>
       <%= number_to_currency(item.amount.to_f / 100) %>
     </p>
   <% end %>
-  <p>Total: <%= number_to_currency(@order.amount.to_f / 100) %></p>
+  <h4>Total</h4>
+  <p><%= number_to_currency(@order.amount.to_f / 100) %></p>
 </div>
-<pre>
-  <%= raw JSON.pretty_generate(@order.to_hash).gsub(" ","&nbsp;") %>
-</pre>
