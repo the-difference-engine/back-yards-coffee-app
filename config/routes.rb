@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   get '/orders/new/' => 'orders#new'
   get '/orders/new:order_id' => 'orders#create'
+  patch '/orders/:order_id/:shipping_id' => 'orders#update'
   get '/orders/show/:id' => 'orders#show'
   patch '/orders' => 'orders#create', as: 'orders_create'
 
@@ -57,7 +58,7 @@ Rails.application.routes.draw do
 
     get '/employees' => 'employees#index'
 
-    patch '/orders/:order_id/:shipping_id' => 'orders#update'
+
 
     get '/products' => 'products#index'
 
@@ -66,5 +67,7 @@ Rails.application.routes.draw do
 
     patch '/carted_products/:id/' => 'carted_products#update'
     delete '/carted_products/:id' => 'carted_products#destroy'
+
+    patch '/carted_subscriptions' => 'carted_subscriptions#update'
   end
 end

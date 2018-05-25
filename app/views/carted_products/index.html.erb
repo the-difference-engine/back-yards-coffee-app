@@ -17,7 +17,7 @@
               <%= f.label :city %>
               <%= f.text_field :city %>
               <%= f.label :state %>
-              <%= f.select :state, options_for_select(us_states) %>
+              <%= f.select :state, options_for_select(us_states, @customer.state) %>
               <%= f.label :zip_code  %>
               <%= f.text_field :zip_code %>
               <input type="submit" value="Save Address" class="waves-effect btn addsAjax" />
@@ -28,7 +28,7 @@
         <div class="Checkout">
           <div class="OrderSummary">
             <h5 class="LobsterCenter">Order Summary</h5>
-            <%if @carted_products.length > 0 %>
+            <% unless @carted_products.empty? %>
               <h5 class="LobsterCenter ultraGrey">Products</h5>
               <ul>
                 <% @carted_products.each do |product| %>
@@ -50,6 +50,30 @@
                     </div>
                   </li>
                 <%end%>
+              </ul>
+            <% end %>
+            <% unless @carted_subscriptions.empty? %>
+              <h5 class="LobsterCenter ultraGrey">Subscriptions</h5>
+              <ul>
+                <% @carted_subscriptions.each do |product| %>
+                  <li id="id<%= product['parent'] %>" >
+                    <div class="col s12 subscriptionView">
+                      <div class="col s8">
+                        <%= product['parent'] %>
+                      </div>
+                      <div class="col s2 quantity">
+                        <input class="subscriptionEdit" type="number" step="1" value="<%=product['quantity']%>">
+                        <div class="quantity-nav">
+                          <div class="quantity-button quantity-up">+</div>
+                          <div class="quantity-button quantity-down">-</div>
+                        </div>
+                      </div>
+                      <div class="col s2">
+                        <a class="btn-floating btn-tiny waves-effect waves-light black deleteSubscription"><i class="material-icons">delete</i></a>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
               </ul>
             <% end %>
           </div>

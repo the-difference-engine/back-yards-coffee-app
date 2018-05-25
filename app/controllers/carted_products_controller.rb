@@ -36,14 +36,14 @@ class CartedProductsController < ApplicationController
   def index
     @customer = current_customer || Customer.new
     @carted_products = @customer.carted_products.where(status: 'carted')
+    @carted_subscriptions = @customer.current_subscription.status == 'pending' ? @customer.current_subscription.products['items'] : []
     @products_total = @carted_products.sum { |s| s.price * s.quantity }
-
     gon.push(
-      :cartedProducts => @carted_products,
-      :cartedSubscriptions => @customer.current_subscription.products
+      cartedProducts: @carted_products,
+      cartedSubscriptions: @carted_subscriptions
     )
-
-    if @carted_products.empty?
+    p @customer.current_subscription.products
+    if @carted_products.empty? && @carted_subscriptions.empty?
       flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
     end
