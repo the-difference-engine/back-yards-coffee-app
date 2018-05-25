@@ -15,6 +15,9 @@
 
 //= require materialize-sprockets
 //= require lodash
+//= require react
+//= require react_ujs
+//= require components
 //= require jquery-readyselector
 //= require phrasing
 //= require_tree .
