@@ -28,3 +28,6 @@ coverage
 
 # Ignore webstorm config files
 .idea
+
+# Ignore public assets pushed to heroku. assets must be precompiled on heroku
+public/assets
