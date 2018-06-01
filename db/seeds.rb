@@ -149,5 +149,7 @@ Editable.create(
   about_me_sec_2: "This is soo cool",
   about_me_pic_2:"https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/31369590_2061136080811286_9123507634836602880_o.jpg?_nc_cat=0&oh=10f7e2f22251062db9bdd7f1f9bc598a&oe=5B962AFC",
   about_me_sec_3:"I wrote this",
-  about_me_pic_3:"https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/30705856_2055346538056907_1033765904791371776_o.jpg?_nc_cat=0&oh=46aaf60a5e9551e591c8e3be95de9952&oe=5B8D3AB1"
+  about_me_pic_3:"https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/30705856_2055346538056907_1033765904791371776_o.jpg?_nc_cat=0&oh=46aaf60a5e9551e591c8e3be95de9952&oe=5B8D3AB1",
+  about_me_sec_4: "Our team at Back of the Yards Coffee Co represents the communities that we serve-they are resilient and hard working. Their life journeys, much like that of our coffee, are complex and full of surprises",
+  about_me_pic_4:"https://s3-media1.fl.yelpcdn.com/buphoto/-EWkaX0xODm-wJTzu4dl6A/o.jpg"
 )
