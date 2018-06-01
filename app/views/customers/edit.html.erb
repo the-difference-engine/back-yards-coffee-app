@@ -1,36 +1,46 @@
 <body id="botysbackground">
-  <div class="grid">
-    <h4 class="center lobster-font gray underline">Shipping Address</h4>
-    <br>
-    <%= form_for @customer, method: :patch do |f| %>
-      <div class="field">
-        <%= f.label :first_name %><br />
-        <%= f.text_field :first_name %>
+  <div class="container">
+    <div class="row">
+      <div class="col l12 s12 m12">
+        <h4 class="center lobster-font gray underline">My Information</h4>
+        <br>
+        <%= form_for @customer, method: :patch do |f| %>
+          <div class="field">
+            <%= f.label :first_name %><br />
+            <%= f.text_field :first_name %>
+          </div>
+          <div class="field">
+            <%= f.label :last_name %><br />
+            <%= f.text_field :last_name %>
+          </div>
+           <div class="field">
+            <%= f.label :email %><br />
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :address %><br />
+            <%= f.text_field :address %>
+          </div>
+          <div class="field">
+            <%= f.label :address2 %><br />
+            <%= f.text_field :Address2 %>
+          </div>
+          <div class="field">
+            <%= f.label :city %><br />
+            <%= f.text_field :city %>
+          </div>
+          <div class="field">
+            <%= f.label :state %><br />
+            <%= f.text_field :state %>
+          </div>
+          <div class="field">
+            <%= f.label :zip_code %><br />
+            <%= f.text_field :zip_code %>
+          </div>
+          <%= f.submit 'Update Information', :class => "btn" %>
+        <% end %>
       </div>
-      <div class="field">
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name %>
-      </div>
-      <div class="field">
-        <%= f.label :address %><br />
-        <%= f.text_field :address %>
-      </div>
-      <div class="field">
-        <%= f.text_field :Address2 %>
-      </div>
-      <div class="field">
-        <%= f.label :city %><br />
-        <%= f.text_field :city %>
-      </div>
-      <div class="field">
-        <%= f.label :state %><br />
-        <%= f.text_field :state %>
-      </div>
-      <div class="field">
-        <%= f.label :zip_code %><br />
-        <%= f.text_field :zip_code %>
-      </div>
-      <%= f.submit 'Update Address', :class => "btn" %>
-    <% end %>
+    </div>
   </div>
+  
 </body>
