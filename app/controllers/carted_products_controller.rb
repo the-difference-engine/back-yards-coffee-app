@@ -42,6 +42,14 @@ class CartedProductsController < ApplicationController
       cartedProducts: @carted_products,
       cartedSubscriptions: @carted_subscriptions
     )
+    stripe_products = Stripe::Product.list.data
+    @carted_subscriptions.map! do |item|
+      p sku = item['parent']
+      p product_id = Stripe::SKU.retrieve(sku).product
+      p product_name = stripe_products.find { |p| p.id == product_id } .name
+      item.merge({ 'description' => product_name })
+    end
+    p @carted_subscriptions
     p @customer.current_subscription.products
     if @carted_products.empty? && @carted_subscriptions.empty?
       flash[:warning] = 'Your cart is currently empty.'

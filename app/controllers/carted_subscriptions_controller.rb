@@ -29,6 +29,8 @@ class CartedSubscriptionsController < ApplicationController
     @subscription.status = 'inactive'
     @subscription.expired_at = DateTime.now
     @subscription.save
+    flash[:success] = 'Subscription Deleted'
+    redirect_to '/customers/dashboard'
   end
 
   private
