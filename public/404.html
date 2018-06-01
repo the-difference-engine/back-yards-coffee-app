@@ -32,12 +32,11 @@
   }
 
   .rails-default-error-page h1 {
-    font-size: 100%;
     color: #730E15;
     line-height: 1.5em;
   }
 
-  .rails-default-error-page div.dialog > p {
+  .rails-default-error-page div.dialog > p , a {
     margin: 0 0 1em;
     padding: 1em;
     background-color: #F7F7F7;
@@ -51,6 +50,10 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .rails-default-error-page div.links > a {
+    display: block;
+  }
   </style>
 </head>
 
@@ -58,10 +61,21 @@
   <!-- This file lives in public/404.html -->
   <div class="dialog">
     <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      <h1>Oops!</h1>
+      <p>There was no decaf option on the menu, we can't seem to find the page you're looking for.</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>Error Code: 404</p>
+
+    <div class="links">
+      <p>Here Some Helpful links instead:</p>
+      <a href="/">Home</a>
+      <a href="/coffee_club">Coffee Club</a>
+      <a href="/wholesalers">Wholesalers</a>
+      <a href="/products">Products</a>
+      <a href="/menu">Menu</a>
+      <a href="/contact">Contact Us</a>
+      <a href="/about">Who we are</a>
+    </div>
   </div>
 </body>
 </html>
