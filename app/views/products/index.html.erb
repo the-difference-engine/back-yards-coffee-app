@@ -19,7 +19,9 @@
             </span>
             <div class="description">
               <div class="innercard">
-                <p><%=product.description%></p>
+                <% if product.description %>
+                  <p> <%= product.description.truncate(150) %></p>
+                <% end %>
                 <p>Starting at <%= starting_price(product) %></p>
                 <div class="section">
                   <div class="row">
