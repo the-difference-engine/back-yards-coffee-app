@@ -26,10 +26,17 @@
                     <div class="col s6">
                       <a href="/products/<%= product.id %>" class="btn-large btn-floating waves-effect waves-light botyred tooltipped" type="submit" name="action" data-delay="5" data-tooltip="More info"><i class="material-icons large">info_outline</i></a>
                     </div>
-                    <div class="col s6">
-                      <a href="#" id="id<%=product.id%>" class="add btn-large
-                        btn-floating waves-effect waves-light botyred tooltipped" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
-                    </div>
+                    <% if customer_signed_in? %>
+                      <div class="col s6">
+                        <a href="#" id="id<%=product.id%>" class="add btn-large
+                          btn-floating waves-effect waves-light botyred tooltipped" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
+                      </div>
+                    <%else%>
+                      <div class="col s6">
+                        <a href="#modal1" class="btn-large
+                          btn-floating waves-effect waves-light tooltipped modal-trigger" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
+                      </div>
+                    <%end%>
                   </div>
                 </div>
               </div>
@@ -40,4 +47,5 @@
       </div>
     <%end%>
   </div>
+  <%= render "customers/shared/modal_for_sign_in.html.erb" %>
 </div>
