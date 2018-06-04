@@ -30,4 +30,4 @@ coverage
 .idea
 
 # Ignore public assets pushed to heroku. assets must be precompiled on heroku
-public/assets
+# public/assets
