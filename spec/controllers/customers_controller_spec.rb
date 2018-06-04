@@ -26,9 +26,6 @@ RSpec.describe CustomersController, type: :controller do
     it 'assigns a Customer to @custer' do
       expect(assigns(:customer)).to be_a Customer
     end
-    it 'assigns a Stripe::Customer to a @stripe_customer' do
-      expect(assigns(:stripe_customer)).to be_a Stripe::Customer
-    end
     it 'renders the show template' do
       expect(response).to render_template :show
     end

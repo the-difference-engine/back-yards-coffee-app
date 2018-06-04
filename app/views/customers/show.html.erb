@@ -1,59 +1,52 @@
 <body id="botysbackground">
   <div class="container">
-  <h2 class="center lobster-font underline">My Account</h2>
-  <div class="row">
-    <div class="col l12 s12 m12 boty-box" style="text-align: center;">
-        <div class="Title center">My Information</div>
-        <div style="display: inline-block; text-align: left;">
-          <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
-          <p>Email: <%= current_customer.first_name %> <%= current_customer.email %></p>
-          <p>Address: <%= current_customer.address %></p>
-          <p><%= current_customer.Address2 %></p>
-          <p>City: <%= current_customer.city %></p>
-          <p>State: <%= current_customer.state %></p>
-          <p>Zip: <%= current_customer.zip_code %></p>
-        </div>
-        <div>
-          <%= link_to "Edit Information", "/customers/#{@customer.id}/edit", class: "waves-effect waves-light btn" %> 
-        </div> 
-    </div>
-    <div class="col l12 s12 m12 center boty-box">
-      <div class="Title">Coffee Club Plan(s)</div>
-        <% if @stripe_customer.subscriptions.total_count != 0 %>
-      <table class="bordered responsive-table">
-        <thead>
-          <tr>
-            <td>Product</td>
-            <td>Quantity</td>
-            <td class="center">Price</td>
-            <td class="center">Subtotal</td>
-            <td>Last Payment</td>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <td><b>Total: </b></td>
-            <td></td>
-            <td></td>
-            <td><%= number_to_currency(current_customer.subscriptions_total(current_customer.stripe_customer_id)) %>/mo</td>
-          </tr>
-        </tfoot>
-        <tbody>
-          <% @stripe_customer.subscriptions.data.each do |subscription| %>
-            <tr>
-              <td><%= subscription.items.data[0].plan.name %></td>
-              <td class="center"><%= subscription.items.data[0].quantity %></td>
-              <td><%= number_to_currency(subscription.items.data[0].plan.amount * 0.01) %>/mo</td>
-              <td><%= number_to_currency(subscription.items.data[0].plan.amount * subscription.items.data[0].quantity * 0.01) %>/mo</td>
-              <td><%= Time.at(subscription.current_period_end).to_datetime.strftime("%d/%m/%Y") %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <% else %>
-      <p class="center pangolin-font">You have no subscriptions!<br><a href="/products">Subscribe to some products!</a></p>
+    <h2 class="center lobster-font underline">My Account</h2>
+    <div class="row center">
+      <div class="col l12 s12 m12 center boty-box">
+        <div class="Title">Shipping Information</div>
+        <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
+        <p>Address: <%= current_customer.address %></p>
+        <p><%= current_customer.Address2 %></p>
+        <p>City: <%= current_customer.city %></p>
+        <p>State: <%= current_customer.state %></p>
+        <p>Zip: <%= current_customer.zip_code %></p>
+        <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "waves-effect waves-light btn" %>
+      </div>
+      <div class="col l12 s12 m12 center boty-box">
+        <div class="Title">Coffee Club Plan(s)</div>
+        <% if @customer.current_subscription.status == 'active' %>
+          <p class="center pangolin-font">
+            You have a
+            <%=
+              case @customer.current_subscription.plan
+              when 'w'
+                'weekly'
+              when 'b'
+                'bi-weekly'
+              when 'm'
+                'monthly'
+              end
+            %>
+            subscription to:
+          </p>
+          <table class="bordered">
+            <% @subscription_items.each do |item| %>
+              <tr>
+                <td><%= item['description'] %></td>
+                <td><%= item['quantity'] %></td>
+              </tr>
+            <% end %>
+          </table>
+          <%= link_to(
+            'Cancel Subscription',
+            carted_subscription_path(@customer.current_subscription),
+            method: :delete
+          ) %>
+        <% else %>
+          <p class="center pangolin-font">You are not currently subscribed to any coffee<br>
+          <a href="/products">Subscribe to some products!</a></p>
         <% end %>
+      </div>
     </div>
-  </div>
   </div>
 </body>

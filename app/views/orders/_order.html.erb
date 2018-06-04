@@ -1,0 +1,58 @@
+<div class="col l12 s12 m12 center boty-box">
+  <h5 class="LobsterCenter">3. Items</h5>
+  <table class="bordered">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% order.items.select { |item| item.type == 'sku' }.each do |item| %>
+        <% if item.amount > 0 %>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency((item.amount.to_f / 100).round(2))%></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col l12 s12 m12 center boty-box">
+  <h5 class="LobsterCenter">4.Order Summary</h5>
+  <table class="bordered orderSummaryTable">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Items(<%= order.items.select { |item| item.type == 'sku'} .map(&:quantity).reduce(:+) %>)</td>
+        <td class='price'>
+          <%= number_to_currency(
+            (order.items.select{ |item| item.type == 'sku' }
+                       .map(&:amount)
+                       .reduce(:+).to_f / 100).round(2)
+          )%>
+        </td>
+      </tr>
+      <% order.items.each do |item| %>
+        <% if (item.type != "sku")%>
+          <tr>
+            <td><%= item.description %></td>
+            <td class="price"> <%= number_to_currency(item.amount * 0.01)%></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tfoot>
+        <td> Total </td>
+        <td class="total"> <%= number_to_currency((order.amount.to_f / 100).round(2)) %></td>
+      </tfoot>
+    </tbody>
+  </table>
+</div>

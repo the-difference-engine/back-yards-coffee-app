@@ -35,15 +35,23 @@ class CartedProductsController < ApplicationController
 
   def index
     @customer = current_customer || Customer.new
-    @carted_products = CartedProduct.my_carted(guest_or_customer_id)
+    @carted_products = @customer.carted_products.where(status: 'carted')
+    @carted_subscriptions = @customer.current_subscription.status == 'pending' ? @customer.current_subscription.products['items'] : []
     @products_total = @carted_products.sum { |s| s.price * s.quantity }
-    @cart_total = @products_total
-
     gon.push(
-      :cartedProducts => @carted_products,
+      cartedProducts: @carted_products,
+      cartedSubscriptions: @carted_subscriptions
     )
-
-    if @carted_products.empty?
+    stripe_products = Stripe::Product.list.data
+    @carted_subscriptions.map! do |item|
+      p sku = item['parent']
+      p product_id = Stripe::SKU.retrieve(sku).product
+      p product_name = stripe_products.find { |p| p.id == product_id } .name
+      item.merge({ 'description' => product_name })
+    end
+    p @carted_subscriptions
+    p @customer.current_subscription.products
+    if @carted_products.empty? && @carted_subscriptions.empty?
       flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
     end

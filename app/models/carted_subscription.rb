@@ -17,7 +17,7 @@ class CartedSubscription < ApplicationRecord
     end
     if item_index
       products['items'][item_index]['quantity'] += params[:quantity].to_i
-    else
+  else
       products['items'] << {
         type: 'sku',
         parent: params[:sku],
@@ -36,5 +36,9 @@ class CartedSubscription < ApplicationRecord
     when 'm'
       Date.new(today.year, today.month + 1, today.day)
     end
+  end
+
+  def quantity
+    products['items'].reduce(0) { |m, i| m + i['quantity'] }
   end
 end
