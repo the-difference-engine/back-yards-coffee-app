@@ -21,7 +21,9 @@ RSpec.describe CustomersController, type: :controller do
     before :each do
       @customer = create(:customer)
       sign_in @customer
-      get :show, params: { id: @customer.id }
+      VCR.use_cassette('stripe_get_products') do
+        get :show, params: { id: @customer.id }
+      end
     end
     it 'assigns a Customer to @custer' do
       expect(assigns(:customer)).to be_a Customer

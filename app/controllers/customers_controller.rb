@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
 
   def show
     @subscription_items = @customer.current_subscription.products['items']
-    stripe_products = Stripe::Product.list.data
+    stripe_products = Stripe::Product.list(limit: 100).data
     @subscription_items.map! do |item|
       p sku = item['parent']
       p product_id = Stripe::SKU.retrieve(sku).product

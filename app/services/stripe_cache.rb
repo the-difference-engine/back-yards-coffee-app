@@ -3,7 +3,7 @@ class StripeCache
 
   def products
     Rails.cache.fetch('stripe/products', expires_in: 5.minutes) do
-      Stripe::Product.list(active: true).select { |p| p.skus.data.length.positive? }
+      Stripe::Product.list(active: true, limit: 100).select { |p| p.skus.data.length.positive? }
     end
   end
 
