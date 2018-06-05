@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Stripe::Product.retrieve(id: params[:id])
-    if @product.metadata['plans']
+    if @product.metadata['plans'] && current_customer&.current_subscription&.status != 'active'
       @plans = @product.metadata.plans.split(',')
       plan_names = { w: 'Weekly', b: 'Bi-Weekly', m: 'Monthly' }
       @plans.map! { |p| [plan_names[p.to_sym], p] }

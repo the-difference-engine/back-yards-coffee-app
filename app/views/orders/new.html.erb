@@ -21,89 +21,29 @@
           <% end %>
       </div>
       <!-- Items-->
+      <div id="steps-3-4"></div>
+      <p class='loading'>Loading...</p>
       <div class="orderCheckout" style="display:none">
-      <div class="col l12 s12 m12 center boty-box">
-        <h5 class="LobsterCenter">3. Items</h5>
-        <table class="bordered">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if @stripe_order.present? %>
-                <% @sku_items.each do |item| %>
-                  <% if item.amount > 0 %>
-                    <tr>
-                      <td><%= item.description %></td>
-                      <td><%= item.quantity %></td>
-                      <td> <%= number_to_currency(item.amount * 0.01)%></td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </tbody>
-        </table>
-      </div>
-      <!-- Order Summary-->
-      <div class="col l12 s12 m12 center boty-box">
-        <h5 class="LobsterCenter">4.Order Summary</h5>
-        <p class='loading'>Loading...</p>
-        <table class="bordered orderSummaryTable">
-          <thead>
-            <tr>
-              <th>Description</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Items(<%= @sku_items.length %>)</td>
-              <td class='price'><%= number_to_currency(@stripe_order_total) %></td>
-            </tr>
-            <tr>
-                <% @stripe_order.items.each do |item| %>
-                  <% if (item.type != "sku") && (item.type != "shipping") %>
-                    <td><%= item.type %></td>
-                    <td class="price"> <%= number_to_currency(item.amount * 0.01)%></td>
-                  <% end %>
-              </tr>
-                <% end %>
-                <tr>
-                  <td>Shipping</td>
-                  <td class=" price shipping">0</td>
-                </tr>
-            <tfoot>
-              <td> Total </td>
-              <td class="total"> <%= number_to_currency(@total) %></td>
-            </tfoot>
-          </tbody>
-        </table>
-      </div>
-
-
-    <!-- STRIPE CHECKOUT FORM -->
-    <%= form_tag charges_path do %>
-    <%= hidden_field_tag :order_id, @stripe_order&.id %>
-      <article>
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <p><%= flash[:error] %></p>
-          </div>
-        <% end %>
-      </article>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Back of the Yards Coffee"
-              data-email="<%= current_customer.email if customer_signed_in? %>"
-              data-locale="auto"
-              data-label="Complete Order"
-              data-shipping-address="false">
-      </script>
-    <% end %>
-  </div>
+      <!-- STRIPE CHECKOUT FORM -->
+      <%= form_tag charges_path do %>
+        <%= hidden_field_tag :order_id, @stripe_order&.id %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+        </article>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Back of the Yards Coffee"
+                data-email="<%= current_customer.email if customer_signed_in? %>"
+                data-locale="auto"
+                data-label="Complete Order"
+                data-shipping-address="false">
+        </script>
+      <% end %>
+    </div>
   </div>
   </div>
 </body>
