@@ -78,20 +78,33 @@ class Customer < ApplicationRecord
   end
 
   def carted_items
-    carted_products.where(status: 'carted')
-                   .map do |o|
-                     {
-                       type: 'sku',
-                       parent: o.sku,
-                       quantity: o.quantity
-                     }
-                   end
+    # products = carted_products.where(status: 'carted')
+    #   .map do |o|
+    #     {
+    #       type: 'sku',
+    #       parent: o.sku,
+    #       quantity: o.quantity
+    #     }
+    #   end
+    quantities = Hash.new(0)
+    carted_products.where(status: 'carted').each do |product|
+      quantities[product.sku] += product.quantity
+    end
+    current_subscription.products['items'].each do |product|
+      quantities[product['parent']] += product['quantity']
+    end
+    quantities.map do |sku, quantity|
+      {
+        type: 'sku',
+        parent: sku,
+        quantity: quantity
+      }
+    end
   end
 
   def carted_products_and_subscription_quantity
     product_quantity = carted_products.where(status: 'carted').map(&:quantity)&.sum || 0
-    subscription_quantity = carted_subscriptions.where(status: 'carted').map(&:quantity)&.sum || 0
-
+    subscription_quantity = current_subscription.status == 'pending' ? current_subscription.quantity : 0
     product_quantity + subscription_quantity
   end
 

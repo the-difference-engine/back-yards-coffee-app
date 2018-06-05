@@ -6,5 +6,7 @@ FactoryGirl.define do
     about_me_pic_2 "MyString"
     about_me_sec_3 "MyText"
     about_me_pic_3 "MyString"
+    about_me_sec_4 "MyText"
+    about_me_pic_4 "MyString"
   end
 end

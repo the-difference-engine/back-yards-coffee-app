@@ -19,6 +19,6 @@ class EditablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def editable_params
-      params.permit(:about_me_sec_1, :about_me_pic_1, :about_me_sec_2, :about_me_pic_2, :about_me_sec_3,:about_me_pic_3)
+      params.permit(:about_me_sec_1, :about_me_pic_1, :about_me_sec_2, :about_me_pic_2, :about_me_sec_3,:about_me_pic_3, :about_me_sec_4,:about_me_pic_4)
     end
 end
