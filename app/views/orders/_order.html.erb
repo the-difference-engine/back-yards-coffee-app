@@ -21,6 +21,7 @@
     </tbody>
   </table>
 </div>
+<p>To modify your cart, please click <%= link_to('here', cart_path) %></p>
 <div class="col l12 s12 m12 center boty-box">
   <h5 class="LobsterCenter">4.Order Summary</h5>
   <table class="bordered orderSummaryTable">
@@ -56,3 +57,6 @@
     </tbody>
   </table>
 </div>
+<% if subscriptions.status == 'pending' && subscriptions.products['items'].length > 0 %>
+  <p class="red-text">Your card will be charged on a recurring basis when you order as you have subscribed to a product. To manage subscriptions, go to 'my account'</p>
+<% end %>
