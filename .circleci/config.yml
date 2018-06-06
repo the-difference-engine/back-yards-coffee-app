@@ -4,6 +4,7 @@ jobs:
     docker:
       # specify the version you desire here
        - image: library/ruby:2.3.0
+       - image: circleci/postgres:9.6-alpine-ram
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -21,6 +22,11 @@ jobs:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
+
+      - run:
+          name: Setting up build container
+          command: |
+            apt-get update && apt-get install -y build-essential libpq-dev nodejs
 
       - run:
           name: install dependencies
