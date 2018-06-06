@@ -4,7 +4,7 @@ jobs:
     docker:
       # specify the version you desire here
        - image: library/ruby:2.3.0
-       - image: circleci/postgres:9.6-alpine-ram
+       - image: library/postgres
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
