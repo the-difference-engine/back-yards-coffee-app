@@ -1,0 +1,140 @@
+version: 2
+jobs:
+  test-build:
+    docker:
+      # specify the version you desire here
+       - image: library/ruby:2.3.0
+         environment:
+           RAILS_ENV: test
+           PGHOST: 127.0.0.1
+           PGUSER: root
+       - image: library/postgres
+         environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: back-yards-coffee-app_test
+       - image: library/redis:4.0-alpine
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Setting up build container
+          command: |
+            apt-get update && apt-get install -y build-essential libpq-dev postgresql-client nodejs
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+        
+      # Database setup
+      - run: bundle exec rake db:create RAILS_ENV='test'
+      - run: bundle exec rake db:schema:load RAILS_ENV='test'
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            bundle exec rspec
+
+  prod-build:
+    docker:
+      # specify the version you desire here
+       - image: library/ruby:2.3.0
+         environment:
+           RAILS_ENV: production
+           PGHOST: 127.0.0.1
+           PGUSER: root
+       - image: library/postgres
+         environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: back-yards-coffee-app
+       - image: library/redis:4.0-alpine
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Setting up build container
+          command: |
+            apt-get update && apt-get install -y build-essential libpq-dev postgresql-client nodejs
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+        
+      # Database setup
+      - run: bundle exec rake db:create RAILS_ENV='production'
+      - run: bundle exec rake db:schema:load RAILS_ENV='production'
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            bundle exec rspec
+
+  deploy-qa:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy QA to qa-back-yards-coffee
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_QA.git master
+  deploy-prod:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Production
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_PROD.git master
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - test-build
+      - deploy-qa:
+          requires:
+            - test-build
+          filters:
+            branches:
+              only: qa
+      - deploy-prod:
+          requires:
+            - prod-build
+          filters:
+            branches:
+              only: master
