@@ -14,9 +14,27 @@ class CartedSubscriptionsController < ApplicationController
     redirect_to products_path
   end
 
+  def edit
+    subscription = current_customer.current_subscription
+    if subscription.status != 'active' || subscription.products['items'].length.zero?
+      flash[:error] = "You have no subscriptions to edit"
+      redirect_to customers_dashboard_path
+    end
+    @subscriptions = subscription.products['items']
+    gon.push(cartedSubscriptions: @subscriptions)
+    stripe_products = Stripe::Product.list(limit: 100).data
+    @subscriptions.map! do |item|
+      sku = item['parent']
+      product_id = Stripe::SKU.retrieve(sku).product
+      product_name = stripe_products.find { |p| p.id == product_id } .name
+      item.merge({ 'description' => product_name })
+    end
+  end
+
   def update
     @subscription = CartedSubscription.find(params[:id])
     @subscription.assign_attributes(carted_subscription_update_params)
+    @subscription.status = 'inactive' if @subscription.products['items'].length.zero?
     unless @subscription.save
       flash[:error] = 'Error updating subscriptions' unless subscription.save
     end
