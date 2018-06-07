@@ -12,7 +12,7 @@ jobs:
          environment:
           POSTGRES_USER: root
           POSTGRES_DB: back-yards-coffee-app_test
-      - image: library/redis:4.0-alpine
+       - image: library/redis:4.0-alpine
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
