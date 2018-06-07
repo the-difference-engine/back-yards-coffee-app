@@ -8,14 +8,16 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @subscription_items = @customer.current_subscription.products['items']
+    subscription = @customer.current_subscription
+    @subscription_items = subscription.products['items']
     stripe_products = Stripe::Product.list(limit: 100).data
     @subscription_items.map! do |item|
-      p sku = item['parent']
-      p product_id = Stripe::SKU.retrieve(sku).product
-      p product_name = stripe_products.find { |p| p.id == product_id } .name
-      item.merge({ 'description' => product_name })
+      sku = item['parent']
+      product_id = Stripe::SKU.retrieve(sku).product
+      product_name = stripe_products.find { |p| p.id == product_id } .name
+      item.merge('description' => product_name)
     end
+    @next_date = subscription.next_order_date&.to_s(:long_ordinal)
   end
 
   def edit; end

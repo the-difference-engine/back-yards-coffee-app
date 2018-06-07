@@ -3,7 +3,7 @@
     <h2 class="center lobster-font underline">My Account</h2>
     <div class="row center">
       <div class="col l12 s12 m12 center boty-box">
-        <div class="Title">Shipping Information</div>
+        <div class="Title lobster-font">Shipping Information</div>
         <p>Name: <%= current_customer.first_name %> <%= current_customer.last_name %></p>
         <p>Address: <%= current_customer.address %></p>
         <p><%= current_customer.Address2 %></p>
@@ -13,10 +13,10 @@
         <%= link_to "Edit Shipping Address", "/customers/#{@customer.id}/edit", class: "waves-effect waves-light btn" %>
       </div>
       <div class="col l12 s12 m12 center boty-box">
-        <div class="Title">Coffee Club Plan(s)</div>
+        <div class="Title lobster-font">Coffee Club Plan(s)</div>
         <% if @customer.current_subscription.status == 'active' %>
-          <p class="center pangolin-font">
-            You have a
+          <div class="center">
+            You are subscribed to the following product(s) on a
             <%=
               case @customer.current_subscription.plan
               when 'w'
@@ -27,9 +27,15 @@
                 'monthly'
               end
             %>
-            subscription to:
-          </p>
+            basis:
+          </div>
           <table class="bordered">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
             <% @subscription_items.each do |item| %>
               <tr>
                 <td><%= item['description'] %></td>
@@ -37,6 +43,7 @@
               </tr>
             <% end %>
           </table>
+          <div>Your credit card will be charged for the products above on <%= @next_date %></div>
           <%= link_to(
             'Cancel Subscription',
             carted_subscription_path(@customer.current_subscription),
