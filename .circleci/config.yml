@@ -1,0 +1,85 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+       - image: library/ruby:2.3.0
+         environment:
+           RAILS_ENV: test
+           PGHOST: 127.0.0.1
+           PGUSER: root
+       - image: library/postgres
+         environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: back-yards-coffee-app_test
+       - image: library/redis:4.0-alpine
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Setting up build container
+          command: |
+            apt-get update && apt-get install -y build-essential libpq-dev postgresql-client nodejs
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+        
+      # Database setup
+      - run: bundle exec rake db:create RAILS_ENV='test'
+      - run: bundle exec rake db:schema:load RAILS_ENV='test'
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            bundle exec rspec
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+    deploy:
+      docker:
+        - image: buildpack-deps:trusty
+      steps:
+        - checkout
+        - run:
+            name: Deploy Master to Heroku
+            command: |
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
