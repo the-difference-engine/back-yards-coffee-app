@@ -75,11 +75,12 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'qa-back-yards-coffee.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey',
     :password => ENV['SENDGRID_API_KEY'],
-    :domain => 'qa-back-yards-coffee.herokuapp.com',
+    :domain => 'heroku.com',
     :address => 'smtp.sendgrid.net',
     :port => 2525,
     :authentication => 'login',
