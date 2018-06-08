@@ -81,7 +81,7 @@ Rails.application.configure do
     :password => ENV['SENDGRID_API_KEY'],
     :domain => 'qa-back-yards-coffee.herokuapp.com',
     :address => 'smtp.sendgrid.net',
-    :port => 587,
+    :port => 2525,
     :authentication => 'login',
     :enable_starttls_auto => true
   }
