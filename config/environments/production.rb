@@ -77,13 +77,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'qa-back-yards-coffee.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USER'],
-    :password => ENV['SENDGRID_PASSWORD'],
+  config.action_mailer.smtp_settings = {
+    :user_name => 'apikey',
+    :password => ENV['SENDGRID_API_KEY'],
     :domain => 'qa-back-yards-coffee.herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
-    :authentication => :plain,
+    :authentication => 'login',
     :enable_starttls_auto => true
   }
 
