@@ -14,7 +14,7 @@ RSpec.describe Api::CustomersController, type: :controller do
       valid_update_attributes = { first_name: 'John',
                                   last_name: 'Doe',
                                   address: '100 Main Strett',
-                                  Address2: '',
+                                  address2: '',
                                   city: 'Any City',
                                   zip_code: 12_345 }
 
@@ -40,7 +40,7 @@ RSpec.describe Api::CustomersController, type: :controller do
         invalid_update_attributes = { first_name: 'John',
                                       last_name: 'Doe',
                                       address: '100 Main Strett',
-                                      Address2: '',
+                                      address2: '',
                                       city: 'Any City',
                                       zip_code: '' }
         patch :update, params: { id: @customer.id, customer: invalid_update_attributes }

@@ -58,7 +58,7 @@ module StripeTool
       name: customer.full_name,
       address: {
         line1: customer.address,
-        line2: customer.Address2,
+        line2: customer.address2,
         city: customer.city,
         state: customer.state,
         postal_code: customer.zip_code
