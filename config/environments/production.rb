@@ -84,6 +84,21 @@ Rails.application.configure do
   #   :authentication => :plain,
   #   :enable_starttls_auto => true
   # }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  # :authentication => :plain,
+  # :port => ENV['MAILGUN_SMTP_PORT'],
+  # :address => ENV['MAILGUN_SMTP_SERVER'],
+  # :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+  # :password => ENV['MAILGUN_SMTP_PASSWORD'],
+  # :domain => "sandbox8719fc00d8be4ceaadcf02427a58b509.mailgun.org",
+  # }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+          api_key: ENV['MAILGUN_API_KEY'],
+          domain: 'sandbox8719fc00d8be4ceaadcf02427a58b509.mailgun.org'
+  }
+
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
