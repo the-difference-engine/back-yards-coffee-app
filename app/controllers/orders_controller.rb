@@ -42,7 +42,8 @@ class OrdersController < ApplicationController
     order = Stripe::Order.retrieve(params[:order_id])
     order.selected_shipping_method = params[:shipping_id]
     order.save
-    render partial: 'order', locals: { order: order }, layout: false
+    subscriptions = current_customer.current_subscription
+    render partial: 'order', locals: { order: order, subscriptions: subscriptions }, layout: false
   end
 
   private
