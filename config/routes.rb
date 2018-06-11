@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :employees
   devise_for :customers, controllers: { registrations: 'registrations' }
 
-  root 'pages#index'
+  root to: 'pages#index'
   get '/customers' => 'customers#index'
 
   resources :editables

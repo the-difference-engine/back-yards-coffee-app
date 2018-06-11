@@ -1,4 +1,5 @@
 class CartedProductsController < ApplicationController
+  before_action :authenticate_customer!, only: [:index]
   def create
     carted_product = CartedProduct.find_by(
       status: 'carted',
