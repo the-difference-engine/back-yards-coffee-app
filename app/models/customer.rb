@@ -62,7 +62,7 @@ class Customer < ApplicationRecord
   end
 
   def address_validation_response
-     begin
+    begin
       address_to = Shippo::Address.create(
         name: full_name,
         street1: address,
