@@ -15,20 +15,26 @@ class OrdersController < ApplicationController
     redirect_to '/orders/new' unless customer_signed_in?
     customer = current_customer
     customer.update(customer_params)
-
-    if customer.carted_items.present?
-      # puts "customer.carted_items: #{customer.carted_items}"
-      @order = StripeTool.create_order(current_customer)
-      p @order
-      order_id = @order[:order]['id']
-      redirect_to "/orders/new?order_id=#{order_id}"
+    if current_customer.valid_shipping_address? == false
+      redirect_to '/cart'
+      flash[:error] = 'Address is not valid'
     else
-      flash[:warning] = 'Your cart is currently empty.'
-      redirect_to '/'
+      begin
+        if customer.carted_items.present?
+          # puts "customer.carted_items: #{customer.carted_items}"
+          @order = StripeTool.create_order(current_customer)
+          p @order
+          order_id = @order[:order]['id']
+          redirect_to "/orders/new?order_id=#{order_id}"
+        else
+          flash[:warning] = 'Your cart is currently empty.'
+          redirect_to '/'
+        end
+      rescue
+        redirect_to '/cart'
+        flash[:error] = 'Please Reenter Address As Suggested'
+      end
     end
-    # TODO: GUEST ORDER
-
-    # TODO: REDIRECT TO 'ORDERS NEW
   end
 
   def show

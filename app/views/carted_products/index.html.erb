@@ -22,9 +22,13 @@
             <%= f.text_field :zip_code %>
             <input type="submit" value="Continue to Checkout" class="waves-effect btn addsAjax" />
           <% end %>
-        </div>
+        </div>  
       </div>
       <div class="col s12 m6 l6">
+        <div class="Checkout">Suggested Address:
+          <p><%= @customer.address_validation_response.street1 %> </p>
+          <p><%= @customer.address_validation_response.city%> <%= @customer.address_validation_response.state %> <%= @customer.address_validation_response[:zip] %></p>
+        </div>
         <div class="Checkout">
           <div class="OrderSummary">
             <h5 class="LobsterCenter">Order Summary</h5>

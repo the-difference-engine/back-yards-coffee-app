@@ -44,6 +44,7 @@ module StripeTool
           address: valid_shipping_address ? customer.customer_address : customer.default_address
         }
       )
+
     rescue => error
       p ' ******** STRIPE API ERRROR ********* '
       return { order: error, valid_shipping_address: valid_shipping_address }
@@ -64,6 +65,7 @@ module StripeTool
         postal_code: customer.zip_code
       }
     }
+    
     stripe_customer.shipping = address
     stripe_customer.save
   end
