@@ -14,8 +14,7 @@ class ProductsController < ApplicationController
     end
     @skus = @product.skus.data
     @skus.select! do |sku|
-      sku.inventory&.quantity&.positive? ||
-        (sku.inventory.type == 'infinite')
+      sku.inventory&.quantity&.positive? || (sku.inventory.type == 'infinite')
     end
     @skus.map! do |sku|
       # product_name = @product.name
