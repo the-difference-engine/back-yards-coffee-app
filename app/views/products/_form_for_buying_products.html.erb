@@ -33,17 +33,23 @@
   </div>
   <%= hidden_field_tag :product_id, @product.id %>
   <%= hidden_field_tag :name, @product.name %>
-  <% if customer_signed_in? %>
-    <button class="btn waves-effect waves-light" type="submit" name="submit">Add to Cart</button>
-  <% elsif current_employee %>
+  <% if @skus.length != 0 %>
+    <% if customer_signed_in? %>
+      <button class="btn waves-effect waves-light" type="submit" name="submit">
+        Add to Cart
+      </button>
+    <% elsif current_employee %>
       <div class = "col s6">
         <a href="#modal2" class="btn waves-effect waves-light modal-trigger" data-delay="5">Add to Cart</a>
       </div>
     <% else %>
-    <div class="col s6">
-      <a href="#modal1" class="btn waves-effect waves-light modal-trigger" data-delay="5" data-tooltip="Add to cart">Add to Cart</a>
-    </div>
-  <%end%>
+      <div class="col s6">
+        <a href="#modal1" class="btn waves-effect waves-light modal-trigger" data-delay="5" data-tooltip="Add to cart">Add to Cart</a>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="col s6">Product is currently sold out</div>
+  <% end %>
   <br>
   <br>
 <% end %>

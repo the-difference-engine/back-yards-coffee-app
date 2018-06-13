@@ -33,7 +33,7 @@
                         <a href="#" id="id<%=product.id%>" class="add btn-large
                           btn-floating waves-effect waves-light botyred tooltipped" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
                       </div>
-                    <% elsif %>
+                    <% elsif employee_signed_in? %>
                       <div class="col s6">
                         <a href="#modal2" class="btn-large
                           btn-floating waves-effect waves-light tooltipped modal-trigger" data-delay="5" data-tooltip="Add to cart"><i class="material-icons md-24">add_shopping_cart</i></a>
