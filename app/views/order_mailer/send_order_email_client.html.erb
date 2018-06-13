@@ -1,0 +1,21 @@
+<h1>Shipping Scheduled</h1>
+<p>This message is to notify you that a shipment has been scheduled:</p>
+
+<% @order.items.each do |item| %>
+  <p>
+    <%= item.description %>
+    <%= item.quantity %>
+    <%= @sku_objects.find { |sku| sku.id == item.parent } &.attributes %>
+    <%= number_to_currency(item.amount.to_f / 100) %>
+  </p>
+<% end %>
+
+<Attribute>
+<%=@order.shipping.name%>
+<h4>Shipping</h4>
+<p>Address:
+  <%=@order.shipping.address.line1%>
+  <%=@order.shipping.address.city%>,
+  <%=@order.shipping.address.state%>
+  <%=@order.shipping.address.postal_code%>
+  <%=@order.shipping.address.country%></p>

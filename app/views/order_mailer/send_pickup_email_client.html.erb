@@ -1,0 +1,15 @@
+<h1>Pick up</h1>
+<p>This message is to notify you that an in-store pickup has been scheduled:</p>
+
+<% @order.items.each do |item| %>
+  <p>
+    <%= item.description %>
+    <%= item.quantity %>
+
+    <%= @sku_objects.find { |sku| sku.id == item.parent } &.attributes %>
+
+    <%= number_to_currency(item.amount.to_f / 100) %>
+  </p>
+<% end %>
+
+<p><%=@order.shipping.name%></p>

@@ -69,4 +69,11 @@ module StripeTool
     stripe_customer.shipping = address
     stripe_customer.save
   end
+
+  def self.get_sku_objects(order)
+    skus = order.items.select{ |item| item.type == 'sku' }
+                .map{|item| item.parent}
+    sku_list = Stripe::SKU.list.data
+    sku_list.select{|item| skus.include?(item.id)}
+  end
 end
