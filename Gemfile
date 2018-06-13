@@ -51,6 +51,8 @@ gem 'gon'
 gem 'sidekiq'
 gem 'redis', '~> 3.3', '>= 3.3.1'
 gem 'phrasing'
+gem 'mailgun-ruby'
+
 
 group :production do
   gem 'rails_12factor'

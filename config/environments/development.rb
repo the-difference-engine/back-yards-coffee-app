@@ -45,17 +45,20 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-
   config.action_mailer.default_url_options = { :host => 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USER'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'localhost:3000',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  # :authentication => :plain,
+  # :port => ENV['MAILGUN_SMTP_PORT'],
+  # :address => ENV['MAILGUN_SMTP_SERVER'],
+  # :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+  # :password => ENV['MAILGUN_API_KEY'],
+  # :domain => "sandbox8719fc00d8be4ceaadcf02427a58b509.mailgun.org",
+  # }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+          api_key: ENV['MAILGUN_API_KEY'],
+          domain: 'localhost:3000'
   }
 
   # Raises error for missing translations
