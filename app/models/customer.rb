@@ -44,7 +44,9 @@ class Customer < ApplicationRecord
   def customer_address
     {
       line1: address,
+      line2: address2,
       city: city,
+      state: state,
       country: 'US',
       postal_code: zip_code
     }
@@ -59,11 +61,12 @@ class Customer < ApplicationRecord
     }
   end
 
-  def valid_shipping_address?
+  def address_validation_response
     begin
       address_to = Shippo::Address.create(
         name: full_name,
         street1: address,
+        street2: address2,
         city: city,
         state: state,
         zip: zip_code,
@@ -71,9 +74,29 @@ class Customer < ApplicationRecord
         validate: true
       )
     rescue
-      p ' ******** SHIPPO API ERRROR ********* '
+      p ' ******** SHIPPO API ERROR ********* '
+      return 'Sorry, Try Again'
+    end
+    address_to
+  end
+
+  def valid_shipping_address?
+    begin
+      address_to = Shippo::Address.create(
+        name: full_name,
+        street1: address,
+        street2: address2,
+        city: city,
+        state: state,
+        zip: zip_code,
+        country: 'US',
+        validate: true
+      )
+    rescue
+      p ' ******** SHIPPO API ERROR ********* '
       return false
     end
+    p address_to
     address_to.validation_results.is_valid
   end
 

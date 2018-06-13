@@ -49,11 +49,21 @@ class CartedProductsController < ApplicationController
       product_name = stripe_products.find { |p| p.id == product_id } .name
       item.merge({ 'description' => product_name })
     end
-    @carted_subscriptions
-    @customer.current_subscription.products
     if @carted_products.empty? && @carted_subscriptions.empty?
       flash[:warning] = 'Your cart is currently empty.'
       redirect_to '/'
     end
+    @address_validation = current_customer.address_validation_response
+  end
+
+  def update_address
+    current_customer.update(address_params)
+    redirect_to cart_path
+  end
+
+  private
+
+  def address_params
+    params.require(:customer).permit(:first_name, :last_name, :address, :address2, :city, :state, :zip_code)
   end
 end

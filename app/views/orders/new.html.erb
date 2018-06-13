@@ -7,6 +7,7 @@
         <% if @stripe_order.present? %>
           <div><%= @stripe_order.shipping.name %></div>
           <div><%= @stripe_order.shipping.address.line1 %></div>
+          <div><%= @stripe_order.shipping.address.line2 %></div>
           <div><%= "#{@stripe_order.shipping.address.city} #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}" %> </div>
         <% end %>
       </div>
@@ -22,7 +23,6 @@
       </div>
       <!-- Items-->
       <div id="steps-3-4"></div>
-      <p class='loading'>Loading...</p>
       <div class="orderCheckout" style="display:none">
       <!-- STRIPE CHECKOUT FORM -->
       <%= form_tag charges_path do %>

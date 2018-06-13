@@ -23,15 +23,15 @@
           </div>
           <div class="field">
             <%= f.label :address2 %><br />
-            <%= f.text_field :Address2 %>
+            <%= f.text_field :address2 %>
           </div>
           <div class="field">
             <%= f.label :city %><br />
             <%= f.text_field :city %>
           </div>
           <div class="field">
-            <%= f.label :state %><br />
-            <%= f.text_field :state %>
+            <%= f.label :state %>
+            <%= f.select :state, options_for_select(us_states, @customer.state) %>
           </div>
           <div class="field">
             <%= f.label :zip_code %><br />
@@ -42,5 +42,9 @@
       </div>
     </div>
   </div>
-  
+  <script>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>
 </body>

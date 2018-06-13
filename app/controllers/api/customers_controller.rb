@@ -29,7 +29,7 @@ class Api::CustomersController < ApplicationController
     params.require(:customer).permit(:first_name,
                                      :last_name,
                                      :address,
-                                     :Address2,
+                                     :address2,
                                      :city,
                                      :state,
                                      :zip_code)

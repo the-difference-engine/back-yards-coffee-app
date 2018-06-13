@@ -44,6 +44,7 @@ module StripeTool
           address: valid_shipping_address ? customer.customer_address : customer.default_address
         }
       )
+
     rescue => error
       p ' ******** STRIPE API ERRROR ********* '
       return { order: error, valid_shipping_address: valid_shipping_address }
@@ -58,12 +59,13 @@ module StripeTool
       name: customer.full_name,
       address: {
         line1: customer.address,
-        line2: customer.Address2,
+        line2: customer.address2,
         city: customer.city,
         state: customer.state,
         postal_code: customer.zip_code
       }
     }
+    
     stripe_customer.shipping = address
     stripe_customer.save
   end

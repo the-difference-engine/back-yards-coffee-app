@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   delete '/categories/:id' => 'categories#destroy'
 
   get '/cart', to: 'carted_products#index'
+  patch '/cart', to: 'carted_products#update_address', as: 'cart_update_address'
 
   resources :carted_subscriptions, only: [:index, :create, :update, :destroy]
   resources :carted_products, only: [:index, :create, :update]
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
   get '/orders/new:order_id' => 'orders#create'
   patch '/orders/:order_id/:shipping_id' => 'orders#update'
   get '/orders/show/:id' => 'orders#show'
-  patch '/orders' => 'orders#create', as: 'orders_create'
+  get '/orders/create' => 'orders#create', as: 'orders_create'
 
   # get '/subscriptions/new' => 'subscriptions#new'
 

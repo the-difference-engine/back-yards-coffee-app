@@ -11,6 +11,10 @@
           Order number is: <%= @order.id %>
       </h3>  
     </div>
+    <div> Shipping:
+      <p><%= @stripe_order.shipping.address.line1 %></p>
+      <p><%= @stripe_order.shipping.address.city %> <%= @stripe_order.shipping.address.state %> <%= @stripe_order.shipping.address.postal_code %></p> 
+    </div>
     <div>
       <h5>Items</h5>
         <table class="bordered">
