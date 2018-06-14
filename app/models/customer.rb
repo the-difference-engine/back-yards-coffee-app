@@ -132,10 +132,10 @@ class Customer < ApplicationRecord
   end
 
   def current_subscription
-    @subscriptions = carted_subscriptions
-    if @subscriptions.length.zero? || @subscriptions.last.status == 'inactive'
+    @subscriptions = carted_subscriptions.order(created_at: :desc)
+    if @subscriptions.length.zero? || @subscriptions.first.status == 'inactive'
       return carted_subscriptions.create
     end
-    @subscriptions.last
+    @subscriptions.first
   end
 end
