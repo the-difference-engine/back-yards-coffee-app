@@ -4,3 +4,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+desc "Run a daily subscription job"
+task :subscription_job => :environment do
+  DailySubscriptionJob.perform_now
+  # Make sure something cool is in the log
+  puts "SUBSCRIPTION JOB RAN"
+end
