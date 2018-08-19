@@ -113,8 +113,10 @@ class Customer < ApplicationRecord
     carted_products.where(status: 'carted').each do |product|
       quantities[product.sku] += product.quantity
     end
-    current_subscription.products['items'].each do |product|
-      quantities[product['parent']] += product['quantity']
+    if current_subscription.status == 'pending'
+      current_subscription.products['items'].each do |product|
+        quantities[product['parent']] += product['quantity']
+      end
     end
     quantities.map do |sku, quantity|
       {
@@ -132,10 +134,9 @@ class Customer < ApplicationRecord
   end
 
   def current_subscription
-    @subscriptions = carted_subscriptions
-    if @subscriptions.length.zero? || @subscriptions.last.status == 'inactive'
-      return carted_subscriptions.create
-    end
+    @subscriptions = carted_subscriptions.order(:created_at)
+    no_subs = @subscriptions.empty? || @subscriptions.last.status == 'inactive'
+    return carted_subscriptions.create if no_subs
     @subscriptions.last
   end
 end
