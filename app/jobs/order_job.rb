@@ -21,7 +21,7 @@ class OrderJob < ApplicationJob
     end
 
     # pay for the order
-    order.pay
+    order.pay(customer.stripe_customer_id)
 
     # update the date
     subscription.update(next_order_date: subscription.next_date)

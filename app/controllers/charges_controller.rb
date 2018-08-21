@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
       customer = Stripe::Customer.retrieve(order.customer)
       customer.source = token
       customer.save
-      order.pay
+      order.pay(customer: customer.id)
     rescue Stripe::CardError => e
       flash[:error] = e.message
       return redirect_to '/cart'
