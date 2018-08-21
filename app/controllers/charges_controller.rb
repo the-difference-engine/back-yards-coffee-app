@@ -31,6 +31,9 @@ class ChargesController < ApplicationController
       subscription.order_created_at = Time.zone.today
       subscription.next_order_date = subscription.next_date
       subscription.save
+      customer = Stripe::Customer.retrieve(order.customer)
+      customer.source = token
+      customer.save
     end
 
     OrderEmailJob.perform_later(current_customer, order.id)
