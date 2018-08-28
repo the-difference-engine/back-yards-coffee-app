@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'email_boty@email.com'
+  default from: 'info@by.coffee'
 
   def wholesaler_email_to_admin(employee, wholesaler)
     @wholesaler = wholesaler
