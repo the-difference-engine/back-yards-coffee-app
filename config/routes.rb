@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'carted_products#index'
   patch '/cart', to: 'carted_products#update_address', as: 'cart_update_address'
 
-  resources :carted_subscriptions, only: [:index, :create, :update, :destroy]
+  resources :carted_subscriptions, only: [:index, :create, :edit, :update, :destroy]
   resources :carted_products, only: [:index, :create, :update]
 
   get '/orders/new/' => 'orders#new'

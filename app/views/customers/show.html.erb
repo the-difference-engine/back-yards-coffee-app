@@ -48,6 +48,11 @@
           </table>
           <div>Your credit card will be charged for the products above on <%= @next_date %></div>
           <%= link_to(
+            'Edit Subscription',
+            edit_carted_subscription_path(@customer.current_subscription)
+          ) %>
+          <br/>
+          <%= link_to(
             'Cancel Subscription',
             carted_subscription_path(@customer.current_subscription),
             method: :delete

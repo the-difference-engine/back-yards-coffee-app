@@ -1,0 +1,38 @@
+<div class="container row">
+  <div class="Checkout">
+    <div class="OrderSummary">
+      <h5 class="LobsterCenter ultraGrey">Subscriptions</h5>
+      <ul>
+        <% @subscriptions.each do |product| %>
+          <li id="id<%= product['parent'] %>" >
+            <div class="col s12 subscriptionView">
+              <div class="col s8">
+                <%= product['description'] %>
+              </div>
+              <div class="col s2 quantity">
+                <input class="subscriptionEdit" type="number" step="1" value="<%=product['quantity']%>">
+                <div class="quantity-nav">
+                  <div class="quantity-button quantity-up">+</div>
+                  <div class="quantity-button quantity-down">-</div>
+                </div>
+              </div>
+              <div class="col s2">
+                <a class="btn-floating btn-tiny waves-effect waves-light black deleteSubscription"><i class="material-icons">delete</i></a>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <p class="center"><%= link_to 'Back to customer dashboard', customers_dashboard_path %></p>
+</div>
+<div id="modal-alert" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to delete that subscription?</p>
+  </div>
+  <div class="modal-footer">
+    <a id='confirm-delete-subscription' href="#!" class="modal-close waves-effect waves-green btn-flat">Yes, I'm sure.</a>
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">No</a>
+  </div>
+</div>
