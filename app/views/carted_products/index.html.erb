@@ -47,18 +47,18 @@
                 <% @carted_products.each do |product| %>
                   <li id="id<%=product.id%>" >
                     <div class="col s12 productView">
-                      <div class="col s8">
+                      <div class="col s6 m6">
                         <%= product.name %>
                       </div>
-                      <div class="col s2 quantity">
+                      <div class="col s4 m4 quantity">
                         <input class="productEdit" type="number" step="1" value="<%=product.quantity%>">
-                        <div class="quantity-nav">
+                        <div class="quantity-nav red-circle">
                           <div class="quantity-button quantity-up">+</div>
                           <div class="quantity-button quantity-down">-</div>
                         </div>
                       </div>
-                      <div class="col s2">
-                        <a class="btn-floating btn-tiny waves-effect waves-light black deleteProduct"><i class="material-icons">delete</i></a>
+                      <div class="col s1 m2">
+                        <a class="btn-floating btn-tiny waves-effect waves-light icon-bg-color deleteProduct"><i class="material-icons">delete</i></a>
                       </div>
                     </div>
                   </li>
@@ -71,18 +71,18 @@
                 <% @carted_subscriptions.each do |product| %>
                   <li id="id<%= product['parent'] %>" >
                     <div class="col s12 subscriptionView">
-                      <div class="col s8">
+                      <div class="col s6 m6">
                         <%= product['description'] %>
                       </div>
-                      <div class="col s2 quantity">
+                      <div class="col s4 m4 quantity">
                         <input class="subscriptionEdit" type="number" step="1" value="<%=product['quantity']%>">
-                        <div class="quantity-nav">
+                        <div class="quantity-nav red-circle">
                           <div class="quantity-button quantity-up">+</div>
                           <div class="quantity-button quantity-down">-</div>
                         </div>
                       </div>
-                      <div class="col s2">
-                        <a class="btn-floating btn-tiny waves-effect waves-light black deleteSubscription"><i class="material-icons">delete</i></a>
+                      <div class="col s1 m2">
+                        <a class="btn-floating btn-tiny waves-effect waves-light icon-bg-color deleteSubscription"><i class="material-icons">delete</i></a>
                       </div>
                     </div>
                   </li>
